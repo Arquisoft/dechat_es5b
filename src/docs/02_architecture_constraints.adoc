@@ -9,7 +9,7 @@ In this part, we go to explain any requirements that limited our team in the fre
 | TC01 | Use of SOLID | Application must be developed following the SOLID specifications with a decentralized control of the user's data
 | TC02 | Angular Framework | This framework based on TypeScript adapts perfectly to the development of applications based on SOLID principles
 | TC03 | Independent operating system and browser | Application must run in any operating system and in the main web browsers
-| TC04 | Impossibility of using relational databases | These types of databases are incompatible with the SOLID specification
+| TC04 | Non-relational databases | These databases are easier to use with SOLID applications than relational ones
 |====================
 
 === 2.2: Organizational Constraints
@@ -28,5 +28,5 @@ In this part, we go to explain any requirements that limited our team in the fre
 |====================
 | Code | Constraint | Motive 
 | CO01 | Development and documentation language | English. Application will have no language restrictions and it can be used by anyone
-| CO02 | Documentation completed in Asciidoc | We will use AsciiDoc and not Markdown
+| CO02 | Documentation completed in AsciiDoc | We will use AsciiDoc and not Markdown
 |====================
