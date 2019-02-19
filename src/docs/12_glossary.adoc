@@ -5,19 +5,31 @@
 |===
 | Term         | Definition
 
+| Angular   | Angular is a JavaScript development framework created by Google. The purpose of Angular is to facilitate the development of SPA web applications and also give us tools to work with the elements of a web in a simpler and more optimal.
+
 | Application   | An application is a program or a set of programs developed to obtain a specific functionality that serves an end user.
 
 | arc42    | arc42 offers a clear, simple and effective structure to  document and communicate your software system.
 
 | Black Box | A black box is an element that is studied from the point of view of its inputs and outputs, without taking into account its internal functionality.
 
+| Browser   | A program that allows you to surf the Internet or another computer communications network.
+
 | Building Block View | The building block view is the documentation's section that shows the static decomposition of the system into building blocks as well as their dependencies.
 
 | Chat  | A chat is a computer application that allows two or more people to communicate using instant messaging.
 
+| Constraints   | Constraints are limitations to which our project must conform. They can be technical, organizational, ...
+
+| Decentralized computing   | Decentralized computing is the allocation of resources, both hardware and software, to each individual workstation, or office location. In contrast, centralized computing exists when the majority of functions are carried out, or obtained from a remote centralized location.
+
+| Framework | A framework is a scheme (a skeleton, a pattern) for the development and/or implementation of an application.
+
 | Interface | An interface provides a functional connection between two systems, programs or devices and allows communication at different levels allowing the exchange of information.
 
 | Log in    | Log in is the process by which individual access to a   computer system is controlled.
+
+| Operative system  | Set of commands and programs that control the basic processes of a computer and allow the operation of other programs.
 
 | POD   | A Solid application stores the information in PODs (Personal Online Data stores) hosted wherever the user desires.Applications that are authenticated by Solid are allowed to request data if the user has given the application permission.
 
@@ -32,6 +44,8 @@
 | SOLID    | Solid is an exciting new project led by Prof. Tim Berners-Lee, inventor of the World Wide Web, taking place at MIT. The project aims to radically change the way Web applications work today, resulting in true data ownership as well as improved privacy.
 
 | SOLID Community | The mission of the Solid Community Group is to try to reshape the web by fostering a new breed of applications with capabilities above and beyond anything that exists today. Participants in this group will create applications, author technical specifications, and capture best practices.
+
+| TypeScript | TypeScript is an open source programming language with object-oriented programming tools, very favorable if you have large projects.
 
 | User      | A person who uses a particular application or computer system.
 
