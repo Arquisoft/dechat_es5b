@@ -1,37 +1,42 @@
 [[section-glossary]]
 == Glossary
 
-
-
-[role="arc42help"]
-****
-.Contents
-The most important domain and technical terms that your stakeholders use when discussing the system.
-
-You can also see the glossary as source for translations if you work in multi-language teams.
-
-.Motivation
-You should clearly define your terms, so that all stakeholders
-
-* have an identical understanding of these terms
-* do not use synonyms and homonyms
-
-.Form
-A table with columns <Term> and <Definition>.
-
-Potentially more columns in case you need translations.
-
-****
-
-[options="header"]
+[options="header" cols="<1,<3"]
 |===
 | Term         | Definition
-| Black Box |
-| Building Block View | 
-| Log in    |
-| POD   |
-| rdflib.js   | <definition-2>
-| SOLID    | Solid is an exciting new project led by Prof. Tim Berners-Lee,                 inventor of the World Wide Web, taking place at MIT. The                   project aims to radically change the way Web applications                  work today, resulting in true data ownership as well as                    improved privacy.
-| White Box |
+
+| Application   | An application is a program or a set of programs developed to obtain a specific functionality that serves an end user.
+
+| arc42    | arc42 offers a clear, simple and effective structure to  document and communicate your software system.
+
+| Black Box | A black box is an element that is studied from the point of view of its inputs and outputs, without taking into account its internal functionality.
+
+| Building Block View | The building block view is the documentation's section that shows the static decomposition of the system into building blocks as well as their dependencies.
+
+| Chat  | A chat is a computer application that allows two or more people to communicate using instant messaging.
+
+| Interface | An interface provides a functional connection between two systems, programs or devices and allows communication at different levels allowing the exchange of information.
+
+| Log in    | Log in is the process by which individual access to a   computer system is controlled.
+
+| POD   | A Solid application stores the information in PODs (Personal Online Data stores) hosted wherever the user desires.Applications that are authenticated by Solid are allowed to request data if the user has given the application permission.
+
+| POD Provider | A person or company that has one or more solid pod servers and uses them to host consumer data.
+
+| POD Server | Server that allows the application store POD information on it.
+
+| RDF   | RDF is a web specification that is used for the conceptual description or modeling of information that is implemented in web resources. It was originally created for the metadata model.
+
+| rdflib.js   | rdflib.js is the library used to manage data on RDF format, which is used by Solid applications.
+
+| SOLID    | Solid is an exciting new project led by Prof. Tim Berners-Lee, inventor of the World Wide Web, taking place at MIT. The project aims to radically change the way Web applications work today, resulting in true data ownership as well as improved privacy.
+
+| SOLID Community | The mission of the Solid Community Group is to try to reshape the web by fostering a new breed of applications with capabilities above and beyond anything that exists today. Participants in this group will create applications, author technical specifications, and capture best practices.
+
+| User      | A person who uses a particular application or computer system.
+
+| User account  | In order for users to obtain security, access to the system, resource management, etc., these users must identify themselves. To identify themselves, users need a user account, that is, a part of the system where personalized user information is stored.
+
+| White Box | White box diagrams offer an internal view of the functionality that an application or module should have; as opposed to black box diagrams focus more on external functionality.
 
 |===
