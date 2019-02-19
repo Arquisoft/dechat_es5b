@@ -26,6 +26,12 @@ Potentially more columns in case you need translations.
 [options="header"]
 |===
 | Term         | Definition
-| SOLID    | <definition-1>
-| rdflib.js    | <definition-2>
+| Black Box |
+| Building Block View | 
+| Log in    |
+| POD   |
+| rdflib.js   | <definition-2>
+| SOLID    | Solid is an exciting new project led by Prof. Tim Berners-Lee,                 inventor of the World Wide Web, taking place at MIT. The                   project aims to radically change the way Web applications                  work today, resulting in true data ownership as well as                    improved privacy.
+| White Box |
+
 |===
