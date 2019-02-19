@@ -1,19 +1,32 @@
 [[section-architecture-constraints]]
-== Architecture Constraints
+== 2. Architecture Constraints
+In this part, we go to explain any requirements that limited our team in the freedom of design, the implementation decisions and the decisions about the development process that we have taken.
 
+=== 2.1: Technical Constraints
+[width="100%",options="header"]
+|====================
+| Code | Constraint | Motive 
+| TC01 | Use of SOLID | Application must be developed following the SOLID specifications with a decentralized control of the user's data
+| TC02 | Angular Framework | This framework based on TypeScript adapts perfectly to the development of applications based on SOLID principles
+| TC03 | Independent operating system and browser | Application must run in any operating system and in the main web browsers
+| TC04 | Non-relational databases | These databases are easier to use with SOLID applications than relational ones
+|====================
 
-[role="arc42help"]
-****
-.Contents
-Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
+=== 2.2: Organizational Constraints
+[width="100%",options="header"]
+|====================
+| Code | Constraint | Motive 
+| OC01 | Project developed in open source | The project, including source code and documentation, will be developed and published in open source
+| OC02 | Use of GitHub version control platform | It's use makes easier cooperation and communication between team members to develop the project
+| OC03 | Limited time to develop the project | Development team must have a beta version, maximum, in May 2019
+| OC04 | https://arc42.org/[Arc42] model | Documentation must follow this template
+|====================
 
-.Motivation
-Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.
+=== 2.3: Conventions
 
-.Form
-Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
-****
+[width="100%",options="header,footer"]
+|====================
+| Code | Constraint | Motive 
+| CO01 | Development and documentation language | English. Application will have no language restrictions and it can be used by anyone
+| CO02 | Documentation completed in AsciiDoc | We will use AsciiDoc and not Markdown
+|====================
