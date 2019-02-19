@@ -5,19 +5,20 @@
 [role="arc42help"]
 ****
 .Contents
-System scope and context - as the name suggests - delimits your system (i.e. your scope) from all its communication partners
-(neighboring systems and users, i.e. the context of your system). It thereby specifies the external interfaces.
-
-If necessary, differentiate the business context (domain specific inputs and outputs) from the technical context (channels, protocols, hardware).
+DeChat must allow communication between two users through text messages. In addition, it will be possible to create groups of users to which all participants can send and receive messages. Also, it must allow sending files, such as images or videos, to the recipient.
+A notification will be shown when user receives a message.
 
 .Motivation
-The domain interfaces and technical interfaces to communication partners are among your system's most critical aspects. Make sure that you completely understand them.
+Security and privacy is DeChat priority. Messages will never leave user own Solid POD. Instead, recipient system will be asked to retrieve message from senders POD, and will never save messages to recipient POD.
+DeChat will only store where message is placed, so app knows where are messages stored when user starts application.
 
 .Form
-Various options:
+Lists of communication partners and their interfaces:
 
-* Context diagrams
-* Lists of communication partners and their interfaces.
+* Common interfaces
+** Main: List of active chats.
+** Chat: List of messages within send or received to/from selected user or group.
+** Chat options: Interface enabling user to delete or edit chat configurations.
 ****
 
 
@@ -26,17 +27,18 @@ Various options:
 [role="arc42help"]
 ****
 .Contents
-Specification of *all* communication partners (users, IT-systems, ...) with explanations of domain specific inputs and outputs or interfaces.
-Optionally you can add domain specific formats or communication protocols.
+There will be only one communication partner (one role): User. User will be able to send and receive messages.
+In the background, RDF will be used to share chat details.
 
 .Motivation
-All stakeholders should understand which data are exchanged with the environment of the system.
+Data will be kept within sender's POD and will never be stored outside it.
 
 .Form
-All kinds of diagrams that show the system as a black box and specify the domain interfaces to communication partners.
-
-Alternatively (or additionally) you can use a table.
-The title of the table is the name of your system, the three columns contain the name of the communication partner, the inputs, and the outputs.
+[options="header",cols="1,2,2"]
+|===
+|Communication partner|Input|Outputs
+| User | _Notifications indicating user to read a message from a given source_ | _Message storing and same notifications from Input column_
+|===
 ****
 
 **<Diagram or Table>**
@@ -48,12 +50,15 @@ The title of the table is the name of your system, the three columns contain the
 [role="arc42help"]
 ****
 .Contents
-Technical interfaces (channels and transmission media) linking your system to its environment. In addition a mapping of domain specific input/output to the channels, i.e. an explanation with I/O uses which channel.
+Since DeChat is under SOLID architecture, we will be using WebID to communicate between users and add friends. SOLID also makes use of RDF, WebSockets, etc.. More info available in https://github.com/solid/solid-spec
 
 .Motivation
-Many stakeholders make architectural decision based on the technical interfaces between the system and its context. Especially infrastructure or hardware designers decide these technical interfaces.
+Motivation: Respect SOLID architecture.
 
 .Form
+
+**TO-DOs: This is not a definitive document. System is still not 100% designed and may vary. Please check out later to find the following:**
+
 E.g. UML deployment diagram describing channels to neighboring systems,
 together with a mapping table showing the relationships between channels and input/output.
 
