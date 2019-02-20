@@ -11,6 +11,8 @@
 
 | Arc42    | arc42 offers a clear, simple and effective structure to  document and communicate your software system.
 
+| AsciiDoc  | AsciiDoc is a human-readable document format that uses plain text marking conventions.
+
 | Beta version  | A Beta version is a software version that has passed the internal testing stage, called "Alpha" and has been released to users for public testing.
 
 | Black Box | A black box is an element that is studied from the point of view of its inputs and outputs, without taking into account its internal functionality.
@@ -30,6 +32,8 @@
 | Git   | Git is a version control software designed by Linus Torvalds, thinking about the efficiency and reliability of maintaining versions of applications when they have a large number of source code files.
 
 | GitHub    | GitHub is a platform for hosting projects using the Git version control system.
+
+| Glossary  | The glossary contains the most important domain and technical terms that your stakeholders use when discussing the system.
 
 | Interface | An interface provides a functional connection between two systems, programs or devices and allows communication at different levels allowing the exchange of information.
 
@@ -52,6 +56,8 @@
 | SOLID    | Solid is an exciting new project led by Prof. Tim Berners-Lee, inventor of the World Wide Web, taking place at MIT. The project aims to radically change the way Web applications work today, resulting in true data ownership as well as improved privacy.
 
 | SOLID Community | The mission of the Solid Community Group is to try to reshape the web by fostering a new breed of applications with capabilities above and beyond anything that exists today. Participants in this group will create applications, author technical specifications, and capture best practices.
+
+| Template  | A template or interface device usually provides a separation between the form or structure and the content. It is a medium or device or system, that allows to guide, to carry, or to construct, a predefined design or scheme.
 
 | TypeScript | TypeScript is an open source programming language with object-oriented programming tools, very favorable if you have large projects.
 
