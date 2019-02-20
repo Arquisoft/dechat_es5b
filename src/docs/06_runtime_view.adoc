@@ -3,42 +3,35 @@
 
 
 [role="arc42help"]
-****
-.Contents
-The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:
+In this section, we will develop the main runtime views of use cases of our application. In this version 0.1 of the documentation, the diagrams will be not very specific.
 
-* important use cases or features: how do building blocks execute them?
-* interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?
-* operation and administration: launch, start-up, stop
-* error and exception scenarios
+We will improve and better specify the diagrams in following versions of the application and documentation.
 
-Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their *architectural relevance*. It is *not* important to describe a large number of scenarios. You should rather document a representative selection.
+=== Log in
+The login process will be done by users when they log in with their pesonal id to access the chat.
 
-.Motivation
-You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
-You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).
+1. The user must enter his or her personal ID and password.
+2. The application asks the server to approve the login request.
+3. The server approves the login or denies it. If accepted the user can access the chat.
 
-.Form
-There are many notations for describing scenarios, e.g.
+image::./images/login.png[Log in diagram]
 
-* numbered list of steps (in natural language)
-* activity diagrams or flow charts
-* sequence diagrams
-* BPMN or EPCs (event process chains)
-* state machines
-* ...
+=== Add new friends
+The users must have friends in the chat in order to chat with them.
 
-****
+When the user signs up for the chat, he won't have any friends yet. Here we'll show the sequence diagram to be able to add a friend.
 
-=== <Runtime Scenario 1>
+1. The user must enter the url of the pod of the user who wants to add as a friend.
+2. The friend's url is stored on his pod so he can chat.
 
+image::./images/addfriend.png[Add new friend diagram]
 
-* _<insert runtime diagram or textual description of the scenario>_
-* _<insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.>_
+=== Chat with added friends
+The users use the application to chat with their friends. Here we will explain the sequence for send messages.
 
-=== <Runtime Scenario 2>
+1. User 1 sends the message to user 2.
+2. The application of user 1 post the message on the user 2's pod.
+3. User 2's application requests received messages to the pod. The pod makes them available to the application.
+4. User 2 reads the recieved messages from the application.
 
-=== ...
-
-=== <Runtime Scenario n>
+image::./images/messages.png[Exchange messages diagram]
