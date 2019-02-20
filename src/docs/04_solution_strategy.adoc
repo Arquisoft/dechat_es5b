@@ -12,7 +12,8 @@ For the teamwork, project development and documentation we'll be using a GitHub 
 
 
 .Motivation
-These decisions form the cornerstones for your architecture. They are the basis for many other detailed decisions or implementation rules.
+Create a functional solid chat application that is strong and consolidated and can stand a chance in Tim Berners-Lee's contest.
+
 
 .Form
 Keep the explanation of these key decisions short.
