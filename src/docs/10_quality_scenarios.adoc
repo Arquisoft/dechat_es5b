@@ -1,20 +1,26 @@
 [[section-quality-scenarios]]
 == Quality requirements
-Here we will explain using scenarios some of the quality requirements of this project.
+Here we will explain using scenarios some of the quality requeriments of this project.
 
 [role="arc42help"]
 ****
 .List of scenarios
-
-* The first and most important is the [underline]#protection towards the private information of the user#, we will acomplish this by saving every information of the user in a POD, but only those of the user himself never those of the other users. This POD can only be accesed by the user and those who have the permission of the user.
-
-
-image::images/Diagram_quality_requeriments_01.png[]
-
-* The second will be the correct exchange of information in the chat. If you write something in the chat you expects it to reach the other person almost instantly, not only that, it needs to be exactly what you have written. 
+//
+* The first and most important is the protection towards the private information of the user, we will acomplish this by saving every information of the user in a POD, but only those of the user himself never those of the other users. This POD can only be accesed by the user and those who have the permission of the user.[High priority]
 
 
-* If possible we want to add images, gifs or emojis to the chat, giving the users more forms of sharing their emotions with their conversation partners.
+image::images/image.png[]
+
+* The second will be the correct exchange of information in the chat. If you write something in the chat you expects it to reach the other person almost instantly, not only that, it needs to be exactly what you have written.[High priority] 
+
+* If it is necessary to change something in the proyect, it should be possible to do so without modifying the previous code too much.[High priority]
+
+* It should be possible to add new users to the chat while others are talking, without any problems.[High priority]
+
+* If possible we want to add images, gifs or emojis to the chat, giving the users more forms of sharing their emotions with their conversation partners.[Medium priority]
+
+
+
 
 
 
