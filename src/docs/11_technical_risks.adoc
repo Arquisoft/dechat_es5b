@@ -2,10 +2,12 @@
 == Risks and Technical Debts
 
 
-[role="arc42help"]
 ****
 .Contents
-A list of identified technical risks or technical debts, ordered by priority
+List of technical risks:
+
+    - Uknown framework and technology to work with
+    - Poor group work experience
 
 .Motivation
 “Risk management is project management for grown-ups” (Tim Lister, Atlantic Systems Guild.) 
