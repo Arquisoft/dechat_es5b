@@ -9,7 +9,9 @@
 
 | Application   | An application is a program or a set of programs developed to obtain a specific functionality that serves an end user.
 
-| arc42    | arc42 offers a clear, simple and effective structure to  document and communicate your software system.
+| Arc42    | arc42 offers a clear, simple and effective structure to  document and communicate your software system.
+
+| Beta version  | A Beta version is a software version that has passed the internal testing stage, called "Alpha" and has been released to users for public testing.
 
 | Black Box | A black box is an element that is studied from the point of view of its inputs and outputs, without taking into account its internal functionality.
 
@@ -25,9 +27,15 @@
 
 | Framework | A framework is a scheme (a skeleton, a pattern) for the development and/or implementation of an application.
 
+| Git   | Git is a version control software designed by Linus Torvalds, thinking about the efficiency and reliability of maintaining versions of applications when they have a large number of source code files.
+
+| GitHub    | GitHub is a platform for hosting projects using the Git version control system.
+
 | Interface | An interface provides a functional connection between two systems, programs or devices and allows communication at different levels allowing the exchange of information.
 
 | Log in    | Log in is the process by which individual access to a   computer system is controlled.
+
+| Open source   | Open source is a model of software development based on open collaboration. It focuses more on the practical benefits (access to source code) than on the ethical or freedom issues that are so prominent in free software.
 
 | Operative system  | Set of commands and programs that control the basic processes of a computer and allow the operation of other programs.
 
