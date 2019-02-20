@@ -40,7 +40,7 @@ Important Interfaces::
 [role="arc42help"]
 
 
- The purpose of this box is that the user is able to log in with his own account that allows him to obtain an experience of the application as personalized as possible.
+ The purpose of this box is that the user is able to log in with his own user account that allows him to obtain an experience of the application as personalized as possible.
 
  Solid Community is used to be able to log in using their POD server.The user interface is like any other login screen in a web application. 
 
