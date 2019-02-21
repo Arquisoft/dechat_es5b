@@ -1,25 +1,30 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
-
+In this documentation we will explain all the relevant concepts of our decentralized chat, based on SOLID, following the Arc42 template.
 
 === Requirements Overview
 
-[horizontal]
-.Chat Requirements
-Secure:: Connection protocols and personal information security.
-Descentraliced:: The user is the real data's owner.
-Fast and Agile:: Real time message system.
-Intuitive and Comfy:: Easy to learn and use, familiar to the user.
+==== Chat Requirements
+[width="100%",options="header"]
+|====================
+|Requirement | Description
+|Secure | Connection protocols and personal information security
+|Descentraliced | The user is the real data's owner
+|Fast and Agile | Real time message syste
+|Intuitive and Comfy |Easy to learn and use, familiar to the user
+|====================
 
-[horizontal]
-.Implementation Requirements.
-Testability:: Error and bugs tracking, the architecture should allow easy testing.
-Maintanable:: Facility to extend, update and fix. 
-Patter design:: Easiest to understand and work with it.
+==== Implementation Requirements.
+[width="100%",options="header"]
+|====================
+|Requirement | Description
+|Testability | Error and bugs tracking, the architecture should allow easy testing
+|Patter design | Facility to extend, update and fix
+|Fast and Agile | Easiest to understand and work with it
+|====================
 
 === Quality Goals
-
-[options="header"]
+[width="100%",options="header"]
 |===
 |Quality|Motivation
 | Decentralized | Top priority and objective for the chat, is required to work...
@@ -28,16 +33,12 @@ Patter design:: Easiest to understand and work with it.
 |===
 
 === Stakeholders
-
-[role="arc42help"]
-****
-[options="header",cols="1,2,2"]
+[width="100%",options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
 | Teaching Staff | Teachers | Teacher and in charge of the subject, seeks development within a project and constant work.
 | Inrupt | SOLID Team | They establish certain bases to be met in the development and operation of the application, also act as a help factor. 
 | Users | Potential users | Those possible users who use the application for the technologies used and their comfort.
 | Team | Developtment team | Develop a application that will work and archive at least the minimum requirements planned.
-| Developers | External developers | we are deploying an open code product so it might be relevant to bring them some help by coding a clean application
+| Developers | External developers | We are deploying an open code product so it might be relevant to bring them some help by coding a clean application
 |===
-****
