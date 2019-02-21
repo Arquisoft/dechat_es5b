@@ -1,18 +1,16 @@
 [[section-architecture-constraints]]
-== 2. Architecture Constraints
+== Architecture Constraints
 In this part, we go to explain any requirements that limited our team in the freedom of design, the implementation decisions and the decisions about the development process that we have taken.
 
-=== 2.1: Technical Constraints
+=== Technical Constraints
 [width="100%",options="header"]
 |====================
 | Code | Constraint | Motive 
 | TC01 | Use of SOLID | Application must be developed following the SOLID specifications with a decentralized control of the user's data
-| TC02 | Angular Framework | This framework based on TypeScript adapts perfectly to the development of applications based on SOLID principles
-| TC03 | Independent operating system and browser | Application must run in any operating system and in the main web browsers
-| TC04 | Non-relational databases | These databases are easier to use with SOLID applications than relational ones
+| TC02 | Independent operating system and browser | Application must run in any operating system and in the main web browsers
 |====================
 
-=== 2.2: Organizational Constraints
+=== Organizational Constraints
 [width="100%",options="header"]
 |====================
 | Code | Constraint | Motive 
@@ -22,7 +20,7 @@ In this part, we go to explain any requirements that limited our team in the fre
 | OC04 | https://arc42.org/[Arc42] model | Documentation must follow this template
 |====================
 
-=== 2.3: Conventions
+=== Conventions
 
 [width="100%",options="header,footer"]
 |====================
