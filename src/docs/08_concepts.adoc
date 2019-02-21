@@ -2,8 +2,7 @@
 == Cross-cutting Concepts
 
 **TODO**
-[role="arc42help"]
-****
+
 .Content
 This section describes overall, principal regulations and solution ideas that are
 relevant in multiple parts (= cross-cutting) of your system.
@@ -47,21 +46,3 @@ Note: it might be difficult to assign individual concepts to one specific topic
 on this list.
 
 image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscutting concepts"]
-****
-
-
-=== _<Concept 1>_
-
-_<explanation>_
-
-
-
-=== _<Concept 2>_
-
-_<explanation>_
-
-...
-
-=== _<Concept n>_
-
-_<explanation>_

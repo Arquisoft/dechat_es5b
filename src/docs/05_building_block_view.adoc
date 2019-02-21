@@ -1,15 +1,11 @@
 [[section-building-block-view]]
 
-
 == Building Block View
-
-[role="arc42help"]
 
 === Whitebox Overall System
 
 image:BlockViewDiagram ASW.png["Hierarchy of building blocks"]
 
-Motivation::
 We have decomposed the block in two (for the moment). We have the login part and the chat part, which we will decompose later.
 It is necessary to incorporate the login module since the application is customized according to the logged user.
 
@@ -21,35 +17,25 @@ Contained Building Blocks::
 
 Important Interfaces::
 *TO DO*
-
-
-****
-
 [cols="1,2" options="header"]
 |===
-| **Name** | **Responsibility**
+| Name | Responsibility
 | LogIn |Allows the user to have a customized version of the application on his device.
 | Chat |Allows the user to communicate by chatting using data about friends stored on the POD.
 |===
 
-****
 
+==== LogInusing data about friends stored on the POD.
 
-==== LogIn
+The purpose of this box is that the user is able to log in with his own user account that allows him to obtain an experience of the application as personalized as possible.
 
-[role="arc42help"]
-
-
- The purpose of this box is that the user is able to log in with his own user account that allows him to obtain an experience of the application as personalized as possible.
-
- Solid Community is used to be able to log in using their POD server.The user interface is like any other login screen in a web application. 
+Solid Community is used to be able to log in using their POD server.The user interface is like any other login screen in a web application. 
 
 ==== Chat
 
- The purpose of this box is quite general, as it ensures that two users can communicate by chatting.
- 
- The user interface will be simple for now. 
+The purpose of this box is quite general, as it ensures that two users can communicate by chatting.
 
+The user interface will be simple for now. 
 
 === Level 2
 

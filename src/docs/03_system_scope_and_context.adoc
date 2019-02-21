@@ -1,71 +1,40 @@
 [[section-system-scope-and-context]]
 == System Scope and Context
 
-
-[role="arc42help"]
-****
-.Contents
 DeChat must allow communication between two users through text messages. In addition, it will be possible to create groups of users to which all participants can send and receive messages. Also, it must allow sending files, such as images or videos, to the recipient.
 A notification will be shown when user receives a message.
 
-.Motivation
 Security and privacy is DeChat priority. Messages will never leave user own Solid POD. Instead, recipient system will be asked to retrieve message from senders POD, and will never save messages to recipient POD.
 DeChat will only store where message is placed, so app knows where are messages stored when user starts application.
 
-.Form
 Lists of communication partners and their interfaces:
 
 * Common interfaces
 ** Main: List of active chats.
 ** Chat: List of messages within send or received to/from selected user or group.
 ** Chat options: Interface enabling user to delete or edit chat configurations.
-****
 
 
 === Business Context
 
-[role="arc42help"]
-****
-.Contents
 There will be only one communication partner (one role): User. User will be able to send and receive messages.
 In the background, RDF will be used to share chat details.
 
-.Motivation
 Data will be kept within sender's POD and will never be stored outside it.
 
-.Form
 [options="header",cols="1,2,2"]
 |===
 |Communication partner|Input|Outputs
-| User | _Notifications indicating user to read a message from a given source_ | _Message storing and same notifications from Input column_
+| User | Notifications indicating user to read a message from a given source | Message storing and same notifications from Input column
 |===
-****
-
-**<Diagram or Table>**
-
-**<optionally: Explanation of external domain interfaces>**
 
 === Technical Context
 
-[role="arc42help"]
-****
-.Contents
 Since DeChat is under SOLID architecture, we will be using WebID to communicate between users and add friends. SOLID also makes use of RDF, WebSockets, etc.. More info available in https://github.com/solid/solid-spec
 
-.Motivation
 Motivation: Respect SOLID architecture.
-
-.Form
 
 **TO-DOs: This is not a definitive document. System is still not 100% designed and may vary. Please check out later to find the following:**
 
 E.g. UML deployment diagram describing channels to neighboring systems,
 together with a mapping table showing the relationships between channels and input/output.
-
-****
-
-**<Diagram or Table>**
-
-**<optionally: Explanation of technical interfaces>**
-
-**<Mapping Input/Output to Channels>**
