@@ -1,16 +1,9 @@
 [[section-design-decisions]]
 == Design Decisions
 
+**TODO**
 
-[role="arc42help"]
-****
-.Lista de decisiones
--Our team has decided to use the Angular program recommended by the Solid website to create this chat.
+.Decisions list:
+* Our team has decided to use the Angular program recommended by the Solid website to create this chat.
 
--In addition we are going to base ourselves on the Solid-chess that has been previously presented to us.
-
-
-// TODO This documentation is not complete and may be subject to change.
-
-
-****
+* In addition we are going to base ourselves on the Solid-chess that has been previously presented to us.

@@ -4,7 +4,7 @@
 //
 // ====================================
 
-= = image:LogoASW.png[arquisoft]
+= image:LogoASW.png[arquisoft]
 
 = Decentralized Chat 5B
 
