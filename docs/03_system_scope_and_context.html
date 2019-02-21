@@ -521,7 +521,7 @@ table.CodeRay td.code>pre{padding:0}
 .CodeRay .change .change{color:#66f}
 .CodeRay .head .head{color:#f4f}
 </style>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>-->
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -541,20 +541,15 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect1">
 <h2 id="section-system-scope-and-context"><a class="anchor" href="#section-system-scope-and-context"></a>System Scope and Context</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
 <div class="paragraph">
-<div class="title">Contents</div>
 <p>DeChat must allow communication between two users through text messages. In addition, it will be possible to create groups of users to which all participants can send and receive messages. Also, it must allow sending files, such as images or videos, to the recipient.
 A notification will be shown when user receives a message.</p>
 </div>
 <div class="paragraph">
-<div class="title">Motivation</div>
 <p>Security and privacy is DeChat priority. Messages will never leave user own Solid POD. Instead, recipient system will be asked to retrieve message from senders POD, and will never save messages to recipient POD.
 DeChat will only store where message is placed, so app knows where are messages stored when user starts application.</p>
 </div>
 <div class="paragraph">
-<div class="title">Form</div>
 <p>Lists of communication partners and their interfaces:</p>
 </div>
 <div class="ulist">
@@ -577,23 +572,16 @@ DeChat will only store where message is placed, so app knows where are messages 
 </li>
 </ul>
 </div>
-</div>
-</div>
 <div class="sect2">
 <h3 id="business-context"><a class="anchor" href="#business-context"></a>Business Context</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
 <div class="paragraph">
-<div class="title">Contents</div>
 <p>There will be only one communication partner (one role): User. User will be able to send and receive messages.
 In the background, RDF will be used to share chat details.</p>
 </div>
 <div class="paragraph">
-<div class="title">Motivation</div>
 <p>Data will be kept within sender&#8217;s POD and will never be stored outside it.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Form</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 40%;">
@@ -609,34 +597,21 @@ In the background, RDF will be used to share chat details.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">User</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Notifications indicating user to read a message from a given source</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Message storing and same notifications from Input column</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Notifications indicating user to read a message from a given source</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message storing and same notifications from Input column</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-</div>
-<div class="paragraph">
-<p><strong>&lt;Diagram or Table&gt;</strong></p>
-</div>
-<div class="paragraph">
-<p><strong>&lt;optionally: Explanation of external domain interfaces&gt;</strong></p>
-</div>
-</div>
 <div class="sect2">
 <h3 id="technical-context"><a class="anchor" href="#technical-context"></a>Technical Context</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
 <div class="paragraph">
-<div class="title">Contents</div>
 <p>Since DeChat is under SOLID architecture, we will be using WebID to communicate between users and add friends. SOLID also makes use of RDF, WebSockets, etc.. More info available in <a href="https://github.com/solid/solid-spec" class="bare">https://github.com/solid/solid-spec</a></p>
 </div>
 <div class="paragraph">
-<div class="title">Motivation</div>
 <p>Motivation: Respect SOLID architecture.</p>
 </div>
 <div class="paragraph">
-<div class="title">Form</div>
 <p><strong>TO-DOs: This is not a definitive document. System is still not 100% designed and may vary. Please check out later to find the following:</strong></p>
 </div>
 <div class="paragraph">
@@ -645,22 +620,11 @@ together with a mapping table showing the relationships between channels and inp
 </div>
 </div>
 </div>
-<div class="paragraph">
-<p><strong>&lt;Diagram or Table&gt;</strong></p>
-</div>
-<div class="paragraph">
-<p><strong>&lt;optionally: Explanation of technical interfaces&gt;</strong></p>
-</div>
-<div class="paragraph">
-<p><strong>&lt;Mapping Input/Output to Channels&gt;</strong></p>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-02-21 00:31:27 CET
+Last updated 2019-02-21 12:36:46 CET
 </div>
 </div>
 </body>

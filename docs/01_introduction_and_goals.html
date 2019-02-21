@@ -521,7 +521,7 @@ table.CodeRay td.code>pre{padding:0}
 .CodeRay .change .change{color:#66f}
 .CodeRay .head .head{color:#f4f}
 </style>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>-->
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -542,72 +542,71 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect1">
 <h2 id="section-introduction-and-goals"><a class="anchor" href="#section-introduction-and-goals"></a>Introduction and Goals</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>In this documentation we will explain all the relevant concepts of our decentralized chat, based on SOLID, following the Arc42 template.</p>
+</div>
 <div class="sect2">
 <h3 id="requirements-overview"><a class="anchor" href="#requirements-overview"></a>Requirements Overview</h3>
-<div class="hdlist">
-<div class="title">Chat Requirements</div>
-<table>
+<div class="sect3">
+<h4 id="chat-requirements"><a class="anchor" href="#chat-requirements"></a>Chat Requirements</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
 <tr>
-<td class="hdlist1">
-Secure
-</td>
-<td class="hdlist2">
-<p>Connection protocols and personal information security.</p>
-</td>
+<th class="tableblock halign-left valign-top">Requirement</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Secure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Connection protocols and personal information security</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-Descentraliced
-</td>
-<td class="hdlist2">
-<p>The user is the real data&#8217;s owner.</p>
-</td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Descentraliced</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user is the real data&#8217;s owner</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-Fast and Agile
-</td>
-<td class="hdlist2">
-<p>Real time message system.</p>
-</td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fast and Agile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Real time message syste</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-Intuitive and Comfy
-</td>
-<td class="hdlist2">
-<p>Easy to learn and use, familiar to the user.</p>
-</td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Intuitive and Comfy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Easy to learn and use, familiar to the user</p></td>
 </tr>
+</tbody>
 </table>
 </div>
-<div class="hdlist">
-<div class="title">Implementation Requirements.</div>
-<table>
+<div class="sect3">
+<h4 id="implementation-requirements"><a class="anchor" href="#implementation-requirements"></a>Implementation Requirements.</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
 <tr>
-<td class="hdlist1">
-Testability
-</td>
-<td class="hdlist2">
-<p>Error and bugs tracking, the architecture should allow easy testing.</p>
-</td>
+<th class="tableblock halign-left valign-top">Requirement</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Testability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error and bugs tracking, the architecture should allow easy testing</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-Maintanable
-</td>
-<td class="hdlist2">
-<p>Facility to extend, update and fix.</p>
-</td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Patter design</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Facility to extend, update and fix</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-Patter design
-</td>
-<td class="hdlist2">
-<p>Easiest to understand and work with it.</p>
-</td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fast and Agile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Easiest to understand and work with it</p></td>
 </tr>
+</tbody>
 </table>
 </div>
 </div>
@@ -642,8 +641,6 @@ Patter design
 </div>
 <div class="sect2">
 <h3 id="stakeholders"><a class="anchor" href="#stakeholders"></a>Stakeholders</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -681,7 +678,7 @@ Patter design
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Developers</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">External developers</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">we are deploying an open code product so it might be relevant to bring them some help by coding a clean application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We are deploying an open code product so it might be relevant to bring them some help by coding a clean application</p></td>
 </tr>
 </tbody>
 </table>
@@ -689,11 +686,9 @@ Patter design
 </div>
 </div>
 </div>
-</div>
-</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-02-21 00:31:27 CET
+Last updated 2019-02-21 12:36:46 CET
 </div>
 </div>
 </body>
