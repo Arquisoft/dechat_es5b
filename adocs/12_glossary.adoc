@@ -1,6 +1,8 @@
 [[section-glossary]]
 == Glossary
 
+This section defines the most important domain and technical terms:
+
 [options="header" cols="<1,<3"]
 |===
 | Term         | Definition
