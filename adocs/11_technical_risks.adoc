@@ -1,5 +1,6 @@
 [[section-technical-risks]]
 == Risks and Technical Debts
+In this section we will show a list of identified technical risks or technical debts, ordered by priority.
 
 List of technical risks:
 

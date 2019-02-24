@@ -1,5 +1,6 @@
 [[section-design-decisions]]
 == Design Decisions
+In this document we'll show important, expensive, large scale or risky architecture decisions including rationals.
 
 **TODO**
 
