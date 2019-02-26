@@ -4,9 +4,7 @@
 //
 // ====================================
 
-= image:LogoASW.png[arquisoft]
-
-= Decentralized Chat 5B
+= image:LogoASW.png[arquisoft] Decentralized Chat ES5B
 
 // toc-title definition MUST follow document title without blank line!
 :toc-title: Table of Contents

@@ -1,6 +1,7 @@
 [[section-building-block-view]]
 
 == Building Block View
+The building block view shows the static decomposition of the system into building blocks as well as their dependencies.
 
 === Whitebox Overall System
 
