@@ -1,18 +1,9 @@
 [[section-technical-risks]]
 == Risks and Technical Debts
 
-
-****
-.Contents
 List of technical risks:
 
-    - Uknown framework and technology to work with
-    - Poor group work experience
+    - Uknown framework and technology to work with.
+    - Poor group work experience.
 
-.Motivation
-“Risk management is project management for grown-ups” (Tim Lister, Atlantic Systems Guild.) 
-
-
-.Form
 Listed avobe for the moment, further update needed.
-****

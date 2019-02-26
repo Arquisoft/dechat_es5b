@@ -1,21 +1,12 @@
 [[section-solution-strategy]]
 == Solution Strategy
 
-
-****
-.Contents
 Due to the social content of the application and other solid apps that we've seen we decided that
 the best option is to do it in a web enviroment and run it on a server so it's more user-friendly.
 At the moment the plan for our application structure is based on a JavaScript and TpeScript application with HTML components that follow solid's style guide and pattern in the app apearence.
 
 For the teamwork, project development and documentation we'll be using a GitHub repository to keep thigs in order.
 
-
-.Motivation
-Create a functional solid chat application that is strong and consolidated and can stand a chance in Tim Berners-Lee's contest.
-
-
-.Form
 For the moment we have only a few decisions taken so our reasons are short:
 
     - Angular, for the base compatibility it has with solid and the auto-generated web framewok.

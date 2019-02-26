@@ -14,7 +14,7 @@ The login process will be done by users when they log in with their pesonal id t
 2. The application asks the server to approve the login request.
 3. The server approves the login or denies it. If accepted the user can access the chat.
 
-image::./images/login.png[Log in diagram]
+image:login.png[Log in diagram]
 
 === Add new friends
 The users must have friends in the chat in order to chat with them.
@@ -24,7 +24,7 @@ When the user signs up for the chat, he won't have any friends yet. Here we'll s
 1. The user must enter the url of the pod of the user who wants to add as a friend.
 2. The friend's url is stored on his pod so he can chat.
 
-image::./images/addfriend.png[Add new friend diagram]
+image::addfriend.png[Add new friend diagram]
 
 === Chat with added friends
 The users use the application to chat with their friends. Here we will explain the sequence for send messages.
@@ -34,4 +34,4 @@ The users use the application to chat with their friends. Here we will explain t
 3. User 2's application requests received messages to the pod. The pod makes them available to the application.
 4. User 2 reads the recieved messages from the application.
 
-image::./images/messages.png[Exchange messages diagram]
+image::messages.png[Exchange messages diagram]

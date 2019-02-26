@@ -1,9 +1,13 @@
 // header file for arc42-template,
+
 // including all help texts
 //
 // ====================================
 
-= image:LogoASW.png[arc42] deChat - Decentralized Chat 0
+= image:LogoASW.png[arquisoft]
+
+= Decentralized Chat 5B
+
 // toc-title definition MUST follow document title without blank line!
 :toc-title: Table of Contents
 
