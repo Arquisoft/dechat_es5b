@@ -12,5 +12,8 @@
     "node"
   ],
   "author": "ES5B at uniovi",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^6.2.2"
+  }
 }

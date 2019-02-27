@@ -5,64 +5,35 @@ image:https://codecov.io/gh/Arquisoft/dechat_es5b/branch/master/graph/badge.svg[
 image:https://api.codacy.com/project/badge/Grade/fc7dc1da60ee4e9fb67ccff782625794["Codacy code quality", link="https://www.codacy.com/app/jelabra/dechat_es5b?utm_source=github.com&utm_medium=referral&utm_content=Arquisoft/dechat_es5b&utm_campaign=Badge_Grade"]
 
 
-== Build documentation
+Skeleton of application using Javascript technologies
 
-The documentation is done in http://asciidoc.org/[AsciiDoc]
-using the https://arc42.org/[arc42] templates.
-The source documents are located at
- https://github.com/Arquisoft/dechat_es5b/tree/master/src/docs[src/docs].
+== Running tests
 
-Using https://maven.apache.org/[Maven] and the
-https://asciidoctor.org/[AsciiDoctor plugin] it is possible to generate
-the documentation running:
+It requires link:http://nodejs.org[NodeJs] and `npm` (npm comes with NodeJs).
 
 ----
-mvn generate-resources
+npm test
 ----
 
-== Compile and run
+== Generating documentation
 
-The skeleton project is a simple
- https://spring.io/projects/spring-boot[Spring-boot] application which can be run as:
+The skeleton documentation is based on link:http://arc42.org[arc42] templates.
+Some diagrams are created using link:http://plantuml.com/[PlantUML].
 
-----
- mvn spring-boot:run
-----
+Pre-requisites
 
-Once executed, the application should be available at: http://localhost:8080
+- Install link:https://www.graphviz.org/[Graphviz] and ensure that the `dot` executable can be found in the PATH.
 
-== Testing
-
-There are some simple Unit tests at:
- https://github.com/Arquisoft/dechat_es5b/tree/master/src/test[src/test].
-
-There are also some
- https://cucumber.io/[Cucumber based tests]
- with a simple user story defined at:
- https://github.com/Arquisoft/dechat_es5b/tree/master/src/test/resources/features[src/test/resources/features].
-
-To run tests execute:
+- Install `gulp` using:
 
 ----
-mvn test
+npm install -g gulp
 ----
 
-== Site documentation
-
-The https://github.com/Arquisoft/dechat_es5b/tree/master/pom.xml[pom.xml] file
- has also been configured to generate site project documentation running:
+Once installed, running `gulp` creates the documentation.
 
 ----
-mvn site
+gulp
 ----
 
-
-
-
-
-
-
-
-
-
-
+Generates documentation in `docs` folder.
