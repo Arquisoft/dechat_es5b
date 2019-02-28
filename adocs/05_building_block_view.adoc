@@ -5,7 +5,7 @@ The building block view shows the static decomposition of the system into buildi
 
 === Whitebox Overall System
 
-image:BlockViewDiagram ASW.png["Hierarchy of building blocks"]
+image::images/BlockViewDiagram ASW.png["Hierarchy of building blocks"]
 
 We have decomposed the block in two (for the moment). We have the login part and the chat part, which we will decompose later.
 It is necessary to incorporate the login module since the application is customized according to the logged user.
