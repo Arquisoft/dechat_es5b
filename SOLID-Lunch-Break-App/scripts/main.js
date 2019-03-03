@@ -1,7 +1,7 @@
 const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
 const fileClient = SolidFileClient;
 
-let userDataUrl = 'https://martinreycristina.solid.community/public/prueba2.ttl';
+const userDataUrl = 'https://martinreycristina.solid.community/public/otra';
 
 
 // Log the user in and out on click
@@ -63,9 +63,6 @@ $('#view').click(async function loadProfile() {
 });
 
 function createFolderWithMessages(){
-	// const gameUrl = generateUniqueUrlForResource(userDataUrl);
-	// executeSPARQLUpdateForUser(executeSPARQLUpdateForUser(userDataUrl, 
-		// `INSERT DATA {<${gameUrl}> <hola> <quetal>}`));
 	fileClient.createFolder(userDataUrl).then(success => {
 	  console.log(`Created folder ${url}.`);
 	}, err => console.log(err) );
