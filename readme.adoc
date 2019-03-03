@@ -22,14 +22,11 @@ mvn generate-resources
 
 == Compile and run
 
-The skeleton project is a simple
- https://spring.io/projects/spring-boot[Spring-boot] application which can be run as:
+You can build the project running:
 
 ----
- mvn spring-boot:run
+ npm build
 ----
-
-Once executed, the application should be available at: http://localhost:8080
 
 == Testing
 
