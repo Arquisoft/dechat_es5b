@@ -1,7 +1,6 @@
 const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
-const fileClient = SolidFileClient;
 
-const userDataUrl = 'https://martinreycristina.solid.community/public/otra';
+const userDataUrl = 'https://martinreycristina.solid.community/public/micarpeta';
 
 
 // Log the user in and out on click
@@ -58,44 +57,9 @@ $('#view').click(async function loadProfile() {
                     .click(loadProfile)));
 		$('#friends').append(
                 $('<a>').text('Send Message')
-					.click(()=> createFolderWithMessages()));
+					.click(()=> chatM.createChatFolder(userDataUrl)));
     });
 });
-
-function createFolderWithMessages(){
-	fileClient.createFolder(userDataUrl).then(success => {
-	  console.log(`Created folder ${url}.`);
-	}, err => console.log(err) );
-}
-
-/**
-   * This method executes an SPARQL update on a file.
-   * @param url: the url of the file that needs to be updated.
-   * @param query: the SPARQL update query that needs to be executed.
-   * @returns {Promise}: the promise from auth.fetch().
-   */
- function executeSPARQLUpdateForUser(url, query) {
-    return this.fetch(url, {
-      method: 'PATCH',
-      body: query,
-      headers: {
-        'Content-Type': 'application/sparql-update'
-      }
-    });
-  }
-  
-  /**
-   * This method checks if the current user has write access to a file.
-   * @param url: the url of the file to check.
-   * @param dataSync: the DataSync object to do access.
-   * @returns {Promise<boolean>}: a promise that resolves with true if the user has write access, else false.
-   */
-  async function writePermission(url, dataSync) {
-    // TODO We should probably check the ACL of the parent folder to see if we can write if the file doesn't exist and
-    // if the file exists, we check the ACL of the file.
-    const response = await dataSync.executeSPARQLUpdateForUser(url, 'INSERT DATA {}');
-    return response.status === 200;
-  }
   
   /**
    * This method generates a unique url for a resource based on a given base url.
