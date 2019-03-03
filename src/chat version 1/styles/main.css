@@ -31,6 +31,6 @@ a {
     cursor: pointer;
 }
 
-    a:hover {
-        color: #9b79fc;
-    }
+a:hover {
+    color: #9b79fc;
+}

@@ -5,14 +5,12 @@ const userDataUrl = 'https://martinreycristina.solid.community/public/micarpeta'
 
 // Log the user in and out on click
 const popupUri = 'popup.html';
-$('#login  button').click(() => solid.auth.popupLogin({ popupUri }));
-$('#logout button').click(() => solid.auth.logout());
+$('#login  button').click(()=>loginM.login());
+$('#logout button').click(() => loginM.logout());
 
 // Update components to match the user's login status
 solid.auth.trackSession(session => {
     const loggedIn = !!session;
-    $('#login').toggle(!loggedIn);
-    $('#logout').toggle(loggedIn);
     if (loggedIn) {
         $('#user').text(session.webId);
         // Use the user's WebID as default profile
@@ -33,16 +31,6 @@ $('#view').click(async function loadProfile() {
     // Display their details
     const fullName = store.any($rdf.sym(person), FOAF('name'));
     $('#fullName').text(fullName && fullName.value);
-	
-	const message = {
-		message: "hola samuel"
-	};
-	
-	const cris = await solid.auth.currentSession();
-	
-	console.log(cris);
-	
-	solid.auth.fetch('https://martinreycristina.solid.community/public/prueba').then(console.log);
 
     // Display their friends
     const friends = store.each($rdf.sym(person), FOAF('knows'));

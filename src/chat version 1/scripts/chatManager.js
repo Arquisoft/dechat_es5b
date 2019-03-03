@@ -1,5 +1,3 @@
-const fileClient = SolidFileClient;
-
 class chatManager{
 
     createChatFolder(url) {
