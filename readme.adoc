@@ -25,8 +25,16 @@ mvn generate-resources
 You can build the project running:
 
 ----
- npm build
+ npm run build
 ----
+
+And then run it with:
+
+----
+ npm run start
+----
+
+Once executed, the application should be available at: http://localhost:1919
 
 == Testing
 
