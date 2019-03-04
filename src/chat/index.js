@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/chat version 1/scripts/main.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/chat/scripts/main.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -97,36 +97,36 @@ eval("!function(e,t){ true?module.exports=t():undefined}(window,function(){retur
 
 /***/ }),
 
-/***/ "./src/chat version 1/scripts/LogInManager.js":
-/*!****************************************************!*\
-  !*** ./src/chat version 1/scripts/LogInManager.js ***!
-  \****************************************************/
+/***/ "./src/chat/scripts/LogInManager.js":
+/*!******************************************!*\
+  !*** ./src/chat/scripts/LogInManager.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const fileClient = __webpack_require__(/*! solid-file-client */ \"./node_modules/solid-file-client/dist/browser/solid-file-client.bundle.js\")\r\n\r\nfunction login () {\r\n    fileClient.popupLogin().then(webId => {\r\n        console.log(`Logged in as ${webId}.`);\r\n    }, err => console.log(err));\r\n    $('#login').hide();\r\n    $('#logout').show();\r\n    $('#chatRef').show();\r\n}\r\n\r\nfunction logout () {\r\n    fileClient.logout().then ( console.log( `Bye now!` ));\r\n    $('#login').show();\r\n    $('#logout').hide();\r\n    $('#chatRef').hide();\r\n}\r\n\r\nmodule.exports = {\r\n    login: login,\r\n    logout: logout\r\n}\r\n\n\n//# sourceURL=webpack:///./src/chat_version_1/scripts/LogInManager.js?");
+eval("const fileClient = __webpack_require__(/*! solid-file-client */ \"./node_modules/solid-file-client/dist/browser/solid-file-client.bundle.js\")\r\n\r\nfunction login () {\r\n    fileClient.popupLogin().then(webId => {\r\n        console.log(`Logged in as ${webId}.`);\r\n    }, err => console.log(err));\r\n    $('#login').hide();\r\n    $('#logout').show();\r\n    $('#chatRef').show();\r\n}\r\n\r\nfunction logout () {\r\n    fileClient.logout().then ( console.log( `Bye now!` ));\r\n    $('#login').show();\r\n    $('#logout').hide();\r\n    $('#chatRef').hide();\r\n}\r\n\r\nmodule.exports = {\r\n    login: login,\r\n    logout: logout\r\n}\r\n\n\n//# sourceURL=webpack:///./src/chat/scripts/LogInManager.js?");
 
 /***/ }),
 
-/***/ "./src/chat version 1/scripts/chatManager.js":
-/*!***************************************************!*\
-  !*** ./src/chat version 1/scripts/chatManager.js ***!
-  \***************************************************/
+/***/ "./src/chat/scripts/chatManager.js":
+/*!*****************************************!*\
+  !*** ./src/chat/scripts/chatManager.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const fileClient = __webpack_require__(/*! solid-file-client */ \"./node_modules/solid-file-client/dist/browser/solid-file-client.bundle.js\")\r\n\r\nfunction createChatFolder(url) {\r\n    fileClient.createFolder(url).then(success => {\r\n        console.log(`Created folder ${url}.`);\r\n      }, err => console.log(err) );\r\n}\r\n\r\nfunction writeMessage(url,content){\r\n    fileClient.createFile(URL,content).then( fileCreated => {\r\n        console.log(`Created file ${fileCreated}.`);\r\n      }, err => console.log(err) );\r\n}\r\n\r\nfunction readMessage(){\r\n\r\n}\r\n\r\nmodule.exports = {\r\n    createChatFolder: createChatFolder,\r\n    writeMessage: writeMessage,\r\n    readMessage: readMessage\r\n}\r\n\n\n//# sourceURL=webpack:///./src/chat_version_1/scripts/chatManager.js?");
+eval("const fileClient = __webpack_require__(/*! solid-file-client */ \"./node_modules/solid-file-client/dist/browser/solid-file-client.bundle.js\")\r\n\r\nfunction createChatFolder(url) {\r\n    fileClient.createFolder(url).then(success => {\r\n        console.log(`Created folder ${url}.`);\r\n      }, err => console.log(err) );\r\n}\r\n\r\nfunction writeMessage(url,content){\r\n    fileClient.createFile(URL,content).then( fileCreated => {\r\n        console.log(`Created file ${fileCreated}.`);\r\n      }, err => console.log(err) );\r\n}\r\n\r\nfunction readMessage(){\r\n\r\n}\r\n\r\nmodule.exports = {\r\n    createChatFolder: createChatFolder,\r\n    writeMessage: writeMessage,\r\n    readMessage: readMessage\r\n}\r\n\n\n//# sourceURL=webpack:///./src/chat/scripts/chatManager.js?");
 
 /***/ }),
 
-/***/ "./src/chat version 1/scripts/main.js":
-/*!********************************************!*\
-  !*** ./src/chat version 1/scripts/main.js ***!
-  \********************************************/
+/***/ "./src/chat/scripts/main.js":
+/*!**********************************!*\
+  !*** ./src/chat/scripts/main.js ***!
+  \**********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');\r\nvar loginM = __webpack_require__(/*! ./LogInManager.js */ \"./src/chat version 1/scripts/LogInManager.js\");\r\nvar chatM = __webpack_require__(/*! ./chatManager.js */ \"./src/chat version 1/scripts/chatManager.js\");\r\nconst userDataUrl = 'https://martinreycristina.solid.community/public/micarpeta';\r\n\r\n// Log the user in and out on click\r\n$('#login  button').click(() => loginM.login());\r\n$('#logout button').click(() => loginM.logout());\r\n\r\n// Update components to match the user's login status\r\nsolid.auth.trackSession(session => {\r\n  const loggedIn = !!session;\r\n  if (loggedIn) {\r\n    $('#user').text(session.webId);\r\n    // Use the user's WebID as default profile\r\n    if (!$('#profile').val())\r\n      $('#profile').val(session.webId);\r\n  }\r\n});\r\n\r\n$('#view').click(async function loadProfile() {\r\n  // Set up a local data store and associated data fetcher\r\n  const store = $rdf.graph();\r\n  const fetcher = new $rdf.Fetcher(store);\r\n\r\n  // Load the person's data into the store\r\n  const person = $('#profile').val();\r\n  await fetcher.load(person);\r\n\r\n  // Display their details\r\n  const fullName = store.any($rdf.sym(person), FOAF('name'));\r\n  $('#fullName').text(fullName && fullName.value);\r\n\r\n  // Display their friends\r\n  const friends = store.each($rdf.sym(person), FOAF('knows'));\r\n  $('#friends').empty();\r\n  friends.forEach(async (friend) => {\r\n    await fetcher.load(friend);\r\n    const fullName = store.any(friend, FOAF('name'));\r\n    $('#friends').append(\r\n      $('<li>').append(\r\n        $('<a>').text(fullName && fullName.value || friend.value)\r\n          .click(() => $('#profile').val(friend.value))\r\n          .click(loadProfile)));\r\n    $('#friends').append(\r\n      $('<a>').text('Send Message')\r\n        .click(()=> chatM.createChatFolder(userDataUrl)));\r\n  });\r\n});\r\n\r\n/**\r\n * This method generates a unique url for a resource based on a given base url.\r\n * @param baseurl: the base url for the url of the resource.\r\n * @returns {Promise<string>}: a promise that resolves with a unique url.\r\n */\r\nasync function generateUniqueUrlForResource(baseurl) {\r\n  let count =1;\r\n  let url = baseurl + '#' + '1234';\r\n\r\n  try {\r\n    let d = this.getObjectFromPredicateForResource(url, namespaces.rdf + 'type');\r\n\r\n    // We assume that if this url doesn't have a type, the url is unused.\r\n    // Ok, this is not the most fail-safe thing.\r\n    // TODO: check if there are any triples at all.\r\n    while (d) {\r\n      url = baseurl + '#' + (count+1);\r\n      d = await this.getObjectFromPredicateForResource(url, namespaces.rdf + 'type');\r\n    }\r\n  } catch (e) {\r\n    // this means that response of data[url] returns a 404\r\n    // TODO might be called when you have no access, should check\r\n  } finally {\r\n    return url;\r\n  }\r\n}\r\n\n\n//# sourceURL=webpack:///./src/chat_version_1/scripts/main.js?");
+eval("const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');\r\nvar loginM = __webpack_require__(/*! ./LogInManager.js */ \"./src/chat/scripts/LogInManager.js\");\r\nvar chatM = __webpack_require__(/*! ./chatManager.js */ \"./src/chat/scripts/chatManager.js\");\r\nconst userDataUrl = 'https://martinreycristina.solid.community/public/micarpeta';\r\n\r\n// Log the user in and out on click\r\n$('#login  button').click(() => loginM.login());\r\n$('#logout button').click(() => loginM.logout());\r\n\r\n// Update components to match the user's login status\r\nsolid.auth.trackSession(session => {\r\n  const loggedIn = !!session;\r\n  if (loggedIn) {\r\n    $('#user').text(session.webId);\r\n    // Use the user's WebID as default profile\r\n    if (!$('#profile').val())\r\n      $('#profile').val(session.webId);\r\n  }\r\n});\r\n\r\n$('#view').click(async function loadProfile() {\r\n  // Set up a local data store and associated data fetcher\r\n  const store = $rdf.graph();\r\n  const fetcher = new $rdf.Fetcher(store);\r\n\r\n  // Load the person's data into the store\r\n  const person = $('#profile').val();\r\n  await fetcher.load(person);\r\n\r\n  // Display their details\r\n  const fullName = store.any($rdf.sym(person), FOAF('name'));\r\n  $('#fullName').text(fullName && fullName.value);\r\n\r\n  // Display their friends\r\n  const friends = store.each($rdf.sym(person), FOAF('knows'));\r\n  $('#friends').empty();\r\n  friends.forEach(async (friend) => {\r\n    await fetcher.load(friend);\r\n    const fullName = store.any(friend, FOAF('name'));\r\n    $('#friends').append(\r\n      $('<li>').append(\r\n        $('<a>').text(fullName && fullName.value || friend.value)\r\n          .click(() => $('#profile').val(friend.value))\r\n          .click(loadProfile)));\r\n    $('#friends').append(\r\n      $('<a>').text('Send Message')\r\n        .click(()=> chatM.createChatFolder(userDataUrl)));\r\n  });\r\n});\r\n\r\n/**\r\n * This method generates a unique url for a resource based on a given base url.\r\n * @param baseurl: the base url for the url of the resource.\r\n * @returns {Promise<string>}: a promise that resolves with a unique url.\r\n */\r\nasync function generateUniqueUrlForResource(baseurl) {\r\n  let count =1;\r\n  let url = baseurl + '#' + '1234';\r\n\r\n  try {\r\n    let d = this.getObjectFromPredicateForResource(url, namespaces.rdf + 'type');\r\n\r\n    // We assume that if this url doesn't have a type, the url is unused.\r\n    // Ok, this is not the most fail-safe thing.\r\n    // TODO: check if there are any triples at all.\r\n    while (d) {\r\n      url = baseurl + '#' + (count+1);\r\n      d = await this.getObjectFromPredicateForResource(url, namespaces.rdf + 'type');\r\n    }\r\n  } catch (e) {\r\n    // this means that response of data[url] returns a 404\r\n    // TODO might be called when you have no access, should check\r\n  } finally {\r\n    return url;\r\n  }\r\n}\r\n\n\n//# sourceURL=webpack:///./src/chat/scripts/main.js?");
 
 /***/ })
 

@@ -2,10 +2,10 @@ var express = require('express');
 var app = express();
 var path = require('path');
 
-app.use(express.static(path.join(__dirname, '/src/chat version 1')));
+app.use(express.static(path.join(__dirname, '/src/chat')));
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '/src/chat version 1/index.html'));
+  res.sendFile(path.join(__dirname, '/src/chat/index.html'));
 });
 
 app.listen(1919, () => {

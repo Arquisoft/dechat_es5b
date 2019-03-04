@@ -1,10 +1,10 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/chat version 1/scripts/main.js',
+  entry: './src/chat/scripts/main.js',
   output: {
     filename: 'index.js',
-    path: path.resolve(__dirname, 'src/chat version 1')
+    path: path.resolve(__dirname, 'src/chat')
   },
   mode: 'development',
   externals: {
