@@ -1,22 +1,23 @@
-class chatManager{
+const fileClient = require('solid-file-client')
 
-    createChatFolder(url) {
-        fileClient.createFolder(url).then(success => {
-            console.log(`Created folder ${url}.`);
-          }, err => console.log(err) );
-    }
-
-    writeMessage(url,content){
-        fileClient.createFile(URL,content).then( fileCreated => {
-            console.log(`Created file ${fileCreated}.`);
-          }, err => console.log(err) );
-    }
-
-    readMessage(){
-
-    }
+function createChatFolder(url) {
+    fileClient.createFolder(url).then(success => {
+        console.log(`Created folder ${url}.`);
+      }, err => console.log(err) );
 }
 
+function writeMessage(url,content){
+    fileClient.createFile(URL,content).then( fileCreated => {
+        console.log(`Created file ${fileCreated}.`);
+      }, err => console.log(err) );
+}
 
-var chatM = new chatManager();
+function readMessage(){
 
+}
+
+module.exports = {
+    createChatFolder: createChatFolder,
+    writeMessage: writeMessage,
+    readMessage: readMessage
+}

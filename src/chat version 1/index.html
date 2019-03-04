@@ -3,25 +3,23 @@
 <head>
     <meta charset="utf-8">
     <title>Log in</title>
+    <base href="/"/>
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <h1>Log in with your POD!</h1>
-    <p id="login">
-        You are not logged in.
-        <button>Log in</button>
-    </p>
-    <p id="logout" hidden>
-        You are logged in as <span id="user"></span>.
-        <button>Log out</button>
-    </p>
-    <a id="chatRef" href="two-people-chat.html" hidden>Chat</a>
-    <script src="https://cdn.jsdelivr.net/npm/solid-file-client/dist/browser/solid-file-client.bundle.js"></script>
-    <script src="scripts/jquery.js"></script>
-    <script src="scripts/solid-auth-client.bundle.js"></script>
-    <script src="scripts/rdflib.min.js"></script>
-    <script src="scripts/LogInManager.js"></script>
-    <script src="scripts/chatManager.js"></script>
-    <script src="scripts/main.js"></script>
+<h1>Log in with your POD!</h1>
+<p id="login">
+    You are not logged in.
+    <button>Log in</button>
+</p>
+<p id="logout" hidden>
+    You are logged in as <span id="user"></span>.
+    <button>Log out</button>
+</p>
+<a id="chatRef" href="two-people-chat.html" hidden>Chat</a>
+<script src="./scripts/jquery.js"></script>
+<script src="./scripts/solid-auth-client.bundle.js"></script>
+<script src="./scripts/rdflib.min.js"></script>
+<script src="./index.js"></script>
 </body>
 </html>
