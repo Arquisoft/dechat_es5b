@@ -3,6 +3,12 @@ var loginM = require('./LogInManager.js');
 var chatM = require('./chatManager.js');
 const userDataUrl = 'https://martinreycristina.solid.community/public/micarpeta';
 
+
+ // Set up a local data store and associated data fetcher
+ const store = $rdf.graph();
+ const fetcher = new $rdf.Fetcher(store);
+
+
 // Log the user in and out on click
 $('#login  button').click(() => loginM.login());
 $('#logout button').click(() => loginM.logout());
@@ -20,8 +26,9 @@ solid.auth.trackSession(session => {
 
 $('#view').click(async function loadProfile() {
   // Set up a local data store and associated data fetcher
-  const store = $rdf.graph();
-  const fetcher = new $rdf.Fetcher(store);
+  //const store = $rdf.graph();
+  //const fetcher = new $rdf.Fetcher(store);
+  //DEFINED ON HEADER
 
   // Load the person's data into the store
   const person = $('#profile').val();
@@ -46,6 +53,22 @@ $('#view').click(async function loadProfile() {
       $('<a>').text('Send Message')
         .click(()=> chatM.createChatFolder(userDataUrl)));
   });
+});
+
+
+$('#sendButton').click(async function sendFunc()  {
+  //Obtain solid community URL
+  var person = $('#profile').val();
+  var URI = person.substr(0,(person.length-15));
+
+  //Obtener el nombre del usuario, Sera tilizado como nombre de la carpeta
+  var user = store.any($rdf.sym($('#profile').val()), FOAF('name'));
+
+  //Mensaje a enviar, contenido de fichero
+  var text = $('#messageText').val();
+
+  console.log("URI:"+URI+"      User:"+user+"          text:"+text);
+  chatM.sendMessage(URI,user,text);
 });
 
 /**

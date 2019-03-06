@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>Welcome to the decentralized chat</h1>
+    <section>
     <p>
         <label for="profile">Profile:</label>
         <input id="profile">
@@ -20,9 +21,18 @@
             <ul id="friends"></ul>
         </dd>
     </dl>
+    </section>
+
+    <section>
+    <div id="MessageArea">
+        <input id="messageText" type="text"><button id="sendButton">Send</button>
+    </div>
+    </section>
+
     <script src="./scripts/jquery.js"></script>
     <script src="./scripts/solid-auth-client.bundle.js"></script>
     <script src="./scripts/rdflib.min.js"></script>
     <script src="./index.js"></script>
 </body>
 </html>
+    

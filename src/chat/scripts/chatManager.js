@@ -7,11 +7,31 @@ function createChatFolder(url) {
 }
 
 function writeMessage(url,content){
-    fileClient.createFile(URL,content).then( fileCreated => {
+    fileClient.createFile(url,content,"text").then( fileCreated => {
         console.log(`Created file ${fileCreated}.`);
       }, err => console.log(err) );
 }
 
+
+//
+function checkFolderExicts(URI){
+
+}
+
+function sendMessage(URI,user,text){
+    //already created Folder:
+    //this.checkFolderExicts(URI);
+    //New Folder:
+    console.log("Creating folder: "+ URI+"public/SolidChat/"+user+"/" +"....");
+    this.createChatFolder(URI+"public/SolidChat/"+user+"/");
+
+    //WritingMessage
+    console.log("Writting message..."+text);
+    this.writeMessage(URI+"public/SolidChat/"+user+"/", text+".txt");
+
+}
+
+//TO-DO
 function readMessage(){
 
 }
@@ -19,5 +39,6 @@ function readMessage(){
 module.exports = {
     createChatFolder: createChatFolder,
     writeMessage: writeMessage,
-    readMessage: readMessage
+    readMessage: readMessage,
+    sendMessage: sendMessage
 }
