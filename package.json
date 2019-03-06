@@ -20,12 +20,12 @@
   "bin": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arquisoft/dechatjs_0.git"
+    "url": "git+https://github.com/arquisoft/dechat_es5b.git"
   },
-  "author": "Equipo ES5B <labra@uniovi.es>",
+  "author": "Equipo ES5B",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/arquisoft/dechatjs_0/issues"
+    "url": "https://github.com/arquisoft/dechat_es5b/issues"
   },
   "homepage": "https://github.com/arquisoft/dechat_es5b",
   "devDependencies": {
