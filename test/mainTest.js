@@ -1,4 +1,3 @@
-import { Person } from '../src/person.js'
 import { describe, it } from 'mocha'
 import { assert, expect } from 'chai'
 

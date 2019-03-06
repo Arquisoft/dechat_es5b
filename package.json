@@ -9,7 +9,7 @@
   "scripts": {
     "build": "webpack",
     "start": "node App.js",
-    "test": "standard && nyc --reporter lcov mocha --require @babel/register -R spec",
+    "test": "nyc --reporter lcov mocha --require @babel/register -R spec",
     "coverage": "nyc --reporter text-lcov node_modules/.bin/_mocha --require @babel/register -R spec --timeout 100 | coveralls",
     "test-with-coverage": "nyc --reporter text-lcov node_modules/.bin/_mocha --require @babel/register -R spec --timeout 100 && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage",
     "travisRepo": "./test/travisRepo.sh",
@@ -20,12 +20,12 @@
   "bin": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arquisoft/dechatjs_0.git"
+    "url": "git+https://github.com/arquisoft/dechat_es5b.git"
   },
-  "author": "Equipo ES5B <labra@uniovi.es>",
+  "author": "Equipo ES5B <noreply@uniovi.es>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/arquisoft/dechatjs_0/issues"
+    "url": "https://github.com/arquisoft/dechat_es5b/issues"
   },
   "homepage": "https://github.com/arquisoft/dechat_es5b",
   "devDependencies": {
@@ -50,7 +50,7 @@
     "mocha-lcov-reporter": "^1.3.0",
     "node-plantuml": "^0.8.1",
     "nyc": "^13.3.0",
-    "standard": "*",
+    "standard": "^12.0.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3"
   },
@@ -58,8 +58,7 @@
     "codacy-coverage": "^3.4.0",
     "express": "^4.16.4",
     "istanbul": "^0.4.5",
-    "solid-file-client": "^0.4.9",
-    "standard": "^12.0.1"
+    "solid-file-client": "^0.4.9"
   },
   "directories": {
     "doc": "docs",
