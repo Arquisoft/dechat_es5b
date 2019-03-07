@@ -7,8 +7,7 @@
     "@babel/preset-es2016"
   ],
   "scripts": {
-    "build": "webpack",
-    "start": "node App.js",
+    "start": "webpack && node App.js",
     "test": "nyc --reporter lcov mocha --require @babel/register -R spec",
     "coverage": "nyc --reporter text-lcov node_modules/.bin/_mocha --require @babel/register -R spec --timeout 100 | coveralls",
     "test-with-coverage": "nyc --reporter text-lcov node_modules/.bin/_mocha --require @babel/register -R spec --timeout 100 && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage",
