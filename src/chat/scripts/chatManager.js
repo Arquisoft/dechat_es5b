@@ -6,32 +6,32 @@ function sendMessage(URI,user,text){
 
     //New Solid-Chat folder
     try{
-        var err = this.readFolder(solidChat);
+        var err = readFolder(solidChat);
         if(!err){
             console.log("Solid-chat folder doesnt exist");
             throw("error")
         }
     }catch(error){
-        this.createChatFolder(solidChat);
+        createChatFolder(solidChat);
         console.log("Solid-chat folder created");
     }
     
     //IF folder doesnt exist: create new user folder
     try{
-        var err2=this.readFolder(folder);
+        var err2=readFolder(folder);
         if(!err2){
             console.log("Folder doesnt exist");
             throw("error")
         }
     }catch(error){
          //New Folder:
-         this.createChatFolder(folder);
+         createChatFolder(folder);
          console.log('User folder created');
     }
 
     //WritingMessage
     console.log("Writting message..."+text);
-    this.writeMessage(folder+"/"+(new Date().getTime()), text);
+    writeMessage(folder+"/"+(new Date().getTime()), text);
 }
 
 //TO-DO
