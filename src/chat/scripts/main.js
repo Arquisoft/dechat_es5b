@@ -61,10 +61,10 @@ $('#sendButton').click(async function sendFunc()  {
   var person = $('#profile').val();
   var URI = person.substr(0,(person.length-15));
 
-  //Obtener el nombre del usuario, Sera tilizado como nombre de la carpeta
+  //Get user name, It will be used as the folder name.
   var user = store.any($rdf.sym($('#profile').val()), FOAF('name'));
 
-  //Mensaje a enviar, contenido de fichero
+  //Message to be sent, contents of file.
   var text = $('#messageText').val();
 
   console.log("URI:"+URI+"      User:"+user+"          text:"+text);

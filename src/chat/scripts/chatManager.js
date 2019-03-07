@@ -41,10 +41,8 @@ function receiveMessage(){
 
 module.exports = {
     createChatFolder: createChatFolder,
-    writeMessage: writeMessage,
-    readMessage: readMessage,
     sendMessage: sendMessage,
-    readFolder: readFolder
+    receiveMessage: receiveMessage
 }
 
 function createChatFolder(url) {
