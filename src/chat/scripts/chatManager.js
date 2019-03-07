@@ -7,7 +7,7 @@ function createChatFolder(url) {
 }
 
 function writeMessage(url,content){
-    fileClient.createFile(url,content,"text").then( fileCreated => {
+    fileClient.createFile(url,content,"txt").then( fileCreated => {
         console.log(`Created file ${fileCreated}.`);
       }, err => console.log(err) );
 }
@@ -49,7 +49,7 @@ function sendMessage(URI,user,text){
 
     //WritingMessage
     console.log("Writting message..."+text);
-    this.writeMessage(folder, text);
+    this.writeMessage(folder+"/"+(new Date().getTime()), text);
 }
 
 //TO-DO
