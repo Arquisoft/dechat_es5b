@@ -31,7 +31,7 @@ function sendMessage(URI,user,text){
 
     //WritingMessage
     console.log("Writting message..."+text);
-    this.writeMessage(folder, text);
+    this.writeMessage(folder+"/"+(new Date().getTime()), text);
 }
 
 //TO-DO
