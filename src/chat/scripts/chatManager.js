@@ -65,7 +65,7 @@ function deleteFolder(url){
 }
 
 function writeMessage(url,content){
-    fileClient.createFile(url,content,"txt").then( fileCreated => {
+    fileClient.createFile(url,content,"text/plain").then( fileCreated => {
         console.log(`Created file ${fileCreated}.`);
       }, err => console.log(err) );
 }
