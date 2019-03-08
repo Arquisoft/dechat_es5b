@@ -13,4 +13,6 @@ For the moment we have only a few decisions taken so our reasons are short:
     - GitHub, by subject requierements.
     - Solid, also by subject requirements.
     - AsciiDoctor, subject requirements one more time.
+    - Webpack, for the need to organize the chat archives
+
 
