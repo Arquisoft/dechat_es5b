@@ -1,4 +1,6 @@
-const fileClient = require('solid-file-client')
+const fileClient = require('solid-file-client');
+
+var receiver = '';
 
 function sendMessage(URI,user,text){
     var solidChat=URI+"public/SolidChat/";
@@ -40,9 +42,9 @@ function receiveMessage(){
 }
 
 module.exports = {
-    createChatFolder: createChatFolder,
     sendMessage: sendMessage,
-    receiveMessage: receiveMessage
+    receiveMessage: receiveMessage,
+	changeReceiver: changeReceiver
 }
 
 function createChatFolder(url) {
@@ -88,4 +90,9 @@ function deleteMessage(url){
 	fileClient.deleteFile(url).then(success => {
 	  console.log(`Deleted ${url}.`);
 	}, err => console.log(err) );
+}
+
+function changeReceiver(friend){
+	receiver = friend;
+	console.log(receiver);
 }

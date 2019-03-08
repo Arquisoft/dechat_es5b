@@ -2,9 +2,6 @@ const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
 var loginM = require('./LogInManager.js');
 var chatM = require('./chatManager.js');
 
-const userDataUrl = 'https://martinreycristina.solid.community/public/micarpeta';
-
-
 // Set up a local data store and associated data fetcher
 const store = $rdf.graph();
 const fetcher = new $rdf.Fetcher(store);
@@ -28,11 +25,11 @@ solid.auth.trackSession(session => {
 
 $('#sendButton').click(async function sendFunc()  {
   //Obtain solid community URL
-  var person = $('#profile').val();
+  var person = $('#profile').text();
   var URI = person.substr(0,(person.length-15));
 
   //Get user name, It will be used as the folder name.
-  var user = store.any($rdf.sym($('#profile').val()), FOAF('name'));
+  var user = store.any($rdf.sym($('#profile').text()), FOAF('name'));
 
   //Message to be sent, contents of file.
   var text = $('#messageText').val();
@@ -58,11 +55,14 @@ async function loadProfile() {
     friends.forEach(async (friend) => {
         await fetcher.load(friend);
         const fullName = store.any(friend, FOAF('name'));
-        $('#friends').append(
+        /*$('#friends').append(
             $('<li>').append(
                 $('<a>').text(fullName && fullName.value || friend.value)
                     .click(() => $('#profile').text(friend.value))
-                    .click(loadProfile)));
+                    .click(loadProfile)));*/
+		$('#friends').append(
+            $('<option>').text(fullName && fullName.value || friend.value)
+                    .click(() => chatM.changeReceiver(friend.value)));
     });
 }
 
