@@ -15,7 +15,7 @@ In it we will provide a response to the request for a decentralized chat using S
 |Requirement | Description
 |Secure | Connection protocols and personal information security
 |Descentraliced | The user is the real data's owner
-|Fast and Agile | Real time message syste
+|Fast and Agile | Real time message system
 |Intuitive and Comfy |Easy to learn and use, familiar to the user
 |====================
 
@@ -24,7 +24,7 @@ In it we will provide a response to the request for a decentralized chat using S
 |====================
 |Requirement | Description
 |Testability | Error and bugs tracking, the architecture should allow easy testing
-|Patter design | Facility to extend, update and fix
+|Pattern design | Facility to extend, update and fix
 |Fast and Agile | Easiest to understand and work with it
 |====================
 
@@ -44,6 +44,7 @@ In it we will provide a response to the request for a decentralized chat using S
 | Teaching Staff | Teachers | Teacher and in charge of the subject, seeks development within a project and constant work.
 | Inrupt | SOLID Team | They establish certain bases to be met in the development and operation of the application, also act as a help factor. 
 | Users | Potential users | Those possible users who use the application for the technologies used and their comfort.
-| Team | Developtment team | Develop a application that will work and archive at least the minimum requirements planned.
+| Team | Developtment team | Develop a application that will work and achieve at least the minimum requirements planned.
 | Developers | External developers | We are deploying an open code product so it might be relevant to bring them some help by coding a clean application
 |===
+
