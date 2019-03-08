@@ -1,12 +1,13 @@
 const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
 var loginM = require('./LogInManager.js');
 var chatM = require('./chatManager.js');
+
 const userDataUrl = 'https://martinreycristina.solid.community/public/micarpeta';
 
 
- // Set up a local data store and associated data fetcher
- const store = $rdf.graph();
- const fetcher = new $rdf.Fetcher(store);
+// Set up a local data store and associated data fetcher
+const store = $rdf.graph();
+const fetcher = new $rdf.Fetcher(store);
 
 
 // Log the user in and out on click
@@ -19,42 +20,11 @@ solid.auth.trackSession(session => {
   if (loggedIn) {
     $('#user').text(session.webId);
     // Use the user's WebID as default profile
-    if (!$('#profile').val())
-      $('#profile').val(session.webId);
+    if (!$('#profile').text())
+      $('#profile').text(session.webId);
   }
+  loadProfile();
 });
-
-$('#view').click(async function loadProfile() {
-  // Set up a local data store and associated data fetcher
-  //const store = $rdf.graph();
-  //const fetcher = new $rdf.Fetcher(store);
-  //DEFINED ON HEADER
-
-  // Load the person's data into the store
-  const person = $('#profile').val();
-  await fetcher.load(person);
-
-  // Display their details
-  const fullName = store.any($rdf.sym(person), FOAF('name'));
-  $('#fullName').text(fullName && fullName.value);
-
-  // Display their friends
-  const friends = store.each($rdf.sym(person), FOAF('knows'));
-  $('#friends').empty();
-  friends.forEach(async (friend) => {
-    await fetcher.load(friend);
-    const fullName = store.any(friend, FOAF('name'));
-    $('#friends').append(
-      $('<li>').append(
-        $('<a>').text(fullName && fullName.value || friend.value)
-          .click(() => $('#profile').val(friend.value))
-          .click(loadProfile)));
-    $('#friends').append(
-      $('<a>').text('Send Message')
-        .click(()=> chatM.createChatFolder(userDataUrl)));
-  });
-});
-
 
 $('#sendButton').click(async function sendFunc()  {
   //Obtain solid community URL
@@ -70,6 +40,31 @@ $('#sendButton').click(async function sendFunc()  {
   console.log("URI:"+URI+"      User:"+user+"          text:"+text);
   chatM.sendMessage(URI,user,text);
 });
+
+//------------------------------------- FUNCTIONS ---------------------------------------------
+
+async function loadProfile() {
+    // Load the person's data into the store
+    const person = $('#profile').text();
+    await fetcher.load(person);
+
+    // Display their details
+    const fullName = store.any($rdf.sym(person), FOAF('name'));
+    $('#fullName').text(fullName && fullName.value);
+
+    // Display their friends
+    const friends = store.each($rdf.sym(person), FOAF('knows'));
+    $('#friends').empty();
+    friends.forEach(async (friend) => {
+        await fetcher.load(friend);
+        const fullName = store.any(friend, FOAF('name'));
+        $('#friends').append(
+            $('<li>').append(
+                $('<a>').text(fullName && fullName.value || friend.value)
+                    .click(() => $('#profile').text(friend.value))
+                    .click(loadProfile)));
+    });
+}
 
 /**
  * This method generates a unique url for a resource based on a given base url.
