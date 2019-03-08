@@ -12,7 +12,7 @@ It is necessary to incorporate the login module since the application is customi
 
 Contained Building Blocks::
     - Login: 
-    The user can use this module to log into the application. This module is the previous to the chat screen.
+    The user can use this module to log into the application. This module is prior to the chat screen.
     - Chat:
     This module will be divided later. It provides the basic chat functionality.
 
