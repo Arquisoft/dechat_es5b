@@ -24,18 +24,22 @@ solid.auth.trackSession(session => {
 });
 
 $('#sendButton').click(async function sendFunc()  {
-  //Obtain solid community URL
-  var person = $('#profile').text();
-  var URI = person.substr(0,(person.length-15));
+	if (document.getElementById("friends").value == "") 
+		alert("Debe seleccionar un usuario."); 
+	else{
+	  //Obtain solid community URL
+	  var person = $('#profile').text();
+	  var URI = person.substr(0,(person.length-15));
 
-  //Get user name, It will be used as the folder name.
-  var user = store.any($rdf.sym($('#profile').text()), FOAF('name'));
+	  //Get user name, It will be used as the folder name.
+	  var user = store.any($rdf.sym($('#profile').text()), FOAF('name'));
 
-  //Message to be sent, contents of file.
-  var text = $('#messageText').val();
+	  //Message to be sent, contents of file.
+	  var text = $('#messageText').val();
 
-  console.log("URI:"+URI+"      User:"+user+"          text:"+text);
-  chatM.sendMessage(URI,user,text);
+	  console.log("URI:"+URI+"      User:"+user+"          text:"+text);
+	  chatM.sendMessage(URI,user,text);
+	}
 });
 
 //------------------------------------- FUNCTIONS ---------------------------------------------
