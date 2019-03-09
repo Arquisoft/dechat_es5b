@@ -4,7 +4,9 @@ In this section we will show a list of identified technical risks or technical d
 
 List of technical risks:
 
-    - Uknown framework and technology to work with.
+    - Unknown framework and technology to work with.
     - Poor group work experience.
+    - Have little time to do the project due to other university studies.
 
-Listed avobe for the moment, further update needed.
+Listed above for the moment, further update needed.
+
