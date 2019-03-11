@@ -8,6 +8,7 @@ In it we will provide a response to the request for a decentralized chat using S
 
 
 === Requirements Overview
+It is a chat so its most basic requirements are to send and receive messages. But there are other requirements that we are going to add.
 
 ==== Chat Requirements
 [width="100%",options="header"]
