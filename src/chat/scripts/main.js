@@ -28,17 +28,16 @@ $('#sendButton').click(
 		  alert("Debe seleccionar un usuario."); 
 	  else{
 	    //Obtain solid community URL
-      INFO.URI = INFO.person.substr(0,(person.length-15));
+      chatM.INFO.URI = chatM.INFO.person.substr(0,(chatM.INFO.person.length-15));
 
 	    //Get user name, It will be used as the folder name.
-	    var receiver = chatM.getReceiver();
-	    var user = store.any($rdf.sym(receiver), FOAF('name')).toString().replace(/ /g, "");
+	    //var user = store.any($rdf.sym(chatM.INFO.receiver), FOAF('name')).toString().replace(/ /g, "");
 
 	    //Message to be sent, contents of file.
 	    var text = $('#messageText').val();
 
-	    console.log("URI:"+URI+"      User:"+user+"          text:"+text);
-	    chatM.sendMessage(URI,user,text);
+	    console.log("URI:"+chatM.INFO.URI+"      User:"+chatM.INFO.receiver+"          text:"+text);
+	    chatM.sendMessage(text);
 	  }
   }
 );
@@ -61,15 +60,14 @@ async function loadProfile() {
     friends.forEach(
       async (friend) => {
         await fetcher.load(friend);
-        const fullName = store.any(friend, FOAF('name'));
-        /*$('#friends').append(
-            $('<li>').append(
-                $('<a>').text(fullName && fullName.value || friend.value)
-                    .click(() => $('#profile').text(friend.value))
-                    .click(loadProfile)));*/
 		    $('#friends').append(
-            $('<option>').text(fullName && fullName.value || friend.value)
-            .click(() => chatM.changeReceiver(friend.value)));
+            $('<option>').text(store.any(friend, FOAF('name')))
+            .click(
+                () => {
+                  chatM.INFO.receiver = store.any(friend, FOAF('name'));
+                  alert(chatM.INFO.receiver);
+                }
+              ));
     });
 }
 
