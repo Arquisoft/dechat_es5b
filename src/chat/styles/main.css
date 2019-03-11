@@ -1,18 +1,32 @@
 ﻿body {
-	max-width: 800px;
+	background-image: url("../images/background.png");
     margin: 0 auto;
+	font: 400 15px Arial, sans-serif;
 }
 
-body, input, button {
-    font: 11pt/1.3 "Helvetiva Neue", Helvetica, Arial, sans-serif;
+div {
+	text-align: center;
+	margin: 0.5em;
+	font: 14pt "Helvetiva Neue", Helvetica, Arial, sans-serif;
+}
+
+img{
+	display:block;
+	margin:auto;
+}
+
+#imgNav {
+	float:left;
+}
+
+h1 {
+    font: 30pt/1.3 "Helvetiva Neue", Helvetica, Arial, sans-serif;
+	text-align: center;
+	padding-top: 0.5em;
 }
 
 button, label {
     font-weight: bold;
-}
-
-#profile {
-    width: 400px;
 }
 
 dt {
@@ -21,16 +35,61 @@ dt {
     float: left;
 }
 
-    dt:after {
-        content: ': ';
-    }
+dt:after {
+    ontent: ': ';
+}
 
 a {
-    color: #7c4dff;
-    border-bottom: 1px solid;
+    color: white;
     cursor: pointer;
+	margin: 0.5em;
 }
 
-a:hover {
-    color: #9b79fc;
+a:link { 
+	color:white;
+	font-size:20pt;
+	text-decoration:none; 
 }
+
+#logout {
+	font-size:18pt;
+}
+
+#chatref {
+	font-size:18pt;
+}
+
+#id {
+	float: left;
+}
+
+#divBack {
+	padding-top:0.2em;
+	padding-bottom:0.5em;
+	-webkit-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
+	-moz-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
+	margin-bottom:2em;
+	margin-left:8em;
+	margin-right:8em;
+}
+
+#profile {
+    width: 400px;
+}
+
+#button {
+	background-color: #7031D6; 
+	color: white;
+	font-size: 20px;
+	border-radius: 8px;
+}
+
+#chatRef {
+	color:#7031D6; 
+}
+
+#nav {
+	min-height:3em; /* aqui escoges el alto que necesites */
+	background-color: #7031D6;
+}
+
