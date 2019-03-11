@@ -1,5 +1,6 @@
 ﻿body {
 	background-image: url("../images/background.png");
+	background-size: cover;
     margin: 0 auto;
 	font: 400 15px Arial, sans-serif;
 }
@@ -92,4 +93,3 @@ a:link {
 	min-height:3em; /* aqui escoges el alto que necesites */
 	background-color: #7031D6;
 }
-

@@ -5,11 +5,12 @@
     <title>deChat_ES5B</title>
     <base href="/"/>
     <link rel="stylesheet" href="./styles/main.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-	<nav id="nav">
-		<a class="navbar-brand mb-0 h1" href="/" id="link">
-			<img src="./images/logo.svg" width="43" height="43" id="imgNav" alt="">
+	<nav class="navbar-light bg-light nav">
+		<a class="navbar-brand" href="/">
+			<img src="./images/logo.svg" width="40" height="40" class="d-inline-block align-top" alt="Logo">
 			deChat_ES5B
 		</a>
 	</nav>
@@ -21,12 +22,12 @@
 			<p id="login">
 				<button id="button">Log in</button>
 			</p>
-			<p id="logout" hidden>
+			<p class="d-none" id="logout">
 				Hi! You are now logged in.
 				<br>
 				<button id="button">Log out</button>
 			</p>
-			<a id="chatRef" href="two-people-chat.html" hidden>Chat</a>
+			<a class="d-none" id="chatRef" href="two-people-chat.html">Chat</a>
 		</div>
 		<div class="container" id="divBack">
 			<h3>Start chatting</h3>
