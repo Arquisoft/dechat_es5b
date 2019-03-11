@@ -6,7 +6,6 @@ var chatM = require('./chatManager.js');
 const store = $rdf.graph();
 const fetcher = new $rdf.Fetcher(store);
 
-
 // Log the user in and out on click
 $('#login  button').click(() => loginM.login());
 $('#logout button').click(() => loginM.logout());
@@ -23,41 +22,44 @@ solid.auth.trackSession(session => {
   loadProfile();
 });
 
-$('#sendButton').click(async function sendFunc()  {
-	if (document.getElementById("friends").value == "") 
-		alert("Debe seleccionar un usuario."); 
-	else{
-	  //Obtain solid community URL
-	  var person = $('#profile').text();
-	  var URI = person.substr(0,(person.length-15));
+$('#sendButton').click(
+  async function sendFunc()  {
+	  if (document.getElementById("friends").value == "") 
+		  alert("Debe seleccionar un usuario."); 
+	  else{
+	    //Obtain solid community URL
+      INFO.URI = INFO.person.substr(0,(person.length-15));
 
-	  //Get user name, It will be used as the folder name.
-	  var receiver = chatM.getReceiver();
-	  var user = store.any($rdf.sym(receiver), FOAF('name')).toString().replace(/ /g, "");
+	    //Get user name, It will be used as the folder name.
+	    var receiver = chatM.getReceiver();
+	    var user = store.any($rdf.sym(receiver), FOAF('name')).toString().replace(/ /g, "");
 
-	  //Message to be sent, contents of file.
-	  var text = $('#messageText').val();
+	    //Message to be sent, contents of file.
+	    var text = $('#messageText').val();
 
-	  console.log("URI:"+URI+"      User:"+user+"          text:"+text);
-	  chatM.sendMessage(URI,user,text);
-	}
-});
+	    console.log("URI:"+URI+"      User:"+user+"          text:"+text);
+	    chatM.sendMessage(URI,user,text);
+	  }
+  }
+);
 
 //------------------------------------- FUNCTIONS ---------------------------------------------
 
 async function loadProfile() {
     // Load the person's data into the store
-    const person = $('#profile').text();
-    await fetcher.load(person);
+    chatM.INFO.person = $('#profile').text();
+    await fetcher.load(chatM.INFO.person);
+
 
     // Display their details
-    const fullName = store.any($rdf.sym(person), FOAF('name'));
-    $('#fullName').text(fullName && fullName.value);
-
+    chatM.INFO.userName = store.any($rdf.sym(chatM.INFO.person), FOAF('name'));
+    $('#fullName').text(chatM.INFO.userName);
+    
     // Display their friends
-    const friends = store.each($rdf.sym(person), FOAF('knows'));
+    const friends = store.each($rdf.sym(chatM.INFO.person), FOAF('knows'));
     $('#friends').empty();
-    friends.forEach(async (friend) => {
+    friends.forEach(
+      async (friend) => {
         await fetcher.load(friend);
         const fullName = store.any(friend, FOAF('name'));
         /*$('#friends').append(
@@ -65,9 +67,9 @@ async function loadProfile() {
                 $('<a>').text(fullName && fullName.value || friend.value)
                     .click(() => $('#profile').text(friend.value))
                     .click(loadProfile)));*/
-		$('#friends').append(
+		    $('#friends').append(
             $('<option>').text(fullName && fullName.value || friend.value)
-                    .click(() => chatM.changeReceiver(friend.value)));
+            .click(() => chatM.changeReceiver(friend.value)));
     });
 }
 

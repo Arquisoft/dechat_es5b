@@ -1,10 +1,16 @@
 const fileClient = require('solid-file-client');
 
-var receiver = '';
+var INFO = 
+{
+  person: "",
+  userName: "" ,
+  URI:"" ,
+  receiver:""  
+}
 
-async function sendMessage(URI,user,text){
-    var solidChat=URI+"public/SolidChat/";
-    var folder= solidChat+user+"/";
+async function sendMessage(text){
+    var solidChat=INFO.URI+"public/SolidChat/";
+    var folder= solidChat+INFO.receiver+"/";
 
     //New Solid-Chat folder
     try{
@@ -44,8 +50,7 @@ function receiveMessage(){
 module.exports = {
     sendMessage: sendMessage,
     receiveMessage: receiveMessage,
-	changeReceiver: changeReceiver,
-	getReceiver: getReceiver
+	INFO: INFO
 }
 
 async function createChatFolder(url) {
@@ -93,11 +98,3 @@ async function deleteMessage(url){
 	}, err => console.log(err) );
 }
 
-function changeReceiver(friend){
-	receiver = friend;
-	console.log(receiver);
-}
-
-function getReceiver(){
-	return receiver;
-}
