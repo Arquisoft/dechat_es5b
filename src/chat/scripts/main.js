@@ -28,7 +28,7 @@ $('#sendButton').click(
 		  alert("Debe seleccionar un usuario."); 
 	  else{
 	    //Obtain solid community URL
-      chatM.INFO.URI = chatM.INFO.person.substr(0,(chatM.INFO.person.length-15));
+      chatM.INFO.userURI = chatM.INFO.user.substr(0,(chatM.INFO.user.length-15));
 
 	    //Get user name, It will be used as the folder name.
 	    //var user = store.any($rdf.sym(chatM.INFO.receiver), FOAF('name')).toString().replace(/ /g, "");
@@ -36,7 +36,7 @@ $('#sendButton').click(
 	    //Message to be sent, contents of file.
 	    var text = $('#messageText').val();
 
-	    console.log("URI:"+chatM.INFO.URI+"      User:"+chatM.INFO.receiver+"          text:"+text);
+	    console.log("URI:"+chatM.INFO.userURI+"      User:"+chatM.INFO.receiver+"          text:"+text);
 	    chatM.sendMessage(text);
 	  }
   }
@@ -46,16 +46,16 @@ $('#sendButton').click(
 
 async function loadProfile() {
     // Load the person's data into the store
-    chatM.INFO.person = $('#profile').text();
-    await fetcher.load(chatM.INFO.person);
+    chatM.INFO.user = $('#profile').text();
+    await fetcher.load(chatM.INFO.user);
 
 
     // Display their details
-    chatM.INFO.userName = store.any($rdf.sym(chatM.INFO.person), FOAF('name'));
+    chatM.INFO.userName = store.any($rdf.sym(chatM.INFO.user), FOAF('name'));
     $('#fullName').text(chatM.INFO.userName);
     
     // Display their friends
-    const friends = store.each($rdf.sym(chatM.INFO.person), FOAF('knows'));
+    const friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
     $('#friends').empty();
     friends.forEach(
       async (friend) => {
@@ -64,7 +64,9 @@ async function loadProfile() {
             $('<option>').text(store.any(friend, FOAF('name')))
             .click(
                 () => {
-                  chatM.INFO.receiver = store.any(friend, FOAF('name'));
+                  chatM.INFO.receiver = friend.value;
+                  chatM.INFO.receiverName = store.any(friend, FOAF('name'));
+                  chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0,(chatM.INFO.receiver.length-15));
                   alert(chatM.INFO.receiver);
                 }
               ));
