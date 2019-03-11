@@ -11,6 +11,7 @@ var INFO =
 }
 
 async function sendMessage(text){
+    //Define folders name
     var solidChat=INFO.userURI+"public/SolidChat/";
     var folder= solidChat+INFO.receiverName+"/";
 
@@ -47,7 +48,7 @@ async function sendMessage(text){
 //TO-DO
 function receiveMessage(){
     //User folder
-        //check new conversation (folder Exists)
+        //check new conversation (folder Exists) - Try catch
         //Object folder readed
             //get Files list
     //Receiber folder

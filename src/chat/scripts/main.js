@@ -30,12 +30,10 @@ $('#sendButton').click(
 	    //Obtain solid community URL
       chatM.INFO.userURI = chatM.INFO.user.substr(0,(chatM.INFO.user.length-15));
 
-	    //Get user name, It will be used as the folder name.
-	    //var user = store.any($rdf.sym(chatM.INFO.receiver), FOAF('name')).toString().replace(/ /g, "");
-
 	    //Message to be sent, contents of file.
 	    var text = $('#messageText').val();
 
+      //Send MSG
 	    console.log("URI:"+chatM.INFO.userURI+"      User:"+chatM.INFO.receiver+"          text:"+text);
 	    chatM.sendMessage(text);
 	  }
@@ -64,10 +62,10 @@ async function loadProfile() {
             $('<option>').text(store.any(friend, FOAF('name')))
             .click(
                 () => {
+                  //Store all reciever info need for future
                   chatM.INFO.receiver = friend.value;
                   chatM.INFO.receiverName = store.any(friend, FOAF('name'));
                   chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0,(chatM.INFO.receiver.length-15));
-                  alert(chatM.INFO.receiver);
                 }
               ));
     });
