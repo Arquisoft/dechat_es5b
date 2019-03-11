@@ -27,15 +27,12 @@ $('#sendButton').click(
 	  if (document.getElementById("friends").value == "") 
 		  alert("Debe seleccionar un usuario."); 
 	  else{
-	    //Obtain solid community URL
-      chatM.INFO.userURI = chatM.INFO.user.substr(0,(chatM.INFO.user.length-15));
+		//Message to be sent, contents of file.
+		var text = $('#messageText').val();
 
-	    //Message to be sent, contents of file.
-	    var text = $('#messageText').val();
-
-      //Send MSG
-	    console.log("URI:"+chatM.INFO.userURI+"      User:"+chatM.INFO.receiver+"          text:"+text);
-	    chatM.sendMessage(text);
+		//Send MSG
+		console.log("URI:"+chatM.INFO.userURI+"      User:"+chatM.INFO.receiver+"          text:"+text);
+		chatM.sendMessage(text);
 	  }
   }
 );
@@ -46,7 +43,9 @@ async function loadProfile() {
     // Load the person's data into the store
     chatM.INFO.user = $('#profile').text();
     await fetcher.load(chatM.INFO.user);
-
+	
+	//Obtain solid community URL
+	chatM.INFO.userURI = chatM.INFO.user.substr(0,(chatM.INFO.user.length-15));
 
     // Display their details
     chatM.INFO.userName = store.any($rdf.sym(chatM.INFO.user), FOAF('name'));
@@ -64,36 +63,15 @@ async function loadProfile() {
                 () => {
                   //Store all reciever info need for future
                   chatM.INFO.receiver = friend.value;
-                  chatM.INFO.receiverName = store.any(friend, FOAF('name'));
+                  chatM.INFO.receiverName = store.any(friend, FOAF('name')).toString().trim();
                   chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0,(chatM.INFO.receiver.length-15));
+				  //Mostrar los mensajes
+				  mostrarMensajes();
                 }
               ));
     });
 }
 
-/**
- * This method generates a unique url for a resource based on a given base url.
- * @param baseurl: the base url for the url of the resource.
- * @returns {Promise<string>}: a promise that resolves with a unique url.
- */
-async function generateUniqueUrlForResource(baseurl) {
-  let count =1;
-  let url = baseurl + '#' + '1234';
-
-  try {
-    let d = this.getObjectFromPredicateForResource(url, namespaces.rdf + 'type');
-
-    // We assume that if this url doesn't have a type, the url is unused.
-    // Ok, this is not the most fail-safe thing.
-    // TODO: check if there are any triples at all.
-    while (d) {
-      url = baseurl + '#' + (count+1);
-      d = await this.getObjectFromPredicateForResource(url, namespaces.rdf + 'type');
-    }
-  } catch (e) {
-    // this means that response of data[url] returns a 404
-    // TODO might be called when you have no access, should check
-  } finally {
-    return url;
-  }
+function mostrarMensajes(){
+	chatM.receiveMessage();
 }

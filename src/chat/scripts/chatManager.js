@@ -10,11 +10,16 @@ var INFO =
   receiverURI:""
 }
 
+var MESSAGES = {
+	myMessages:"",
+	friendMessages:""
+}
+
 async function sendMessage(text){
     //Define folders name
     var solidChat=INFO.userURI+"public/SolidChat/";
-    var folder= solidChat+INFO.receiverName+"/";
-
+    var folder= solidChat+INFO.receiverName.replace(/ /g, "-")+"/";
+	
     //New Solid-Chat folder
     try{
         var err = await readFolder(solidChat);
@@ -46,12 +51,26 @@ async function sendMessage(text){
 }
 
 //TO-DO
-function receiveMessage(){
+async function receiveMessage(){
+	//Define folders name
+    var solidChat=INFO.userURI+"public/SolidChat/";
+    var folder= solidChat+INFO.receiverName.replace(/ /g, "-")+"/";
     //User folder
         //check new conversation (folder Exists) - Try catch
-        //Object folder readed
-            //get Files list
-    //Receiber folder
+		try{
+			console.log(folder);
+			var err = await readFolder(folder);
+			if(!err){
+				console.log("Solid-chat folder doesnt exist");
+				throw("error");
+				//Object folder readed
+					//get Files list
+					console.log(await readFolder(folder));
+			}
+		}catch(error){
+			console.log("The folder doesn't exist.");
+		}
+    //Receiver folder
         //check new conversation (folder Exists)
         //Object folder readed
             //get Files list
@@ -74,7 +93,7 @@ async function createChatFolder(url) {
 
 //We have to know about what returns the method fileClient.readFolder(url)
 async function readFolder(url){
-    await fileClient.readFolder(url).then(folder => {
+    return await fileClient.readFolder(url).then(folder => {
         console.log(`Read ${folder.name}, it has ${folder.files.length} files.`);
       }, err => console.log(err) );
 }
