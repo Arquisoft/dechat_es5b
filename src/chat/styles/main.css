@@ -1,8 +1,5 @@
 ﻿body {
-	background-image: url("../images/background.png");
-	background-size: cover;
     margin: 0 auto;
-	font: 400 15px Arial, sans-serif;
 }
 
 div {
@@ -40,17 +37,6 @@ dt:after {
     ontent: ': ';
 }
 
-a {
-    color: white;
-    cursor: pointer;
-	margin: 0.5em;
-}
-
-a:link { 
-	color:white;
-	font-size:20pt;
-	text-decoration:none; 
-}
 
 #logout {
 	font-size:18pt;
@@ -65,28 +51,12 @@ a:link {
 }
 
 #divBack {
-	padding-top:0.2em;
-	padding-bottom:0.5em;
 	-webkit-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
 	-moz-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
-	margin-bottom:2em;
-	margin-left:8em;
-	margin-right:8em;
 }
 
 #profile {
     width: 400px;
-}
-
-#button {
-	background-color: #7031D6; 
-	color: white;
-	font-size: 20px;
-	border-radius: 8px;
-}
-
-#chatRef {
-	color:#7031D6; 
 }
 
 #nav {

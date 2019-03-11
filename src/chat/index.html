@@ -8,34 +8,37 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-	<nav class="navbar-light bg-light nav">
-		<a class="navbar-brand" href="/">
-			<img src="./images/logo.svg" width="40" height="40" class="d-inline-block align-top" alt="Logo">
-			deChat_ES5B
-		</a>
+	<nav class="navbar navbar-light bg-light">
+	  <a class="navbar-brand" href="#">
+		<img src="./images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+		DeChat ES5B
+	  </a>
 	</nav>
-	<h1>Welcome to our descentralized chat</h1>
-	<img id="left" src="./images/logo.svg" width="50" height="50" alt="">
-	<div class="container">
+	
+	<div class="jumbotron">
+		<h1>Welcome to our descentralized chat</h1>
+		<img id="left" src="./images/logo.svg" width="50" height="50" alt="">
 		<div class="container">
-			<h2>Log in with your POD!</h2>
-			<p id="login">
-				<button id="button">Log in</button>
-			</p>
-			<p class="d-none" id="logout">
-				Hi! You are now logged in.
-				<br>
-				<button id="button">Log out</button>
-			</p>
-			<a class="d-none" id="chatRef" href="two-people-chat.html">Chat</a>
-		</div>
-		<div class="container" id="divBack">
-			<h3>Start chatting</h3>
-			<p>Just log in with your Solid community account and start chatting.</p>
-			<p>You must have friends in your solid community account to be able to chat.</p>
-			<h3>How it works</h3>
-			<p>Our deChat is a decentralized chat site, build on top of Solid.</p>
-			<p>All personal data about the chat is stored on your POD.</p>
+			<div class="container">
+				<h2>Log in with your POD!</h2>
+				<p id="login">
+					<button type="button" class="btn btn-outline-primary" id="button">Log in</button>
+				</p>
+				<p class="d-none" id="logout">
+					Hi! You are now logged in.
+					<br>
+					<button type="button" class="btn btn-outline-primary" id="button">Log out</button>
+				</p>
+				<a class="btn btn-primary btn-lg active d-none" id="chatRef" href="two-people-chat.html" role="button" aria-pressed="true">Enter now Chat</a>
+			</div>
+			<div class="container" id="divBack">
+				<h3>Start chatting</h3>
+				<p>Just log in with your Solid community account and start chatting.</p>
+				<p>You must have friends in your solid community account to be able to chat.</p>
+				<h3>How it works</h3>
+				<p>Our deChat is a decentralized chat site, build on top of Solid.</p>
+				<p>All personal data about the chat is stored on your POD.</p>
+			</div>
 		</div>
 	</div>
 	<script src="./scripts/jquery.js"></script>
