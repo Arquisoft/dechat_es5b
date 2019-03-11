@@ -16,10 +16,6 @@ img{
 	margin:auto;
 }
 
-#imgNav {
-	float:left;
-}
-
 h1 {
     font: 30pt/1.3 "Helvetiva Neue", Helvetica, Arial, sans-serif;
 	text-align: center;
@@ -40,23 +36,12 @@ dt:after {
     ontent: ': ';
 }
 
-a {
-    color: white;
-    cursor: pointer;
-	margin: 0.5em;
-}
-
 a:link { 
-	color:white;
 	font-size:20pt;
 	text-decoration:none; 
 }
 
 #logout {
-	font-size:18pt;
-}
-
-#chatref {
 	font-size:18pt;
 }
 
@@ -86,10 +71,6 @@ a:link {
 }
 
 #chatRef {
+	font-size:18pt;
 	color:#7031D6; 
-}
-
-#nav {
-	min-height:3em; /* aqui escoges el alto que necesites */
-	background-color: #7031D6;
 }
