@@ -32,7 +32,8 @@ $('#sendButton').click(async function sendFunc()  {
 	  var URI = person.substr(0,(person.length-15));
 
 	  //Get user name, It will be used as the folder name.
-	  var user = store.any($rdf.sym($('#profile').text()), FOAF('name'));
+	  var receiver = chatM.getReceiver();
+	  var user = store.any($rdf.sym(receiver), FOAF('name')).toString().replace(/ /g, "");
 
 	  //Message to be sent, contents of file.
 	  var text = $('#messageText').val();
