@@ -41,6 +41,8 @@ This section defines the most important domain and technical terms:
 
 | Log in    | Log in is the process by which individual access to a   computer system is controlled.
 
+| Node.js    | Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser.
+
 | Open source   | Open source is a model of software development based on open collaboration. It focuses more on the practical benefits (access to source code) than on the ethical or freedom issues that are so prominent in free software.
 
 | Operative system  | Set of commands and programs that control the basic processes of a computer and allow the operation of other programs.
