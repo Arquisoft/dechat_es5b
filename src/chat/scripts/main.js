@@ -37,6 +37,12 @@ $('#sendButton').click(
   }
 );
 
+$('#readButton').click(
+  async function readFunc()  {
+	  chatM.receiveMessage();
+  }
+);
+
 //------------------------------------- FUNCTIONS ---------------------------------------------
 
 async function loadProfile() {
@@ -66,12 +72,8 @@ async function loadProfile() {
                   chatM.INFO.receiverName = store.any(friend, FOAF('name')).toString().trim();
                   chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0,(chatM.INFO.receiver.length-15));
 				  //Mostrar los mensajes
-				  mostrarMensajes();
+				  //mostrarMensajes();
                 }
               ));
     });
-}
-
-function mostrarMensajes(){
-	chatM.receiveMessage();
 }
