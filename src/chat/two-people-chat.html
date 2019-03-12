@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Decentralized chat using Solid">
+    <title>deChat_ES5B - Chat room</title>
+	<link rel="icon" type="image/png" href="./images/siteIcon.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/main.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-dark">
+		<a class="navbar-brand" href="#">
+			<img src="./images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="chatLogo">
+			DeChat ES5B
+		</a>
+		<span class="navbar-text">
+			<text>Logged as:</text>
+			<text class="whitecolor" id="fullName"></text>
+			<a id="logout" href="/">
+				<button type="button" class="btn btn-outline-light" href="/">Log out</button>
+			</a>
+		</span>
+	</nav>
+	<div class="nav flex-column nav-pills sidebar">
+		<h5 class="centered whitecolor">Friend list</h5>
+		<select class="custom-select form-control" id="friends" size="10"></select>
+	</div>
+	<div class="jumbotron chatplace">
+		
+		<h1>Welcome to your decentralized chat room</h1>
+		<section>
+			<p class="centered">
+				Your profile link for add new friends is:
+				<br>
+				<text id="profile" ></text>
+			</p>
+		</section>
+		
+		<section>
+			<div id="MessageArea">
+				<input id="messageText" type="text"><button id="sendButton">Send message</button>
+			</div>
+		</section>
+	</div>
+	
+    <script src="./scripts/jquery.js"></script>
+    <script src="./scripts/solid-auth-client.bundle.js"></script>
+    <script src="./scripts/rdflib.min.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
+    

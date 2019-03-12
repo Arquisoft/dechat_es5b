@@ -1,0 +1,79 @@
+﻿nav {
+	background-color: #7031D6;
+}
+
+h1 {
+	text-align: center;
+	font-weight: bold;
+}
+
+button, label {
+	font-size: 18pt;
+    font-weight: bold;
+}
+
+img{
+	display: block;
+	margin: auto;
+}
+
+dt {
+    font-weight: bold;
+    clear: left;
+    float: left;
+}
+
+.centered{
+	text-align: center;
+}
+
+.whitecolor{
+	color: white;
+}
+
+/* Friends list two-people-chat.html */
+.sidebar {
+	height: 100%; 
+	width: 230px;
+	position: fixed;
+	z-index: 1;
+	top: 70px;
+	left: 0;
+	background-color: #8975dd;
+	overflow-x: hidden;
+	padding-top: 20px;
+}
+
+/* Main part of chat */
+.chatplace {
+	margin-left: 230px;
+	padding: 0px 10px;
+}
+
+dt:after {
+    ontent: ': ';
+}
+
+#divWithShade {
+	padding:2em;
+	-webkit-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
+	-moz-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
+}
+
+#profile {
+    width: 400px;
+}
+
+#chatRef {
+	margin-bottom: 1em;
+}
+
+#profile {
+	text-align: center;
+	font-size: 12pt;
+	font-family: "Courier New", Courier, monospace;
+}
+
+#friends {
+	width:170px
+}

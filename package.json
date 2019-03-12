@@ -2,28 +2,29 @@
   "name": "dechat_es5b",
   "version": "1.0.0",
   "description": "A decentralized chat",
-  "main": "index.js",
+  "private": true,
   "presets": [
     "@babel/preset-es2016"
   ],
   "scripts": {
-    "test": "standard && nyc --reporter lcov mocha --require @babel/register -R spec",
+    "start": "webpack && node App.js",
+    "test": "nyc --reporter lcov mocha --require @babel/register -R spec",
     "coverage": "nyc --reporter text-lcov node_modules/.bin/_mocha --require @babel/register -R spec --timeout 100 | coveralls",
     "test-with-coverage": "nyc --reporter text-lcov node_modules/.bin/_mocha --require @babel/register -R spec --timeout 100 && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage",
     "travisRepo": "./test/travisRepo.sh",
     "travis-deploy-once": "travis-deploy-once",
-    "puml": "./node_modules/.bin/puml",
-    "docs": "./node_modules/.bin/asciidoctorjs  adocs/index.adoc --destination-dir docs"
+    "puml": "puml",
+    "docs": "asciidoctorjs  adocs/index.adoc --destination-dir docs"
   },
   "bin": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arquisoft/dechatjs_0.git"
+    "url": "git+https://github.com/arquisoft/dechat_es5b.git"
   },
-  "author": "Equipo ES5B <labra@uniovi.es>",
+  "author": "Equipo ES5B",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/arquisoft/dechatjs_0/issues"
+    "url": "https://github.com/arquisoft/dechat_es5b/issues"
   },
   "homepage": "https://github.com/arquisoft/dechat_es5b",
   "devDependencies": {
@@ -48,11 +49,21 @@
     "mocha-lcov-reporter": "^1.3.0",
     "node-plantuml": "^0.8.1",
     "nyc": "^13.3.0",
-    "standard": "*"
+    "standard": "^12.0.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
   },
   "dependencies": {
     "codacy-coverage": "^3.4.0",
+    "express": "^4.16.4",
     "istanbul": "^0.4.5",
+    "path": "^0.12.7",
+    "solid-file-client": "^0.4.9",
     "standard": "^12.0.1"
-  }
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "keywords": []
 }
