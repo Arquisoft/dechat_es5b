@@ -1,19 +1,23 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Welcome</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Decentralized chat using Solid">
+    <title>deChat_ES5B - Chat room</title>
+	<link rel="icon" type="image/png" href="./images/siteIcon.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/main.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-	<nav class="navbar navbar-light bg-light">
+	<nav class="navbar navbar-dark">
 		<a class="navbar-brand" href="#">
-			<img src="./images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+			<img src="./images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="chatLogo">
 			DeChat ES5B
 		</a>
 		<span class="navbar-text">
-			Profile picture and Username goes here
+			<text>Logged as:</text>
+			<text id="fullName"></text>
 		</span>
 	</nav>
 	
@@ -40,7 +44,7 @@
 			<input id="messageText" type="text"><button id="sendButton">Send</button>
 		</div>
     </section>
-
+	
     <script src="./scripts/jquery.js"></script>
     <script src="./scripts/solid-auth-client.bundle.js"></script>
     <script src="./scripts/rdflib.min.js"></script>
