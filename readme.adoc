@@ -6,8 +6,8 @@ image:https://api.codacy.com/project/badge/Grade/fc7dc1da60ee4e9fb67ccff78262579
 
 Web chat application using JavaScript technologies based on SOLID specifications: all personal data about the chat is stored on the user's POD.
 
-image:https://cdn-eliostruyf.azureedge.net/wp-content/uploads/2016/10/101116_0811_Gettingupto1.png["Webpack", link="https://ih1.redbubble.net/image.393391362.2519/flat,550x550,075,f.jpg",200,200]
-image:https://software.intel.com/sites/default/files/managed/fa/a0/Runtime-logo-Node.jpg["Nodejs", link="https://software.intel.com/sites/default/files/managed/fa/a0/Runtime-logo-Node.jpg",200,200]
+image:https://cdn-eliostruyf.azureedge.net/wp-content/uploads/2016/10/101116_0811_Gettingupto1.png["Webpack", link="https://webpack.js.org/concepts",200,200]
+image:https://software.intel.com/sites/default/files/managed/fa/a0/Runtime-logo-Node.jpg["Nodejs", link="https://nodejs.org/es/about/",200,200]
 
 == Beginnings
 Our app requires https://nodejs.org/en/[Node.js] to use it.
