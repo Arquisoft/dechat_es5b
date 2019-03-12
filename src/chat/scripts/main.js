@@ -68,6 +68,9 @@ async function loadProfile() {
 				  //Show messages
 				  var toShow = await chatM.receiveMessages();
 				  console.log(toShow);
+				  toShow.forEach( (message) => {
+						$('#messages').append($('<p>').text(message))
+					});
                 }
               ));
     });
