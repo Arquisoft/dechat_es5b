@@ -50,11 +50,6 @@ dt {
 	padding: 0px 10px;
 }
 
-.friendselector {
-	height: 100%; 
-	width: 100%;
-}
-
 dt:after {
     ontent: ': ';
 }
