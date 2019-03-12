@@ -16,6 +16,7 @@ var MESSAGES = {
 	toShow: []
 }
 
+
 async function sendMessage(text){
     //Define folders name
     var solidChat=INFO.userURI+"public/SolidChat/";
@@ -103,15 +104,17 @@ async function receiveMessages(){
 			f++;
 		}			
 	}
-	
+    
 	return MESSAGES.toShow;
 }
 
 module.exports = {
     sendMessage: sendMessage,
     receiveMessages: receiveMessages,
-	INFO: INFO
+    INFO: INFO
 }
+
+
 
 async function createChatFolder(url) {
     await fileClient.createFolder(url).then(success => {
