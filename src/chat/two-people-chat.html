@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="background-color:#EBEBEB;">
 	<nav class="navbar navbar-dark">
 		<a class="navbar-brand" href="#">
 			<img src="./images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="chatLogo">
@@ -24,12 +24,11 @@
 			</a>
 		</span>
 	</nav>
-	<div class="nav flex-column nav-pills sidebar">
+	<div class=" flex-column nav-pills sidebar">
 		<h5 class="centered whitecolor">Friend list</h5>
 		<select class="custom-select form-control" id="friends" size="10"></select>
 	</div>
 	<div class="jumbotron chatplace">
-		
 		<h1>Welcome to your decentralized chat room</h1>
 		<section>
 			<p class="centered">
@@ -38,14 +37,15 @@
 				<text id="profile" ></text>
 			</p>
 		</section>
-		
-		<section>
-			<div id="MessageArea">
-				<div id="messages">
+		<div class="container" id="divConversation">
+			<section>
+				<div id="MessageArea">
+					<div id="messages">
+					</div>
+					<input id="messageText" type="text"><button id="sendButton">Send</button>
 				</div>
-				<input id="messageText" type="text"><button id="sendButton">Send</button>
-			</div>
-		</section>
+			</section>
+		</div>
 	</div>
 	
     <script src="./scripts/jquery.js"></script>
@@ -54,4 +54,3 @@
     <script src="./index.js"></script>
 </body>
 </html>
-    

@@ -55,7 +55,7 @@ dt:after {
 }
 
 #divWithShade {
-	padding:2em;
+	padding: 2em;
 	-webkit-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
 	-moz-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
 }
@@ -75,5 +75,12 @@ dt:after {
 }
 
 #friends {
-	width:170px
+	width: 170px
+}
+
+#divConversation {
+	padding: 2em;
+	-webkit-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
+	-moz-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
+	text-align: center;
 }
