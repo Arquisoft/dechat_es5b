@@ -32,7 +32,11 @@ $('#sendButton').click(
 
 		//Send MSG
 		console.log("URI:"+chatM.INFO.userURI+"      User:"+chatM.INFO.receiver+"          text:"+text);
-		chatM.sendMessage(text);
+		await chatM.sendMessage(text);
+		
+		//Erase input field
+		$('#messageText').val('');
+		updateMessages(await chatM.receiveMessages());
 	  }
   }
 );
@@ -66,12 +70,15 @@ async function loadProfile() {
                   chatM.INFO.receiverName = store.any(friend, FOAF('name')).toString().trim();
                   chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0,(chatM.INFO.receiver.length-15));
 				  //Show messages
-				  var toShow = await chatM.receiveMessages();
-				  console.log(toShow);
-				  toShow.forEach( (message) => {
-						$('#messages').append($('<p>').text(message))
-					});
+				  updateMessages(await chatM.receiveMessages());
                 }
               ));
     });
+}
+
+function updateMessages(toShow){
+	$('#messages').empty();
+	toShow.forEach( (message) => {
+		$('#messages').append($('<p>').text(message))
+	});
 }

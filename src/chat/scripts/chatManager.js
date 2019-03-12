@@ -58,8 +58,7 @@ async function receiveMessages(){
 	var rFolder=INFO.receiverURI+"public/SolidChat/"+INFO.userName.replace(/ /g, "-")+"/";
 
     //User folder
-        //check new conversation (folder Exists) - Try catch
-		//console.log("Reading :"+folder);
+        //check new conversation (folder Exists) 
         var userFolder = await readFolder(uFolder);
         console.log(userFolder);
 		if(userFolder){
@@ -68,6 +67,7 @@ async function receiveMessages(){
         }else{
             //Nothing to read -> empty list
             console.log("folder do not exist");
+			MESSAGES.userMSG = [];
         }
 		
     //Receiver folder
@@ -81,23 +81,25 @@ async function receiveMessages(){
         }else{
             //Nothing to read -> empty list
             console.log("folder do not exist");
+			MESSAGES.friendMSG = [];
         }
     
     //Order las 10(n) msg by time order (file.mtime=TimeStamp)
 	var u = 0;
 	var f = 0;
+	MESSAGES.toShow = [];
 	for(var i = 0; i < 10 && (u < MESSAGES.userMSG.length || f < MESSAGES.friendMSG.length) ; i++){
 		if(!(f < MESSAGES.friendMSG.length)){
-			MESSAGES.toShow[i] = await readMessage(uFolder+MESSAGES.userMSG[u].name);
+			MESSAGES.toShow[i] = INFO.userName + ":  " + await readMessage(uFolder+MESSAGES.userMSG[u].name);
 			u++;
 		}else if(!(u < MESSAGES.friendMSG.length)){
-			MESSAGES.toShow[i] = await readMessage(rFolder+MESSAGES.friendMSG[f].name);
+			MESSAGES.toShow[i] = INFO.receiverName + ":  " + await readMessage(rFolder+MESSAGES.friendMSG[f].name);
 			f++;
 		}else if(MESSAGES.userMSG[u].mtime < MESSAGES.friendMSG[f].mtime){
-			MESSAGES.toShow[i] = await readMessage(uFolder+MESSAGES.userMSG[u].name);
+			MESSAGES.toShow[i] = INFO.userName + ":  " + await readMessage(uFolder+MESSAGES.userMSG[u].name);
 			u++;
 		}else{
-			MESSAGES.toShow[i] = await readMessage(rFolder+MESSAGES.friendMSG[f].name);
+			MESSAGES.toShow[i] = INFO.receiverName + ":  " + await readMessage(rFolder+MESSAGES.friendMSG[f].name);
 			f++;
 		}			
 	}
