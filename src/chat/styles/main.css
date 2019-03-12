@@ -7,10 +7,6 @@ h1 {
 	font-weight: bold;
 }
 
-div {
-	text-align: center;
-}
-
 button, label {
 	font-size: 18pt;
     font-weight: bold;
@@ -47,4 +43,8 @@ dt:after {
 
 #fullName {
 	color: white;
+}
+
+#centeredDiv {
+	text-align: center;
 }
