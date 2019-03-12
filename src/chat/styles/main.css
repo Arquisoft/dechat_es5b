@@ -1,18 +1,20 @@
-﻿body {
-	max-width: 800px;
-    margin: 0 auto;
+﻿nav {
+	background-color: #7031D6;
 }
 
-body, input, button {
-    font: 11pt/1.3 "Helvetiva Neue", Helvetica, Arial, sans-serif;
+h1 {
+	text-align: center;
+	font-weight: bold;
 }
 
 button, label {
+	font-size: 18pt;
     font-weight: bold;
 }
 
-#profile {
-    width: 400px;
+img{
+	display: block;
+	margin: auto;
 }
 
 dt {
@@ -21,16 +23,57 @@ dt {
     float: left;
 }
 
-    dt:after {
-        content: ': ';
-    }
-
-a {
-    color: #7c4dff;
-    border-bottom: 1px solid;
-    cursor: pointer;
+.centered{
+	text-align: center;
 }
 
-a:hover {
-    color: #9b79fc;
+.whitecolor{
+	color: white;
+}
+
+/* Friends list two-people-chat.html */
+.sidebar {
+	height: 100%; 
+	width: 230px;
+	position: fixed;
+	z-index: 1;
+	top: 70px;
+	left: 0;
+	background-color: #8975dd;
+	overflow-x: hidden;
+	padding-top: 20px;
+}
+
+/* Main part of chat */
+.chatplace {
+	margin-left: 230px;
+	padding: 0px 10px;
+}
+
+dt:after {
+    ontent: ': ';
+}
+
+#divWithShade {
+	padding:2em;
+	-webkit-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
+	-moz-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
+}
+
+#profile {
+    width: 400px;
+}
+
+#chatRef {
+	margin-bottom: 1em;
+}
+
+#profile {
+	text-align: center;
+	font-size: 12pt;
+	font-family: "Courier New", Courier, monospace;
+}
+
+#friends {
+	width:170px
 }

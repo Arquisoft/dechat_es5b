@@ -4,16 +4,16 @@ async function login () {
     await fileClient.popupLogin().then(webId => {
         console.log(`Logged in as ${webId}.`);
     }, err => console.log(err));
-    $('#login').hide();
-    $('#logout').show();
-    $('#chatRef').show();
+    $('#login').addClass('d-none');
+    $('#logout').removeClass('d-none');
+    $('#chatRef').removeClass('d-none');
 }
 
 async function logout () {
     await fileClient.logout().then ( console.log( `Bye now!` ));
-    $('#login').show();
-    $('#logout').hide();
-    $('#chatRef').hide();
+    $('#login').removeClass('d-none');
+    $('#logout').addClass('d-none');
+    $('#chatRef').addClass('d-none');
 }
 
 module.exports = {

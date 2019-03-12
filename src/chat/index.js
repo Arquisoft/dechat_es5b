@@ -104,7 +104,7 @@ eval("!function(e,t){ true?module.exports=t():undefined}(window,function(){retur
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const fileClient = __webpack_require__(/*! solid-file-client */ \"./node_modules/solid-file-client/dist/browser/solid-file-client.bundle.js\")\r\n\r\nasync function login () {\r\n    await fileClient.popupLogin().then(webId => {\r\n        console.log(`Logged in as ${webId}.`);\r\n    }, err => console.log(err));\r\n    $('#login').hide();\r\n    $('#logout').show();\r\n    $('#chatRef').show();\r\n}\r\n\r\nasync function logout () {\r\n    await fileClient.logout().then ( console.log( `Bye now!` ));\r\n    $('#login').show();\r\n    $('#logout').hide();\r\n    $('#chatRef').hide();\r\n}\r\n\r\nmodule.exports = {\r\n    login: login,\r\n    logout: logout\r\n}\r\n\n\n//# sourceURL=webpack:///./src/chat/scripts/LogInManager.js?");
+eval("const fileClient = __webpack_require__(/*! solid-file-client */ \"./node_modules/solid-file-client/dist/browser/solid-file-client.bundle.js\")\r\n\r\nasync function login () {\r\n    await fileClient.popupLogin().then(webId => {\r\n        console.log(`Logged in as ${webId}.`);\r\n    }, err => console.log(err));\r\n    $('#login').addClass('d-none');\r\n    $('#logout').removeClass('d-none');\r\n    $('#chatRef').removeClass('d-none');\r\n}\r\n\r\nasync function logout () {\r\n    await fileClient.logout().then ( console.log( `Bye now!` ));\r\n    $('#login').removeClass('d-none');\r\n    $('#logout').addClass('d-none');\r\n    $('#chatRef').addClass('d-none');\r\n}\r\n\r\nmodule.exports = {\r\n    login: login,\r\n    logout: logout\r\n}\r\n\n\n//# sourceURL=webpack:///./src/chat/scripts/LogInManager.js?");
 
 /***/ }),
 
