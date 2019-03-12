@@ -54,8 +54,8 @@ async function sendMessage(text){
 //TO-DO
 async function receiveMessages(){
 	//Define folders name
-    var uFolder=INFO.userURI+"public/SolidChat/"+INFO.receiverName.replace(/ /g, "-")+"/";
-	var rFolder=INFO.receiverURI+"public/SolidChat/"+INFO.userName.replace(/ /g, "-")+"/";
+    var uFolder=INFO.userURI+"public/SolidChat/"+INFO.receiverName.trim().replace(/ /g, "-")+"/";
+	var rFolder=INFO.receiverURI+"public/SolidChat/"+INFO.userName.trim().replace(/ /g, "-")+"/";
 
     //User folder
         //check new conversation (folder Exists) 
@@ -92,7 +92,7 @@ async function receiveMessages(){
 		if(!(f < MESSAGES.friendMSG.length)){
 			MESSAGES.toShow[i] = INFO.userName + ":  " + await readMessage(uFolder+MESSAGES.userMSG[u].name);
 			u++;
-		}else if(!(u < MESSAGES.friendMSG.length)){
+		}else if(!(u < MESSAGES.userMSG.length)){
 			MESSAGES.toShow[i] = INFO.receiverName + ":  " + await readMessage(rFolder+MESSAGES.friendMSG[f].name);
 			f++;
 		}else if(MESSAGES.userMSG[u].mtime < MESSAGES.friendMSG[f].mtime){
