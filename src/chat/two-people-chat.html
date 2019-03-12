@@ -18,32 +18,30 @@
 		</a>
 		<span class="navbar-text">
 			<text>Logged as:</text>
-			<text id="fullName"></text>
+			<text class="whitecolor" id="fullName"></text>
 			<a id="logout" href="/">
 				<button type="button" class="btn btn-outline-light" href="/">Log out</button>
 			</a>
 		</span>
 	</nav>
-
-	<div class="jumbotron">
+	<div class="nav flex-column nav-pills sidebar">
+		<h5 class="centered whitecolor">Friend list</h5>
+		<select class="custom-select form-control friendselector" id="friends" size="10"></select>
+	</div>
+	<div class="jumbotron chatplace">
+		
 		<h1>Welcome to your decentralized chat room</h1>
 		<section>
-			<p id="profLink">
+			<p class="centered">
 				Your profile link for add new friends is:
 				<br>
 				<text id="profile" ></text>
 			</p>
 		</section>
 		
-		<section id="viewer">
-			<p><b>Your friends:</b></p>
-			<select class="form-control" id="friends" size="10">
-			</select>
-		</section>
-		
 		<section>
 			<div id="MessageArea">
-				<input id="messageText" type="text"><button id="sendButton">Send</button>
+				<input id="messageText" type="text"><button id="sendButton">Send message</button>
 			</div>
 		</section>
 	</div>
