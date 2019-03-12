@@ -60,13 +60,14 @@ async function loadProfile() {
 		    $('#friends').append(
             $('<option>').text(store.any(friend, FOAF('name')))
             .click(
-                () => {
+                async function () {
                   //Store all reciever info need for future
                   chatM.INFO.receiver = friend.value;
                   chatM.INFO.receiverName = store.any(friend, FOAF('name')).toString().trim();
                   chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0,(chatM.INFO.receiver.length-15));
 				  //Show messages
-				  chatM.receiveMessage();
+				  var toShow = await chatM.receiveMessages();
+				  console.log(toShow);
                 }
               ));
     });

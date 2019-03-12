@@ -101,7 +101,7 @@ async function receiveMessages(){
 			f++;
 		}			
 	}
-	console.log(MESSAGES.toShow);
+	
 	return MESSAGES.toShow;
 }
 
