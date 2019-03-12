@@ -11,8 +11,9 @@ var INFO =
 }
 
 var MESSAGES = {
-	myMessages:"",
-	friendMessages:""
+	userMSG: [],
+	friendMSG: [],
+	toShow: []
 }
 
 async function sendMessage(text){
@@ -51,42 +52,62 @@ async function sendMessage(text){
 }
 
 //TO-DO
-async function receiveMessage(){
+async function receiveMessages(){
 	//Define folders name
-    var solidChat=INFO.userURI+"public/SolidChat/";
-    var folder= solidChat+INFO.receiverName.replace(/ /g, "-")+"/";
-    var userMSG= [];
+    var uFolder=INFO.userURI+"public/SolidChat/"+INFO.receiverName.replace(/ /g, "-")+"/";
+	var rFolder=INFO.receiverURI+"public/SolidChat/"+INFO.userName.replace(/ /g, "-")+"/";
 
     //User folder
         //check new conversation (folder Exists) - Try catch
 		//console.log("Reading :"+folder);
-        var userFolder = await readFolder(folder);
+        var userFolder = await readFolder(uFolder);
         console.log(userFolder);
 		if(userFolder){
             console.log("folder exist");
-            userMSG = userFolder.files;
+            MESSAGES.userMSG = userFolder.files;
         }else{
             //Nothing to read -> empty list
             console.log("folder do not exist");
         }
-
+		
     //Receiver folder
         //check new conversation (folder Exists)
-        //Object folder readed
-            //get Files list
-    if(userMSG.length==0)
-        console.log("No msgs found");
-    else{
-        console.log(userMSG);
-        console.log("MSG: "+userMSG[0].content);
-    }
-    //Order las 10(n) msg by time order (FileName=TimeStamp)
-    //Save into variable
+        //Object folder readed -> get Files list
+		var receiverFolder = await readFolder(rFolder);
+        console.log(receiverFolder);
+		if(receiverFolder){
+            console.log("folder exist");
+            MESSAGES.friendMSG = receiverFolder.files;
+        }else{
+            //Nothing to read -> empty list
+            console.log("folder do not exist");
+        }
+    
+    //Order las 10(n) msg by time order (file.mtime=TimeStamp)
+	var u = 0;
+	var f = 0;
+	for(var i = 0; i < 10 && (u < MESSAGES.userMSG.length || f < MESSAGES.friendMSG.length) ; i++){
+		if(!(f < MESSAGES.friendMSG.length)){
+			MESSAGES.toShow[i] = await readMessage(uFolder+MESSAGES.userMSG[u].name);
+			u++;
+		}else if(!(u < MESSAGES.friendMSG.length)){
+			MESSAGES.toShow[i] = await readMessage(rFolder+MESSAGES.friendMSG[f].name);
+			f++;
+		}else if(MESSAGES.userMSG[u].mtime < MESSAGES.friendMSG[f].mtime){
+			MESSAGES.toShow[i] = await readMessage(uFolder+MESSAGES.userMSG[u].name);
+			u++;
+		}else{
+			MESSAGES.toShow[i] = await readMessage(rFolder+MESSAGES.friendMSG[f].name);
+			f++;
+		}			
+	}
+	console.log(MESSAGES.toShow);
+	return MESSAGES.toShow;
 }
 
 module.exports = {
     sendMessage: sendMessage,
-    receiveMessage: receiveMessage,
+    receiveMessages: receiveMessages,
 	INFO: INFO
 }
 
@@ -118,8 +139,9 @@ async function writeMessage(url,content){
 
 //We have to know about what returns the method fileClient.readFile(url)
 async function readMessage(url){
-	await fileClient.readFile(url).then(  body => {
+	return await fileClient.readFile(url).then(  body => {
 	  console.log(`File	content is : ${body}.`);
+	  return body;
 	}, err => console.log(err) );
 }
 
