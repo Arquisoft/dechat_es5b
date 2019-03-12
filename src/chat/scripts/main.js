@@ -47,7 +47,6 @@ async function loadProfile() {
     // Load the person's data into the store
     chatM.INFO.user = $('#profile').text();
     await fetcher.load(chatM.INFO.user);
-	
 	//Obtain solid community URL
 	chatM.INFO.userURI = chatM.INFO.user.substr(0,(chatM.INFO.user.length-15));
 
@@ -70,11 +69,15 @@ async function loadProfile() {
                   chatM.INFO.receiverName = store.any(friend, FOAF('name')).toString().trim();
                   chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0,(chatM.INFO.receiver.length-15));
 				  //Show messages
-				  updateMessages(await chatM.receiveMessages());
+          updateMessages(await chatM.receiveMessages());
                 }
               ));
     });
 }
+
+window.setInterval(async function(){
+  updateMessages(await chatM.receiveMessages());
+}, 2000);
 
 function updateMessages(toShow){
 	$('#messages').empty();

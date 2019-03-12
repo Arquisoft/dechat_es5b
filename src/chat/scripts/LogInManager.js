@@ -16,6 +16,7 @@ async function logout () {
     $('#chatRef').addClass('d-none');
 }
 
+async function cosroro(){}
 module.exports = {
     login: login,
     logout: logout

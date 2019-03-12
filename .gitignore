@@ -66,3 +66,4 @@ typings/
 
 # Webstorm files
 .idea
+src/chat/index.js
