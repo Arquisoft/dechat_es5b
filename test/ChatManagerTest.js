@@ -29,6 +29,18 @@ describe('createFile', function() {
 	});
 });
 
+describe('readFile', function() {
+	 it('Read File', async function() {
+		 await chatM.readFile('https://pruebaes5b.solid.community/public/Prueba/ficheroprueba.txt');
+	});
+});
+
+describe('deleteFile', function() {
+	 it('Delete File', async function() {
+		 await chatM.deleteFile('https://pruebaes5b.solid.community/public/Prueba/ficheroprueba.txt');
+	});
+});
+
 /*
 describe('ChatManagerTest', function () {
     it('Testing SendMenssage', async function () {
