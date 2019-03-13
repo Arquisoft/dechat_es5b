@@ -2,6 +2,8 @@ const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
 var loginM = require('./LogInManager.js');
 var chatM = require('./chatManager.js');
 
+const ToLog=chatM.ToLog;
+
 // Set up a local data store and associated data fetcher
 const store = $rdf.graph();
 const fetcher = new $rdf.Fetcher(store);
@@ -45,7 +47,8 @@ $('#sendButton').click(
 );
 
 async function loadProfile() {
-    console.log("loading Profile");
+    if(ToLog)
+      console.log("loading Profile");
     // Load the person's data into the store
     chatM.INFO.user = $('#profile').text();
     await fetcher.load(chatM.INFO.user);
@@ -66,7 +69,8 @@ async function loadProfile() {
             $('<option>').text(store.any(friend, FOAF('name')))
             .click(
                 async function () {
-                  console.log("load new receiver");
+                  if(ToLog)
+                    console.log("load new receiver");
                   //Store all reciever info need for future
                   chatM.INFO.receiver = friend.value;
                   chatM.INFO.receiverName = store.any(friend, FOAF('name')).toString().trim();
@@ -84,7 +88,8 @@ window.setInterval(async function(){
 }, 4000);
 
 function updateMessages(toShow){
-  console.log("Update msgs");
+  if(ToLog)
+    console.log("Update msgs");
   var messages="";
 	$('#messages').empty();
 	toShow.forEach( (message) => {

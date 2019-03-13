@@ -1,4 +1,5 @@
 const fileClient = require('solid-file-client');
+const ToLog = true;
 
 var INFO = 
 {
@@ -23,41 +24,49 @@ async function sendMessage(text){
     var folder= solidChat+INFO.receiverName.replace(/ /g, "-")+"/";
 	
     //Check Folder SolidChat
-    console.log("Check SolidChat Exist")
+    if(ToLog)
+        console.log("Check SolidChat Exist")
     try{
         var err = await readFolder(solidChat);
         if(!err){
-            //console.log("Solid-chat folder doesnt exist");
+            if(ToLog)
+                console.log("Solid-chat folder doesnt exist");
             throw("error")
         }
     }catch(error){
         //New Solid-Chat folder
         await createChatFolder(solidChat);
-        //console.log("Solid-chat folder created");
+        if(ToLog)
+            console.log("Solid-chat folder created");
     }
     
     //IF folder doesnt exist: create new user folder
-    console.log("Check user:"+INFO.receiverName+" folder")
+    if(ToLog)
+        console.log("Check user:"+INFO.receiverName+" folder")
     try{
         var err2 = await readFolder(folder);
         if(!err2){
-            //console.log("Folder doesnt exist");
+            if(ToLog)
+                console.log("Folder doesnt exist");
             throw("error")
         }
     }catch(error){
          //New Folder:
          await createChatFolder(folder);
-         console.log('User folder created');
+         if(ToLog)
+            console.log('User folder created');
     }
 
     //WritingMessage
-    console.log("Writting message: "+text);
+    if(ToLog)
+        console.log("Writting message: "+text);
     await writeMessage(folder+"/"+(new Date().getTime()), text);
 }
 
 //TO-DO
 async function receiveMessages(){
-    console.log("ReceivingMessages")
+    if(ToLog)
+        console.log("ReceivingMessages")
 	//Define folders name
     var uFolder=INFO.userURI+"public/SolidChat/"+INFO.receiverName.trim().replace(/ /g, "-")+"/";
 	var rFolder=INFO.receiverURI+"public/SolidChat/"+INFO.userName.trim().replace(/ /g, "-")+"/";
@@ -68,11 +77,13 @@ async function receiveMessages(){
 
         //console.log(userFolder);
 		if(userFolder){
-            console.log("User folder exist");
+            if(ToLog)
+                console.log("User folder exist");
             MESSAGES.userMSG = userFolder.files;
         }else{
             //Nothing to read -> empty list
-            console.log("User Folder do not exist");
+            if(ToLog)
+                console.log("User Folder do not exist");
 			MESSAGES.userMSG = [];
         }
 		
@@ -82,11 +93,13 @@ async function receiveMessages(){
 		var receiverFolder = await readFolder(rFolder);
         //console.log(receiverFolder);
 		if(receiverFolder){
-            //console.log("Receiver folder exist");
+            if(ToLog)
+                console.log("Receiver folder exist");
             MESSAGES.friendMSG = receiverFolder.files;
         }else{
             //Nothing to read -> empty list
-            console.log("User folder do not exist");
+            if(ToLog)
+                console.log("User folder do not exist");
 			MESSAGES.friendMSG = [];
         }
     
@@ -94,7 +107,8 @@ async function receiveMessages(){
 	var u = 0;
 	var f = 0;
     MESSAGES.toShow = [];
-    console.log("Read msgs");
+    if(ToLog)
+      console.log("Read msgs");
 	for(var i = 0; i < 10 && (u < MESSAGES.userMSG.length || f < MESSAGES.friendMSG.length) ; i++){
 		if(!(f < MESSAGES.friendMSG.length)){
 			MESSAGES.toShow[i] = INFO.userName + ":  " + await readMessage(uFolder+MESSAGES.userMSG[u].name);
@@ -115,6 +129,7 @@ async function receiveMessages(){
 }
 
 module.exports = {
+    ToLog: ToLog,
     sendMessage: sendMessage,
     receiveMessages: receiveMessages,
     INFO: INFO
@@ -124,34 +139,39 @@ module.exports = {
 
 async function createChatFolder(url) {
     await fileClient.createFolder(url).then(success => {
-        console.log(`Created folder ${url}.`);
+        if(ToLog)
+            console.log(`Created folder ${url}.`);
       }, err => console.log(err) );
 }
 
 //We have to know about what returns the method fileClient.readFolder(url)
 async function readFolder(url){
     return await fileClient.readFolder(url).then(folder => {
-        console.log(`Read ${folder.name}, it has ${folder.files.length} files.`);
+        if(ToLog)
+            console.log(`Read ${folder.name}, it has ${folder.files.length} files.`);
         return folder;
       }, err => console.log(err) );
 }
 
 async function deleteFolder(url){
 	await fileClient.deleteFolder(url).then(success => {
-	  console.log(`Deleted ${url}.`);
+        if(ToLog)
+            console.log(`Deleted ${url}.`);
 	}, err => console.log(err) );
 }
 
 async function writeMessage(url,content){
     await fileClient.createFile(url,content,"text/plain").then( fileCreated => {
-        console.log(`Created file ${fileCreated}.`);
+        if(ToLog)
+            console.log(`Created file ${fileCreated}.`);
       }, err => console.log(err) );
 }
 
 //We have to know about what returns the method fileClient.readFile(url)
 async function readMessage(url){
 	return await fileClient.readFile(url).then(  body => {
-	  //console.log(`File	content is : ${body}.`);
+        if(ToLog)
+            //console.log(`File	content is : ${body}.`);
 	  return body;
 	}, err => console.log(err) );
 }
@@ -159,13 +179,15 @@ async function readMessage(url){
 //I've put this method here in case we end up using it.
 async function updateMessage(url){
 	await fileClient.updateFile( url, newContent, contentType ).then( success => {
-		console.log( `Updated ${url}.`)
+		if(ToLog)
+            console.log( `Updated ${url}.`)
 	}, err => console.log(err) );
 }
 
 async function deleteMessage(url){
 	await fileClient.deleteFile(url).then(success => {
-	  console.log(`Deleted ${url}.`);
+	    if(ToLog)
+            console.log(`Deleted ${url}.`);
 	}, err => console.log(err) );
 }
 
