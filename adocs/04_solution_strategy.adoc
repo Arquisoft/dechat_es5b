@@ -8,11 +8,11 @@ For the teamwork, project development and documentation we'll be using a GitHub 
 
 Decisions taken about the chat:
 
-* Solid, also by subject requirements.
-* GitHub, by subject requierements.
+* Solid: by subject requirements.
 * Solid-file-client: a library for creating and managing files and folders in Solid data stores.
 * Webpack: bundle JavaScript files for usage in a browser.
 * Node.js: JavaScript runtime built on Chrome's V8 JavaScript engine.
 * Bootstrap: open source toolkit for designing web sites.
+* GitHub: also by subject requierements.
 * AsciidocFX: Asciidoc document editor to perform the documentation.
 
