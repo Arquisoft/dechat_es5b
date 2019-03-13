@@ -137,6 +137,7 @@ module.exports = {
 
 
 //POD utility funcs
+
 async function createChatFolder(url) {
     await fileClient.createFolder(url).then(success => {
         if(ToLog)
@@ -144,7 +145,6 @@ async function createChatFolder(url) {
       }, err => console.log(err) );
 }
 
-//We have to know about what returns the method fileClient.readFolder(url)
 async function readFolder(url){
     return await fileClient.readFolder(url).then(folder => {
         if(ToLog)
@@ -167,7 +167,6 @@ async function writeMessage(url,content){
       }, err => console.log(err) );
 }
 
-//We have to know about what returns the method fileClient.readFile(url)
 async function readMessage(url){
 	return await fileClient.readFile(url).then(  body => {
         if(ToLog)
@@ -176,7 +175,6 @@ async function readMessage(url){
 	}, err => console.log(err) );
 }
 
-//I've put this method here in case we end up using it.
 async function updateMessage(url){
 	await fileClient.updateFile( url, newContent, contentType ).then( success => {
 		if(ToLog)
