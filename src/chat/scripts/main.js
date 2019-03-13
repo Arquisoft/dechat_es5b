@@ -77,7 +77,7 @@ async function loadProfile() {
 
 window.setInterval(async function(){
   updateMessages(await chatM.receiveMessages());
-}, 2000);
+}, 4000);
 
 function updateMessages(toShow){
 	$('#messages').empty();
