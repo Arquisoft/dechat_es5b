@@ -103,6 +103,42 @@ async function receiveMessages(){
 			MESSAGES.friendMSG = [];
         }
     
+    var dict = [];
+    //var node ={message:"",date:null};
+
+    class node {
+        constructor(message, date) {
+            this.message = message;
+            this.date = date;
+        }
+    }
+
+    var f = 0;
+    var u = 0;
+    for(var i = 0;i< 20  ; i++){
+        if(i%2 == 0 && i <= MESSAGES.friendMSG.length){
+            dict[i] = new node(INFO.receiverName + ":  " + readMessage(rFolder+MESSAGES.friendMSG[f].name),
+            new Date(Number(MESSAGES.friendMSG[f].name)));
+            f++;
+        }
+        else if(i <= MESSAGES.userMSG.length){
+            dict[i] = new node(INFO.userName + ":  " + readMessage(uFolder+MESSAGES.userMSG[u].name),
+            new Date(Number(MESSAGES.userMSG[f].name)));
+            u++;
+        }
+    }
+
+    dict.sort(function(a, b) {
+        a = new Date(a.dateModified);
+        b = new Date(b.dateModified);
+        return a>b ? -1 : a<b ? 1 : 0;
+    });
+
+    MESSAGES.toShow = [];
+    for(var i=0 ; i<2 ;i++){
+        MESSAGES.toShow[i] = dict[i].message;
+    }
+/*
     //Order las 10(n) msg by time order (file.mtime=TimeStamp)
 	var u = 0;
 	var f = 0;
@@ -124,7 +160,7 @@ async function receiveMessages(){
 			f++;
 		}			
 	}
-    
+    */
 	return MESSAGES.toShow;
 }
 
