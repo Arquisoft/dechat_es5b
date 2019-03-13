@@ -50,16 +50,3 @@ describe('deleteFolder', function() {
 		 await chatM.deleteFolder('https://pruebaes5b.solid.community/public/PruebaSinLogin/');
 	});
 });
-
-/*
-describe('ChatManagerTest', function () {
-    it('Testing SendMenssage', async function () {
-      let r =  await chatM.sendMessage();
-      assert.equal(r, true);
-   });
- 
-   it('Testing ReceiveMessage', async function () {
-     let r = await chatM.receiveMessages();
-     assert.typeOf(r,"Array");
-   });
-});*/

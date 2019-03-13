@@ -7,6 +7,7 @@ async function login () {
     $('#login').addClass('d-none');
     $('#logout').removeClass('d-none');
     $('#chatRef').removeClass('d-none');
+    return true;
 }
 
 async function logout () {
@@ -14,6 +15,7 @@ async function logout () {
     $('#login').removeClass('d-none');
     $('#logout').addClass('d-none');
     $('#chatRef').addClass('d-none');
+    return true;
 }
 
 async function cosroro(){}
