@@ -6,5 +6,5 @@ List of technical risks:
 
     - Uknown framework and technology to work with.
     - Poor group work experience.
-
-Listed avobe for the moment, further update needed.
+    - Conflicts in the version control system.
+    - Discard technologies because of their difficulty.

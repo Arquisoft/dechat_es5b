@@ -1,16 +1,18 @@
 [[section-solution-strategy]]
 == Solution Strategy
 
-Due to the social content of the application and other solid apps that we've seen we decided that
-the best option is to do it in a web enviroment and run it on a server so it's more user-friendly.
-At the moment the plan for our application structure is based on a JavaScript and TpeScript application with HTML components that follow solid's style guide and pattern in the app apearence.
+Due to the social content of our chat and other solid apps that we've seen we decided that the best option is to do it in a web enviroment and run it on a server so it's more user-friendly.
+Our application structure is based on a JavaScript and TpeScript application with HTML components that follow solid's style guide and pattern in the app apearence.
 
 For the teamwork, project development and documentation we'll be using a GitHub repository to keep thigs in order.
 
-For the moment we have only a few decisions taken so our reasons are short:
+Decisions taken about the chat:
 
-    - Angular, for the base compatibility it has with solid and the auto-generated web framewok.
-    - GitHub, by subject requierements.
-    - Solid, also by subject requirements.
-    - AssciDoctor, subject requirements one more time.
+* Solid: by subject requirements.
+* Solid-file-client: a library for creating and managing files and folders in Solid data stores.
+* Webpack: bundle JavaScript files for usage in a browser.
+* Node.js: JavaScript runtime built on Chrome's V8 JavaScript engine.
+* Bootstrap: open source toolkit for designing web sites.
+* GitHub: also by subject requierements.
+* AsciidocFX: Asciidoc document editor to perform the documentation.
 

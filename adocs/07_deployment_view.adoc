@@ -7,6 +7,4 @@ Base application will be able to run in any machine based in web applications.
 
 Developing an descetralized app means that a central server is not required to store any information used by the user, beside the server needed to authentificate the user connection. this last requirement may be solved by using the SOLID Community sistem already implemented for the signing up/login process.
 
-**TODO Still in progress, will be updated.**
-
 By the moment infrastructure is no needed and planned.

@@ -1,22 +1,21 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
-In this documentation we will explain all the relevant concepts of our decentralized chat, based on SOLID, following the Arc42 template.
-
 Our project is part of a university proposal with a basis in cooperation with the company Inrupt and the use of its SOLID design.
 
 In it we will provide a response to the request for a decentralized chat using SOLID. It will consist of the principle of separating the information from the application giving the user the power to control all their data.
 
+In this documentation we will explain all the relevant concepts of our decentralized chat, based on SOLID, following the Arc42 template.
 
 === Requirements Overview
+It is a chat so its most basic requirements are to send and receive messages. But there are other requirements that we are going to explain:
 
 ==== Chat Requirements
 [width="100%",options="header"]
 |====================
 |Requirement | Description
 |Secure | Connection protocols and personal information security
-|Descentraliced | The user is the real data's owner
-|Fast and Agile | Real time message syste
-|Intuitive and Comfy |Easy to learn and use, familiar to the user
+|Descentraliced | The user's data is stored in his personal pod
+|Fast and Agile | Real time message system
 |====================
 
 ==== Implementation Requirements.
@@ -25,7 +24,7 @@ In it we will provide a response to the request for a decentralized chat using S
 |Requirement | Description
 |Testability | Error and bugs tracking, the architecture should allow easy testing
 |Patter design | Facility to extend, update and fix
-|Fast and Agile | Easiest to understand and work with it
+|Intuitive | Easiest to understand and work with it
 |====================
 
 === Quality Goals
@@ -34,16 +33,16 @@ In it we will provide a response to the request for a decentralized chat using S
 |Quality|Motivation
 | Decentralized | Top priority and objective for the chat, is required to work...
 | Usable | Chats are one of most common and famous application, is expected to be familiar and intuitive to the user
-| Clean code and design | The vast majority of our Stakeholders are developers so, it is relevant to maintain a clean product during its implementation.
+| Clean code and design | Most of our Stakeholders are developers so, it is relevant to maintain a clean product during its implementation
 |===
 
 === Stakeholders
 [width="100%",options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| Teaching Staff | Teachers | Teacher and in charge of the subject, seeks development within a project and constant work.
-| Inrupt | SOLID Team | They establish certain bases to be met in the development and operation of the application, also act as a help factor. 
-| Users | Potential users | Those possible users who use the application for the technologies used and their comfort.
-| Team | Developtment team | Develop a application that will work and archive at least the minimum requirements planned.
+| Teaching Staff | Teachers | Teachers and responsible of the subject, seeks development within a project and constant work
+| Inrupt | SOLID Team | They establish certain bases to be met in the development and operation of the application, also act as a help factor
+| Users | Potential users | Those possible users who use the application
+| Team | Developtment team | Develop a application that will work and archive at least the minimum requirements planned
 | Developers | External developers | We are deploying an open code product so it might be relevant to bring them some help by coding a clean application
 |===

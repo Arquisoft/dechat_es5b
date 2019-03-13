@@ -1,26 +1,19 @@
 [[section-system-scope-and-context]]
 == System Scope and Context
 
-DeChat must allow communication between two users through text messages. In addition, it will be possible to create groups of users to which all participants can send and receive messages. Also, it must allow sending files, such as images or videos, to the recipient.
-A notification will be shown when user receives a message.
+DeChat must allow communication between two users through text messages. In addition, it may be possible in following versions create user groups which all participants can send and receive messages. In addition, it must allow the sending of files, such as images or videos, to the recipient.
 
 Security and privacy is DeChat priority. Messages will never leave user own Solid POD. Instead, recipient system will be asked to retrieve message from senders POD, and will never save messages to recipient POD.
 DeChat will only store where message is placed, so app knows where are messages stored when user starts application.
 
 Lists of communication partners and their interfaces:
 
-* Common interfaces
-** Main: List of active chats.
-** Chat: List of messages within send or received to/from selected user or group.
-** Chat options: Interface enabling user to delete or edit chat configurations.
-
+* Main: login page where the user must enter his or her solid community credentials.
+* Chat room: shows the authenticated user's friends list and the messages sent and received with the selected friend.
 
 === Business Context
 
-There will be only one communication partner (one role): User. User will be able to send and receive messages.
-In the background, RDF will be used to share chat details.
-
-Data will be kept within sender's POD and will never be stored outside it.
+There will be only one communication partner (one role): User. User will be able to send and receive messages. In the background, RDF will be used to share chat details. Data will be kept within sender's POD and will never be stored outside it.
 
 [options="header",cols="1,2,2"]
 |===
@@ -32,9 +25,6 @@ Data will be kept within sender's POD and will never be stored outside it.
 
 Since DeChat is under SOLID architecture, we will be using WebID to communicate between users and add friends. SOLID also makes use of RDF, WebSockets, etc.. More info available in https://github.com/solid/solid-spec
 
-Motivation: Respect SOLID architecture.
+As indicated above, the chat is composed of two main elements: login and chat room. It's necessary to bear in mind that the application needs a web browser to be able to use it. Here is a case of use that explains how it works:
 
-**TO-DOs: This is not a definitive document. System is still not 100% designed and may vary. Please check out later to find the following:**
-
-E.g. UML deployment diagram describing channels to neighboring systems,
-together with a mapping table showing the relationships between channels and input/output.
+image:03_chat_components.png[Chat components diagram]

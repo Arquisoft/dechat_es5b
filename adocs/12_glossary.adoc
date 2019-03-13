@@ -15,9 +15,13 @@ This section defines the most important domain and technical terms:
 
 | AsciiDoc  | AsciiDoc is a human-readable document format that uses plain text marking conventions.
 
+| AsciidocFX | Book / document editor to build PDF, Epub, Mobi and HTML books, documents and slides.
+
 | Beta version  | A Beta version is a software version that has passed the internal testing stage, called "Alpha" and has been released to users for public testing.
 
 | Black Box | A black box is an element that is studied from the point of view of its inputs and outputs, without taking into account its internal functionality.
+
+| Bootstrap | Open-source front-end Web framework. It contains HTML and CSS-based design templates for typography, forms, buttons, navigation and other interface components, as well as optional JavaScript extensions. 
 
 | Browser   | A program that allows you to surf the Internet or another computer communications network.
 
@@ -41,6 +45,8 @@ This section defines the most important domain and technical terms:
 
 | Log in    | Log in is the process by which individual access to a   computer system is controlled.
 
+| Node.js | Open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser. JavaScript is used primarily for client-side scripting, in which scripts written in JavaScript are embedded in a webpage's HTML and run client-side by a JavaScript engine in the user's web browser. Node.js lets developers use JavaScript to write command line tools and for server-side scripting
+
 | Open source   | Open source is a model of software development based on open collaboration. It focuses more on the practical benefits (access to source code) than on the ethical or freedom issues that are so prominent in free software.
 
 | Operative system  | Set of commands and programs that control the basic processes of a computer and allow the operation of other programs.
@@ -59,6 +65,8 @@ This section defines the most important domain and technical terms:
 
 | SOLID Community | The mission of the Solid Community Group is to try to reshape the web by fostering a new breed of applications with capabilities above and beyond anything that exists today. Participants in this group will create applications, author technical specifications, and capture best practices.
 
+| SOLID file client | Library that provides a simple interface for logging in and out of a Solid data store, maintaining a persistent session, and for managing files and folders.
+
 | Template  | A template or interface device usually provides a separation between the form or structure and the content. It is a medium or device or system, that allows to guide, to carry, or to construct, a predefined design or scheme.
 
 | TypeScript | TypeScript is an open source programming language with object-oriented programming tools, very favorable if you have large projects.
@@ -66,6 +74,8 @@ This section defines the most important domain and technical terms:
 | User      | A person who uses a particular application or computer system.
 
 | User account  | In order for users to obtain security, access to the system, resource management, etc., these users must identify themselves. To identify themselves, users need a user account, that is, a part of the system where personalized user information is stored.
+
+| Webpack | Open-source JavaScript module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. Webpack takes modules with dependencies and generates static assets representing those modules.
 
 | White Box | White box diagrams offer an internal view of the functionality that an application or module should have; as opposed to black box diagrams focus more on external functionality.
 

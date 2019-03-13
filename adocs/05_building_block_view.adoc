@@ -5,44 +5,40 @@ The building block view shows the static decomposition of the system into buildi
 
 === Whitebox Overall System
 
-image:BlockViewDiagram ASW.png["Hierarchy of building blocks"]
-
-We have decomposed the block in two (for the moment). We have the login part and the chat part, which we will decompose later.
+We have decomposed the block in two parts: We have the login part and the chat room part, which we will decompose later.
 It is necessary to incorporate the login module since the application is customized according to the logged user.
 
-Contained Building Blocks::
+image:05_block_view_diagram.png["Hierarchy of building blocks"]
+
+Contained building blocks::
     - Login: 
     The user can use this module to log into the application. This module is the previous to the chat screen.
     - Chat:
     This module will be divided later. It provides the basic chat functionality.
 
-Important Interfaces::
-*TO DO*
+Important interfaces::
 [cols="1,2" options="header"]
 |===
 | Name | Responsibility
 | LogIn |Allows the user to have a customized version of the application on his device.
-| Chat |Allows the user to communicate by chatting using data about friends stored on the POD.
+| Chat room |Allows the user to communicate by chatting using data about friends stored on the POD.
 |===
 
 
-==== LogInusing data about friends stored on the POD.
+==== LogIn using data about friends stored on the POD:
 
 The purpose of this box is that the user is able to log in with his own user account that allows him to obtain an experience of the application as personalized as possible.
 
-Solid Community is used to be able to log in using their POD server.The user interface is like any other login screen in a web application. 
+Solid Community is used to be able to log in using their POD server. The user interface is like any other login screen in a web application.
 
-==== Chat
+==== Chat room:
 
-The purpose of this box is quite general, as it ensures that two users can communicate by chatting.
+The purpose of this box is to ensure that two users can communicate by chatting.
 
-The user interface will be simple for now. 
+The user interface will show a side navigation bar showing the friends of the authenticated user with whom he can chat.
 
-=== Level 2
+The interface also shows, once the friend with whom to chat is selected, a panel in which the conversation is shown in real time.
 
-*TO DO*
+Below is a sketch of the interface of our chat room.
 
-
-=== Level 3
-
-*TO DO*
+image:05_chat_room_sketch.png["Chat room sketch"]
