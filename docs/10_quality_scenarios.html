@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.7.1">
-<title>Quality requirements</title>
+<title>Quality Requirements</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -528,50 +528,109 @@ table.CodeRay td.code>pre{padding:0}
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#section-quality-scenarios">Quality requirements</a></li>
+<li><a href="#section-quality-scenarios">Quality Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#quality-scenarios">Quality Scenarios</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="section-quality-scenarios"><a class="anchor" href="#section-quality-scenarios"></a>Quality requirements</h2>
+<h2 id="section-quality-scenarios"><a class="anchor" href="#section-quality-scenarios"></a>Quality Requirements</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Here we will explain using scenarios some of the quality requeriments of this project.</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
-<div class="title">List of scenarios:</div>
+<div class="title">List of requirements</div>
 <ul>
 <li>
 <p>The first and most important is the protection towards the private information of the user, we will acomplish this by saving every information of the user in a POD, but only those of the user himself never those of the other users. This POD can only be accesed by the user and those who have the permission of the user.[High priority]</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/Diagram_quality_requeriments_01.png" alt="Diagram quality requeriments 01"></span></p>
+<div class="imageblock">
+<div class="content">
+<img src="./images/images/Diagram_quality_requeriments_01.png" alt="Diagram quality requeriments 01">
+</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>The second will be the correct exchange of information in the chat. If you write something in the chat you expects it to reach the other person almost instantly, not only that, it needs to be exactly what you have written.[High priority]</p>
 </li>
-<li>
-<p>If it is necessary to change something in the proyect, it should be possible to do so without modifying the previous code too much.[High priority]</p>
-</li>
-<li>
-<p>It should be possible to add new users to the chat while others are talking, without any problems.[High priority]</p>
-</li>
-<li>
-<p>If possible we want to add images, gifs or emojis to the chat, giving the users more forms of sharing their emotions with their conversation partners.[Medium priority]</p>
-</li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="quality-scenarios"><a class="anchor" href="#quality-scenarios"></a>Quality Scenarios</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Quality attributes</th>
+<th class="tableblock halign-left valign-top">Scenarios</th>
+<th class="tableblock halign-left valign-top">Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Availability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This chat will be available to anyone who has a Solid account and a Solid POD to store user information.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modifiability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If it is necessary to change something in the proyect, it should be possible to do so without modifying the previous code too much.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If you write something in the chat, it will be sent instantly and will not undergo any change or manipulation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The security will depend on the user since he is the one who gives permissions on his own information.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Testability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Developers will have their accounts and PODs where they can try out the chat functions.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It should be possible to add new users to the chat while others are talking, without any problems.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If possible we want to add images, gifs or emojis to the chat, giving the users more forms of sharing their emotions with their conversation partners.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-02-21 12:36:46 CET
+Last updated 2019-03-13 12:00:58 CET
 </div>
 </div>
 </body>
