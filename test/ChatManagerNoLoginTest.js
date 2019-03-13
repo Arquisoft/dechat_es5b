@@ -11,23 +11,25 @@ const credentials = {
     "test"     : "/public/test/"
 }
 
-describe('Log In', function() {
+fileClient.login(credentials);
+
+/*describe('Log In', function() {
 	it('Test', async function() {
 		await fileClient.login(credentials);
 	});
-});
+});*/
 
-describe('createFolder', function() {
+/*describe('createFolder', function() {
 	 it('Create Folder', async function() {
 		 await chatM.createFolder('https://pruebaes5b.solid.community/public/Prueba1');
 	});
-});
+});*/
 
-describe('createFile', function() {
+/*describe('createFile', function() {
 	 it('Create File', async function() {
 		 await chatM.createFile('https://pruebaes5b.solid.community/public/PruebaSinLogin/ficheroprueba1','pruebaTest');
 	});
-});
+});*/
 
 describe('readFile', function() {
 	 it('Read File', async function() {
