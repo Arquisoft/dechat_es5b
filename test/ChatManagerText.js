@@ -22,6 +22,12 @@ describe('createFolder', function() {
 		 await chatM.createFolder('https://pruebaes5b.solid.community/public/Prueba');
 	});
 });
+	
+describe('createFile', function() {
+	 it('Create File', async function() {
+		 await chatM.createFile('https://pruebaes5b.solid.community/public/Prueba/ficheroprueba','pruebaTest');
+	});
+});
 
 /*
 describe('ChatManagerTest', function () {

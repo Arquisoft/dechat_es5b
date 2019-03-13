@@ -133,7 +133,8 @@ module.exports = {
     sendMessage: sendMessage,
     receiveMessages: receiveMessages,
     INFO: INFO,
-	createFolder : createChatFolder
+	createFolder : createChatFolder,
+	createFile : writeMessage
 }
 
 
