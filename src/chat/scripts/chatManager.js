@@ -26,7 +26,7 @@ async function sendMessage(text){
     try{
         var err = await readFolder(solidChat);
         if(!err){
-            console.log("Solid-chat folder doesnt exist");
+            //console.log("Solid-chat folder doesnt exist");
             throw("error")
         }
     }catch(error){
@@ -38,7 +38,7 @@ async function sendMessage(text){
     try{
         var err2 = await readFolder(folder);
         if(!err2){
-            console.log("Folder doesnt exist");
+            //console.log("Folder doesnt exist");
             throw("error")
         }
     }catch(error){
@@ -54,6 +54,7 @@ async function sendMessage(text){
 
 //TO-DO
 async function receiveMessages(){
+    console.log("ReceivingMessages")
 	//Define folders name
     var uFolder=INFO.userURI+"public/SolidChat/"+INFO.receiverName.trim().replace(/ /g, "-")+"/";
 	var rFolder=INFO.receiverURI+"public/SolidChat/"+INFO.userName.trim().replace(/ /g, "-")+"/";
@@ -61,9 +62,10 @@ async function receiveMessages(){
     //User folder
         //check new conversation (folder Exists) 
         var userFolder = await readFolder(uFolder);
-        console.log(userFolder);
+
+        //console.log(userFolder);
 		if(userFolder){
-            console.log("folder exist");
+            //console.log("folder exist");
             MESSAGES.userMSG = userFolder.files;
         }else{
             //Nothing to read -> empty list
@@ -75,9 +77,9 @@ async function receiveMessages(){
         //check new conversation (folder Exists)
         //Object folder readed -> get Files list
 		var receiverFolder = await readFolder(rFolder);
-        console.log(receiverFolder);
+        //console.log(receiverFolder);
 		if(receiverFolder){
-            console.log("folder exist");
+            //console.log("folder exist");
             MESSAGES.friendMSG = receiverFolder.files;
         }else{
             //Nothing to read -> empty list
@@ -88,7 +90,8 @@ async function receiveMessages(){
     //Order las 10(n) msg by time order (file.mtime=TimeStamp)
 	var u = 0;
 	var f = 0;
-	MESSAGES.toShow = [];
+    MESSAGES.toShow = [];
+    console.log("Read msgs");
 	for(var i = 0; i < 10 && (u < MESSAGES.userMSG.length || f < MESSAGES.friendMSG.length) ; i++){
 		if(!(f < MESSAGES.friendMSG.length)){
 			MESSAGES.toShow[i] = INFO.userName + ":  " + await readMessage(uFolder+MESSAGES.userMSG[u].name);
@@ -145,7 +148,7 @@ async function writeMessage(url,content){
 //We have to know about what returns the method fileClient.readFile(url)
 async function readMessage(url){
 	return await fileClient.readFile(url).then(  body => {
-	  console.log(`File	content is : ${body}.`);
+	  //console.log(`File	content is : ${body}.`);
 	  return body;
 	}, err => console.log(err) );
 }
