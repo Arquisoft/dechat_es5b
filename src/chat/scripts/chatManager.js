@@ -132,7 +132,8 @@ module.exports = {
     ToLog: ToLog,
     sendMessage: sendMessage,
     receiveMessages: receiveMessages,
-    INFO: INFO
+    INFO: INFO,
+	createFolder : createChatFolder
 }
 
 
@@ -141,7 +142,9 @@ async function createChatFolder(url) {
     await fileClient.createFolder(url).then(success => {
         if(ToLog)
             console.log(`Created folder ${url}.`);
-      }, err => console.log(err) );
+      }, err => {
+		  console.log(err);
+	  });
 }
 
 //We have to know about what returns the method fileClient.readFolder(url)
@@ -190,4 +193,3 @@ async function deleteMessage(url){
             console.log(`Deleted ${url}.`);
 	}, err => console.log(err) );
 }
-

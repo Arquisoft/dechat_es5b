@@ -1,4 +1,4 @@
-require('chai');
+/*require('chai');
 var assert = require('assert');
 var flogin = require('../src/chat/scripts/LogInManager.js').login;
 var flogout = require('../src/chat/scripts/LogInManager.js').logout;
@@ -14,4 +14,4 @@ describe('LogInManagerTest', function () {
     assert.equal(r, true)
   });
 
-});
+});*/
