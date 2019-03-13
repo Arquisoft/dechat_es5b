@@ -20,8 +20,8 @@ image:06_login.png[Log in diagram]
 The users use the application to chat with their friends. Here we will explain the sequence for send messages.
 
 1. User 1 sends the message to user 2.
-2. The application of user 1 post the message on the user 2's pod.
-3. User 2's application requests received messages to the pod. The pod makes them available to the application.
+2. The application of user 1 post the message on the user 1's pod.
+3. User 2's application requests received messages to the pod. The pod makes them available to the application and shows them through the interface.
 4. User 2 reads the recieved messages from the application.
 
 image::06_messages.png[Exchange messages diagram]
