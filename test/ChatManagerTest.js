@@ -11,11 +11,9 @@ const credentials = {
     "test"     : "/public/test/"
 }
 
-describe('Log In', function() {
-	it('Test', async function() {
-		await fileClient.login(credentials);
-	});
-});
+async () => {
+	await fileClient.login(credentials);
+}
 
 describe('createFolder', function() {
 	 it('Create Folder', async function() {
