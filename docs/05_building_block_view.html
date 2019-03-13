@@ -531,8 +531,6 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#section-building-block-view">Building Block View</a>
 <ul class="sectlevel2">
 <li><a href="#whitebox-overall-system">Whitebox Overall System</a></li>
-<li><a href="#level-2">Level 2</a></li>
-<li><a href="#level-3">Level 3</a></li>
 </ul>
 </li>
 </ul>
@@ -542,18 +540,21 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect1">
 <h2 id="section-building-block-view"><a class="anchor" href="#section-building-block-view"></a>Building Block View</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The building block view shows the static decomposition of the system into building blocks as well as their dependencies.</p>
+</div>
 <div class="sect2">
 <h3 id="whitebox-overall-system"><a class="anchor" href="#whitebox-overall-system"></a>Whitebox Overall System</h3>
 <div class="paragraph">
-<p><span class="image"><img src="./images/BlockViewDiagram%20ASW.png" alt="Hierarchy of building blocks"></span></p>
+<p>We have decomposed the block in two parts: We have the login part and the chat room part, which we will decompose later.
+It is necessary to incorporate the login module since the application is customized according to the logged user.</p>
 </div>
 <div class="paragraph">
-<p>We have decomposed the block in two (for the moment). We have the login part and the chat part, which we will decompose later.
-It is necessary to incorporate the login module since the application is customized according to the logged user.</p>
+<p><span class="image"><img src="./images/05_block_view_diagram.png" alt="Hierarchy of building blocks"></span></p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Contained Building Blocks</dt>
+<dt class="hdlist1">Contained building blocks</dt>
 <dd>
 <div class="ulist">
 <ul>
@@ -568,10 +569,7 @@ This module will be divided later. It provides the basic chat functionality.</p>
 </ul>
 </div>
 </dd>
-<dt class="hdlist1">Important Interfaces</dt>
-<dd>
-<p><strong>TO DO</strong></p>
-</dd>
+<dt class="hdlist1">Important interfaces</dt>
 </dl>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -591,40 +589,37 @@ This module will be divided later. It provides the basic chat functionality.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows the user to have a customized version of the application on his device.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Chat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chat room</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows the user to communicate by chatting using data about friends stored on the POD.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="loginusing-data-about-friends-stored-on-the-pod"><a class="anchor" href="#loginusing-data-about-friends-stored-on-the-pod"></a>LogInusing data about friends stored on the POD.</h4>
+<h4 id="login-using-data-about-friends-stored-on-the-pod"><a class="anchor" href="#login-using-data-about-friends-stored-on-the-pod"></a>LogIn using data about friends stored on the POD:</h4>
 <div class="paragraph">
 <p>The purpose of this box is that the user is able to log in with his own user account that allows him to obtain an experience of the application as personalized as possible.</p>
 </div>
 <div class="paragraph">
-<p>Solid Community is used to be able to log in using their POD server.The user interface is like any other login screen in a web application.</p>
+<p>Solid Community is used to be able to log in using their POD server. The user interface is like any other login screen in a web application.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="chat"><a class="anchor" href="#chat"></a>Chat</h4>
+<h4 id="chat-room"><a class="anchor" href="#chat-room"></a>Chat room:</h4>
 <div class="paragraph">
-<p>The purpose of this box is quite general, as it ensures that two users can communicate by chatting.</p>
+<p>The purpose of this box is to ensure that two users can communicate by chatting.</p>
 </div>
 <div class="paragraph">
-<p>The user interface will be simple for now.</p>
+<p>The user interface will show a side navigation bar showing the friends of the authenticated user with whom he can chat.</p>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="level-2"><a class="anchor" href="#level-2"></a>Level 2</h3>
 <div class="paragraph">
-<p><strong>TO DO</strong></p>
+<p>The interface also shows, once the friend with whom to chat is selected, a panel in which the conversation is shown in real time.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="level-3"><a class="anchor" href="#level-3"></a>Level 3</h3>
 <div class="paragraph">
-<p><strong>TO DO</strong></p>
+<p>Below is a sketch of the interface of our chat room.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/05_chat_room_sketch.png" alt="Chat room sketch"></span></p>
+</div>
 </div>
 </div>
 </div>
@@ -632,7 +627,7 @@ This module will be divided later. It provides the basic chat functionality.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-02-21 12:36:46 CET
+Last updated 2019-03-13 11:25:25 CET
 </div>
 </div>
 </body>

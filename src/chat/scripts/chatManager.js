@@ -109,7 +109,7 @@ async function receiveMessages(){
     MESSAGES.toShow = [];
     if(ToLog)
       console.log("Read msgs");
-	for(var i = 0; i < 10 && (u < MESSAGES.userMSG.length || f < MESSAGES.friendMSG.length) ; i++){
+	for(var i = 0; i < 100 && (u < MESSAGES.userMSG.length || f < MESSAGES.friendMSG.length) ; i++){
 		if(!(f < MESSAGES.friendMSG.length)){
 			MESSAGES.toShow[i] = INFO.userName + ":  " + await readMessage(uFolder+MESSAGES.userMSG[u].name);
 			u++;
@@ -132,7 +132,13 @@ module.exports = {
     ToLog: ToLog,
     sendMessage: sendMessage,
     receiveMessages: receiveMessages,
-    INFO: INFO
+    INFO: INFO,
+	createFolder : createChatFolder,
+	readFolder : readFolder,
+	deleteFolder : deleteFolder,
+	createFile : writeMessage,
+	readFile : readMessage,
+	deleteFile : deleteMessage
 }
 
 
@@ -142,7 +148,9 @@ async function createChatFolder(url) {
     await fileClient.createFolder(url).then(success => {
         if(ToLog)
             console.log(`Created folder ${url}.`);
-      }, err => console.log(err) );
+      }, err => {
+		  console.log(err);
+	  });
 }
 
 async function readFolder(url){
@@ -188,4 +196,3 @@ async function deleteMessage(url){
             console.log(`Deleted ${url}.`);
 	}, err => console.log(err) );
 }
-

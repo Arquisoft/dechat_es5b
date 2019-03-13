@@ -542,8 +542,7 @@ table.CodeRay td.code>pre{padding:0}
 <h2 id="section-system-scope-and-context"><a class="anchor" href="#section-system-scope-and-context"></a>System Scope and Context</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>DeChat must allow communication between two users through text messages. In addition, it will be possible to create groups of users to which all participants can send and receive messages. Also, it must allow sending files, such as images or videos, to the recipient.
-A notification will be shown when user receives a message.</p>
+<p>DeChat must allow communication between two users through text messages. In addition, it may be possible in following versions create user groups which all participants can send and receive messages. In addition, it must allow the sending of files, such as images or videos, to the recipient.</p>
 </div>
 <div class="paragraph">
 <p>Security and privacy is DeChat priority. Messages will never leave user own Solid POD. Instead, recipient system will be asked to retrieve message from senders POD, and will never save messages to recipient POD.
@@ -555,31 +554,17 @@ DeChat will only store where message is placed, so app knows where are messages 
 <div class="ulist">
 <ul>
 <li>
-<p>Common interfaces</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Main: List of active chats.</p>
+<p>Main: login page where the user must enter his or her solid community credentials.</p>
 </li>
 <li>
-<p>Chat: List of messages within send or received to/from selected user or group.</p>
-</li>
-<li>
-<p>Chat options: Interface enabling user to delete or edit chat configurations.</p>
-</li>
-</ul>
-</div>
+<p>Chat room: shows the authenticated user&#8217;s friends list and the messages sent and received with the selected friend.</p>
 </li>
 </ul>
 </div>
 <div class="sect2">
 <h3 id="business-context"><a class="anchor" href="#business-context"></a>Business Context</h3>
 <div class="paragraph">
-<p>There will be only one communication partner (one role): User. User will be able to send and receive messages.
-In the background, RDF will be used to share chat details.</p>
-</div>
-<div class="paragraph">
-<p>Data will be kept within sender&#8217;s POD and will never be stored outside it.</p>
+<p>There will be only one communication partner (one role): User. User will be able to send and receive messages. In the background, RDF will be used to share chat details. Data will be kept within sender&#8217;s POD and will never be stored outside it.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -609,14 +594,10 @@ In the background, RDF will be used to share chat details.</p>
 <p>Since DeChat is under SOLID architecture, we will be using WebID to communicate between users and add friends. SOLID also makes use of RDF, WebSockets, etc.. More info available in <a href="https://github.com/solid/solid-spec" class="bare">https://github.com/solid/solid-spec</a></p>
 </div>
 <div class="paragraph">
-<p>Motivation: Respect SOLID architecture.</p>
+<p>As indicated above, the chat is composed of two main elements: login and chat room. It&#8217;s necessary to bear in mind that the application needs a web browser to be able to use it. Here is a case of use that explains how it works:</p>
 </div>
 <div class="paragraph">
-<p><strong>TO-DOs: This is not a definitive document. System is still not 100% designed and may vary. Please check out later to find the following:</strong></p>
-</div>
-<div class="paragraph">
-<p>E.g. UML deployment diagram describing channels to neighboring systems,
-together with a mapping table showing the relationships between channels and input/output.</p>
+<p><span class="image"><img src="./images/03_chat_components.png" alt="Chat components diagram"></span></p>
 </div>
 </div>
 </div>
@@ -624,7 +605,7 @@ together with a mapping table showing the relationships between channels and inp
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-02-21 12:36:46 CET
+Last updated 2019-03-13 11:25:11 CET
 </div>
 </div>
 </body>

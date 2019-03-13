@@ -531,7 +531,6 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#section-runtime-view">Runtime View</a>
 <ul class="sectlevel2">
 <li><a href="#log-in">Log in</a></li>
-<li><a href="#add-new-friends">Add new friends</a></li>
 <li><a href="#chat-with-added-friends">Chat with added friends</a></li>
 </ul>
 </li>
@@ -543,10 +542,7 @@ table.CodeRay td.code>pre{padding:0}
 <h2 id="section-runtime-view"><a class="anchor" href="#section-runtime-view"></a>Runtime View</h2>
 <div class="sectionbody">
 <div class="paragraph arc42help">
-<p>In this section, we will develop the main runtime views of use cases of our application. In this version 0.1 of the documentation, the diagrams will be not very specific.</p>
-</div>
-<div class="paragraph">
-<p>We will improve and better specify the diagrams in following versions of the application and documentation.</p>
+<p>In this section, we will develop the main runtime views of use cases of our application.</p>
 </div>
 <div class="sect2">
 <h3 id="log-in"><a class="anchor" href="#log-in"></a>Log in</h3>
@@ -556,42 +552,24 @@ table.CodeRay td.code>pre{padding:0}
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The user must enter his or her personal ID and password.</p>
+<p>The user click on the login button.</p>
 </li>
 <li>
-<p>The application asks the server to approve the login request.</p>
+<p>The application asks the user how to login: solid community account, inrupt account.</p>
 </li>
 <li>
-<p>The server approves the login or denies it. If accepted the user can access the chat.</p>
+<p>The user enter his credentials.</p>
+</li>
+<li>
+<p>The server approve or deny the authentication.</p>
+</li>
+<li>
+<p>The user can start chatting.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="./images/login.png" alt="Log in diagram"></span></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="add-new-friends"><a class="anchor" href="#add-new-friends"></a>Add new friends</h3>
-<div class="paragraph">
-<p>The users must have friends in the chat in order to chat with them.</p>
-</div>
-<div class="paragraph">
-<p>When the user signs up for the chat, he won&#8217;t have any friends yet. Here we&#8217;ll show the sequence diagram to be able to add a friend.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user must enter the url of the pod of the user who wants to add as a friend.</p>
-</li>
-<li>
-<p>The friend&#8217;s url is stored on his pod so he can chat.</p>
-</li>
-</ol>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="./images/addfriend.png" alt="Add new friend diagram">
-</div>
+<p><span class="image"><img src="./images/06_login.png" alt="Log in diagram"></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -605,10 +583,10 @@ table.CodeRay td.code>pre{padding:0}
 <p>User 1 sends the message to user 2.</p>
 </li>
 <li>
-<p>The application of user 1 post the message on the user 2&#8217;s pod.</p>
+<p>The application of user 1 post the message on the user 1&#8217;s pod.</p>
 </li>
 <li>
-<p>User 2&#8217;s application requests received messages to the pod. The pod makes them available to the application.</p>
+<p>User 2&#8217;s application requests received messages to the pod. The pod makes them available to the application and shows them through the interface.</p>
 </li>
 <li>
 <p>User 2 reads the recieved messages from the application.</p>
@@ -617,7 +595,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/messages.png" alt="Exchange messages diagram">
+<img src="./images/06_messages.png" alt="Exchange messages diagram">
 </div>
 </div>
 </div>
@@ -626,7 +604,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-02-21 12:36:46 CET
+Last updated 2019-03-13 12:33:08 CET
 </div>
 </div>
 </body>
