@@ -1,4 +1,4 @@
-require('chai');
+/*require('chai');
 var assert = require('assert');
 var chatM = require('../src/chat/scripts/chatManager.js');
 const fileClient = require('solid-file-client');
@@ -49,4 +49,4 @@ describe('deleteFolder', function() {
 	 it('Delete Folder', async function() {
 		 await chatM.deleteFolder('https://pruebaes5b.solid.community/public/PruebaSinLogin/');
 	});
-});
+});*/

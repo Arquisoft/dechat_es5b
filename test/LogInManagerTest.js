@@ -1,4 +1,4 @@
-import { describe, it } from 'mocha';
+/*import { describe, it } from 'mocha';
 import { assert, expect } from 'chai';
 var flogin = require('../src/chat/scripts/LogInManager.js').login;
 var flogout = require('../src/chat/scripts/LogInManager.js').logout;
@@ -15,4 +15,4 @@ var flogout = require('../src/chat/scripts/LogInManager.js').logout;
     assert.equal(r, true)
   });
 
-});
+});*/
