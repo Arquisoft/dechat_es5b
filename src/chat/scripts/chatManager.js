@@ -102,7 +102,7 @@ async function receiveMessages(){
                 console.log("User folder do not exist");
 			MESSAGES.friendMSG = [];
         }
-    
+    /*
     var dict = [];
     //var node ={message:"",date:null};
 
@@ -137,8 +137,8 @@ async function receiveMessages(){
     MESSAGES.toShow = [];
     for(var i=0 ; i<2 ;i++){
         MESSAGES.toShow[i] = dict[i].message;
-    }
-/*
+    }*/
+
     //Order las 10(n) msg by time order (file.mtime=TimeStamp)
 	var u = 0;
 	var f = 0;
@@ -160,7 +160,7 @@ async function receiveMessages(){
 			f++;
 		}			
 	}
-    */
+    
 	return MESSAGES.toShow;
 }
 
@@ -214,7 +214,7 @@ async function writeMessage(url,content){
 async function readMessage(url){
 	return await fileClient.readFile(url).then(  body => {
         if(ToLog)
-            //console.log(`File	content is : ${body}.`);
+            console.log(`File	content is : ${body}.`);
 	  return body;
 	}, err => console.log(err) );
 }
