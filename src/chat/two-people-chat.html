@@ -24,29 +24,42 @@
 			</a>
 		</span>
 	</nav>
-	<div class=" flex-column nav-pills sidebar">
-		<h5 class="centered whitecolor">Friend list</h5>
-		<p style="text-align:center;">Please select a friend before you start chatting</p>
-		<select class="custom-select form-control" id="friends" size="10"></select>
-	</div>
-	<div class="jumbotron chatplace">
-		<h1>Welcome to your decentralized chat room</h1>
-		<section>
-			<p class="centered">
-				Your profile link for add new friends is:
-				<br>
-				<text id="profile" ></text>
-			</p>
-		</section>
-		<div class="container" id="divConversation">
-			<section>
-				<div id="MessageArea">
-					<div id="messages">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="sidebar-nav-fixed affix sidebar">
+					<div class="well">
+						<h5 class="centered whitecolor">Friend list</h5>
+						<p style="text-align:center;">Please select a friend before you start chatting</p>
+						<select class="custom-select form-control" id="friends" size="10"></select>
 					</div>
-					<input id="messageText" type="text"><button id="sendButton">Send</button>
 				</div>
-			</section>
+			</div>
+		
+			<div class="col-md-8">
+				<div class="jumbotron chatplace">
+					<h1>Welcome to your decentralized chat room</h1>
+					<section>
+						<p class="centered">
+							Your profile link for add new friends is:
+							<br>
+							<text id="profile" ></text>
+						</p>
+					</section>
+					<div class="container" id="divConversation">
+						<section>
+							<div id="MessageArea">
+								<div id="messages"></div>
+								<input id="messageText" type="text"><button id="sendButton">Send</button>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
 		</div>
+		<footer>
+			<p>DeChat ES5B</p>
+		</footer>
 	</div>
 	
     <script src="./scripts/jquery.js"></script>

@@ -34,20 +34,16 @@ dt {
 
 /* Friends list two-people-chat.html */
 .sidebar {
-	height: 100%; 
-	width: 230px;
+	height: 100%;
+	max-width: 300px;
 	position: fixed;
 	z-index: 1;
-	top: 70px;
 	left: 0;
 	background-color: #8975dd;
-	overflow-x: hidden;
-	padding-top: 20px;
 }
 
 /* Main part of chat */
 .chatplace {
-	margin-left: 230px;
 	padding: 0px 10px;
 }
 
