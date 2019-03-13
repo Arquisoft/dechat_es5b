@@ -16,13 +16,14 @@ var MESSAGES = {
 	toShow: []
 }
 
-
+//SEND Message function login
 async function sendMessage(text){
     //Define folders name
     var solidChat=INFO.userURI+"public/SolidChat/";
     var folder= solidChat+INFO.receiverName.replace(/ /g, "-")+"/";
 	
-    //New Solid-Chat folder
+    //Check Folder SolidChat
+    console.log("Check SolidChat Exist")
     try{
         var err = await readFolder(solidChat);
         if(!err){
@@ -30,11 +31,13 @@ async function sendMessage(text){
             throw("error")
         }
     }catch(error){
+        //New Solid-Chat folder
         await createChatFolder(solidChat);
-        console.log("Solid-chat folder created");
+        //console.log("Solid-chat folder created");
     }
     
     //IF folder doesnt exist: create new user folder
+    console.log("Check user:"+INFO.receiverName+" folder")
     try{
         var err2 = await readFolder(folder);
         if(!err2){
@@ -48,7 +51,7 @@ async function sendMessage(text){
     }
 
     //WritingMessage
-    console.log("Writting message..."+text);
+    console.log("Writting message: "+text);
     await writeMessage(folder+"/"+(new Date().getTime()), text);
 }
 
@@ -65,11 +68,11 @@ async function receiveMessages(){
 
         //console.log(userFolder);
 		if(userFolder){
-            //console.log("folder exist");
+            console.log("User folder exist");
             MESSAGES.userMSG = userFolder.files;
         }else{
             //Nothing to read -> empty list
-            console.log("folder do not exist");
+            console.log("User Folder do not exist");
 			MESSAGES.userMSG = [];
         }
 		
@@ -79,11 +82,11 @@ async function receiveMessages(){
 		var receiverFolder = await readFolder(rFolder);
         //console.log(receiverFolder);
 		if(receiverFolder){
-            //console.log("folder exist");
+            //console.log("Receiver folder exist");
             MESSAGES.friendMSG = receiverFolder.files;
         }else{
             //Nothing to read -> empty list
-            console.log("folder do not exist");
+            console.log("User folder do not exist");
 			MESSAGES.friendMSG = [];
         }
     

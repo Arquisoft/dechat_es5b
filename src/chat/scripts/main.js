@@ -22,6 +22,9 @@ solid.auth.trackSession(session => {
   loadProfile();
 });
 
+//------------------------------------- FUNCTIONS ---------------------------------------------
+
+//SendMessage Function, Send Button on click action
 $('#sendButton').click(
   async function sendFunc()  {
 	  if (document.getElementById("friends").value == "") 
@@ -31,19 +34,18 @@ $('#sendButton').click(
 		var text = $('#messageText').val();
 
 		//Send MSG
-		console.log("URI:"+chatM.INFO.userURI+"      User:"+chatM.INFO.receiver+"          text:"+text);
+		("Sending from:"+chatM.INFO.userName+"      To:"+chatM.INFO.receiverName+"          text:"+text);
 		await chatM.sendMessage(text);
 		
 		//Erase input field
 		$('#messageText').val('');
-		updateMessages(await chatM.receiveMessages());
+		  updateMessages(await chatM.receiveMessages());
 	  }
   }
 );
 
-//------------------------------------- FUNCTIONS ---------------------------------------------
-
 async function loadProfile() {
+    console.log("loading Profile");
     // Load the person's data into the store
     chatM.INFO.user = $('#profile').text();
     await fetcher.load(chatM.INFO.user);
@@ -64,12 +66,14 @@ async function loadProfile() {
             $('<option>').text(store.any(friend, FOAF('name')))
             .click(
                 async function () {
+                  console.log("load new receiver");
                   //Store all reciever info need for future
                   chatM.INFO.receiver = friend.value;
                   chatM.INFO.receiverName = store.any(friend, FOAF('name')).toString().trim();
                   chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0,(chatM.INFO.receiver.length-15));
-				  //Show messages
-          updateMessages(await chatM.receiveMessages());
+
+				          //Show messages
+                  updateMessages(await chatM.receiveMessages());
                 }
               ));
     });
@@ -80,8 +84,11 @@ window.setInterval(async function(){
 }, 4000);
 
 function updateMessages(toShow){
+  console.log("Update msgs");
+  var messages="";
 	$('#messages').empty();
 	toShow.forEach( (message) => {
-		$('#messages').append($('<p>').text(message))
-	});
+	  messages=messages+ "<p>"+message+"<p/>";
+  });
+  $('#messages').append(messages);
 }
