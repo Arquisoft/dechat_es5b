@@ -553,21 +553,22 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#section-building-block-view">5. Building Block View</a>
 <ul class="sectlevel2">
 <li><a href="#whitebox-overall-system">5.1. Whitebox Overall System</a></li>
-<li><a href="#level-2">5.2. Level 2</a></li>
-<li><a href="#level-3">5.3. Level 3</a></li>
 </ul>
 </li>
 <li><a href="#section-runtime-view">6. Runtime View</a>
 <ul class="sectlevel2">
 <li><a href="#log-in">6.1. Log in</a></li>
-<li><a href="#add-new-friends">6.2. Add new friends</a></li>
-<li><a href="#chat-with-added-friends">6.3. Chat with added friends</a></li>
+<li><a href="#chat-with-added-friends">6.2. Chat with added friends</a></li>
 </ul>
 </li>
 <li><a href="#section-deployment-view">7. Deployment View</a></li>
 <li><a href="#section-concepts">8. Cross-cutting Concepts</a></li>
 <li><a href="#section-design-decisions">9. Design Decisions</a></li>
-<li><a href="#section-quality-scenarios">10. Quality requirements</a></li>
+<li><a href="#section-quality-scenarios">10. Quality Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#quality-scenarios">10.1. Quality Scenarios</a></li>
+</ul>
+</li>
 <li><a href="#section-technical-risks">11. Risks and Technical Debts</a></li>
 <li><a href="#section-glossary">12. Glossary</a></li>
 </ul>
@@ -613,10 +614,19 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <h2 id="section-introduction-and-goals"><a class="anchor" href="#section-introduction-and-goals"></a>1. Introduction and Goals</h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>Our project is part of a university proposal with a basis in cooperation with the company Inrupt and the use of its SOLID design.</p>
+</div>
+<div class="paragraph">
+<p>In it we will provide a response to the request for a decentralized chat using SOLID. It will consist of the principle of separating the information from the application giving the user the power to control all their data.</p>
+</div>
+<div class="paragraph">
 <p>In this documentation we will explain all the relevant concepts of our decentralized chat, based on SOLID, following the Arc42 template.</p>
 </div>
 <div class="sect2">
 <h3 id="requirements-overview"><a class="anchor" href="#requirements-overview"></a>1.1. Requirements Overview</h3>
+<div class="paragraph">
+<p>It is a chat so its most basic requirements are to send and receive messages. But there are other requirements that we are going to explain:</p>
+</div>
 <div class="sect3">
 <h4 id="chat-requirements"><a class="anchor" href="#chat-requirements"></a>1.1.1. Chat Requirements</h4>
 <table class="tableblock frame-all grid-all stretch">
@@ -637,15 +647,11 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Descentraliced</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The user is the real data&#8217;s owner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user&#8217;s data is stored in his personal pod</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fast and Agile</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Real time message syste</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Intuitive and Comfy</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Easy to learn and use, familiar to the user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Real time message system</p></td>
 </tr>
 </tbody>
 </table>
@@ -673,7 +679,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <td class="tableblock halign-left valign-top"><p class="tableblock">Facility to extend, update and fix</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fast and Agile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Intuitive</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Easiest to understand and work with it</p></td>
 </tr>
 </tbody>
@@ -704,7 +710,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Clean code and design</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The vast majority of our Stakeholders are developers so, it is relevant to maintain a clean product during its implementation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Most of our Stakeholders are developers so, it is relevant to maintain a clean product during its implementation</p></td>
 </tr>
 </tbody>
 </table>
@@ -728,22 +734,22 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Teaching Staff</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Teachers</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Teacher and in charge of the subject, seeks development within a project and constant work.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Teachers and responsible of the subject, seeks development within a project and constant work</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Inrupt</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SOLID Team</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">They establish certain bases to be met in the development and operation of the application, also act as a help factor.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">They establish certain bases to be met in the development and operation of the application, also act as a help factor</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Users</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Potential users</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Those possible users who use the application for the technologies used and their comfort.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Those possible users who use the application</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Team</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Developtment team</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Develop a application that will work and archive at least the minimum requirements planned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Develop a application that will work and archive at least the minimum requirements planned</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Developers</p></td>
@@ -868,8 +874,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <h2 id="section-system-scope-and-context"><a class="anchor" href="#section-system-scope-and-context"></a>3. System Scope and Context</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>DeChat must allow communication between two users through text messages. In addition, it will be possible to create groups of users to which all participants can send and receive messages. Also, it must allow sending files, such as images or videos, to the recipient.
-A notification will be shown when user receives a message.</p>
+<p>DeChat must allow communication between two users through text messages. In addition, it may be possible in following versions create user groups which all participants can send and receive messages. In addition, it must allow the sending of files, such as images or videos, to the recipient.</p>
 </div>
 <div class="paragraph">
 <p>Security and privacy is DeChat priority. Messages will never leave user own Solid POD. Instead, recipient system will be asked to retrieve message from senders POD, and will never save messages to recipient POD.
@@ -881,31 +886,17 @@ DeChat will only store where message is placed, so app knows where are messages 
 <div class="ulist">
 <ul>
 <li>
-<p>Common interfaces</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Main: List of active chats.</p>
+<p>Main: login page where the user must enter his or her solid community credentials.</p>
 </li>
 <li>
-<p>Chat: List of messages within send or received to/from selected user or group.</p>
-</li>
-<li>
-<p>Chat options: Interface enabling user to delete or edit chat configurations.</p>
-</li>
-</ul>
-</div>
+<p>Chat room: shows the authenticated user&#8217;s friends list and the messages sent and received with the selected friend.</p>
 </li>
 </ul>
 </div>
 <div class="sect2">
 <h3 id="business-context"><a class="anchor" href="#business-context"></a>3.1. Business Context</h3>
 <div class="paragraph">
-<p>There will be only one communication partner (one role): User. User will be able to send and receive messages.
-In the background, RDF will be used to share chat details.</p>
-</div>
-<div class="paragraph">
-<p>Data will be kept within sender&#8217;s POD and will never be stored outside it.</p>
+<p>There will be only one communication partner (one role): User. User will be able to send and receive messages. In the background, RDF will be used to share chat details. Data will be kept within sender&#8217;s POD and will never be stored outside it.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -935,14 +926,10 @@ In the background, RDF will be used to share chat details.</p>
 <p>Since DeChat is under SOLID architecture, we will be using WebID to communicate between users and add friends. SOLID also makes use of RDF, WebSockets, etc.. More info available in <a href="https://github.com/solid/solid-spec" class="bare">https://github.com/solid/solid-spec</a></p>
 </div>
 <div class="paragraph">
-<p>Motivation: Respect SOLID architecture.</p>
+<p>As indicated above, the chat is composed of two main elements: login and chat room. It&#8217;s necessary to bear in mind that the application needs a web browser to be able to use it. Here is a case of use that explains how it works:</p>
 </div>
 <div class="paragraph">
-<p><strong>TO-DOs: This is not a definitive document. System is still not 100% designed and may vary. Please check out later to find the following:</strong></p>
-</div>
-<div class="paragraph">
-<p>E.g. UML deployment diagram describing channels to neighboring systems,
-together with a mapping table showing the relationships between channels and input/output.</p>
+<p><span class="image"><img src="./images/03_chat_components.png" alt="Chat components diagram"></span></p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -952,29 +939,37 @@ together with a mapping table showing the relationships between channels and inp
 <h2 id="section-solution-strategy"><a class="anchor" href="#section-solution-strategy"></a>4. Solution Strategy</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Due to the social content of the application and other solid apps that we&#8217;ve seen we decided that
-the best option is to do it in a web enviroment and run it on a server so it&#8217;s more user-friendly.
-At the moment the plan for our application structure is based on a JavaScript and TpeScript application with HTML components that follow solid&#8217;s style guide and pattern in the app apearence.</p>
+<p>Due to the social content of our chat and other solid apps that we&#8217;ve seen we decided that the best option is to do it in a web enviroment and run it on a server so it&#8217;s more user-friendly.
+Our application structure is based on a JavaScript and TpeScript application with HTML components that follow solid&#8217;s style guide and pattern in the app apearence.</p>
 </div>
 <div class="paragraph">
 <p>For the teamwork, project development and documentation we&#8217;ll be using a GitHub repository to keep thigs in order.</p>
 </div>
 <div class="paragraph">
-<p>For the moment we have only a few decisions taken so our reasons are short:</p>
+<p>Decisions taken about the chat:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Angular, for the base compatibility it has with solid and the auto-generated web framewok.</p>
+<p>Solid: by subject requirements.</p>
 </li>
 <li>
-<p>GitHub, by subject requierements.</p>
+<p>Solid-file-client: a library for creating and managing files and folders in Solid data stores.</p>
 </li>
 <li>
-<p>Solid, also by subject requirements.</p>
+<p>Webpack: bundle JavaScript files for usage in a browser.</p>
 </li>
 <li>
-<p>AssciDoctor, subject requirements one more time.</p>
+<p>Node.js: JavaScript runtime built on Chrome&#8217;s V8 JavaScript engine.</p>
+</li>
+<li>
+<p>Bootstrap: open source toolkit for designing web sites.</p>
+</li>
+<li>
+<p>GitHub: also by subject requierements.</p>
+</li>
+<li>
+<p>AsciidocFX: Asciidoc document editor to perform the documentation.</p>
 </li>
 </ul>
 </div>
@@ -984,18 +979,21 @@ At the moment the plan for our application structure is based on a JavaScript an
 <div class="sect1">
 <h2 id="section-building-block-view"><a class="anchor" href="#section-building-block-view"></a>5. Building Block View</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The building block view shows the static decomposition of the system into building blocks as well as their dependencies.</p>
+</div>
 <div class="sect2">
 <h3 id="whitebox-overall-system"><a class="anchor" href="#whitebox-overall-system"></a>5.1. Whitebox Overall System</h3>
 <div class="paragraph">
-<p><span class="image"><img src="./images/BlockViewDiagram%20ASW.png" alt="Hierarchy of building blocks"></span></p>
+<p>We have decomposed the block in two parts: We have the login part and the chat room part, which we will decompose later.
+It is necessary to incorporate the login module since the application is customized according to the logged user.</p>
 </div>
 <div class="paragraph">
-<p>We have decomposed the block in two (for the moment). We have the login part and the chat part, which we will decompose later.
-It is necessary to incorporate the login module since the application is customized according to the logged user.</p>
+<p><span class="image"><img src="./images/05_block_view_diagram.png" alt="Hierarchy of building blocks"></span></p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Contained Building Blocks</dt>
+<dt class="hdlist1">Contained building blocks</dt>
 <dd>
 <div class="ulist">
 <ul>
@@ -1010,10 +1008,7 @@ This module will be divided later. It provides the basic chat functionality.</p>
 </ul>
 </div>
 </dd>
-<dt class="hdlist1">Important Interfaces</dt>
-<dd>
-<p><strong>TO DO</strong></p>
-</dd>
+<dt class="hdlist1">Important interfaces</dt>
 </dl>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1033,42 +1028,39 @@ This module will be divided later. It provides the basic chat functionality.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows the user to have a customized version of the application on his device.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Chat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chat room</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows the user to communicate by chatting using data about friends stored on the POD.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="loginusing-data-about-friends-stored-on-the-pod"><a class="anchor" href="#loginusing-data-about-friends-stored-on-the-pod"></a>5.1.1. LogInusing data about friends stored on the POD.</h4>
+<h4 id="login-using-data-about-friends-stored-on-the-pod"><a class="anchor" href="#login-using-data-about-friends-stored-on-the-pod"></a>5.1.1. LogIn using data about friends stored on the POD:</h4>
 <div class="paragraph">
 <p>The purpose of this box is that the user is able to log in with his own user account that allows him to obtain an experience of the application as personalized as possible.</p>
 </div>
 <div class="paragraph">
-<p>Solid Community is used to be able to log in using their POD server.The user interface is like any other login screen in a web application.</p>
+<p>Solid Community is used to be able to log in using their POD server. The user interface is like any other login screen in a web application.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="chat"><a class="anchor" href="#chat"></a>5.1.2. Chat</h4>
+<h4 id="chat-room"><a class="anchor" href="#chat-room"></a>5.1.2. Chat room:</h4>
 <div class="paragraph">
-<p>The purpose of this box is quite general, as it ensures that two users can communicate by chatting.</p>
+<p>The purpose of this box is to ensure that two users can communicate by chatting.</p>
 </div>
 <div class="paragraph">
-<p>The user interface will be simple for now.</p>
+<p>The user interface will show a side navigation bar showing the friends of the authenticated user with whom he can chat.</p>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="level-2"><a class="anchor" href="#level-2"></a>5.2. Level 2</h3>
 <div class="paragraph">
-<p><strong>TO DO</strong></p>
+<p>The interface also shows, once the friend with whom to chat is selected, a panel in which the conversation is shown in real time.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="level-3"><a class="anchor" href="#level-3"></a>5.3. Level 3</h3>
 <div class="paragraph">
-<p><strong>TO DO</strong></p>
+<p>Below is a sketch of the interface of our chat room.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/05_chat_room_sketch.png" alt="Chat room sketch"></span></p>
 </div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 </div>
@@ -1076,10 +1068,7 @@ This module will be divided later. It provides the basic chat functionality.</p>
 <h2 id="section-runtime-view"><a class="anchor" href="#section-runtime-view"></a>6. Runtime View</h2>
 <div class="sectionbody">
 <div class="paragraph arc42help">
-<p>In this section, we will develop the main runtime views of use cases of our application. In this version 0.1 of the documentation, the diagrams will be not very specific.</p>
-</div>
-<div class="paragraph">
-<p>We will improve and better specify the diagrams in following versions of the application and documentation.</p>
+<p>In this section, we will develop the main runtime views of use cases of our application.</p>
 </div>
 <div class="sect2">
 <h3 id="log-in"><a class="anchor" href="#log-in"></a>6.1. Log in</h3>
@@ -1089,46 +1078,28 @@ This module will be divided later. It provides the basic chat functionality.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The user must enter his or her personal ID and password.</p>
+<p>The user click on the login button.</p>
 </li>
 <li>
-<p>The application asks the server to approve the login request.</p>
+<p>The application asks the user how to login: solid community account, inrupt account.</p>
 </li>
 <li>
-<p>The server approves the login or denies it. If accepted the user can access the chat.</p>
+<p>The user enter his credentials.</p>
+</li>
+<li>
+<p>The server approve or deny the authentication.</p>
+</li>
+<li>
+<p>The user can start chatting.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="./images/login.png" alt="Log in diagram"></span></p>
+<p><span class="image"><img src="./images/06_login.png" alt="Log in diagram"></span></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-new-friends"><a class="anchor" href="#add-new-friends"></a>6.2. Add new friends</h3>
-<div class="paragraph">
-<p>The users must have friends in the chat in order to chat with them.</p>
-</div>
-<div class="paragraph">
-<p>When the user signs up for the chat, he won&#8217;t have any friends yet. Here we&#8217;ll show the sequence diagram to be able to add a friend.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user must enter the url of the pod of the user who wants to add as a friend.</p>
-</li>
-<li>
-<p>The friend&#8217;s url is stored on his pod so he can chat.</p>
-</li>
-</ol>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="./images/addfriend.png" alt="Add new friend diagram">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="chat-with-added-friends"><a class="anchor" href="#chat-with-added-friends"></a>6.3. Chat with added friends</h3>
+<h3 id="chat-with-added-friends"><a class="anchor" href="#chat-with-added-friends"></a>6.2. Chat with added friends</h3>
 <div class="paragraph">
 <p>The users use the application to chat with their friends. Here we will explain the sequence for send messages.</p>
 </div>
@@ -1138,10 +1109,10 @@ This module will be divided later. It provides the basic chat functionality.</p>
 <p>User 1 sends the message to user 2.</p>
 </li>
 <li>
-<p>The application of user 1 post the message on the user 2&#8217;s pod.</p>
+<p>The application of user 1 post the message on the user 1&#8217;s pod.</p>
 </li>
 <li>
-<p>User 2&#8217;s application requests received messages to the pod. The pod makes them available to the application.</p>
+<p>User 2&#8217;s application requests received messages to the pod. The pod makes them available to the application and shows them through the interface.</p>
 </li>
 <li>
 <p>User 2 reads the recieved messages from the application.</p>
@@ -1150,7 +1121,7 @@ This module will be divided later. It provides the basic chat functionality.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/messages.png" alt="Exchange messages diagram">
+<img src="./images/06_messages.png" alt="Exchange messages diagram">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1166,9 +1137,6 @@ Base application will be able to run in any machine based in web applications.</
 </div>
 <div class="paragraph">
 <p>Developing an descetralized app means that a central server is not required to store any information used by the user, beside the server needed to authentificate the user connection. this last requirement may be solved by using the SOLID Community sistem already implemented for the signing up/login process.</p>
-</div>
-<div class="paragraph">
-<p><strong>TODO Still in progress, will be updated.</strong></p>
 </div>
 <div class="paragraph">
 <p>By the moment infrastructure is no needed and planned.</p>
@@ -1281,6 +1249,9 @@ on this list.</p>
 <h2 id="section-design-decisions"><a class="anchor" href="#section-design-decisions"></a>9. Design Decisions</h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>In this document we&#8217;ll show important, expensive, large scale or risky architecture decisions including rationals.</p>
+</div>
+<div class="paragraph">
 <p><strong>TODO</strong></p>
 </div>
 <div class="ulist">
@@ -1298,44 +1269,102 @@ on this list.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-quality-scenarios"><a class="anchor" href="#section-quality-scenarios"></a>10. Quality requirements</h2>
+<h2 id="section-quality-scenarios"><a class="anchor" href="#section-quality-scenarios"></a>10. Quality Requirements</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Here we will explain using scenarios some of the quality requeriments of this project.</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
-<div class="title">List of scenarios:</div>
+<div class="title">List of requirements</div>
 <ul>
 <li>
 <p>The first and most important is the protection towards the private information of the user, we will acomplish this by saving every information of the user in a POD, but only those of the user himself never those of the other users. This POD can only be accesed by the user and those who have the permission of the user.[High priority]</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/Diagram_quality_requeriments_01.png" alt="Diagram quality requeriments 01"></span></p>
+<div class="imageblock">
+<div class="content">
+<img src="./images/images/Diagram_quality_requeriments_01.png" alt="Diagram quality requeriments 01">
+</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>The second will be the correct exchange of information in the chat. If you write something in the chat you expects it to reach the other person almost instantly, not only that, it needs to be exactly what you have written.[High priority]</p>
 </li>
-<li>
-<p>If it is necessary to change something in the proyect, it should be possible to do so without modifying the previous code too much.[High priority]</p>
-</li>
-<li>
-<p>It should be possible to add new users to the chat while others are talking, without any problems.[High priority]</p>
-</li>
-<li>
-<p>If possible we want to add images, gifs or emojis to the chat, giving the users more forms of sharing their emotions with their conversation partners.[Medium priority]</p>
-</li>
 </ul>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="quality-scenarios"><a class="anchor" href="#quality-scenarios"></a>10.1. Quality Scenarios</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Quality attributes</th>
+<th class="tableblock halign-left valign-top">Scenarios</th>
+<th class="tableblock halign-left valign-top">Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Availability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This chat will be available to anyone who has a Solid account and a Solid POD to store user information.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modifiability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If it is necessary to change something in the proyect, it should be possible to do so without modifying the previous code too much.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If you write something in the chat, it will be sent instantly and will not undergo any change or manipulation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The security will depend on the user since he is the one who gives permissions on his own information.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Testability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Developers will have their accounts and PODs where they can try out the chat functions.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It should be possible to add new users to the chat while others are talking, without any problems.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If possible we want to add images, gifs or emojis to the chat, giving the users more forms of sharing their emotions with their conversation partners.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="section-technical-risks"><a class="anchor" href="#section-technical-risks"></a>11. Risks and Technical Debts</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>In this section we will show a list of identified technical risks or technical debts, ordered by priority.</p>
+</div>
 <div class="paragraph">
 <p>List of technical risks:</p>
 </div>
@@ -1347,10 +1376,13 @@ on this list.</p>
 <li>
 <p>Poor group work experience.</p>
 </li>
+<li>
+<p>Conflicts in the version control system.</p>
+</li>
+<li>
+<p>Discard technologies because of their difficulty.</p>
+</li>
 </ul>
-</div>
-<div class="paragraph">
-<p>Listed avobe for the moment, further update needed.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1358,6 +1390,9 @@ on this list.</p>
 <div class="sect1">
 <h2 id="section-glossary"><a class="anchor" href="#section-glossary"></a>12. Glossary</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>This section defines the most important domain and technical terms:</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1387,12 +1422,20 @@ on this list.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AsciiDoc is a human-readable document format that uses plain text marking conventions.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AsciidocFX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Book / document editor to build PDF, Epub, Mobi and HTML books, documents and slides.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Beta version</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A Beta version is a software version that has passed the internal testing stage, called "Alpha" and has been released to users for public testing.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Black Box</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A black box is an element that is studied from the point of view of its inputs and outputs, without taking into account its internal functionality.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bootstrap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Open-source front-end Web framework. It contains HTML and CSS-based design templates for typography, forms, buttons, navigation and other interface components, as well as optional JavaScript extensions.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Browser</p></td>
@@ -1439,6 +1482,10 @@ on this list.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Log in is the process by which individual access to a   computer system is controlled.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node.js</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser. JavaScript is used primarily for client-side scripting, in which scripts written in JavaScript are embedded in a webpage&#8217;s HTML and run client-side by a JavaScript engine in the user&#8217;s web browser. Node.js lets developers use JavaScript to write command line tools and for server-side scripting</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Open source</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Open source is a model of software development based on open collaboration. It focuses more on the practical benefits (access to source code) than on the ethical or freedom issues that are so prominent in free software.</p></td>
 </tr>
@@ -1475,6 +1522,10 @@ on this list.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The mission of the Solid Community Group is to try to reshape the web by fostering a new breed of applications with capabilities above and beyond anything that exists today. Participants in this group will create applications, author technical specifications, and capture best practices.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID file client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Library that provides a simple interface for logging in and out of a Solid data store, maintaining a persistent session, and for managing files and folders.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Template</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A template or interface device usually provides a separation between the form or structure and the content. It is a medium or device or system, that allows to guide, to carry, or to construct, a predefined design or scheme.</p></td>
 </tr>
@@ -1489,6 +1540,10 @@ on this list.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">User account</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">In order for users to obtain security, access to the system, resource management, etc., these users must identify themselves. To identify themselves, users need a user account, that is, a part of the system where personalized user information is stored.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Webpack</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Open-source JavaScript module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. Webpack takes modules with dependencies and generates static assets representing those modules.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">White Box</p></td>
@@ -1521,7 +1576,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-02-22 15:40:57 CET
+Last updated 2019-03-12 21:46:45 CET
 </div>
 </div>
 </body>

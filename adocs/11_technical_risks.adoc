@@ -6,7 +6,5 @@ List of technical risks:
 
     - Unknown framework and technology to work with.
     - Poor group work experience.
-    - Have little time to do the project due to other university studies.
-
-Listed above for the moment, further update needed.
-
+    - Conflicts in the version control system.
+    - Discard technologies because of their difficulty.

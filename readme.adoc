@@ -4,65 +4,50 @@ image:https://travis-ci.org/Arquisoft/dechat_es5b.svg?branch=master["Build Statu
 image:https://codecov.io/gh/Arquisoft/dechat_es5b/branch/master/graph/badge.svg["Codecov",link="https://codecov.io/gh/Arquisoft/dechat_es5b"]
 image:https://api.codacy.com/project/badge/Grade/fc7dc1da60ee4e9fb67ccff782625794["Codacy code quality", link="https://www.codacy.com/app/jelabra/dechat_es5b?utm_source=github.com&utm_medium=referral&utm_content=Arquisoft/dechat_es5b&utm_campaign=Badge_Grade"]
 
+Web chat application using JavaScript technologies based on SOLID specifications: all personal data about the chat is stored on the user's POD.
 
-== Build documentation
+image:https://cdn-eliostruyf.azureedge.net/wp-content/uploads/2016/10/101116_0811_Gettingupto1.png["Webpack", link="https://webpack.js.org/concepts",200,200]
+image:https://software.intel.com/sites/default/files/managed/fa/a0/Runtime-logo-Node.jpg["Nodejs", link="https://nodejs.org/en/about/",200,200]
 
-The documentation is done in http://asciidoc.org/[AsciiDoc]
-using the https://arc42.org/[arc42] templates.
-The source documents are located at
- https://github.com/Arquisoft/dechat_es5b/tree/master/src/docs[src/docs].
+== Beginnings
+Our app requires https://nodejs.org/en/[Node.js] to use it.
 
-Using https://maven.apache.org/[Maven] and the
-https://asciidoctor.org/[AsciiDoctor plugin] it is possible to generate
-the documentation running:
-
-----
-mvn generate-resources
-----
-
-== Compile and run
-
-The skeleton project is a simple
- https://spring.io/projects/spring-boot[Spring-boot] application which can be run as:
+== Clone our repository
+Using, for example, the desktop app https://git-scm.com/[Git] or any other version control tool, you have to execute:
 
 ----
- mvn spring-boot:run
+git clone https://github.com/Arquisoft/dechat_es5b.git
 ----
 
-Once executed, the application should be available at: http://localhost:8080
-
-== Testing
-
-There are some simple Unit tests at:
- https://github.com/Arquisoft/dechat_es5b/tree/master/src/test[src/test].
-
-There are also some
- https://cucumber.io/[Cucumber based tests]
- with a simple user story defined at:
- https://github.com/Arquisoft/dechat_es5b/tree/master/src/test/resources/features[src/test/resources/features].
-
-To run tests execute:
+== Launch the app
+Once the repository has been cloned, you have to to start the Node.js command prompt and move to the root folder of the project:
 
 ----
-mvn test
+cd dechat_es5b
 ----
 
-== Site documentation
-
-The https://github.com/Arquisoft/dechat_es5b/tree/master/pom.xml[pom.xml] file
- has also been configured to generate site project documentation running:
+Then, you have to execute:
 
 ----
-mvn site
+npm install
 ----
 
+Once the installation is complete, you have to execute:
 
+----
+npm start
+----
 
+Now the application is ready to be used. You only have to open the web browser and access to:
 
+----
+http://localhost:1919
+----
 
+== Documentation
 
+You can access to the following link if you want to know more about the project. We have followed the https://arc42.org/[arc42] template.
 
-
-
-
-
+----
+https://arquisoft.github.io/dechat_es5b/
+----

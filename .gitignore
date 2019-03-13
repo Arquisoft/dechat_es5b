@@ -63,3 +63,7 @@ typings/
 
 # next.js build output
 .next
+
+# Webstorm files
+.idea
+./src/chat/index.js

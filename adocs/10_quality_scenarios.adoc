@@ -8,21 +8,9 @@ Here we will explain using scenarios some of the quality requeriments of this pr
 
 * The first and most important is the protection towards the private information of the user, we will acomplish this by saving every information of the user in a POD, but only those of the user himself never those of the other users. This POD can only be accesed by the user and those who have the permission of the user.[High priority]
 
-
 image::images/Diagram_quality_requeriments_01.png[]
 
 * The second will be the correct exchange of information in the chat. If you write something in the chat you expects it to reach the other person almost instantly, not only that, it needs to be exactly what you have written.[High priority] 
-
-
-
-
-****
-
-=== Quality Tree
-
-****
-
-
 
 ****
 
@@ -56,7 +44,6 @@ image::images/Diagram_quality_requeriments_01.png[]
 |Testability
 |We are using https://codecov.io/gh[Codecov] for code coverage, ensuring it at least reaches 80% of code coverage.
 |High
-
 
 |Usability
 |It should be possible to add new users to the chat while others are talking, without any problems.
