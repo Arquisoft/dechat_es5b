@@ -35,9 +35,21 @@ describe('readFile', function() {
 	});
 });
 
+describe('readFolder', function() {
+	 it('Read folder', async function() {
+		 await chatM.readFolder('https://pruebaes5b.solid.community/public/Prueba');
+	});
+});
+
 describe('deleteFile', function() {
 	 it('Delete File', async function() {
 		 await chatM.deleteFile('https://pruebaes5b.solid.community/public/Prueba/ficheroprueba.txt');
+	});
+});
+
+describe('deleteFolder', function() {
+	 it('Delete Folder', async function() {
+		 await chatM.deleteFolder('https://pruebaes5b.solid.community/public/Prueba/');
 	});
 });
 
