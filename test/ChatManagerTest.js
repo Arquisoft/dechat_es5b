@@ -21,6 +21,36 @@ describe('createFolder', function() {
 	});
 });
 
+describe('createFile', function() {
+	 it('Create File', async function() {
+		 await chatM.createFile('https://pruebaes5b.solid.community/public/Prueba/ficheroprueba','pruebaTest');
+	});
+});
+
+describe('readFile', function() {
+	 it('Read File', async function() {
+		 await chatM.readFile('https://pruebaes5b.solid.community/public/Prueba/ficheroprueba.txt');
+	});
+});
+
+describe('readFolder', function() {
+	 it('Read folder', async function() {
+		 await chatM.readFolder('https://pruebaes5b.solid.community/public/Prueba');
+	});
+});
+
+describe('deleteFile', function() {
+	 it('Delete File', async function() {
+		 await chatM.deleteFile('https://pruebaes5b.solid.community/public/Prueba/ficheroprueba.txt');
+	});
+});
+
+describe('deleteFolder', function() {
+	 it('Delete Folder', async function() {
+		 await chatM.deleteFolder('https://pruebaes5b.solid.community/public/Prueba/');
+	});
+});
+
 /*
 describe('ChatManagerTest', function () {
     it('Testing SendMenssage', async function () {
