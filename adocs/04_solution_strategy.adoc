@@ -1,10 +1,11 @@
 [[section-solution-strategy]]
 == Solution Strategy
 
-Due to the social content of our chat and other solid apps that we've seen we decided that the best option is to do it in a web enviroment and run it on a server so it's more user-friendly.
-Our application structure is based on a JavaScript and TpeScript application with HTML components that follow solid's style guide and pattern in the app apearence.
+Due to the social content of the application and other solid apps that we've seen we decided that
+the best option is to do it in a web enviroment and run it on a server so it's more user-friendly.
+At the moment the plan for our application structure is based on a JavaScript application with HTML components that follow solid's style guide and pattern in the app apearence.
 
-For the teamwork, project development and documentation we'll be using a GitHub repository to keep thigs in order.
+For the teamwork, project development and documentation we'll be using a GitHub repository to keep things in order.
 
 Decisions taken about the chat:
 
@@ -15,4 +16,5 @@ Decisions taken about the chat:
 * Bootstrap: open source toolkit for designing web sites.
 * GitHub: also by subject requierements.
 * AsciidocFX: Asciidoc document editor to perform the documentation.
+
 

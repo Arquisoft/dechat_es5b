@@ -6,13 +6,14 @@ The building block view shows the static decomposition of the system into buildi
 === Whitebox Overall System
 
 We have decomposed the block in two parts: We have the login part and the chat room part, which we will decompose later.
+
 It is necessary to incorporate the login module since the application is customized according to the logged user.
 
 image:05_block_view_diagram.png["Hierarchy of building blocks"]
 
 Contained building blocks::
     - Login: 
-    The user can use this module to log into the application. This module is the previous to the chat screen.
+    The user can use this module to log into the application. This module is prior to the chat screen.
     - Chat:
     This module will be divided later. It provides the basic chat functionality.
 

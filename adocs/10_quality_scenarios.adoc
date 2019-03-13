@@ -42,7 +42,7 @@ image::images/Diagram_quality_requeriments_01.png[]
 |High
 
 |Testability
-|Developers will have their accounts and PODs where they can try out the chat functions.
+|We are using https://codecov.io/gh[Codecov] for code coverage, ensuring it at least reaches 80% of code coverage.
 |High
 
 |Usability

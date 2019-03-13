@@ -14,8 +14,9 @@ It is a chat so its most basic requirements are to send and receive messages. Bu
 |====================
 |Requirement | Description
 |Secure | Connection protocols and personal information security
-|Descentraliced | The user's data is stored in his personal pod
+|Descentraliced | The user is the real data's owner
 |Fast and Agile | Real time message system
+|Intuitive and Comfy |Easy to learn and use, familiar to the user
 |====================
 
 ==== Implementation Requirements.
@@ -23,8 +24,8 @@ It is a chat so its most basic requirements are to send and receive messages. Bu
 |====================
 |Requirement | Description
 |Testability | Error and bugs tracking, the architecture should allow easy testing
-|Patter design | Facility to extend, update and fix
-|Intuitive | Easiest to understand and work with it
+|Pattern design | Facility to extend, update and fix
+|Fast and Agile | Easiest to understand and work with it
 |====================
 
 === Quality Goals
@@ -40,9 +41,10 @@ It is a chat so its most basic requirements are to send and receive messages. Bu
 [width="100%",options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| Teaching Staff | Teachers | Teachers and responsible of the subject, seeks development within a project and constant work
-| Inrupt | SOLID Team | They establish certain bases to be met in the development and operation of the application, also act as a help factor
-| Users | Potential users | Those possible users who use the application
-| Team | Developtment team | Develop a application that will work and archive at least the minimum requirements planned
+| Teaching Staff | Teachers | Teacher and in charge of the subject, seeks development within a project and constant work.
+| Inrupt | SOLID Team | They establish certain bases to be met in the development and operation of the application, also act as a help factor. 
+| Users | Potential users | Those possible users who use the application for the technologies used and their comfort.
+| Team | Developtment team | Develop a application that will work and achieve at least the minimum requirements planned.
 | Developers | External developers | We are deploying an open code product so it might be relevant to bring them some help by coding a clean application
 |===
+
