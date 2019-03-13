@@ -109,7 +109,7 @@ async function receiveMessages(){
     MESSAGES.toShow = [];
     if(ToLog)
       console.log("Read msgs");
-	for(var i = 0; i < 10 && (u < MESSAGES.userMSG.length || f < MESSAGES.friendMSG.length) ; i++){
+	for(var i = 0; i < 100 && (u < MESSAGES.userMSG.length || f < MESSAGES.friendMSG.length) ; i++){
 		if(!(f < MESSAGES.friendMSG.length)){
 			MESSAGES.toShow[i] = INFO.userName + ":  " + await readMessage(uFolder+MESSAGES.userMSG[u].name);
 			u++;
