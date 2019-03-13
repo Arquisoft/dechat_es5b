@@ -23,6 +23,12 @@ describe('createFolder', function() {
 	});
 });
 
+describe('createFile', function() {
+	 it('Create File', async function() {
+		 await chatM.createFile('https://pruebaes5b.solid.community/public/Prueba/ficheroprueba','pruebaTest');
+	});
+});
+
 /*
 describe('ChatManagerTest', function () {
     it('Testing SendMenssage', async function () {
