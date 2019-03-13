@@ -95,29 +95,32 @@ async function receiveMessages(){
         }
     }
 
+
+    // needs to be improved to get messages by date
     var f = 0;
     var u = 0;
-    for(var i = 0;i< 20  ; i++){
-        if(i%2 == 0 && i <= MESSAGES.friendMSG.length){
-            dict[i] = new node(INFO.receiverName + ":  " + readMessage(rFolder+MESSAGES.friendMSG[f].name),
+    for(var i = 0; i< 20  ; i++){
+        if(i%2 == 0 && i < MESSAGES.friendMSG.length){
+            dict[i] = new node(INFO.receiverName + ":  " + await readMessage(rFolder+MESSAGES.friendMSG[f].name),
             new Date(Number(MESSAGES.friendMSG[f].name)));
             f++;
         }
-        else if(i <= MESSAGES.userMSG.length){
-            dict[i] = new node(INFO.userName + ":  " + readMessage(uFolder+MESSAGES.userMSG[u].name),
+        else if(i < MESSAGES.userMSG.length){
+            dict[i] = new node(INFO.userName + ":  " + await readMessage(uFolder+MESSAGES.userMSG[u].name),
             new Date(Number(MESSAGES.userMSG[f].name)));
             u++;
         }
     }
-
+/*
     dict.sort(function(a, b) {
-        a = new Date(a.dateModified);
-        b = new Date(b.dateModified);
         return a>b ? -1 : a<b ? 1 : 0;
-    });
+    });*/
 
+    dict[50] = new node("ss",new Date().getTime());
+    console.log(dict[50].date);
     MESSAGES.toShow = [];
-    for(var i=0 ; i<2 ;i++){
+    for(var i=0 ; i<dict.length ;i++){
+        console.log(dict[i].date.getTime());
         MESSAGES.toShow[i] = dict[i].message;
     }
 /*
