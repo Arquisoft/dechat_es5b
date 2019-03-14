@@ -95,32 +95,28 @@ async function receiveMessages(){
         }
     }
 
-
     // needs to be improved to get messages by date
     var f = 0;
     var u = 0;
     for(var i = 0; i< 20  ; i++){
         if(i%2 == 0 && i < MESSAGES.friendMSG.length){
             dict[i] = new node(INFO.receiverName + ":  " + await readMessage(rFolder+MESSAGES.friendMSG[f].name),
-            new Date(Number(MESSAGES.friendMSG[f].name)));
+            new Date(Number(MESSAGES.friendMSG[f].name.replace(".txt",""))));
             f++;
         }
         else if(i < MESSAGES.userMSG.length){
             dict[i] = new node(INFO.userName + ":  " + await readMessage(uFolder+MESSAGES.userMSG[u].name),
-            new Date(Number(MESSAGES.userMSG[f].name)));
+            new Date(Number(MESSAGES.userMSG[f].name.replace(".txt",""))));
             u++;
         }
     }
-/*
-    dict.sort(function(a, b) {
-        return a>b ? -1 : a<b ? 1 : 0;
-    });*/
 
-    dict[50] = new node("ss",new Date().getTime());
-    console.log(dict[50].date);
+    dict.sort(function(a, b) {
+        return a.date>b.date ? -1 : a.date<b.date ? 1 : 0;
+    });
+
     MESSAGES.toShow = [];
-    for(var i=0 ; i<dict.length ;i++){
-        console.log(dict[i].date.getTime());
+    for(var i=0 ; i<dict.length && dict[i] != null;i++){
         MESSAGES.toShow[i] = dict[i].message;
     }
 /*
