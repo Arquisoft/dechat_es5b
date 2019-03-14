@@ -98,15 +98,18 @@ async function receiveMessages(){
     // needs to be improved to get messages by date
     var f = 0;
     var u = 0;
-    for(var i = 0; i< 20  ; i++){
-        if(i%2 == 0 && i < MESSAGES.friendMSG.length){
-            dict[i] = new node(INFO.receiverName + ":  " + await readMessage(rFolder+MESSAGES.friendMSG[f].name),
-            new Date(Number(MESSAGES.friendMSG[f].name.replace(".txt",""))));
+
+    for(var i = 0; i < 10 ; i++){
+        var user = MESSAGES.userMSG.pop();
+        var friend = MESSAGES.friendMSG.pop();
+        if(!(user == undefined)){
+            dict.push( new node(INFO.receiverName + ":  " + await readMessage(rFolder+friend.name),
+            new Date(Number(friend.name.replace(".txt","")))));
             f++;
         }
-        else if(i < MESSAGES.userMSG.length){
-            dict[i] = new node(INFO.userName + ":  " + await readMessage(uFolder+MESSAGES.userMSG[u].name),
-            new Date(Number(MESSAGES.userMSG[f].name.replace(".txt",""))));
+        if(!(friend == undefined)){
+            dict.push(new node(INFO.userName + ":  " + await readMessage(uFolder+user.name),
+            new Date(Number(user.name.replace(".txt","")))));
             u++;
         }
     }
@@ -116,9 +119,16 @@ async function receiveMessages(){
     });
 
     MESSAGES.toShow = [];
-    for(var i=0 ; i<dict.length && dict[i] != null;i++){
-        MESSAGES.toShow[i] = dict[i].message;
-    }
+    dict.forEach( (n) => {
+        MESSAGES.toShow.push(n.message)
+    });
+
+    console.log(MESSAGES.toShow.toString());
+    /*
+    for(var i=0 ; i<dict.length ;i++){
+        MESSAGES.toShow.push(dict.pop().message);
+    }*/
+    //console.log(MESSAGES.toShow.toString());
 /*
     //Order las 10(n) msg by time order (file.mtime=TimeStamp)
 	var u = 0;
