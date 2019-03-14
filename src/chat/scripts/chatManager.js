@@ -97,9 +97,9 @@ async function receiveMessages(){
 async function order(userMessages, friendessages, uFolder, rFolder){
     
     var dict = [];
-    class node {
-        constructor(message, date) {
-            this.message = message;
+    class message {
+        constructor(text, date) {
+            this.text = text;
             this.date = date;
         }
     }
@@ -108,11 +108,11 @@ async function order(userMessages, friendessages, uFolder, rFolder){
         var user = userMessages.pop();
         var friend = friendessages.pop();
         if(!(friend == undefined)){
-            dict.push( new node(INFO.receiverName + ":  " + await readMessage(rFolder+friend.name),
+            dict.push( new message(INFO.receiverName + ":  " + await readMessage(rFolder+friend.name),
             new Date(Number(friend.name.replace(".txt","")))));
         }
         if(!(user == undefined)){
-            dict.push(new node(INFO.userName + ":  " + await readMessage(uFolder+user.name),
+            dict.push(new message(INFO.userName + ":  " + await readMessage(uFolder+user.name),
             new Date(Number(user.name.replace(".txt","")))));
         }
     }
@@ -123,7 +123,7 @@ async function order(userMessages, friendessages, uFolder, rFolder){
 
     MESSAGES.toShow = [];
     dict.forEach( (n) => {
-        MESSAGES.toShow.push(n.message)
+        MESSAGES.toShow.push(n.text)
     });
     
     return MESSAGES.toShow;
