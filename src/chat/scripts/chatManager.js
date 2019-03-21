@@ -103,29 +103,42 @@ async function receiveMessages(){
 			MESSAGES.friendMSG = [];
         }
 
-    //Order las 10(n) msg by time order (file.mtime=TimeStamp)
-	var u = 0;
-	var f = 0;
-    MESSAGES.toShow = [];
-    if(ToLog)
-      console.log("Read msgs");
-	for(var i = 0; i < 100 && (u < MESSAGES.userMSG.length || f < MESSAGES.friendMSG.length) ; i++){
-		if(!(f < MESSAGES.friendMSG.length)){
-			MESSAGES.toShow[i] = INFO.userName + ":  " + await readMessage(uFolder+MESSAGES.userMSG[u].name);
-			u++;
-		}else if(!(u < MESSAGES.userMSG.length)){
-			MESSAGES.toShow[i] = INFO.receiverName + ":  " + await readMessage(rFolder+MESSAGES.friendMSG[f].name);
-			f++;
-		}else if(MESSAGES.userMSG[u].mtime < MESSAGES.friendMSG[f].mtime){
-			MESSAGES.toShow[i] = INFO.userName + ":  " + await readMessage(uFolder+MESSAGES.userMSG[u].name);
-			u++;
-		}else{
-			MESSAGES.toShow[i] = INFO.receiverName + ":  " + await readMessage(rFolder+MESSAGES.friendMSG[f].name);
-			f++;
-		}			
-	}
+	return order(MESSAGES.userMSG,MESSAGES.friendMSG,uFolder, rFolder);
+}
+
+async function order(userMessages, friendessages, uFolder, rFolder){
     
-	return MESSAGES.toShow;
+    var dict = [];
+    class message {
+        constructor(text, date) {
+            this.text = text;
+            this.date = date;
+        }
+    }
+
+    for(var i = 0; i < 5 ; i++){
+        var user = userMessages.pop();
+        var friend = friendessages.pop();
+        if(!(friend == undefined)){
+            dict.push( new message(INFO.receiverName + ":  " + await readMessage(rFolder+friend.name),
+            new Date(Number(friend.name.replace(".txt","")))));
+        }
+        if(!(user == undefined)){
+            dict.push(new message(INFO.userName + ":  " + await readMessage(uFolder+user.name),
+            new Date(Number(user.name.replace(".txt","")))));
+        }
+    }
+
+    dict.sort(function(a, b) {
+        return a.date>b.date ? 1 : a.date<b.date ? -1 : 0;
+    });
+
+    MESSAGES.toShow = [];
+    dict.forEach( (n) => {
+        MESSAGES.toShow.push(n.text)
+    });
+    
+    return MESSAGES.toShow;
 }
 
 module.exports = {
