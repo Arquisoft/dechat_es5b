@@ -38,6 +38,7 @@
     "babel-plugin-istanbul": "^5.1.0",
     "chai": "4.2.x",
     "coveralls": "^3.0.2",
+    "cucumber": "^5.1.0",
     "eslint": "^5.x",
     "gulp": "^4.0.0",
     "gulp-cli": "^2.0.1",
