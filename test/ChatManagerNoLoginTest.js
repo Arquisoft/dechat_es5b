@@ -13,11 +13,21 @@ const credentials = {
 
 fileClient.login(credentials);
 
-/*describe('Log In', function() {
+describe('Log In', function(done) {
 	it('Test', async function() {
-		await fileClient.login(credentials);
+		var testPromise =  new Promise(function(resolve,reject){
+			setTimeOut( function() {
+				resolve(loginM.login());
+		}, 300);
+		});
+		testPromise.then(function(result) {
+			expect(result).to.equal(true);
+			done();
+	}, done);
+		//loginM.login();
+		//await assert.equal(true, true);
 	});
-});*/
+});
 
 /*describe('createFolder', function() {
 	 it('Create Folder', async function() {
