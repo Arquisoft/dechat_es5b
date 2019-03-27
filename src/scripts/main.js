@@ -1,3 +1,4 @@
+const $rdf = require('rdflib');
 const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
 var loginM = require('./LogInManager.js');
 var chatM = require('./chatManager.js');

@@ -6,6 +6,10 @@ module.exports = {
     filename: 'index.js',
     path: path.resolve(__dirname, 'src')
   },
+  node:
+  {
+	"child_process": "empty"
+  },
   mode: 'development',
   externals: {
     'node-fetch': 'fetch',
