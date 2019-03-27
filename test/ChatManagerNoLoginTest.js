@@ -1,6 +1,6 @@
 require('chai');
 var assert = require('assert');
-var chatM = require('../src/chat/scripts/chatManager.js');
+var chatM = require('../src/scripts/chatManager.js');
 const fileClient = require('solid-file-client');
 
 const credentials = {
