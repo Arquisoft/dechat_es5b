@@ -28,17 +28,21 @@ dt {
 	text-align: center;
 }
 
+.forcefullwidth{
+	width: 100% !important;
+}
+
 .whitecolor{
 	color: white;
 }
 
-/* Chenge sidebar selected friend color */
+/* Change sidebar selected friend color */
 .active{
 	color: black !important;
     background-color: #EBEBEB !important;
 }
 
-/* Chenge sidebar not-selected friend color */
+/* Change sidebar not-selected friend color */
 .noactive{
 	color: white !important;
 	background-color: #9c84ff !important;
