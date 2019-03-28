@@ -65,5 +65,18 @@
     "doc": "docs",
     "test": "test"
   },
-  "keywords": []
+  "keywords": [
+    "solid",
+    "chat",
+    "message",
+    "discusssion",
+    "decentralized",
+    "web",
+    "rdf",
+    "ldp",
+    "linked",
+    "pane",
+    "app",
+    "data"
+  ]
 }

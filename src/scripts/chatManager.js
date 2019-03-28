@@ -1,5 +1,7 @@
 const fileClient = require('solid-file-client');
-const ToLog = true;
+var podUtils = require('./podUtilities.js');
+
+const ToLog=true;
 
 var INFO = 
 {
@@ -27,7 +29,7 @@ async function sendMessage(text){
     if(ToLog)
         console.log("Check SolidChat Exist")
     try{
-        var err = await readFolder(solidChat);
+        var err = await podUtils.readFolder(solidChat,ToLog);
         if(!err){
             if(ToLog)
                 console.log("Solid-chat folder doesnt exist");
@@ -35,7 +37,7 @@ async function sendMessage(text){
         }
     }catch(error){
         //New Solid-Chat folder
-        await createChatFolder(solidChat);
+        await podUtils.createFolder(solidChat,ToLog);
         if(ToLog)
             console.log("Solid-chat folder created");
     }
@@ -44,7 +46,7 @@ async function sendMessage(text){
     if(ToLog)
         console.log("Check user:"+INFO.receiverName+" folder")
     try{
-        var err2 = await readFolder(folder);
+        var err2 = await podUtils.readFolder(folder,ToLog);
         if(!err2){
             if(ToLog)
                 console.log("Folder doesnt exist");
@@ -52,7 +54,7 @@ async function sendMessage(text){
         }
     }catch(error){
          //New Folder:
-         await createChatFolder(folder);
+         await podUtils.createFolder(folder,ToLog);
          if(ToLog)
             console.log('User folder created');
     }
@@ -60,10 +62,9 @@ async function sendMessage(text){
     //WritingMessage
     if(ToLog)
         console.log("Writting message: "+text);
-    await writeMessage(folder+"/"+(new Date().getTime()), text);
+    await podUtils.createFile(folder+"/"+(new Date().getTime()), text, ToLog);
 }
 
-//TO-DO
 async function receiveMessages(){
     if(ToLog)
         console.log("ReceivingMessages")
@@ -73,7 +74,7 @@ async function receiveMessages(){
 
     //User folder
         //check new conversation (folder Exists) 
-        var userFolder = await readFolder(uFolder);
+        var userFolder = await podUtils.readFolder(uFolder, ToLog);
 
         //console.log(userFolder);
 		if(userFolder){
@@ -90,7 +91,7 @@ async function receiveMessages(){
     //Receiver folder
         //check new conversation (folder Exists)
         //Object folder readed -> get Files list
-		var receiverFolder = await readFolder(rFolder);
+		var receiverFolder = await podUtils.readFolder(rFolder, ToLog);
         //console.log(receiverFolder);
 		if(receiverFolder){
             if(ToLog)
@@ -120,11 +121,11 @@ async function order(userMessages, friendessages, uFolder, rFolder){
         var user = userMessages.pop();
         var friend = friendessages.pop();
         if(!(friend == undefined)){
-            dict.push( new message(INFO.receiverName + ":  " + await readMessage(rFolder+friend.name),
+            dict.push( new message(INFO.receiverName + ":  " + await podUtils.readFile(rFolder+friend.name, ToLog),
             new Date(Number(friend.name.replace(".txt","")))));
         }
         if(!(user == undefined)){
-            dict.push(new message(INFO.userName + ":  " + await readMessage(uFolder+user.name),
+            dict.push(new message(INFO.userName + ":  " + await podUtils.readFile(uFolder+user.name, ToLog),
             new Date(Number(user.name.replace(".txt","")))));
         }
     }
@@ -142,70 +143,8 @@ async function order(userMessages, friendessages, uFolder, rFolder){
 }
 
 module.exports = {
-    ToLog: ToLog,
     sendMessage: sendMessage,
     receiveMessages: receiveMessages,
     INFO: INFO,
-	createFolder : createChatFolder,
-	readFolder : readFolder,
-	deleteFolder : deleteFolder,
-	createFile : writeMessage,
-	readFile : readMessage,
-	deleteFile : deleteMessage
-}
-
-
-//POD utility funcs
-
-async function createChatFolder(url) {
-    await fileClient.createFolder(url).then(success => {
-        if(ToLog)
-            console.log(`Created folder ${url}.`);
-      }, err => {
-		  console.log(err);
-	  });
-}
-
-async function readFolder(url){
-    return await fileClient.readFolder(url).then(folder => {
-        if(ToLog)
-            console.log(`Read ${folder.name}, it has ${folder.files.length} files.`);
-        return folder;
-      }, err => console.log(err) );
-}
-
-async function deleteFolder(url){
-	await fileClient.deleteFolder(url).then(success => {
-        if(ToLog)
-            console.log(`Deleted ${url}.`);
-	}, err => console.log(err) );
-}
-
-async function writeMessage(url,content){
-    await fileClient.createFile(url,content,"text/plain").then( fileCreated => {
-        if(ToLog)
-            console.log(`Created file ${fileCreated}.`);
-      }, err => console.log(err) );
-}
-
-async function readMessage(url){
-	return await fileClient.readFile(url).then(  body => {
-        if(ToLog)
-            console.log(`File	content is : ${body}.`);
-	  return body;
-	}, err => console.log(err) );
-}
-
-async function updateMessage(url){
-	await fileClient.updateFile( url, newContent, contentType ).then( success => {
-		if(ToLog)
-            console.log( `Updated ${url}.`)
-	}, err => console.log(err) );
-}
-
-async function deleteMessage(url){
-	await fileClient.deleteFile(url).then(success => {
-	    if(ToLog)
-            console.log(`Deleted ${url}.`);
-	}, err => console.log(err) );
+	ToLog: ToLog
 }

@@ -3,8 +3,6 @@ const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
 var loginM = require('./LogInManager.js');
 var chatM = require('./chatManager.js');
 
-const ToLog=chatM.ToLog;
-
 // Set up a local data store and associated data fetcher
 const store = $rdf.graph();
 const fetcher = new $rdf.Fetcher(store);
@@ -24,8 +22,6 @@ solid.auth.trackSession(session => {
   }
   loadProfile();
 });
-
-//------------------------------------- FUNCTIONS ---------------------------------------------
 
 //SendMessage Function, Send Button on click action
 $('#sendButton').click(
@@ -48,7 +44,7 @@ $('#sendButton').click(
 );
 
 async function loadProfile() {
-    if(ToLog)
+    if(chatM.ToLog)
       console.log("loading Profile");
     // Load the person's data into the store
     chatM.INFO.user = $('#profile').text();
@@ -70,7 +66,7 @@ async function loadProfile() {
             $('<option>').text(store.any(friend, FOAF('name')))
             .click(
                 async function () {
-                  if(ToLog)
+                  if(chatM.ToLog)
                     console.log("load new receiver");
                   //Store all reciever info need for future
                   chatM.INFO.receiver = friend.value;
@@ -89,7 +85,7 @@ window.setInterval(async function(){
 }, 4000);
 
 function updateMessages(toShow){
-  if(ToLog)
+  if(chatM.ToLog)
     console.log("Update msgs");
   var messages="";
 	$('#messages').empty();
