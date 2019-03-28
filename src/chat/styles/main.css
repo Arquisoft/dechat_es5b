@@ -32,6 +32,18 @@ dt {
 	color: white;
 }
 
+/* Chenge sidebar selected friend color */
+.active{
+	color: black !important;
+    background-color: #EBEBEB !important;
+}
+
+/* Chenge sidebar not-selected friend color */
+.noactive{
+	color: white !important;
+	background-color: #9c84ff !important;
+}
+
 /* Friends list two-people-chat.html */
 .sidebar {
 	height: 100%;
