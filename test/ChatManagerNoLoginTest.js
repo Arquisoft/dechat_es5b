@@ -1,6 +1,6 @@
 require('chai');
 var assert = require('assert');
-var podUtils = require('../src/scripts/podUtils.js');
+var podUtils = require('../src/scripts/podUtilities.js');
 const fileClient = require('solid-file-client');
 
 const credentials = {
