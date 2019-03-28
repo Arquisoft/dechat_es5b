@@ -178,4 +178,21 @@ describe('ChatManagerTest', function (done) {
      //let r = await chatM.receiveMessages();
      //assert.typeOf(r,"Array");
    });
+	
+	
+	it('Testing Order', async function () {
+
+	var testPromise =  new Promise(function(resolve,reject){
+		setTimeOut( function() {
+			resolve(chatM.order());
+	}, 300);
+	});
+	try {
+		var result = await testPromise;
+		expect(result).to.equal(true);
+		done();
+	} catch(err) {
+		console.log(err);
+	}
+	});
 });
