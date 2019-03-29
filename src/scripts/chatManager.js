@@ -151,7 +151,9 @@ module.exports = {
 	deleteFolder : deleteFolder,
 	createFile : writeMessage,
 	readFile : readMessage,
-	deleteFile : deleteMessage
+    deleteFile : deleteMessage,
+    order : order,
+    message: MESSAGES
 }
 
 
