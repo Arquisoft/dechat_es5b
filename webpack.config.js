@@ -1,10 +1,14 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/chat/scripts/main.js',
+  entry: './src/scripts/main.js',
   output: {
     filename: 'index.js',
-    path: path.resolve(__dirname, 'src/chat')
+    path: path.resolve(__dirname, 'src')
+  },
+  node:
+  {
+	"child_process": "empty"
   },
   mode: 'development',
   externals: {
