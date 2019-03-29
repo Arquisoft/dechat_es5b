@@ -15,17 +15,17 @@ $('#logout button').click(() => loginM.logout());
 solid.auth.trackSession(session => {
   const loggedIn = !!session;
   if (loggedIn) {
-    $('#user').text(session.webId);
-    // Use the user's WebID as default profile
-    if (!$('#profile').text())
-      $('#profile').text(session.webId);
+	$('#user').text(session.webId);
+	// Use the user's WebID as default profile
+	if (!$('#profile').text())
+	  $('#profile').text(session.webId);
   }
   loadProfile();
 });
 
 //SendMessage Function, Send Button on click action
 $('#sendButton').click(
-  async function sendFunc()  {
+  async function sendFunc()	 {
 	  if (document.getElementById("friends").value == "") 
 		  alert("Debe seleccionar un usuario."); 
 	  else{
@@ -33,7 +33,7 @@ $('#sendButton').click(
 		var text = $('#messageText').val();
 
 		//Send MSG
-		("Sending from:"+chatM.INFO.userName+"      To:"+chatM.INFO.receiverName+"          text:"+text);
+		("Sending from:"+chatM.INFO.userName+"		To:"+chatM.INFO.receiverName+"			text:"+text);
 		await chatM.sendMessage(text);
 		
 		//Erase input field
@@ -44,40 +44,44 @@ $('#sendButton').click(
 );
 
 async function loadProfile() {
-    if(chatM.ToLog)
-      console.log("loading Profile");
-    // Load the person's data into the store
-    chatM.INFO.user = $('#profile').text();
-    await fetcher.load(chatM.INFO.user);
+	if(chatM.ToLog)
+	  console.log("loading Profile");
+	// Load the person's data into the store
+	chatM.INFO.user = $('#profile').text();
+	await fetcher.load(chatM.INFO.user);
 	//Obtain solid community URL
 	chatM.INFO.userURI = chatM.INFO.user.substr(0,(chatM.INFO.user.length-15));
 
-    // Display their details
-    chatM.INFO.userName = store.any($rdf.sym(chatM.INFO.user), FOAF('name')).toString();
-    $('#fullName').text(chatM.INFO.userName);
-    
-    // Display their friends
-    const friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
-    $('#friends').empty();
-    friends.forEach(
-      async (friend) => {
-        await fetcher.load(friend);
-		    $('#friends').append(
-            $('<option>').text(store.any(friend, FOAF('name')))
-            .click(
-                async function () {
-                  if(chatM.ToLog)
-                    console.log("load new receiver");
-                  //Store all reciever info need for future
-                  chatM.INFO.receiver = friend.value;
-                  chatM.INFO.receiverName = store.any(friend, FOAF('name')).toString().trim();
-                  chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0,(chatM.INFO.receiver.length-15));
-
-				          //Show messages
-                  updateMessages(await chatM.receiveMessages());
-                }
-              ));
-    });
+	// Display their details
+	chatM.INFO.userName = store.any($rdf.sym(chatM.INFO.user), FOAF('name')).toString();
+	$('#fullName').text(chatM.INFO.userName);
+	
+	// Display their friends
+	const friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
+	$('#friends').empty();
+	friends.forEach(
+	  async (friend) => {
+		await fetcher.load(friend);
+			$('#friends').append(
+			$('<button>').attr('type', 'button').addClass("list-group-item list-group-item-action noactive").text(store.any(friend, FOAF('name'))).click(
+				async function () {
+					if(chatM.ToLog)
+						console.log("load new receiver");
+					//Store all reciever info need for future
+					chatM.INFO.receiver = friend.value;
+					chatM.INFO.receiverName = store.any(friend, FOAF('name')).toString().trim();
+					chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0,(chatM.INFO.receiver.length-15));
+					
+					//Add the selected marker (That blue thing..)
+					$("#friends button").removeClass("active");
+					$("#friends button").addClass("noactive");
+					$(this).removeClass("noactive");
+					$(this).addClass("active");
+					//Show messages
+					updateMessages(await chatM.receiveMessages());
+				}
+			  ));
+	});
 }
 
 window.setInterval(async function(){

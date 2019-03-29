@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "codacy-coverage": "^3.4.0",
+    "cucumber": "^5.1.0",
     "express": "^4.16.4",
     "jsonld-request": "^0.2.0",
     "path": "^0.12.7",
