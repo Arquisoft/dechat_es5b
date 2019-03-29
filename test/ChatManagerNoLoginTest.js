@@ -1,7 +1,9 @@
 require('chai');
 var assert = require('assert');
 var chatM = require('../src/scripts/chatManager.js');
+var podUtils = require('../src/scripts/podUtilities.js')
 const fileClient = require('solid-file-client');
+
 
 const credentials = {
     "idp"      : "https://solid.community",
@@ -40,7 +42,7 @@ describe('createFolder', function(done) {
 	 it('Create Folder for the chat messages', async function() {
 		 var testPromise =  new Promise(function(resolve,reject){
 			setTimeOut( function() {
-				resolve(chatM.createFolder());
+				resolve(podUtils.createFolder());
 		}, 300);
 		});
 		try {
@@ -57,7 +59,7 @@ describe('createFile', function(done) {
 	 it('Create File with the message', async function() {
 		 var testPromise =  new Promise(function(resolve,reject){
 			setTimeOut( function() {
-				resolve(chatM.createFile());
+				resolve(podUtils.createFile());
 		}, 300);
 		});
 		try {
@@ -74,7 +76,7 @@ describe('readFile', function(done) {
 	 it('Read File', async function() {
 		var testPromise =  new Promise(function(resolve,reject){
 			setTimeOut( function() {
-				resolve(chatM.readFile());
+				resolve(podUtils.readFile());
 		}, 300);
 		});
 		try {
@@ -92,7 +94,7 @@ describe('readFolder', function(done) {
 	 it('Read folder', async function() {
 		var testPromise =  new Promise(function(resolve,reject){
 			setTimeOut( function() {
-				resolve(chatM.readFolder());
+				resolve(podUtils.readFolder());
 		}, 300);
 		});
 		try {
@@ -110,7 +112,7 @@ describe('deleteFile', function(done) {
 	 it('Delete File', async function() {
 		var testPromise =  new Promise(function(resolve,reject){
 			setTimeOut( function() {
-				resolve(chatM.deleteFile());
+				resolve(podUtils.deleteFile());
 		}, 300);
 		});
 		try {
@@ -128,7 +130,7 @@ describe('deleteFolder', function(done) {
 	 it('Delete Folder', async function() {
 		var testPromise =  new Promise(function(resolve,reject){
 			setTimeOut( function() {
-				resolve(chatM.deleteFolder());
+				resolve(podUtils.deleteFolder());
 		}, 300);
 		});
 		try {
