@@ -1,4 +1,3 @@
-const fileClient = require('solid-file-client');
 var podUtils = require('./podUtilities.js');
 
 const ToLog=true;
