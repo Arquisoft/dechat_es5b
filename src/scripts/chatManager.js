@@ -1,4 +1,5 @@
 var podUtils = require('./podUtilities.js');
+var notiMan = require('./notificationManager.js');
 
 const ToLog=true;
 
@@ -62,6 +63,10 @@ async function sendMessage(text){
     if(ToLog)
         console.log("Writting message: "+text);
     await podUtils.createFile(folder+"/"+(new Date().getTime()), text, ToLog);
+
+    //TO-DO---------------------------------------------------------------------------
+    //Write Notification
+
 }
 
 async function receiveMessages(){
@@ -103,6 +108,9 @@ async function receiveMessages(){
 			MESSAGES.friendMSG = [];
         }
 
+    //TO-DO---------------------------------------------------------------------------
+    //Delete Notification
+
 	return order(MESSAGES.userMSG,MESSAGES.friendMSG,uFolder, rFolder);
 }
 
@@ -141,9 +149,16 @@ async function order(userMessages, friendessages, uFolder, rFolder){
     return MESSAGES.toShow;
 }
 
+//Function for main.js
+//Return users with new msg
+async function newNotifications(){
+    //TO-DO----------------------------------------------------------------------------------
+}
+
 module.exports = {
     sendMessage: sendMessage,
     receiveMessages: receiveMessages,
+    newNotifications: newNotifications, 
     INFO: INFO,
 	ToLog: ToLog
 }

@@ -93,4 +93,7 @@ function updateMessages(toShow){
 	  messages=messages+ "<p>"+message+"<p/>";
   });
   $('#messages').append(messages);
+
+  //TO-DO---------------------------------------------------------------------------
+    //CheckNotifications - chatM.newNotifications
 }
