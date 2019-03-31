@@ -14,14 +14,13 @@ const credentials = {
     "test"     : "/public/test/"
 }
 
-//fileClient.login(credentials);
-
 describe('Log In', function(done) {
 	it('Test login function', async function() {
-		const promise = new Promise( (resolve) => {
+		this.timeout(10000);
+		const testPromise = new Promise( (resolve) => {
 			resolve(podUtils.login(credentials));
 		});
-		promise.then( (result) => {
+		testPromise.then( (result) => {
 			assert.equal(result,true);
 		});
 	});
