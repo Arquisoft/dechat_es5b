@@ -1,13 +1,11 @@
-const fileClient = require('solid-file-client')
+const fileClient = require('solid-file-client');
+var podUtils = require('./podUtilities.js');
 
-async function login () {
-    await fileClient.popupLogin().then(webId => {
-        console.log(`Logged in as ${webId}.`);
-    }, err => console.log(err));
+async function login (credentials) {
+    podUtils.login(credentials);
     $('#login').addClass('d-none');
     $('#logout').removeClass('d-none');
     $('#chatRef').removeClass('d-none');
-    return true;
 }
 
 async function logout () {
@@ -15,7 +13,6 @@ async function logout () {
     $('#login').removeClass('d-none');
     $('#logout').addClass('d-none');
     $('#chatRef').addClass('d-none');
-    return true;
 }
 
 async function cosroro(){}

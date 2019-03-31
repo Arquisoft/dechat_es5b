@@ -14,31 +14,19 @@ const credentials = {
     "test"     : "/public/test/"
 }
 
-fileClient.login(credentials);
+//fileClient.login(credentials);
 
 describe('Log In', function(done) {
 	it('Test login function', async function() {
-		var testPromise =  new Promise(function(resolve,reject){
-			setTimeOut( function() {
-				resolve(loginM.login());
-		}, 300);
+		const promise = new Promise( (resolve) => {
+			resolve(podUtils.login(credentials));
 		});
-		try {
-			var result = await testPromise;
-			expect(result).to.equal(true);
-			done();
-		} catch(err) {
-			console.log(err);
-		}
-		//var result = await testPromise;
-		//testPromise.then(function(result) {
-		//	expect(result).to.equal(true);
-	//		done();
-	//}, done);
+		promise.then( (result) => {
+			assert.equal(result,true);
+		});
 	});
-
 });
-
+/*
 describe('createFolder', function(done) {
 	 it('Create Folder for the chat messages', async function() {
 		 var testPromise =  new Promise(function(resolve,reject){
@@ -197,4 +185,4 @@ describe('ChatManagerTest', function (done) {
 			console.log(err);
 		}
 	});
-});
+});*/

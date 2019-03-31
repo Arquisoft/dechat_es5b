@@ -8,7 +8,7 @@ const store = $rdf.graph();
 const fetcher = new $rdf.Fetcher(store);
 
 // Log the user in and out on click
-$('#login  button').click(() => loginM.login());
+$('#login  button').click(() => loginM.login(null));
 $('#logout button').click(() => loginM.logout());
 
 // Update components to match the user's login status

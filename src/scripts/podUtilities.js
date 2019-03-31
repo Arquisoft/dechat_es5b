@@ -1,5 +1,26 @@
 const fileClient = require('solid-file-client');
 
+async function login(credentials){
+	if(credentials == null){
+		var result = await fileClient.popupLogin().then(webId => {
+			console.log(`Logged in as ${webId}.`);
+			return true;
+		}, err => { 
+			console.log(err);
+			return false;
+		});
+	}else {
+		var result = await fileClient.login(credentials).then( (session) => {
+			console.log( `Logged in as `+session.webId);
+			return true;
+		}, err => {
+			console.log(err);
+			return false;
+		});
+	}
+	return result;
+}
+
 //POD utility funcs
 async function createChatFolder(url,ToLog) {
     await fileClient.createFolder(url).then(success => {
@@ -56,6 +77,7 @@ async function deleteMessage(url,ToLog){
 }
 
 module.exports = {
+	login: login,
 	createFolder : createChatFolder,
 	readFolder : readFolder,
 	deleteFolder : deleteFolder,
