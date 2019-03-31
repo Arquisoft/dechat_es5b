@@ -5,7 +5,6 @@ var loginM = require('../src/scripts/LogInManager.js');
 var podUtils = require('../src/scripts/podUtilities.js')
 const fileClient = require('solid-file-client');
 
-
 const credentials = {
     "idp"      : "https://solid.community",
     "username" : "pruebaes5b",                  
@@ -13,6 +12,7 @@ const credentials = {
     "base"     : "https://pruebaes5b.solid.community",
     "test"     : "/public/test/"
 }
+const testFolderUrl = credentials.base + "/public/tests/";
 
 describe('Log In', function() {
 	it('Test login function', async function() {
@@ -21,16 +21,12 @@ describe('Log In', function() {
 		assert.equal(result,true);
 	});
 });
-/*
+
 describe('Test POD Utilities', function() {
 	it('createFolder', async function() {
-		this.timeout(5000);
-		const testPromise =  new Promise( (resolve) => {
-			resolve(podUtils.createFolder(true));
-		});
-		testPromise.then( (result) => {
-			assert.equal(result,true);
-		});
+		this.timeout(2000);
+		const result = await podUtils.createFolder(testFolderUrl,true);
+		assert.equal(result,true);
 	});
 });
 /*
