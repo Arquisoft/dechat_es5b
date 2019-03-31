@@ -83,13 +83,6 @@ dt {
   text-align: left;
 }
 
-/* Clear floats */
-.container::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
 dt:after {
     ontent: ': ';
 }
@@ -127,4 +120,17 @@ dt:after {
 	-webkit-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
 	-moz-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
 	text-align: center;
+}
+
+#username {
+	font-size: 10px;
+	margin: 0em;
+	padding: 0em;
+}
+
+#noMarginMessge {
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 0em;
+	padding-bottom: 0em;
 }
