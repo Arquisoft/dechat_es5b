@@ -125,7 +125,7 @@ async function order(userMessages, friendessages, uFolder, rFolder){
             new Date(Number(friend.name.replace(".txt","")))));
         }
         if(!(user == undefined)){
-            dict.push(new message("<div class=\"containerChatDarker\"><p>" + INFO.userName + ":  " + await podUtils.readFile(uFolder+user.name, ToLog) + "</p></div>",
+            dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + await podUtils.readFile(uFolder+user.name, ToLog) + "</p><p id=\"username\">" + INFO.userName + " (you)</p></div>",
             new Date(Number(user.name.replace(".txt","")))));
         }
     }
