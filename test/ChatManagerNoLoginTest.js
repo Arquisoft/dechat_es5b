@@ -7,13 +7,14 @@ const fileClient = require('solid-file-client');
 
 const credentials = {
     "idp"      : "https://solid.community",
-    "username" : "pruebaes5b",                  
+    "username" : "pruebaes5b",                   
     "password" : "CE.ji.JU-55", 
     "base"     : "https://pruebaes5b.solid.community",
     "test"     : "/public/test/"
 }
 const testFolderUrl = credentials.base + "/public/test/";
 const testFileUrl = testFolderUrl + "testfile";
+const testReadFile = "https://cristina.solid.community/public/SolidChat/Cristina-Mart%C3%ADn-Rey/1552487905499.txt";
 
 describe('Log In', function() {
 	it('Test login function', async function() {
@@ -31,6 +32,10 @@ describe('Test POD Utilities', function() {
 		this.timeout(1500);
 		assert.equal( await podUtils.createFile(testFileUrl,"test create file",true) ,true);
 		assert.equal( await podUtils.readFile(testFileUrl+".txt",true) , "test create file");
+	});
+	it('readFile', async function() {
+		this.timeout(1500);
+		assert.equal( await podUtils.readFile(testReadFile,true), "hola");
 	});
 });
 
@@ -52,7 +57,7 @@ describe('readFile', function(done) {
 		// await chatM.readFile('https://pruebaes5b.solid.community/public/PruebaSinLogin/ficheroprueba.txt');
 	});
 });
-
+/*
 describe('readFolder', function(done) {
 	 it('Read folder', async function() {
 		var testPromise =  new Promise(function(resolve,reject){
