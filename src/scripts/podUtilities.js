@@ -46,10 +46,14 @@ async function readFolder(url,ToLog){
 }
 
 async function deleteFolder(url,ToLog){
-	await fileClient.deleteFolder(url).then(success => {
+	return await fileClient.deleteFolder(url).then(success => {
         if(ToLog)
             console.log(`Deleted ${url}.`);
-	}, err => console.log(err) );
+		return true;
+	}, err => {
+		console.log(err);
+		return false;
+	});
 }
 
 async function writeMessage(url,content,ToLog){
@@ -74,7 +78,6 @@ async function readMessage(url,ToLog){
 	});
 }
 
-//I've put this method here in case we end up using it.
 async function updateMessage(url,ToLog){
 	await fileClient.updateFile( url, newContent, contentType ).then( success => {
 		if(ToLog)
@@ -83,10 +86,14 @@ async function updateMessage(url,ToLog){
 }
 
 async function deleteMessage(url,ToLog){
-	await fileClient.deleteFile(url).then(success => {
+	return await fileClient.deleteFile(url).then(success => {
 	    if(ToLog)
             console.log(`Deleted ${url}.`);
-	}, err => console.log(err) );
+		return true;
+	}, err => {
+		console.log(err);
+		return false;
+	});
 }
 
 module.exports = {

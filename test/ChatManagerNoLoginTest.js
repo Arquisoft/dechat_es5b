@@ -26,62 +26,31 @@ describe('Log In', function() {
 describe('Test POD Utilities', function() {
 	it('createFolder', async function() {
 		this.timeout(1500);
-		assert.equal( await podUtils.createFolder(testFolderUrl,true) ,true);
+		assert.equal( await podUtils.createFolder(testFolderUrl,false) ,true);
 	});
 	it('createFile', async function() {
-		this.timeout(1500);
+		this.timeout(800);
 		assert.equal( await podUtils.createFile(testFileUrl,"test create file",true) ,true);
-		assert.equal( await podUtils.readFile(testFileUrl+".txt",true) , "test create file");
+		assert.equal( await podUtils.readFile(testFileUrl+".txt",false) , "test create file");
 	});
 	it('readFile', async function() {
-		this.timeout(1500);
-		assert.equal( await podUtils.readFile(testReadFile,true), "hola");
+		this.timeout(800);
+		assert.equal( await podUtils.readFile(testReadFile,false), "hola");
 	});
 	it('readFolder', async function() {
-		this.timeout(1500);
-		const folder = await podUtils.readFolder(testFolderUrl,true);
+		this.timeout(800);
+		const folder = await podUtils.readFolder(testFolderUrl,false);
 		assert.equal( folder.name, "test");
 		assert.equal(folder.files.length,1);
 		assert.equal(testFolderUrl, "https://pruebaes5b.solid.community/public/test/");
 	});
+	it('deleteFile', async function() {
+		this.timeout(800);
+		assert.equal( await podUtils.deleteFile(testFileUrl+".txt",false), true);
+		assert.equal( await podUtils.readFile(testFileUrl+".txt",false), null);
+	});
 });
-
 /*
-describe('readFolder', function(done) {
-	 it('Read folder', async function() {
-		var testPromise =  new Promise(function(resolve,reject){
-			setTimeOut( function() {
-				resolve(podUtils.readFolder());
-		}, 300);
-		});
-		try {
-			var result = await testPromise;
-			expect(result).to.equal(true);
-			done();
-		} catch(err) {
-			console.log(err);
-		}
-		//await chatM.readFolder('https://pruebaes5b.solid.community/public/PruebaSinLogin');
-	});
-});
-
-describe('deleteFile', function(done) {
-	 it('Delete File', async function() {
-		var testPromise =  new Promise(function(resolve,reject){
-			setTimeOut( function() {
-				resolve(podUtils.deleteFile());
-		}, 300);
-		});
-		try {
-			var result = await testPromise;
-			expect(result).to.equal(true);
-			done();
-		} catch(err) {
-			console.log(err);
-		}
-		// await chatM.deleteFile('https://pruebaes5b.solid.community/public/PruebaSinLogin/ficheroprueba.txt');
-	});
-});
 
 describe('deleteFolder', function(done) {
 	 it('Delete Folder', async function() {
