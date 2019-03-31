@@ -9,7 +9,7 @@
   "scripts": {
     "start": "webpack && node App.js",
     "test": "mocha \"./test/*\"",
-	"acceptance": "cd hellocucumber && npm run test",
+    "acceptance": "cd hellocucumber && npm run test",
     "coverage": "nyc --reporter text-lcov node_modules/.bin/_mocha --require @babel/register -R spec --timeout 100 | coveralls",
     "test-with-coverage": "nyc --reporter text-lcov node_modules/.bin/_mocha --require @babel/register -R spec --timeout 100 && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage",
     "travisRepo": "./test/travisRepo.sh",
