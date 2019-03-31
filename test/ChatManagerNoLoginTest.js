@@ -5,6 +5,8 @@ var loginM = require('../src/scripts/LogInManager.js');
 var podUtils = require('../src/scripts/podUtilities.js')
 const fileClient = require('solid-file-client');
 
+const timeout = 1500;
+
 const credentials = {
     "idp"      : "https://solid.community",
     "username" : "pruebaes5b",                   
@@ -25,52 +27,37 @@ describe('Log In', function() {
 
 describe('Test POD Utilities', function() {
 	it('createFolder', async function() {
-		this.timeout(1500);
+		this.timeout(timeout);
 		assert.equal( await podUtils.createFolder(testFolderUrl,false) ,true);
 	});
 	it('createFile', async function() {
-		this.timeout(800);
-		assert.equal( await podUtils.createFile(testFileUrl,"test create file",true) ,true);
+		this.timeout(timeout);
+		assert.equal( await podUtils.createFile(testFileUrl,"test create file",false) ,true);
 		assert.equal( await podUtils.readFile(testFileUrl+".txt",false) , "test create file");
 	});
 	it('readFile', async function() {
-		this.timeout(800);
+		this.timeout(timeout);
 		assert.equal( await podUtils.readFile(testReadFile,false), "hola");
 	});
 	it('readFolder', async function() {
-		this.timeout(800);
+		this.timeout(timeout);
 		const folder = await podUtils.readFolder(testFolderUrl,false);
 		assert.equal( folder.name, "test");
 		assert.equal(folder.files.length,1);
 		assert.equal(testFolderUrl, "https://pruebaes5b.solid.community/public/test/");
 	});
 	it('deleteFile', async function() {
-		this.timeout(800);
+		this.timeout(timeout);
 		assert.equal( await podUtils.deleteFile(testFileUrl+".txt",false), true);
 		assert.equal( await podUtils.readFile(testFileUrl+".txt",false), null);
 	});
-});
-/*
-
-describe('deleteFolder', function(done) {
-	 it('Delete Folder', async function() {
-		var testPromise =  new Promise(function(resolve,reject){
-			setTimeOut( function() {
-				resolve(podUtils.deleteFolder());
-		}, 300);
-		});
-		try {
-			var result = await testPromise;
-			expect(result).to.equal(true);
-			done();
-		} catch(err) {
-			console.log(err);
-		}
-		// await chatM.deleteFolder('https://pruebaes5b.solid.community/public/PruebaSinLogin/');
+	it('deleteFolder', async function() {
+		this.timeout(timeout);
+		assert.equal( await podUtils.deleteFile(testFolderUrl,false), true);
+		assert.equal( await podUtils.readFile(testFolderUrl,false), null);
 	});
 });
-
-
+/*
 describe('ChatManagerTest', function (done) {
     it('Testing SendMenssage', async function () {
 		var testPromise =  new Promise(function(resolve,reject){

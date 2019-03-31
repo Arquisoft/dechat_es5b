@@ -78,13 +78,6 @@ async function readMessage(url,ToLog){
 	});
 }
 
-async function updateMessage(url,ToLog){
-	await fileClient.updateFile( url, newContent, contentType ).then( success => {
-		if(ToLog)
-            console.log( `Updated ${url}.`)
-	}, err => console.log(err) );
-}
-
 async function deleteMessage(url,ToLog){
 	return await fileClient.deleteFile(url).then(success => {
 	    if(ToLog)
