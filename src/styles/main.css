@@ -63,8 +63,39 @@ dt {
 	padding: 0px 10px;
 }
 
+/* Chat containers */
+.containerChat {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0.5em;
+  text-align: right;
+}
+
+/* Darker chat container */
+.containerChatDarker {
+  border-color: #ccc;
+  background-color: #CABDFF;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0.5em;
+  text-align: left;
+}
+
+/* Clear floats */
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
 dt:after {
     ontent: ': ';
+}
+
+#noMargin {
+	margin: 0em;
 }
 
 #divWithShade {

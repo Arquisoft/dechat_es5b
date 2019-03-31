@@ -94,7 +94,7 @@ function updateMessages(toShow){
   var messages="";
 	$('#messages').empty();
 	toShow.forEach( (message) => {
-	  messages=messages+ "<p>"+message+"<p/>";
+	  messages=messages+message;
   });
   $('#messages').append(messages);
 }
