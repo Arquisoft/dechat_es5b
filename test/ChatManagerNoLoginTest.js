@@ -14,11 +14,19 @@ const credentials = {
     "test"     : "/public/test/"
 }
 
-describe('Log In', function(done) {
+describe('Log In', function() {
 	it('Test login function', async function() {
-		this.timeout(10000);
-		const testPromise = new Promise( (resolve) => {
-			resolve(podUtils.login(credentials));
+		this.timeout(4000);
+		const result = await podUtils.login(credentials);
+		assert.equal(result,true);
+	});
+});
+/*
+describe('Test POD Utilities', function() {
+	it('createFolder', async function() {
+		this.timeout(5000);
+		const testPromise =  new Promise( (resolve) => {
+			resolve(podUtils.createFolder(true));
 		});
 		testPromise.then( (result) => {
 			assert.equal(result,true);
@@ -26,23 +34,6 @@ describe('Log In', function(done) {
 	});
 });
 /*
-describe('createFolder', function(done) {
-	 it('Create Folder for the chat messages', async function() {
-		 var testPromise =  new Promise(function(resolve,reject){
-			setTimeOut( function() {
-				resolve(podUtils.createFolder());
-		}, 300);
-		});
-		try {
-			var result = await testPromise;
-			expect(result).to.equal(true);
-			done();
-		} catch(err) {
-			console.log(err);
-		}
-	});
-});
-
 describe('createFile', function(done) {
 	 it('Create File with the message', async function() {
 		 var testPromise =  new Promise(function(resolve,reject){
