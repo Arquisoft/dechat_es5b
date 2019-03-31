@@ -121,11 +121,11 @@ async function order(userMessages, friendessages, uFolder, rFolder){
         var user = userMessages.pop();
         var friend = friendessages.pop();
         if(!(friend == undefined)){
-            dict.push( new message(INFO.receiverName + ":  " + await podUtils.readFile(rFolder+friend.name, ToLog),
+            dict.push( new message("<div class=\"containerChat\"><p id=\"noMarginMessge\">" + await podUtils.readFile(rFolder+friend.name, ToLog) + "</p><p id=\"username\">" + INFO.receiverName + "</p></div>",
             new Date(Number(friend.name.replace(".txt","")))));
         }
         if(!(user == undefined)){
-            dict.push(new message(INFO.userName + ":  " + await podUtils.readFile(uFolder+user.name, ToLog),
+            dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + await podUtils.readFile(uFolder+user.name, ToLog) + "</p><p id=\"username\">" + INFO.userName + " (you)</p></div>",
             new Date(Number(user.name.replace(".txt","")))));
         }
     }

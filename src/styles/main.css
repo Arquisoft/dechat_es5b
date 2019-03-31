@@ -63,8 +63,32 @@ dt {
 	padding: 0px 10px;
 }
 
+/* Chat containers */
+.containerChat {
+  border-color: #ccc;
+  background-color: #CABDFF;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0.5em;
+  text-align: left;
+}
+
+/* Darker chat container */
+.containerChatDarker { 
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0.5em;
+  text-align: right;
+}
+
 dt:after {
     ontent: ': ';
+}
+
+#noMargin {
+	margin: 0em;
 }
 
 #divWithShade {
@@ -96,4 +120,17 @@ dt:after {
 	-webkit-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
 	-moz-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
 	text-align: center;
+}
+
+#username {
+	font-size: 10px;
+	margin: 0em;
+	padding: 0em;
+}
+
+#noMarginMessge {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 0em;
+	padding-bottom: 0em;
 }
