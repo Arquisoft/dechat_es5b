@@ -1,7 +1,10 @@
 require('chai');
 var assert = require('assert');
-var podUtils = require('../src/scripts/podUtilities.js');
+var chatM = require('../src/scripts/chatManager.js');
+var loginM = require('../src/scripts/LogInManager.js');
+var podUtils = require('../src/scripts/podUtilities.js')
 const fileClient = require('solid-file-client');
+
 
 const credentials = {
     "idp"      : "https://solid.community",
@@ -13,57 +16,185 @@ const credentials = {
 
 fileClient.login(credentials);
 
-/*describe('Log In', function() {
-	it('Test', async function() {
-		await fileClient.login(credentials);
+describe('Log In', function(done) {
+	it('Test login function', async function() {
+		var testPromise =  new Promise(function(resolve,reject){
+			setTimeOut( function() {
+				resolve(loginM.login());
+		}, 300);
+		});
+		try {
+			var result = await testPromise;
+			expect(result).to.equal(true);
+			done();
+		} catch(err) {
+			console.log(err);
+		}
+		//var result = await testPromise;
+		//testPromise.then(function(result) {
+		//	expect(result).to.equal(true);
+	//		done();
+	//}, done);
 	});
-});*/
 
-/*describe('createFolder', function() {
-	 it('Create Folder', async function() {
-		 await podUtils.createFolder('https://pruebaes5b.solid.community/public/Prueba1');
+});
+
+describe('createFolder', function(done) {
+	 it('Create Folder for the chat messages', async function() {
+		 var testPromise =  new Promise(function(resolve,reject){
+			setTimeOut( function() {
+				resolve(podUtils.createFolder());
+		}, 300);
+		});
+		try {
+			var result = await testPromise;
+			expect(result).to.equal(true);
+			done();
+		} catch(err) {
+			console.log(err);
+		}
 	});
-});*/
+});
 
-/*describe('createFile', function() {
-	 it('Create File', async function() {
-		 await podUtils.createFile('https://pruebaes5b.solid.community/public/PruebaSinLogin/ficheroprueba1','pruebaTest');
+describe('createFile', function(done) {
+	 it('Create File with the message', async function() {
+		 var testPromise =  new Promise(function(resolve,reject){
+			setTimeOut( function() {
+				resolve(podUtils.createFile());
+		}, 300);
+		});
+		try {
+			var result = await testPromise;
+			expect(result).to.equal(true);
+			done();
+		} catch(err) {
+			console.log(err);
+		}
 	});
-});*/
+});
 
-describe('readFile', function() {
+describe('readFile', function(done) {
 	 it('Read File', async function() {
-		 await podUtils.readFile('https://pruebaes5b.solid.community/public/PruebaSinLogin/ficheroprueba.txt');
+		var testPromise =  new Promise(function(resolve,reject){
+			setTimeOut( function() {
+				resolve(podUtils.readFile());
+		}, 300);
+		});
+		try {
+			var result = await testPromise;
+			expect(result).to.equal(true);
+			done();
+		} catch(err) {
+			console.log(err);
+		}
+		// await chatM.readFile('https://pruebaes5b.solid.community/public/PruebaSinLogin/ficheroprueba.txt');
 	});
 });
 
-describe('readFolder', function() {
+describe('readFolder', function(done) {
 	 it('Read folder', async function() {
-		 await podUtils.readFolder('https://pruebaes5b.solid.community/public/PruebaSinLogin');
+		var testPromise =  new Promise(function(resolve,reject){
+			setTimeOut( function() {
+				resolve(podUtils.readFolder());
+		}, 300);
+		});
+		try {
+			var result = await testPromise;
+			expect(result).to.equal(true);
+			done();
+		} catch(err) {
+			console.log(err);
+		}
+		//await chatM.readFolder('https://pruebaes5b.solid.community/public/PruebaSinLogin');
 	});
 });
 
-describe('deleteFile', function() {
+describe('deleteFile', function(done) {
 	 it('Delete File', async function() {
-		 await podUtils.deleteFile('https://pruebaes5b.solid.community/public/PruebaSinLogin/ficheroprueba.txt');
+		var testPromise =  new Promise(function(resolve,reject){
+			setTimeOut( function() {
+				resolve(podUtils.deleteFile());
+		}, 300);
+		});
+		try {
+			var result = await testPromise;
+			expect(result).to.equal(true);
+			done();
+		} catch(err) {
+			console.log(err);
+		}
+		// await chatM.deleteFile('https://pruebaes5b.solid.community/public/PruebaSinLogin/ficheroprueba.txt');
 	});
 });
 
-describe('deleteFolder', function() {
+describe('deleteFolder', function(done) {
 	 it('Delete Folder', async function() {
-		 await podUtils.deleteFolder('https://pruebaes5b.solid.community/public/PruebaSinLogin/');
+		var testPromise =  new Promise(function(resolve,reject){
+			setTimeOut( function() {
+				resolve(podUtils.deleteFolder());
+		}, 300);
+		});
+		try {
+			var result = await testPromise;
+			expect(result).to.equal(true);
+			done();
+		} catch(err) {
+			console.log(err);
+		}
+		// await chatM.deleteFolder('https://pruebaes5b.solid.community/public/PruebaSinLogin/');
 	});
 });
 
-/*
-describe('ChatManagerTest', function () {
+
+describe('ChatManagerTest', function (done) {
     it('Testing SendMenssage', async function () {
-      let r =  await podUtils.sendMessage();
-      assert.equal(r, true);
+		var testPromise =  new Promise(function(resolve,reject){
+			setTimeOut( function() {
+				resolve(chatM.sendMessage());
+		}, 300);
+		});
+		try {
+			var result = await testPromise;
+			expect(result).to.equal(true);
+			done();
+		} catch(err) {
+			console.log(err);
+		}
+      //let r =  await chatM.sendMessage();
+      //assert.equal(r, true);
    });
  
    it('Testing ReceiveMessage', async function () {
-     let r = await podUtils.receiveMessages();
-     assert.typeOf(r,"Array");
-   });
-});*/
+
+	var testPromise =  new Promise(function(resolve,reject){
+		setTimeOut( function() {
+			resolve(chatM.receiveMessages());
+	}, 300);
+	});
+	try {
+		var result = await testPromise;
+		expect(result).to.equal(true);
+		done();
+	} catch(err) {
+		console.log(err);
+	}
+     //let r = await chatM.receiveMessages();
+     //assert.typeOf(r,"Array");
+	 });
+
+	it('Testing Order', async function () {
+
+		var testPromise =  new Promise(function(resolve,reject){
+			setTimeOut( function() {
+				resolve(chatM.order());
+		}, 300);
+		});
+		try {
+			var result = await testPromise;
+			expect(result).to.equal(chatM.message);
+			done();
+		} catch(err) {
+			console.log(err);
+		}
+	});
+});
