@@ -51,19 +51,25 @@ async function deleteFolder(url,ToLog){
 }
 
 async function writeMessage(url,content,ToLog){
-    await fileClient.createFile(url,content,"text/plain").then( fileCreated => {
+    return await fileClient.createFile(url,content,"text/plain").then( fileCreated => {
         if(ToLog)
             console.log(`Created file ${fileCreated}.`);
-      }, err => console.log(err) );
+		return true;
+      }, err => { 
+		console.log(err);
+		return false;
+	  });
 }
 
-//We have to know about what returns the method fileClient.readFile(url)
 async function readMessage(url,ToLog){
 	return await fileClient.readFile(url).then(  body => {
         if(ToLog)
-            //console.log(`File	content is : ${body}.`);
-	  return body;
-	}, err => console.log(err) );
+            console.log(`File	content is : ${body}.`);
+		return body;
+	}, err => {
+		console.log(err);
+		return null;
+	});
 }
 
 //I've put this method here in case we end up using it.

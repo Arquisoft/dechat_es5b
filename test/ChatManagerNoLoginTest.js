@@ -12,41 +12,29 @@ const credentials = {
     "base"     : "https://pruebaes5b.solid.community",
     "test"     : "/public/test/"
 }
-const testFolderUrl = credentials.base + "/public/tests/";
+const testFolderUrl = credentials.base + "/public/test/";
+const testFileUrl = testFolderUrl + "testfile";
 
 describe('Log In', function() {
 	it('Test login function', async function() {
 		this.timeout(4000);
-		const result = await podUtils.login(credentials);
-		assert.equal(result,true);
+		assert.equal( await podUtils.login(credentials) ,true);
 	});
 });
 
 describe('Test POD Utilities', function() {
 	it('createFolder', async function() {
-		this.timeout(2000);
-		const result = await podUtils.createFolder(testFolderUrl,true);
-		assert.equal(result,true);
+		this.timeout(1500);
+		assert.equal( await podUtils.createFolder(testFolderUrl,true) ,true);
 	});
-});
-/*
-describe('createFile', function(done) {
-	 it('Create File with the message', async function() {
-		 var testPromise =  new Promise(function(resolve,reject){
-			setTimeOut( function() {
-				resolve(podUtils.createFile());
-		}, 300);
-		});
-		try {
-			var result = await testPromise;
-			expect(result).to.equal(true);
-			done();
-		} catch(err) {
-			console.log(err);
-		}
+	it('createFile', async function() {
+		this.timeout(1500);
+		assert.equal( await podUtils.createFile(testFileUrl,"test create file",true) ,true);
+		assert.equal( await podUtils.readFile(testFileUrl+".txt",true) , "test create file");
 	});
 });
 
+/*
 describe('readFile', function(done) {
 	 it('Read File', async function() {
 		var testPromise =  new Promise(function(resolve,reject){
