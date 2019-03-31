@@ -37,26 +37,15 @@ describe('Test POD Utilities', function() {
 		this.timeout(1500);
 		assert.equal( await podUtils.readFile(testReadFile,true), "hola");
 	});
-});
-
-/*
-describe('readFile', function(done) {
-	 it('Read File', async function() {
-		var testPromise =  new Promise(function(resolve,reject){
-			setTimeOut( function() {
-				resolve(podUtils.readFile());
-		}, 300);
-		});
-		try {
-			var result = await testPromise;
-			expect(result).to.equal(true);
-			done();
-		} catch(err) {
-			console.log(err);
-		}
-		// await chatM.readFile('https://pruebaes5b.solid.community/public/PruebaSinLogin/ficheroprueba.txt');
+	it('readFolder', async function() {
+		this.timeout(1500);
+		const folder = await podUtils.readFolder(testFolderUrl,true);
+		assert.equal( folder.name, "test");
+		assert.equal(folder.files.length,1);
+		assert.equal(testFolderUrl, "https://pruebaes5b.solid.community/public/test/");
 	});
 });
+
 /*
 describe('readFolder', function(done) {
 	 it('Read folder', async function() {

@@ -34,13 +34,15 @@ async function createChatFolder(url,ToLog) {
 		});
 }
 
-//We have to know about what returns the method fileClient.readFolder(url)
 async function readFolder(url,ToLog){
     return await fileClient.readFolder(url).then(folder => {
         if(ToLog)
             console.log(`Read ${folder.name}, it has ${folder.files.length} files.`);
         return folder;
-      }, err => console.log(err) );
+      }, err => {
+		console.log(err);
+		return null;
+	  });
 }
 
 async function deleteFolder(url,ToLog){
