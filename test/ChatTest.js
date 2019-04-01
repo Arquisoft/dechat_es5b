@@ -1,9 +1,8 @@
 require('chai');
 var assert = require('assert');
 var chatM = require('../src/scripts/chatManager.js');
-var loginM = require('../src/scripts/LogInManager.js');
-var podUtils = require('../src/scripts/podUtilities.js')
-const fileClient = require('solid-file-client');
+var podUtils = require('../src/scripts/podUtilities.js');
+//const fileClient = require('solid-file-client');
 
 const timeout = 2000;
 
@@ -34,33 +33,33 @@ describe('Log In', function() {
 describe('Test POD Utilities', function() {
     it('createFolder', async function() {
         this.timeout(timeout);
-        assert.equal(await podUtils.createFolder(testFolderUrl, false), true);
+        assert.equal(await podUtils.createFolder(testFolderUrl, true), true);
     });
     it('createFile', async function() {
         this.timeout(timeout);
-        assert.equal(await podUtils.createFile(testFileUrl, "test create file", false), true);
-        assert.equal(await podUtils.readFile(testFileUrl + ".txt", false), "test create file");
+        assert.equal(await podUtils.createFile(testFileUrl, "test create file", true), true);
+        assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), "test create file");
     });
     it('readFile', async function() {
         this.timeout(timeout);
-        assert.equal(await podUtils.readFile(receiver.testReadFile, false), "hola");
+        assert.equal(await podUtils.readFile(receiver.testReadFile, true), "hola");
     });
     it('readFolder', async function() {
         this.timeout(timeout);
-        const folder = await podUtils.readFolder(testFolderUrl, false);
+        const folder = await podUtils.readFolder(testFolderUrl, true);
         assert.equal(folder.name, "test");
         assert.equal(folder.files.length, 1);
         assert.equal(testFolderUrl, "https://pruebaes5b.solid.community/public/test/");
     });
     it('deleteFile', async function() {
         this.timeout(timeout);
-        assert.equal(await podUtils.deleteFile(testFileUrl + ".txt", false), true);
-        assert.equal(await podUtils.readFile(testFileUrl + ".txt", false), null);
+        assert.equal(await podUtils.deleteFile(testFileUrl + ".txt", true), true);
+        assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), null);
     });
     it('deleteFolder', async function() {
         this.timeout(timeout);
-        assert.equal(await podUtils.deleteFile(testFolderUrl, false), true);
-        assert.equal(await podUtils.readFile(testFolderUrl, false), null);
+        assert.equal(await podUtils.deleteFile(testFolderUrl, true), true);
+        assert.equal(await podUtils.readFile(testFolderUrl, true), null);
     });
 });
 
@@ -72,14 +71,14 @@ describe('Test Chat Manager', function() {
         chatM.INFO.receiverName = receiver.username;
         const sendFolder = credentials.base + "/public/SolidChat/" + receiver.username;
 
-        var folder = await podUtils.readFolder(sendFolder, false);
+        var folder = await podUtils.readFolder(sendFolder, true);
         if (folder === null) {
             var length = 0;
         } else {
             var length = folder.files.length;
         }
         assert.equal(await chatM.sendMessage("newMessage"), true);
-        folder = await podUtils.readFolder(sendFolder, false);
+        folder = await podUtils.readFolder(sendFolder, true);
         assert.equal(folder.files.length, length + 1);
     });
 
