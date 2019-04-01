@@ -5,7 +5,7 @@ var loginM = require('../src/scripts/LogInManager.js');
 var podUtils = require('../src/scripts/podUtilities.js')
 const fileClient = require('solid-file-client');
 
-const timeout = 1500;
+const timeout = 2000;
 
 const credentials = {
     "idp": "https://solid.community",
@@ -76,6 +76,12 @@ describe('Test Chat Manager', function() {
         assert.equal(await chatM.sendMessage("newMessage"), true);
         folder = await podUtils.readFolder(credentials.base + "/public/SolidChat/" + chatM.INFO.receiverName, false);
         assert.equal(folder.files.length, length + 1);
+    });
+
+    it('receiveMessage', async function() {
+        this.timeout(4000);
+        var messages = await chatM.receiveMessages();
+        assert.equal(messages.length, 5);
     });
 });
 
