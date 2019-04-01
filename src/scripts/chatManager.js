@@ -65,7 +65,7 @@ async function sendMessage(text){
     await podUtils.createFile(folder+"/"+(new Date().getTime()), text, ToLog);
 
     //Write new Notification
-    var receiverInbox = INFO.receiverURI+"inbox/";
+    var receiverInbox = INFO.userURI+"inbox/";
     notiMan.writeNotification(receiverInbox,INFO.user);
 }
 

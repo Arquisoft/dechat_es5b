@@ -14,6 +14,14 @@ async function writeNotification(receiverInbox, user){
     //Check already exits user Notification
         //IF false write newNotification
         //If true do nothing
+        var text = "@prefix : <#> . \n"
+        text+= "@prefix noti: <http://schema.org/> . \n"
+        text+= "@prefix user: <https://user.solid.community/> . \n"
+        text+= "\n"
+        text+= ":notifications \n"
+        text+= "   a noti:Notification ; \n"
+        text+= "    noti:news 'user2' . \n";
+        await podUtils.writeTurtle(receiverInbox+"Notification", text, false);
 }
 //Methor for constantly reading new Notifications from others chat
 async function readAllNotification(){

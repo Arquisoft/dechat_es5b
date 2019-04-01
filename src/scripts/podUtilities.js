@@ -31,6 +31,13 @@ async function writeMessage(url,content,ToLog){
       }, err => console.log(err) );
 }
 
+async function writeTurtle(url,content,ToLog){
+    await fileClient.createFile(url,content,"text/turtle").then( fileCreated => {
+        if(ToLog)
+            console.log(`Created file ${fileCreated}.`);
+      }, err => console.log(err) );
+}
+
 //We have to know about what returns the method fileClient.readFile(url)
 async function readMessage(url,ToLog){
 	return await fileClient.readFile(url).then(  body => {
@@ -61,5 +68,6 @@ module.exports = {
 	deleteFolder : deleteFolder,
 	createFile : writeMessage,
 	readFile : readMessage,
-	deleteFile : deleteMessage
+    deleteFile : deleteMessage,
+    writeTurtle: writeTurtle
 }
