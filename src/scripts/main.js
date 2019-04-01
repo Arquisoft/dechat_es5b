@@ -17,8 +17,8 @@ solid.auth.trackSession(session => {
   if (loggedIn) {
 	$('#user').text(session.webId);
 	// Use the user's WebID as default profile
-	if (!$('#profile').text())
-	  $('#profile').text(session.webId);
+	if (!$('#profile').attr("href"))
+	  $('#profile').attr("href", session.webId);
   }
   loadProfile();
 });
@@ -47,7 +47,7 @@ async function loadProfile() {
 	if(chatM.ToLog)
 	  console.log("loading Profile");
 	// Load the person's data into the store
-	chatM.INFO.user = $('#profile').text();
+	chatM.INFO.user = $('#profile').attr("href");
 	await fetcher.load(chatM.INFO.user);
 	//Obtain solid community URL
 	chatM.INFO.userURI = chatM.INFO.user.substr(0,(chatM.INFO.user.length-15));

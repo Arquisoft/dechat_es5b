@@ -17,13 +17,23 @@
 			<img src="./images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="chatLogo">
 			DeChat ES5B
 		</a>
-		<span class="navbar-text">
-			<text>Logged as:</text>
-			<text class="whitecolor" id="fullName"></text>
-			<a id="logout" href="/">
-				<button type="button" class="btn btn-outline-light" href="/">Log out</button>
-			</a>
-		</span>
+		
+		<ul class="nav nav-pills">
+			<li class="nav-item dropdown">
+				<a class="whitecolor nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					User Profile
+				</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item disabled" href="#">Signed in as <strong id="fullName"></strong></a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" id="profile">Go to SOLID profile</a>
+					<a class="dropdown-item disabled" href="#">Work in progress here!</a>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a class="whitecolor nav-link" href="/" id="logout">Log out</a>
+			</li>
+		</ul>
 	</nav>
 	<div class="container-fluid">
 		<div class="row">
@@ -42,13 +52,6 @@
 			<div class="col-md-8">
 				<div class="jumbotron chatplace">
 					<h1>Welcome to your decentralized chat room</h1>
-					<section>
-						<p class="centered">
-							Your profile link for add new friends is:
-							<br>
-							<text id="profile" ></text>
-						</p>
-					</section>
 					<div class="container" id="divConversation">
 						<section>
 							<div id="MessageArea">
