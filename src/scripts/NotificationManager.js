@@ -9,7 +9,8 @@ async function deleteNotification(userInbox, reciver){
 }
 
 //Method for write new Notification on send Msg
-async function writeNotification(receiverInbox, user){
+async function writeNotification(receiverURI, user){
+    var receiverInbox = receiverURI+"inbox/";
         //List all user
         lista = readAllNotification();
 
@@ -24,11 +25,12 @@ async function writeNotification(receiverInbox, user){
         //Write final Notification
         var noti = "@prefix : <#> . \n"
         noti+= "@prefix noti: <http://schema.org/> . \n"
-        noti+= "@prefix user: <https://user.solid.community/> . \n"
+        noti+= "@prefix user: <"+receiverURI+"/> . \n"
         noti+= "\n"
         noti+= ":notifications \n"
         noti+= "   a noti:Notification ; \n"
         noti+= text;
+        
         await podUtils.deleteFile(receiverInbox+notAppend+".ttl", false);
         await podUtils.writeTurtle(receiverInbox+notAppend, noti, false);
 }
