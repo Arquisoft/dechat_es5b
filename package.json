@@ -9,8 +9,7 @@
   "scripts": {
     "start": "webpack && node App.js",
     "test": "mocha \"./test/*\"",
-    "coverage": "nyc --reporter text-lcov node_modules/.bin/_mocha --require @babel/register -R spec --timeout 100 | coveralls",
-    "test-with-coverage": "nyc --reporter text-lcov node_modules/.bin/_mocha --require @babel/register -R spec --timeout 100 && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage",
+    "test-with-coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "travisRepo": "./test/travisRepo.sh",
     "travis-deploy-once": "travis-deploy-once",
     "puml": "puml",
