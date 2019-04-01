@@ -5,10 +5,9 @@ var podUtils = require('../src/scripts/podUtilities.js');
 
 const timeout = 2000;
 
-const credentials = {
+var credentials = {
     "idp": "https://solid.community",
     "username": "pruebaes5b",
-    "password": "CE.ji.JU-55",
     "base": "https://pruebaes5b.solid.community",
     "test": "/public/test/"
 }
@@ -23,8 +22,14 @@ const testFolderUrl = credentials.base + "/public/test/";
 const testFileUrl = testFolderUrl + "testfile";
 
 describe('Log In', function() {
-    it('Test login function', async function() {
+	it('Login Fail', async function() {
         this.timeout(4000);
+		credentials.password = "123456";
+        assert.equal(await podUtils.login(credentials), false);
+    });
+    it('Login Success', async function() {
+        this.timeout(4000);
+		credentials.password = "CE.ji.JU-55";
         assert.equal(await podUtils.login(credentials), true);
     });
 });
