@@ -127,8 +127,10 @@ async function order(userMessages, friendessages, uFolder, rFolder){
             dict.push( new message("<div class=\"containerChat\"><p id=\"noMarginMessge\">" + await podUtils.readFile(rFolder+friend.name, ToLog) + "</p><p id=\"username\">" + INFO.receiverName + " " + strDate + "</p></div>", date));
         }
         if(!(user == undefined)){
-            dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + await podUtils.readFile(uFolder+user.name, ToLog) + "</p><p id=\"username\">" + INFO.userName + " (you)</p></div>",
-            new Date(Number(user.name.replace(".txt","")))));
+			var date = new Date(Number(user.name.replace(".txt","")));
+			var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " 
+				+ date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+            dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + await podUtils.readFile(uFolder+user.name, ToLog) + "</p><p id=\"username\">" + INFO.userName + " (you)" + " " + strDate + "</p></div>", date));
         }
     }
 
