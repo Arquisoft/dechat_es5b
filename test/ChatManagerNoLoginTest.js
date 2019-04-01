@@ -15,10 +15,14 @@ const credentials = {
     "test": "/public/test/"
 }
 
-const receiver = "https://cristina.solid.community/";
+const receiver = {
+    "idp": "https://cristina.solid.community",
+    "username": "cristinamartin",
+    "testReadFile": "https://cristina.solid.community/public/SolidChat/Cristina-Mart%C3%ADn-Rey/1552487905499.txt"
+}
+
 const testFolderUrl = credentials.base + "/public/test/";
 const testFileUrl = testFolderUrl + "testfile";
-const testReadFile = "https://cristina.solid.community/public/SolidChat/Cristina-Mart%C3%ADn-Rey/1552487905499.txt";
 
 describe('Log In', function() {
     it('Test login function', async function() {
@@ -39,7 +43,7 @@ describe('Test POD Utilities', function() {
     });
     it('readFile', async function() {
         this.timeout(timeout);
-        assert.equal(await podUtils.readFile(testReadFile, false), "hola");
+        assert.equal(await podUtils.readFile(receiver.testReadFile, false), "hola");
     });
     it('readFolder', async function() {
         this.timeout(timeout);
@@ -64,17 +68,18 @@ describe('Test Chat Manager', function() {
     it('sendMessage', async function() {
         this.timeout(4000);
         chatM.INFO.userURI = credentials.base + "/";
-        chatM.INFO.receiverURI = receiver;
-        chatM.INFO.receiverName = "cristinamartin";
+        chatM.INFO.receiverURI = receiver.idp + "/";
+        chatM.INFO.receiverName = receiver.username;
+        const sendFolder = credentials.base + "/public/SolidChat/" + receiver.username;
 
-        var folder = await podUtils.readFolder(credentials.base + "/public/SolidChat/" + chatM.INFO.receiverName, false);
+        var folder = await podUtils.readFolder(sendFolder, false);
         if (folder === null) {
             var length = 0;
         } else {
             var length = folder.files.length;
         }
         assert.equal(await chatM.sendMessage("newMessage"), true);
-        folder = await podUtils.readFolder(credentials.base + "/public/SolidChat/" + chatM.INFO.receiverName, false);
+        folder = await podUtils.readFolder(sendFolder, false);
         assert.equal(folder.files.length, length + 1);
     });
 
@@ -85,7 +90,7 @@ describe('Test Chat Manager', function() {
     });
 });
 
-/*
+/*		WENJY TESTS
 describe('ChatManagerTest', function (done) {
     it('Testing SendMenssage', async function () {
 		var testPromise =  new Promise(function(resolve,reject){
@@ -103,9 +108,7 @@ describe('ChatManagerTest', function (done) {
       //let r =  await chatM.sendMessage();
       //assert.equal(r, true);
    });
- 
    it('Testing ReceiveMessage', async function () {
-
 	var testPromise =  new Promise(function(resolve,reject){
 		setTimeOut( function() {
 			resolve(chatM.receiveMessages());
@@ -121,9 +124,7 @@ describe('ChatManagerTest', function (done) {
      //let r = await chatM.receiveMessages();
      //assert.typeOf(r,"Array");
 	 });
-
 	it('Testing Order', async function () {
-
 		var testPromise =  new Promise(function(resolve,reject){
 			setTimeOut( function() {
 				resolve(chatM.order());
