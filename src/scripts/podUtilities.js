@@ -38,6 +38,13 @@ async function writeTurtle(url,content,ToLog){
       }, err => console.log(err) );
 }
 
+async function updateTurtle(url,newContent,ToLog){
+	await fileClient.updateFile( url, newContent,"text/turtle" ).then( success => {
+		if(ToLog)
+            console.log( `Updated ${url}.`)
+	}, err => console.log(err) );
+}
+
 //We have to know about what returns the method fileClient.readFile(url)
 async function readMessage(url,ToLog){
 	return await fileClient.readFile(url).then(  body => {
