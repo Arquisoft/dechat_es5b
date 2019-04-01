@@ -76,5 +76,6 @@ module.exports = {
 	createFile : writeMessage,
 	readFile : readMessage,
     deleteFile : deleteMessage,
-    writeTurtle: writeTurtle
+    writeTurtle: writeTurtle,
+    updateTurtle: updateTurtle
 }
