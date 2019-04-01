@@ -9,7 +9,7 @@
   "scripts": {
     "start": "webpack && node App.js",
     "test": "mocha \"./test/*\"",
-    "test-with-coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+	"test-with-coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "travisRepo": "./test/travisRepo.sh",
     "travis-deploy-once": "travis-deploy-once",
     "puml": "puml",
