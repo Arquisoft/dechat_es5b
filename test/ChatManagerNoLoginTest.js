@@ -57,6 +57,13 @@ describe('Test POD Utilities', function() {
 		assert.equal( await podUtils.readFile(testFolderUrl,false), null);
 	});
 });
+
+describe('ChatManagerTest', function() {
+	it('SendMenssage', async function() {
+		this.timeout(4000);
+		assert.equal( await podUtils.login(credentials) ,true);
+	});
+});
 /*
 describe('ChatManagerTest', function (done) {
     it('Testing SendMenssage', async function () {
