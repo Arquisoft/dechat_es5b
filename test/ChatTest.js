@@ -2,7 +2,6 @@ require('chai');
 var assert = require('assert');
 var chatM = require('../src/scripts/chatManager.js');
 var podUtils = require('../src/scripts/podUtilities.js');
-//const fileClient = require('solid-file-client');
 
 const timeout = 2000;
 
@@ -58,8 +57,8 @@ describe('Test POD Utilities', function() {
     });
     it('deleteFolder', async function() {
         this.timeout(timeout);
-        assert.equal(await podUtils.deleteFile(testFolderUrl, true), true);
-        assert.equal(await podUtils.readFile(testFolderUrl, true), null);
+        assert.equal(await podUtils.deleteFolder(testFolderUrl, true), true);
+        assert.equal(await podUtils.readFolder(testFolderUrl, true), null);
     });
 });
 
@@ -88,53 +87,3 @@ describe('Test Chat Manager', function() {
         assert.equal(messages.length, 5);
     });
 });
-
-/*		WENJY TESTS
-describe('ChatManagerTest', function (done) {
-    it('Testing SendMenssage', async function () {
-		var testPromise =  new Promise(function(resolve,reject){
-			setTimeOut( function() {
-				resolve(chatM.sendMessage());
-		}, 300);
-		});
-		try {
-			var result = await testPromise;
-			expect(result).to.equal(true);
-			done();
-		} catch(err) {
-			console.log(err);
-		}
-      //let r =  await chatM.sendMessage();
-      //assert.equal(r, true);
-   });
-   it('Testing ReceiveMessage', async function () {
-	var testPromise =  new Promise(function(resolve,reject){
-		setTimeOut( function() {
-			resolve(chatM.receiveMessages());
-	}, 300);
-	});
-	try {
-		var result = await testPromise;
-		expect(result).to.equal(true);
-		done();
-	} catch(err) {
-		console.log(err);
-	}
-     //let r = await chatM.receiveMessages();
-     //assert.typeOf(r,"Array");
-	 });
-	it('Testing Order', async function () {
-		var testPromise =  new Promise(function(resolve,reject){
-			setTimeOut( function() {
-				resolve(chatM.order());
-		}, 300);
-		});
-		try {
-			var result = await testPromise;
-			expect(result).to.equal(chatM.message);
-			done();
-		} catch(err) {
-			console.log(err);
-		}
-	});
-});*/
