@@ -101,6 +101,7 @@ async function sendMessage(text) {
         await podUtils.createFile(filename, jsonString, ToLog);
         //Write new Notification
         notiMan.writeNotification(INFO.receiverURI,INFO.user);
+    }
 }
 
 async function receiveMessages() {
@@ -111,13 +112,6 @@ async function receiveMessages() {
     var rFolder = INFO.receiverURI + "public/SolidChat/" + INFO.userName.trim().replace(/ /g, "-") + "/";
     var uFile = uFolder + "chat.txt";
     var rFile = rFolder + "chat.txt";
-    //Delete existing notifiations
-    notiMan.deleteNotification(INFO.userURI,INFO.receiver);
-
-	return order(MESSAGES.userMSG,MESSAGES.friendMSG,uFolder, rFolder);
-}
-
-
     var userMessages;
     var receiveMessages;
 
@@ -162,6 +156,9 @@ async function receiveMessages() {
         MESSAGES.toShow.push(n.text)
     });
     MESSAGES.toShow = MESSAGES.toShow.slice(-10);
+
+    //Delete existing notifiations
+    notiMan.deleteNotification(INFO.userURI,INFO.receiver);
 
     return MESSAGES.toShow;
 }

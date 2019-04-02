@@ -106,7 +106,6 @@ function updateMessages(toShow) {
 		console.log("Update msgs");
 	var messages = "";
   $('#messages').empty();
-  
 	toShow.forEach((message) => {
 		messages = messages + message;
 	});

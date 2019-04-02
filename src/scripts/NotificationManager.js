@@ -39,6 +39,7 @@ async function deleteNotification(userURI, reciver){
 
 //Method for write new Notification on send Msg
 async function writeNotification(receiverURI, user){
+    
     var receiverInbox = receiverURI+"inbox/";
         //List all user
         var List=[];
