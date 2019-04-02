@@ -3,7 +3,7 @@ var assert = require('assert');
 var chatM = require('../src/scripts/chatManager.js');
 var podUtils = require('../src/scripts/podUtilities.js');
 
-const timeout = 800;
+const timeout = 1500;
 
 var credentials = {
     "idp": "https://solid.community",
@@ -74,7 +74,7 @@ describe('Test Chat Manager', function() {
 	const sendFolder = credentials.base + "/public/SolidChat/" + receiver.username + "/chat.txt";
 	
     it('sendMessage', async function() {
-        this.timeout(1500);
+        this.timeout(2000);
         
 		var parsed;
         var folder = await podUtils.readFile(sendFolder, true);
@@ -90,7 +90,7 @@ describe('Test Chat Manager', function() {
     });
 
     it('receiveMessage', async function() {
-        this.timeout(1500);
+        this.timeout(3000);
         var messages = await chatM.receiveMessages();
         assert.equal(messages.length, 10);
 		assert.equal(messages[9].includes("newMessage"),true);
