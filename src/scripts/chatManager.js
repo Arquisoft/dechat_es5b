@@ -113,10 +113,12 @@ async function receiveMessages() {
     //Define folders name
     var uFolder = INFO.userURI + "public/SolidChat/" + INFO.receiverName.trim().replace(/ /g, "-") + "/";
     var rFolder = INFO.receiverURI + "public/SolidChat/" + INFO.userName.trim().replace(/ /g, "-") + "/";
+    var uFile = uFolder + "chat.txt";
+    var rFile = rFolder + "chat.txt";
 
     //User folder
     //check new conversation (folder Exists) 
-    var userFolder = await podUtils.readFolder(uFolder, ToLog);
+    /*var userFolder = await podUtils.readFolder(uFolder, ToLog);
 
     //console.log(userFolder);
     if (userFolder) {
@@ -128,8 +130,9 @@ async function receiveMessages() {
         if (ToLog)
             console.log("User Folder do not exist");
         MESSAGES.userMSG = [];
-    }
+    }*/
 
+    /*
     //Receiver folder
     //check new conversation (folder Exists)
     //Object folder readed -> get Files list
@@ -144,10 +147,55 @@ async function receiveMessages() {
         if (ToLog)
             console.log("User folder do not exist");
         MESSAGES.friendMSG = [];
+    }*/
+
+    var userMessages;
+    var receiveMessages;
+
+    var dict = [];
+    userMessages = await podUtils.readFile(uFile, ToLog);
+    receiveMessages = await podUtils.readFile(rFile, ToLog);
+    if (!userMessages) {
+        if (ToLog)
+            console.log("User chat file doesnt exist");
+        //await podUtils.createFile(uFile, JSON.stringify(dict), ToLog);
+        userMessages = "[]";
+    }
+    if (!receiveMessages) {
+        if (ToLog)
+            console.log("Friend chat file doesnt exist");
+        //await podUtils.createFile(rFile, JSON.stringify(dict), ToLog);
+        receiveMessages = "[]";
     }
 
-    return order(MESSAGES.userMSG, MESSAGES.friendMSG, uFolder, rFolder);
+    var uParsed = JSON.parse(userMessages);
+    var rParsed = JSON.parse(receiveMessages);
+
+    uParsed.forEach(element => {
+        var date = new Date(Number(element.date));
+        var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " "
+            + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + INFO.userName + " (you) " + strDate + "</p></div>", date));
+    });
+    rParsed.forEach(element => {
+        var date = new Date(Number(element.date));
+        var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " "
+            + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        dict.push(new message("<div class=\"containerChat\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + INFO.receiverName + " " + strDate + "</p></div>", date));
+    });
+
+    dict.sort(function (a, b) {
+        return a.date > b.date ? 1 : a.date < b.date ? -1 : 0;
+    });
+
+    MESSAGES.toShow = [];
+    dict.forEach((n) => {
+        MESSAGES.toShow.push(n.text)
+    });
+
+    return MESSAGES.toShow;
 }
+
 
 async function order(userMessages, friendessages, uFolder, rFolder) {
 
