@@ -1,0 +1,126 @@
+﻿nav {
+	background-color: #7031D6;
+}
+
+h1 {
+	text-align: center;
+	font-weight: bold;
+}
+
+button, label {
+	font-size: 18pt;
+    font-weight: bold;
+}
+
+img{
+	display: block;
+	margin: auto;
+}
+
+dt {
+    font-weight: bold;
+    clear: left;
+    float: left;
+}
+
+.centered{
+	font-weight: bold;
+	text-align: center;
+}
+
+.forcefullwidth{
+	width: 100% !important;
+}
+
+.whitecolor{
+	color: white;
+}
+
+/* Change sidebar selected friend color */
+.active{
+	color: black !important;
+    background-color: #EBEBEB !important;
+}
+
+/* Change sidebar not-selected friend color */
+.noactive{
+	color: white !important;
+	background-color: #9c84ff !important;
+}
+
+/* Friends list two-people-chat.html */
+.sidebar {
+	height: 100%;
+	max-width: 300px;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	background-color: #8975dd;
+}
+
+/* Main part of chat */
+.chatplace {
+	padding: 0px 10px;
+}
+
+/* Chat containers */
+.containerChat {
+  border-color: #ccc;
+  background-color: #CABDFF;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0.5em;
+  text-align: left;
+}
+
+/* Darker chat container */
+.containerChatDarker { 
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0.5em;
+  text-align: right;
+}
+
+dt:after {
+    ontent: ': ';
+}
+
+#noMargin {
+	margin: 0em;
+}
+
+#divWithShade {
+	padding: 2em;
+	-webkit-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
+	-moz-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
+}
+
+#chatRef {
+	margin-bottom: 1em;
+}
+
+#friends {
+	width: 170px
+}
+
+#divConversation {
+	padding: 2em;
+	-webkit-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
+	-moz-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
+	text-align: center;
+}
+
+#username {
+	font-size: 10px;
+	margin: 0em;
+	padding: 0em;
+}
+
+#noMarginMessge {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 0em;
+	padding-bottom: 0em;
+}
