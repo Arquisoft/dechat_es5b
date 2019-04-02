@@ -1,16 +1,16 @@
-const fileClient = require('solid-file-client');
+const fileClient = require('solid-file-client')
 const auth = require('solid-auth-client');
 
 async function login () {
 	const session = await solid.auth.currentSession();
-	if (!session)
+	if (!session){
 		await solid.auth.login('https://solid.community');
-	else
+	}else{
 		console.log(`Logged in as ${session.webId}`);
-	
-    $('#login').addClass('d-none');
-    $('#logout').removeClass('d-none');
-    $('#chatRef').removeClass('d-none');
+		$('#login').addClass('d-none');
+		$('#logout').removeClass('d-none');
+		$('#chatRef').removeClass('d-none');
+	}
     return true;
 }
 
