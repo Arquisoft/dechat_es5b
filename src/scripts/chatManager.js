@@ -1,5 +1,5 @@
 var podUtils = require('./podUtilities.js');
-var notiMan = require('./notificationManager.js');
+var notiMan = require('./NotificationManager.js');
 
 const ToLog = true;
 
