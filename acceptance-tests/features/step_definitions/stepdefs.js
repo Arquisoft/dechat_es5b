@@ -66,3 +66,20 @@ function containsFriend(friendName, friends) {
             return true;
     return false;
 }
+
+
+
+
+
+
+var nope;
+// NOT CHOOSING FRIEND
+When('I send a message {string}', function(message) {
+    if (chatManager1.INFO.receiver == null)
+        this.nope = "Nope";
+    else this.nope = "Talking alone succesfull!";
+});
+
+Then('The chat says "Nope"', function() {
+    assert.equal(nope, "Nope");
+});
