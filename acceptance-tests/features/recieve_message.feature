@@ -3,5 +3,11 @@ Feature: Can I recieve a message from a friend?
 
   Scenario Outline: Could the user recieve a message from a friend
 	Given I'm using the chat app
-    When I'm chatting with "pruebaes5b"
-    Then I recieve a message "Hi!" from my friend "pruebaes5b"
+    When I'm chatting with "<friend>"
+    Then I recieve a message "<message>" from my friend "<friend>"
+
+  Examples:
+	| message | friend |
+	| hi | pruebaes5b |
+	| how are you? | martinreycristina |
+	| good thanks | srcharlystar |

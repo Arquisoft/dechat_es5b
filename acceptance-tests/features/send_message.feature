@@ -3,8 +3,8 @@ Feature: Can I send a message to a friend?
 
   Scenario Outline: Could the user send a message to a friend
 	Given I'm using the chat app
-    When I send a message "<message>" to a friend
-    Then My friend gets the message "<message>"
+    When I send a message "<message>" to my "<friend>" friend
+    Then My friend "<friend>" gets the message "<message>"
 	
   Examples:
 	| message | friend |
