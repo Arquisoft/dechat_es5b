@@ -12,27 +12,27 @@ async function deleteNotification(userInbox, reciver){
 async function writeNotification(receiverURI, user){
     var receiverInbox = receiverURI+"inbox/";
         //List all user
-        var userList=[];
-        userList = readAllNotification(receiverURI);
+        var List=[];
+        List = await readAllNotification(receiverURI);
         
         //-----------------------------
         var existe=0;
         //UpdateList
-        for(var i=0; i<userList.length;i++){
-            if(userList[i]==user)
+        for(var i=0; i<List.length;i++){
+            if(List[i]==user)
                 existe=1;
         }
 
         if(existe==0)
-            userList = ["userPrueba"];
+            List.push(user);
 
-        userList.push(user);
+        
         //------------------------------
 
         //AddUsers
         var text= "    noti:news";
-        for(var i=0; i<userList.length;i++){
-            text+= " \""+userList[i]+"\",";
+        for(var i=0; i<List.length;i++){
+            text+= " \""+List[i]+"\",";
         }
         text=text.slice(0,-1);
         text+= " .";
