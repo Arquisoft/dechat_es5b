@@ -7,6 +7,7 @@
     a msg:message ;
     msg:date "#La fecha" ;
     msg:from sender ;
+    msg:type "text";
     msg:to user ;
     msg:text "#El Mensaje" .
     

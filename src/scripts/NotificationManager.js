@@ -37,7 +37,14 @@ async function writeNotification(receiverURI, user){
 //Methor for constantly reading new Notifications from others chat
 async function readAllNotification(){
     //Read Notification file
-    //Return all user with notifications
+    var receiverInbox = receiverURI+"inbox/";
+    var fileURL = receiverInbox+notAppend+".ttl";
+    var file = await podUtils.readFile(fileURL,false);
+    if(file){
+        //Return all user with notifications
+        console.log(file);
+    }
+    
 }
 
 module.exports = {
