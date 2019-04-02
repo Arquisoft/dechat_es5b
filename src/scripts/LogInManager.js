@@ -4,7 +4,10 @@ const auth = require('solid-auth-client');
 async function login () {
 	const session = await solid.auth.currentSession();
 	if (!session){
-		await solid.auth.login('https://solid.community');
+		if($('#desiredIDP').val() == "")
+			$('#modalIDP').modal('show');
+		else
+			await solid.auth.login($('#desiredIDP').val());
 	}else{
 		console.log(`Logged in as ${session.webId}`);
 		$('#login').addClass('d-none');
@@ -20,6 +23,9 @@ async function logout () {
     $('#logout').addClass('d-none');
     $('#chatRef').addClass('d-none');
     return true;
+}
+function setIDP(name){
+	console.log(name);
 }
 
 async function cosroro(){}

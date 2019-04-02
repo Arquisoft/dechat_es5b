@@ -21,6 +21,11 @@ $(document).ready(async function() {
 $('#login  button').click(() => loginM.login());
 $('#logout button').click(() => loginM.logout());
 
+$("#solidLogin").click(function() {
+		  $('#desiredIDP').val('https://solid.community');
+		  loginM.login();
+		});
+
 // Update components to match the user's login status
 solid.auth.trackSession(session => {
   const loggedIn = !!session;
