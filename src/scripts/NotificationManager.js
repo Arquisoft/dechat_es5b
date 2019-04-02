@@ -2,10 +2,36 @@ var podUtils = require('./podUtilities.js');
 const notAppend="SolidChatNot";
 //Method for Delete readed Notifications (Current user open)
 async function deleteNotification(userInbox, reciver){
-    //Read user inbox
-    //Check for reciver notification
-        //If true delete
-        //Else end
+    var receiverInbox = receiverURI+"inbox/";
+        //List all user
+        var List=[];
+        List = await readAllNotification(userInbox);
+        var newList=[]
+        var existe=0;
+        //UpdateList
+        for(var i=0; i<List.length;i++){
+            if(List[i]!=reciver)
+                newList.push(List[i]);
+        }
+        //AddUsers
+        var text= "    noti:news";
+        for(var i=0; i<newList.length;i++){
+            text+= " \""+newList[i]+"\",";
+        }
+        text=text.slice(0,-1);
+        text+= " .";
+
+        //Write final Notification
+        var noti = "@prefix : <#> . \n"
+        noti+= "@prefix noti: <http://schema.org/> . \n"
+        noti+= "@prefix user: <"+userInbox+"/> . \n"
+        noti+= "\n"
+        noti+= ":notifications \n"
+        noti+= "   a noti:Notification ; \n"
+        noti+= text;
+        
+        await podUtils.deleteFile(userInbox+notAppend+".ttl", false);
+        await podUtils.writeTurtle(userInbox+notAppend, noti, false);
 }
 
 //Method for write new Notification on send Msg
@@ -15,7 +41,6 @@ async function writeNotification(receiverURI, user){
         var List=[];
         List = await readAllNotification(receiverURI);
         
-        //-----------------------------
         var existe=0;
         //UpdateList
         for(var i=0; i<List.length;i++){
@@ -25,9 +50,6 @@ async function writeNotification(receiverURI, user){
 
         if(existe==0)
             List.push(user);
-
-        
-        //------------------------------
 
         //AddUsers
         var text= "    noti:news";
