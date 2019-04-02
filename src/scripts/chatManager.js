@@ -1,4 +1,5 @@
 var podUtils = require('./podUtilities.js');
+var notiMan = require('./notificationManager.js');
 
 const ToLog = true;
 
@@ -92,7 +93,6 @@ async function sendMessage(text) {
                 console.log('User folder created');
 
         }
-
         if (ToLog)
             console.log("Creating chat file");
 
@@ -102,6 +102,8 @@ async function sendMessage(text) {
         jsonString = JSON.stringify(messages);
 
         ret = await podUtils.createFile(filename, jsonString, ToLog);
+		
+        notiMan.writeNotification(INFO.receiverURI,INFO.user);
     }
 	return ret;
 }
@@ -115,7 +117,7 @@ async function receiveMessages() {
     var rFolder = INFO.receiverURI + "public/SolidChat/" + INFO.userName.trim().replace(/ /g, "-") + "/";
     var uFile = uFolder + "chat.txt";
     var rFile = rFolder + "chat.txt";
-
+	
     var userMessages;
     var receiveMessages;
 
@@ -162,12 +164,22 @@ async function receiveMessages() {
     });
     MESSAGES.toShow = MESSAGES.toShow.slice(-10);
 
+    //Delete existing notifiations
+    notiMan.deleteNotification(INFO.userURI,INFO.receiver);
+
     return MESSAGES.toShow;
+}
+
+//Function for main.js
+//Return users with new msg
+async function newNotifications(){
+    //TO-DO----------------------------------------------------------------------------------
 }
 
 module.exports = {
     sendMessage: sendMessage,
     receiveMessages: receiveMessages,
+    newNotifications: newNotifications, 
     INFO: INFO,
     ToLog: ToLog
 }

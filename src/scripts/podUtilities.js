@@ -76,6 +76,20 @@ async function writeMessage(url,content,ToLog){
 	  });
 }
 
+async function writeTurtle(url,content,ToLog){
+    await fileClient.createFile(url,content,"text/turtle").then( fileCreated => {
+        if(ToLog)
+            console.log(`Created file ${fileCreated}.`);
+      }, err => console.log(err) );
+}
+
+async function updateTurtle(url,newContent,ToLog){
+	await fileClient.updateFile( url, newContent,"text/turtle" ).then( success => {
+		if(ToLog)
+            console.log( `Updated ${url}.`)
+	}, err => console.log(err) );
+}
+
 async function readMessage(url,ToLog){
 	return await fileClient.readFile(url).then(  body => {
         if(ToLog)
@@ -106,5 +120,7 @@ module.exports = {
 	deleteFolder : deleteFolder,
 	createFile : writeMessage,
 	readFile : readMessage,
-	deleteFile : deleteMessage
+    deleteFile : deleteMessage,
+    writeTurtle: writeTurtle,
+    updateTurtle: updateTurtle
 }
