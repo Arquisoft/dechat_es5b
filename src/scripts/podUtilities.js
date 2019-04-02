@@ -22,6 +22,16 @@ async function login(credentials){
 	return result;
 }
 
+async function logout(){
+	return await fileClient.logout().then( success => {
+		console.log( `Bye now!`);
+		return true;
+	}, err => {
+		console.log(err);
+		return false;
+	});
+}
+
 async function createChatFolder(url,ToLog) {
     return await fileClient.createFolder(url).then(success => {
 			if(ToLog)
@@ -90,6 +100,7 @@ async function deleteMessage(url,ToLog){
 
 module.exports = {
 	login: login,
+	logout : logout,
 	createFolder : createChatFolder,
 	readFolder : readFolder,
 	deleteFolder : deleteFolder,

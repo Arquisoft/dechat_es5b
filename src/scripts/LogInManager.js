@@ -1,4 +1,3 @@
-const fileClient = require('solid-file-client');
 var podUtils = require('./podUtilities.js');
 
 async function login (credentials) {
@@ -9,7 +8,7 @@ async function login (credentials) {
 }
 
 async function logout () {
-    await fileClient.logout().then ( console.log( `Bye now!` ));
+    podUtils.logout();
     $('#login').removeClass('d-none');
     $('#logout').addClass('d-none');
     $('#chatRef').addClass('d-none');

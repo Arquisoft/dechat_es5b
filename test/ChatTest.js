@@ -95,4 +95,11 @@ describe('Test Chat Manager', function() {
         assert.equal(messages.length, 10);
 		assert.equal(messages[9].includes("newMessage"),true);
     });
+	
+	it('logout', async function() {
+        this.timeout(timeout);
+		assert.equal(await podUtils.logout(),true);
+    });
+	
+	
 });
