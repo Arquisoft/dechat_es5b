@@ -12,17 +12,23 @@ async function deleteNotification(userInbox, reciver){
 async function writeNotification(receiverURI, user){
     var receiverInbox = receiverURI+"inbox/";
         //List all user
-        var userList = readAllNotification(receiverURI);
+        var userList=[];
+        userList = readAllNotification(receiverURI);
         
-        
+        //-----------------------------
+        var existe=0;
         //UpdateList
         for(var i=0; i<userList.length;i++){
             if(userList[i]==user)
-                var existe=0;
+                existe=1;
         }
 
-        if(existe!=0)
-            userList.push(user);
+        if(existe==0)
+            userList = ["userPrueba"];
+
+        userList.push(user);
+        //------------------------------
+
         //AddUsers
         var text= "    noti:news";
         for(var i=0; i<userList.length;i++){
@@ -54,8 +60,11 @@ async function readAllNotification(receiverURI){
     if(file){
         //Return all user with notifications
         var usersText = file.split("\"");
-        for(var i=0; i<usersText.length ; i=i+2){
-            userList.push(usersText[i]);
+        for(var i=0; i<usersText.length ; i++){
+            if(i%2==1){
+                userList.push(usersText[i]);
+            }
+            
         }
     }   
     return userList;
