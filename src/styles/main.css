@@ -23,6 +23,15 @@ dt {
     float: left;
 }
 
+.navbar{
+	-webkit-user-select: none !important;
+	-webkit-app-region: drag !important;
+}
+
+.nodrag{
+	-webkit-app-region: no-drag !important;
+}
+
 .centered{
 	font-weight: bold;
 	text-align: center;
