@@ -1,148 +1,184 @@
 const fileClient = require('solid-file-client');
 var podUtils = require('./podUtilities.js');
 
-const ToLog=true;
+const ToLog = true;
 
-var INFO = 
+class message {
+    constructor(text, date) {
+        this.text = text;
+        this.date = date;
+    }
+}
+
+var INFO =
 {
-  user: "",
-  userName: "" ,
-  userURI:"" ,
-  receiver:""  ,
-  receiverName:"" ,
-  receiverURI:""
+    user: "",
+    userName: "",
+    userURI: "",
+    receiver: "",
+    receiverName: "",
+    receiverURI: ""
 }
 
 var MESSAGES = {
-	userMSG: [],
-	friendMSG: [],
-	toShow: []
+    userMSG: [],
+    friendMSG: [],
+    toShow: []
 }
 
 //SEND Message function login
-async function sendMessage(text){
+async function sendMessage(text) {
     //Define folders name
-    var solidChat=INFO.userURI+"public/SolidChat/";
-    var folder= solidChat+INFO.receiverName.replace(/ /g, "-")+"/";
-	
+    var solidChat = INFO.userURI + "public/SolidChat/";
+    var folder = solidChat + INFO.receiverName.replace(/ /g, "-") + "/";
+    var filename = folder + "/chat.txt";
     //Check Folder SolidChat
-    if(ToLog)
+    if (ToLog)
         console.log("Check SolidChat Exist")
-    try{
-        var err = await podUtils.readFolder(solidChat,ToLog);
-        if(!err){
-            if(ToLog)
+    try {
+        var err = await podUtils.readFolder(solidChat, ToLog);
+        if (!err) {
+            if (ToLog)
                 console.log("Solid-chat folder doesnt exist");
-            throw("error")
+            throw ("error")
         }
-    }catch(error){
+    } catch (error) {
         //New Solid-Chat folder
-        await podUtils.createFolder(solidChat,ToLog);
-        if(ToLog)
+        await podUtils.createFolder(solidChat, ToLog);
+        if (ToLog)
             console.log("Solid-chat folder created");
     }
-    
+
     //IF folder doesnt exist: create new user folder
-    if(ToLog)
-        console.log("Check user:"+INFO.receiverName+" folder")
-    try{
-        var err2 = await podUtils.readFolder(folder,ToLog);
-        if(!err2){
-            if(ToLog)
+    if (ToLog)
+        console.log("Check user:" + INFO.receiverName + " folder")
+    try {
+        var err2 = await podUtils.readFolder(folder, ToLog);
+        if (!err2) {
+            if (ToLog)
                 console.log("Folder doesnt exist");
-            throw("error")
+            throw ("error")
         }
-    }catch(error){
-         //New Folder:
-         await podUtils.createFolder(folder,ToLog);
-         if(ToLog)
+    } catch (error) {
+        //New Folder:
+        await podUtils.createFolder(folder, ToLog);
+        if (ToLog)
             console.log('User folder created');
     }
 
     //WritingMessage
-    if(ToLog)
-        console.log("Writting message: "+text);
-    await podUtils.createFile(folder+"/"+(new Date().getTime()), text, ToLog);
+    if (ToLog)
+        console.log("Writting message: " + text);
+
+
+
+    if (ToLog)
+        console.log("Check user:" + INFO.receiverName + " chat file")
+    try {
+        var err3 = await podUtils.readFile(filename);
+        if (!err3) {
+            if (ToLog)
+                console.log("Chat file doesnt exist");
+            throw ("error")
+        }
+
+        await podUtils.deleteFile(filename);
+
+        var messages = JSON.parse(err3);
+        messages.push(new message(text, new Date().getTime()));
+        jsonString = JSON.stringify(messages);
+
+        await podUtils.createFile(filename, jsonString, ToLog);
+    } catch (error) {
+        if (ToLog)
+            console.log("Creating chat file");
+
+        var messages = [];
+
+        messages.push(new message(text, new Date().getTime()));
+        jsonString = JSON.stringify(messages);
+
+        await podUtils.createFile(filename, jsonString, ToLog);
+    }
+
+
+
+
+    await podUtils.createFile(folder + "/" + (new Date().getTime()) + ".txt", text, ToLog);
 }
 
-async function receiveMessages(){
-    if(ToLog)
+async function receiveMessages() {
+    if (ToLog)
         console.log("ReceivingMessages")
-	//Define folders name
-    var uFolder=INFO.userURI+"public/SolidChat/"+INFO.receiverName.trim().replace(/ /g, "-")+"/";
-	var rFolder=INFO.receiverURI+"public/SolidChat/"+INFO.userName.trim().replace(/ /g, "-")+"/";
+    //Define folders name
+    var uFolder = INFO.userURI + "public/SolidChat/" + INFO.receiverName.trim().replace(/ /g, "-") + "/";
+    var rFolder = INFO.receiverURI + "public/SolidChat/" + INFO.userName.trim().replace(/ /g, "-") + "/";
 
     //User folder
-        //check new conversation (folder Exists) 
-        var userFolder = await podUtils.readFolder(uFolder, ToLog);
+    //check new conversation (folder Exists) 
+    var userFolder = await podUtils.readFolder(uFolder, ToLog);
 
-        //console.log(userFolder);
-		if(userFolder){
-            if(ToLog)
-                console.log("User folder exist");
-            MESSAGES.userMSG = userFolder.files;
-        }else{
-            //Nothing to read -> empty list
-            if(ToLog)
-                console.log("User Folder do not exist");
-			MESSAGES.userMSG = [];
-        }
-		
+    //console.log(userFolder);
+    if (userFolder) {
+        if (ToLog)
+            console.log("User folder exist");
+        MESSAGES.userMSG = userFolder.files;
+    } else {
+        //Nothing to read -> empty list
+        if (ToLog)
+            console.log("User Folder do not exist");
+        MESSAGES.userMSG = [];
+    }
+
     //Receiver folder
-        //check new conversation (folder Exists)
-        //Object folder readed -> get Files list
-		var receiverFolder = await podUtils.readFolder(rFolder, ToLog);
-        //console.log(receiverFolder);
-		if(receiverFolder){
-            if(ToLog)
-                console.log("Receiver folder exist");
-            MESSAGES.friendMSG = receiverFolder.files;
-        }else{
-            //Nothing to read -> empty list
-            if(ToLog)
-                console.log("User folder do not exist");
-			MESSAGES.friendMSG = [];
-        }
+    //check new conversation (folder Exists)
+    //Object folder readed -> get Files list
+    var receiverFolder = await podUtils.readFolder(rFolder, ToLog);
+    //console.log(receiverFolder);
+    if (receiverFolder) {
+        if (ToLog)
+            console.log("Receiver folder exist");
+        MESSAGES.friendMSG = receiverFolder.files;
+    } else {
+        //Nothing to read -> empty list
+        if (ToLog)
+            console.log("User folder do not exist");
+        MESSAGES.friendMSG = [];
+    }
 
-	return order(MESSAGES.userMSG,MESSAGES.friendMSG,uFolder, rFolder);
+    return order(MESSAGES.userMSG, MESSAGES.friendMSG, uFolder, rFolder);
 }
 
-async function order(userMessages, friendessages, uFolder, rFolder){
-    
-    var dict = [];
-    class message {
-        constructor(text, date) {
-            this.text = text;
-            this.date = date;
-        }
-    }
+async function order(userMessages, friendessages, uFolder, rFolder) {
 
-    for(var i = 0; i < 5 ; i++){
+    var dict = [];
+
+    for (var i = 0; i < 5; i++) {
         var user = userMessages.pop();
         var friend = friendessages.pop();
-        if(!(friend == undefined)){
-			var date = new Date(Number(friend.name.replace(".txt","")));
-			var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " 
-				+ date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-            dict.push( new message("<div class=\"containerChat\"><p id=\"noMarginMessge\">" + await podUtils.readFile(rFolder+friend.name, ToLog) + "</p><p id=\"username\">" + INFO.receiverName + " " + strDate + "</p></div>", date));
+        if (!(friend == undefined)) {
+            var date = new Date(Number(friend.name.replace(".txt", "")));
+            var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " "
+                + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+            dict.push(new message("<div class=\"containerChat\"><p id=\"noMarginMessge\">" + await podUtils.readFile(rFolder + friend.name, ToLog) + "</p><p id=\"username\">" + INFO.receiverName + " " + strDate + "</p></div>", date));
         }
-        if(!(user == undefined)){
-			var date = new Date(Number(user.name.replace(".txt","")));
-			var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " 
-				+ date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-            dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + await podUtils.readFile(uFolder+user.name, ToLog) + "</p><p id=\"username\">" + INFO.userName + " (you)" + " " + strDate + "</p></div>", date));
+        if (!(user == undefined)) {
+            var date = new Date(Number(user.name.replace(".txt", "")));
+            var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " "
+                + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+            dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + await podUtils.readFile(uFolder + user.name, ToLog) + "</p><p id=\"username\">" + INFO.userName + " (you)" + " " + strDate + "</p></div>", date));
         }
     }
 
-    dict.sort(function(a, b) {
-        return a.date>b.date ? 1 : a.date<b.date ? -1 : 0;
+    dict.sort(function (a, b) {
+        return a.date > b.date ? 1 : a.date < b.date ? -1 : 0;
     });
 
     MESSAGES.toShow = [];
-    dict.forEach( (n) => {
+    dict.forEach((n) => {
         MESSAGES.toShow.push(n.text)
     });
-    
+
     return MESSAGES.toShow;
 }
 
@@ -150,5 +186,5 @@ module.exports = {
     sendMessage: sendMessage,
     receiveMessages: receiveMessages,
     INFO: INFO,
-	ToLog: ToLog
+    ToLog: ToLog
 }
