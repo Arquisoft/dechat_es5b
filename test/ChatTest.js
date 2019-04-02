@@ -92,6 +92,7 @@ describe('Test Chat Manager', function() {
     it('receiveMessage', async function() {
         this.timeout(timeout);
         var messages = await chatM.receiveMessages();
-        assert.equal(messages.length, 5);
+        assert.equal(messages.length, 10);
+		assert.equal(messages[9].includes("newMessage"),true);
     });
 });
