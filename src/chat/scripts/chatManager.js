@@ -61,6 +61,7 @@ async function sendMessage(text){
     if(ToLog)
         console.log("Writting message: "+text);
     await writeMessage(folder+"/"+(new Date().getTime()), text);
+	return true;
 }
 
 //TO-DO
