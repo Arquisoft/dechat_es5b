@@ -32,46 +32,10 @@ async function sendMessage(text) {
     var solidChat = INFO.userURI + "public/SolidChat/";
     var folder = solidChat + INFO.receiverName.replace(/ /g, "-") + "/";
     var filename = folder + "/chat.txt";
-    //Check Folder SolidChat
-    if (ToLog)
-        console.log("Check SolidChat Exist")
-    try {
-        var err = await podUtils.readFolder(solidChat, ToLog);
-        if (!err) {
-            if (ToLog)
-                console.log("Solid-chat folder doesnt exist");
-            throw ("error")
-        }
-    } catch (error) {
-        //New Solid-Chat folder
-        await podUtils.createFolder(solidChat, ToLog);
-        if (ToLog)
-            console.log("Solid-chat folder created");
-    }
-
-    //IF folder doesnt exist: create new user folder
-    if (ToLog)
-        console.log("Check user:" + INFO.receiverName + " folder")
-    try {
-        var err2 = await podUtils.readFolder(folder, ToLog);
-        if (!err2) {
-            if (ToLog)
-                console.log("Folder doesnt exist");
-            throw ("error")
-        }
-    } catch (error) {
-        //New Folder:
-        await podUtils.createFolder(folder, ToLog);
-        if (ToLog)
-            console.log('User folder created');
-    }
 
     //WritingMessage
     if (ToLog)
         console.log("Writting message: " + text);
-
-
-
     if (ToLog)
         console.log("Check user:" + INFO.receiverName + " chat file")
     try {
@@ -90,6 +54,43 @@ async function sendMessage(text) {
 
         await podUtils.createFile(filename, jsonString, ToLog);
     } catch (error) {
+
+        //IF folder doesnt exist: create new user folder
+        if (ToLog)
+            console.log("Check user:" + INFO.receiverName + " folder")
+        try {
+            var err2 = await podUtils.readFolder(folder, ToLog);
+            if (!err2) {
+                if (ToLog)
+                    console.log("Folder doesnt exist");
+                throw ("error")
+            }
+        } catch (error) {
+
+            //Check Folder SolidChat
+            if (ToLog)
+                console.log("Check SolidChat Exist")
+            try {
+                var err = await podUtils.readFolder(solidChat, ToLog);
+                if (!err) {
+                    if (ToLog)
+                        console.log("Solid-chat folder doesnt exist");
+                    throw ("error")
+                }
+            } catch (error) {
+                //New Solid-Chat folder
+                await podUtils.createFolder(solidChat, ToLog);
+                if (ToLog)
+                    console.log("Solid-chat folder created");
+            }
+
+            //New Folder:
+            await podUtils.createFolder(folder, ToLog);
+            if (ToLog)
+                console.log('User folder created');
+
+        }
+
         if (ToLog)
             console.log("Creating chat file");
 
@@ -100,11 +101,6 @@ async function sendMessage(text) {
 
         await podUtils.createFile(filename, jsonString, ToLog);
     }
-
-
-
-
-    await podUtils.createFile(folder + "/" + (new Date().getTime()) + ".txt", text, ToLog);
 }
 
 async function receiveMessages() {
