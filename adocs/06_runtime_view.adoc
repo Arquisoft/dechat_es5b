@@ -14,7 +14,7 @@ The login process will be done by users when they log in with their pesonal id t
 4. The server approve or deny the authentication.
 6. The user can start chatting.
 
-image:06_login.png[Log in diagram]
+image::images/06_login.png[Log in diagram]
 
 === Chat with added friends
 The users use the application to chat with their friends. Here we will explain the sequence for send messages.
@@ -24,4 +24,4 @@ The users use the application to chat with their friends. Here we will explain t
 3. User 2's application requests received messages to the pod. The pod makes them available to the application and shows them through the interface.
 4. User 2 reads the recieved messages from the application.
 
-image::06_messages.png[Exchange messages diagram]
+image::images/06_messages.png[Exchange messages diagram]

@@ -9,7 +9,7 @@ We have decomposed the block in two parts: We have the login part and the chat r
 
 It is necessary to incorporate the login module since the application is customized according to the logged user.
 
-image:05_block_view_diagram.png["Hierarchy of building blocks"]
+image::images/05_block_view_diagram.png["Hierarchy of building blocks"]
 
 Contained building blocks::
     - Login: 
@@ -42,4 +42,4 @@ The interface also shows, once the friend with whom to chat is selected, a panel
 
 Below is a sketch of the interface of our chat room.
 
-image:05_chat_room_sketch.png["Chat room sketch"]
+image::images/05_chat_room_sketch.png["Chat room sketch"]
