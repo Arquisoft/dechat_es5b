@@ -15,7 +15,7 @@ async function login () {
 }
 
 async function logout () {
-    await fileClient.logout().then ( console.log( `Bye now!` ));
+	solid.auth.logout().then(() => console.log("Sesión cerrada"));
     $('#login').removeClass('d-none');
     $('#logout').addClass('d-none');
     $('#chatRef').addClass('d-none');

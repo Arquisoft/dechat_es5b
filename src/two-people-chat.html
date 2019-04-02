@@ -13,6 +13,8 @@
 	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 	<script src="scripts/jquery.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script defer src="scripts/solid-auth-client.bundle.js"></script>
+    <script defer src="index.js"></script>
 	<!-- Insert this line after script imports -->
 	<script>if (window.module) module = window.module;</script>
 	
@@ -37,7 +39,7 @@
 				</div>
 			</li>
 			<li class="nav-item">
-				<a class="whitecolor nav-link" href="/" id="logout">Log out</a>
+				<a class="whitecolor nav-link" href="#" id="navBarLogout">Log out</a>
 			</li>
 		</ul>
 	</nav>
@@ -79,7 +81,11 @@
 		</footer>
 	</div>
 	
-    <script src="./scripts/solid-auth-client.bundle.js"></script>
-    <script src="./index.js"></script>
+	<script>
+		$('#navBarLogout').click(function() {
+			solid.auth.logout().then(() => console.log("Sesión cerrada"));
+			window.location.href = "/";
+		});
+	</script>
 </body>
 </html>
