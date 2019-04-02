@@ -1,0 +1,25 @@
+@prefix : <#> .
+@prefix msg: <http://schema.org/> .
+@prefix user: <https://user.solid.community/> .
+@prefix sender: <https://sender.solid.community/> . 
+
+:timeStamp
+    a msg:message ;
+    msg:date "#La fecha" ;
+    msg:from sender ;
+    msg:type "text";
+    msg:to user ;
+    msg:text "#El Mensaje" .
+    
+
+-------------------NOTIFICATION-----------------------------------------------
+
+@prefix : <#> .
+@prefix noti: <http://schema.org/> .
+@prefix user: <https://user.solid.community/> .
+
+:notifications
+    a noti:notification .
+    noti:news "user1", "user2","user3" .
+    
+
