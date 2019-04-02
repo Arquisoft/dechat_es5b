@@ -74,7 +74,7 @@ describe('Test Chat Manager', function() {
 	const sendFolder = credentials.base + "/public/SolidChat/" + receiver.username + "/chat.txt";
 	
     it('sendMessage', async function() {
-        this.timeout(timeout);
+        this.timeout(1500);
         
 		var parsed;
         var folder = await podUtils.readFile(sendFolder, true);
@@ -90,7 +90,7 @@ describe('Test Chat Manager', function() {
     });
 
     it('receiveMessage', async function() {
-        this.timeout(timeout);
+        this.timeout(1500);
         var messages = await chatM.receiveMessages();
         assert.equal(messages.length, 10);
 		assert.equal(messages[9].includes("newMessage"),true);
