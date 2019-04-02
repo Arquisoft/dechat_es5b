@@ -71,14 +71,15 @@ async function writeNotification(receiverURI, user){
         noti+= ":notifications \n"
         noti+= "   a noti:Notification ; \n"
         noti+= text;
-        
+        console.log("#########Borrando");
         await podUtils.deleteFile(receiverInbox+notAppend+".ttl", false);
+        console.log("########Escribiendo");
         await podUtils.writeTurtle(receiverInbox+notAppend, noti, false);
 }
 //Methor for constantly reading new Notifications from others chat
 async function readAllNotification(receiverURI){
     //Read Notification file
-    var receiverInbox = receiverURI+"inbox/";
+    var receiverInbox = receiverURI;
     var fileURL = receiverInbox+notAppend+".ttl";
     var file = await podUtils.readFile(fileURL,true);
 
@@ -92,7 +93,15 @@ async function readAllNotification(receiverURI){
             }
             
         }
-    }   
+    }else{
+        var noti = "@prefix : <#> . \n"
+        noti+= "@prefix noti: <http://schema.org/> . \n"
+        noti+= "@prefix user: <"+receiverURI+"/> . \n"
+        noti+= "\n"
+        noti+= ":notifications \n"
+        noti+= "   a noti:Notification ; \n"
+        await podUtils.writeTurtle(receiverInbox+notAppend, noti, false);
+    }
     return userList;
 }
 

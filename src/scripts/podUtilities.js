@@ -92,8 +92,8 @@ async function updateTurtle(url,newContent,ToLog){
 
 async function readMessage(url,ToLog){
 	return await fileClient.readFile(url).then(  body => {
-        if(ToLog)
-            console.log(`File	content is : ${body}.`);
+        //if(ToLog)
+            //console.log(`File	content is : ${body}.`);
 		return body;
 	}, err => {
 		console.log(err);
