@@ -10,17 +10,28 @@ Web chat application using JavaScript technologies based on SOLID specifications
 image:https://cdn-eliostruyf.azureedge.net/wp-content/uploads/2016/10/101116_0811_Gettingupto1.png["Webpack", link="https://webpack.js.org/concepts",200,200]
 image:https://software.intel.com/sites/default/files/managed/fa/a0/Runtime-logo-Node.jpg["Nodejs", link="https://nodejs.org/en/about/",200,200]
 
-== Beginnings
-Our app requires https://nodejs.org/en/[Node.js] to use it.
+== You can use our chat in two ways:
 
-== Clone our repository
+=== Using the web page associated with this git repository:
+You have to access to the following link:
+
+----
+https://arquisoft.github.io/dechat_es5b/
+----
+
+=== Locally on your computer:
+
+==== Beginnings
+Our app requires https://nodejs.org/en/download/[Node.js] to use it.
+
+==== Clone our repository
 Using, for example, the desktop app https://git-scm.com/[Git] or any other version control tool, you have to execute:
 
 ----
 git clone https://github.com/Arquisoft/dechat_es5b.git
 ----
 
-== Launch the app
+==== Launch the app
 Once the repository has been cloned, you have to move to the root folder of the project:
 
 ----
@@ -46,13 +57,13 @@ http://localhost:1919
 ----
 
 == Test
-To launch the tests, you have to execute:
+To launch the tests locally on your computer, you have to execute:
 
 ----
 npm run test
 ----
 
-To launch the acceptance tests, you have to execute:
+To launch the acceptance tests locally on your computer, you have to execute:
 
 ----
 npm run acceptance
@@ -63,5 +74,5 @@ npm run acceptance
 You can access to the following link if you want to know more about the project. We have followed the https://arc42.org/[arc42] template.
 
 ----
-https://arquisoft.github.io/dechat_es5b/
+https://arquisoft.github.io/dechat_es5b/docs
 ----
