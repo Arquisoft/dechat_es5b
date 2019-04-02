@@ -8,7 +8,7 @@ let loginWindow;
 
 function startup () {
 	// Crea la ventana del navegador.
-	mainWindow = new BrowserWindow({ width: 1280, height: 720, frame: false });
+	mainWindow = new BrowserWindow({ width: 1280, height: 720, frame: true });
 	
 	//Limpiamos cookies
 	mainWindow.webContents.session.clearStorageData([], function (data) {
