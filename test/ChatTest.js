@@ -101,5 +101,28 @@ describe('Test Chat Manager', function() {
 		assert.equal(await podUtils.logout(),true);
     });
 	
-	
+	it('sendMessage when there is no SolidChat folder', async function() {
+		this.timeout(5000);
+		
+		const pepaCredentials = {
+			"idp": "https://solid.community",
+			"username": "pepa",
+			"base": "https://pepa.solid.community",
+			"password": "4152524152636352"
+		}
+		const pepaFolder = pepaCredentials.base + "/public/SolidChat/";
+		
+		chatM.INFO.userURI = pepaCredentials.base + "/";
+		
+		assert.equal(await podUtils.login(pepaCredentials), true);
+		assert.equal(await chatM.sendMessage("pepaMessage"), true);
+		var messages = await chatM.receiveMessages();
+		assert.equal(messages[0].includes("pepaMessage"),true);
+		
+		assert.equal(await podUtils.deleteFile(pepaFolder + receiver.username + "/chat.txt",true), true);
+		assert.equal(await podUtils.deleteFolder(pepaFolder  + receiver.username + "/",true), true);
+		assert.equal(await podUtils.deleteFolder(pepaFolder,true), true);
+		
+		chatM.INFO.userURI = credentials.base + "/";
+    });
 });
