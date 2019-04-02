@@ -102,7 +102,7 @@ describe('Test Chat Manager', function() {
     });
 	
 	it('sendMessage when there is no SolidChat folder', async function() {
-		this.timeout(5000);
+		this.timeout(10000);
 		
 		const pepaCredentials = {
 			"idp": "https://solid.community",
