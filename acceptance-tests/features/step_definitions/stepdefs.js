@@ -1,7 +1,6 @@
 const assert = require('assert');
 const { Given, When, Then } = require('cucumber');
 const chatManager1 = require("../../../src/chat/scripts/chatManager.js");
-const chatManager2 = require("../../../src/chat/scripts/chatManager.js");
 
 // SEND MESSAGE
 Given('I\'m using the chat app', function() {
@@ -28,7 +27,7 @@ When('I\'m chatting with {string}', function(friendName) {
 });
 
 Then('I recieve a message {string} from my friend {string}', function(message, friendName) {
-    chatManager1.MESSAGES.friendMSG = [message, "How are you?"];
+    chatManager1.MESSAGES.friendMSG = [message, "another by default"];
     assert.equal(chatManager1.getReceiver(), friendName);
     assert.equal(containsMessageAndFriend(chatManager1, message, friendName), true);
 });
@@ -50,3 +49,20 @@ When('I want to start chatting with my friend {string}', function(friendName) {
 Then('{string} is the right person to send the message', function(friendName) {
     assert.equal(chatManager1.getReceiver(), friendName);
 });
+
+// CHECK FRIENDS
+When('I want to start a chat with my friend {string}', function(friendName) {
+    chatManager1.getFriends = function() { return [friendName, "Lucas", "Fernando"]; }
+});
+
+Then('{string} appears in the friends list', function(friendName) {
+    assert.equal(containsFriend(friendName, chatManager1.getFriends()), true);
+});
+
+function containsFriend(friendName, friends) {
+    var i;
+    for (i = 0; i < friends.length; i++)
+        if (friends[i] === friendName)
+            return true;
+    return false;
+}
