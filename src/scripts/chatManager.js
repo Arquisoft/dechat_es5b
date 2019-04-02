@@ -65,7 +65,7 @@ async function sendMessage(text){
     await podUtils.createFile(folder+"/"+(new Date().getTime()), text, ToLog);
 
     //Write new Notification
-    notiMan.writeNotification(INFO.userURI,INFO.user);
+    notiMan.writeNotification(INFO.receiverURI,INFO.user);
 }
 
 async function receiveMessages(){
@@ -108,8 +108,7 @@ async function receiveMessages(){
         }
 
     //Delete existing notifiations
-    var userInbox = INFO.userURI+"inbox/";
-    notiMan.deleteNotification(userInbox,INFO.receiver);
+    notiMan.deleteNotification(INFO.userURI,INFO.receiver);
 
 	return order(MESSAGES.userMSG,MESSAGES.friendMSG,uFolder, rFolder);
 }

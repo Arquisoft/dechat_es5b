@@ -1,13 +1,13 @@
 var podUtils = require('./podUtilities.js');
 const notAppend="SolidChatNot";
 //Method for Delete readed Notifications (Current user open)
-async function deleteNotification(userInbox, reciver){
-    var receiverInbox = receiverURI+"inbox/";
+async function deleteNotification(userURI, reciver){
+    var userInbox = userURI+"inbox/";
         //List all user
         var List=[];
         List = await readAllNotification(userInbox);
         var newList=[]
-        var existe=0;
+
         //UpdateList
         for(var i=0; i<List.length;i++){
             if(List[i]!=reciver)
