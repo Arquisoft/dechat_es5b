@@ -116,38 +116,6 @@ async function receiveMessages() {
     var uFile = uFolder + "chat.txt";
     var rFile = rFolder + "chat.txt";
 
-    //User folder
-    //check new conversation (folder Exists) 
-    /*var userFolder = await podUtils.readFolder(uFolder, ToLog);
-
-    //console.log(userFolder);
-    if (userFolder) {
-        if (ToLog)
-            console.log("User folder exist");
-        MESSAGES.userMSG = userFolder.files;
-    } else {
-        //Nothing to read -> empty list
-        if (ToLog)
-            console.log("User Folder do not exist");
-        MESSAGES.userMSG = [];
-    }*/
-
-    /*
-    //Receiver folder
-    //check new conversation (folder Exists)
-    //Object folder readed -> get Files list
-    var receiverFolder = await podUtils.readFolder(rFolder, ToLog);
-    //console.log(receiverFolder);
-    if (receiverFolder) {
-        if (ToLog)
-            console.log("Receiver folder exist");
-        MESSAGES.friendMSG = receiverFolder.files;
-    } else {
-        //Nothing to read -> empty list
-        if (ToLog)
-            console.log("User folder do not exist");
-        MESSAGES.friendMSG = [];
-    }*/
 
     var userMessages;
     var receiveMessages;
@@ -192,40 +160,7 @@ async function receiveMessages() {
     dict.forEach((n) => {
         MESSAGES.toShow.push(n.text)
     });
-
-    return MESSAGES.toShow;
-}
-
-
-async function order(userMessages, friendessages, uFolder, rFolder) {
-
-    var dict = [];
-
-    for (var i = 0; i < 5; i++) {
-        var user = userMessages.pop();
-        var friend = friendessages.pop();
-        if (!(friend == undefined)) {
-            var date = new Date(Number(friend.name.replace(".txt", "")));
-            var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " "
-                + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-            dict.push(new message("<div class=\"containerChat\"><p id=\"noMarginMessge\">" + await podUtils.readFile(rFolder + friend.name, ToLog) + "</p><p id=\"username\">" + INFO.receiverName + " " + strDate + "</p></div>", date));
-        }
-        if (!(user == undefined)) {
-            var date = new Date(Number(user.name.replace(".txt", "")));
-            var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " "
-                + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-            dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + await podUtils.readFile(uFolder + user.name, ToLog) + "</p><p id=\"username\">" + INFO.userName + " (you)" + " " + strDate + "</p></div>", date));
-        }
-    }
-
-    dict.sort(function (a, b) {
-        return a.date > b.date ? 1 : a.date < b.date ? -1 : 0;
-    });
-
-    MESSAGES.toShow = [];
-    dict.forEach((n) => {
-        MESSAGES.toShow.push(n.text)
-    });
+    MESSAGES.toShow = MESSAGES.toShow.slice(-10);
 
     return MESSAGES.toShow;
 }

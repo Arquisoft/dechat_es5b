@@ -83,10 +83,10 @@ async function loadProfile() {
 			  ));
 	});
 }
-/*
+
 window.setInterval(async function(){
-  updateMessges(await chatM.receiveMessages());
-}, 4000);*/
+  updateMessages(await chatM.receiveMessages());
+}, 2000);
 
 function updateMessages(toShow){
   if(chatM.ToLog)
