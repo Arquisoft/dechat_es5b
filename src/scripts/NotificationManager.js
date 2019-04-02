@@ -14,12 +14,15 @@ async function deleteNotification(userURI, reciver){
                 newList.push(List[i]);
         }
         //AddUsers
-        var text= "    noti:news";
-        for(var i=0; i<newList.length;i++){
-            text+= " \""+newList[i]+"\",";
+        var text ="";
+        if(newList.length>0){
+            text= "    noti:news";
+            for(var i=0; i<newList.length;i++){
+                text+= " \""+newList[i]+"\",";
+            }
+            text=text.slice(0,-1);
+            text+= " .";
         }
-        text=text.slice(0,-1);
-        text+= " .";
 
         //Write final Notification
         var noti = "@prefix : <#> . \n"
