@@ -12,14 +12,22 @@ async function deleteNotification(userInbox, reciver){
 async function writeNotification(receiverURI, user){
     var receiverInbox = receiverURI+"inbox/";
         //List all user
-        lista = readAllNotification();
-
+        var userList = readAllNotification(receiverURI);
+        
         //UpdateList
-        //TO-DO
+        for(var i=0; i<userList.length;i++){
+            if(userList[i]==user)
+                var existe=0;
+        }
 
+        if(!existe)
+        userList.add(user);
         //AddUsers
         var text= "    noti:news";
-        text+= " \"user\" ";
+        for(var i=0; i<userList.length;i++){
+            text+= " \""+userList[i]+"\",";
+        }
+        text=text.slice(0,-1);
         text+= " .";
 
         //Write final Notification
@@ -35,16 +43,21 @@ async function writeNotification(receiverURI, user){
         await podUtils.writeTurtle(receiverInbox+notAppend, noti, false);
 }
 //Methor for constantly reading new Notifications from others chat
-async function readAllNotification(){
+async function readAllNotification(receiverURI){
     //Read Notification file
     var receiverInbox = receiverURI+"inbox/";
     var fileURL = receiverInbox+notAppend+".ttl";
-    var file = await podUtils.readFile(fileURL,false);
+    var file = await podUtils.readFile(fileURL,true);
+
+    var userList=[];
     if(file){
         //Return all user with notifications
-        console.log(file);
-    }
-    
+        var usersText = file.split("\"");
+        for(var i=0; i<usersText.length ; i=i+2){
+            userList.add(usersText[i]);
+        }
+    }   
+    return userList;
 }
 
 module.exports = {
