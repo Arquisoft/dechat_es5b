@@ -5,18 +5,25 @@ Here we will explain using scenarios some of the quality requeriments of this pr
 ****
 .List of requirements
 
+[underline]#*Most Basic requirement*#
 
-* The first and most important is the protection towards the private information of the user, we will acomplish this by saving every information of the user in a POD, but only those of the user himself never those of the other users. This POD can only be accesed by the user and those who have the permission of the user.[High priority]
+* The first and most important is the protection towards the private information of the user, because it is the main objetive of our proyect. We will acomplish this by saving every information of the user in a POD, but only those of the user himself never those of the other users. This POD can only be accesed by the user and those who have the permission of the user.[High priority]
 
 image::images/Diagram_quality_requeriments_01.png[]
 
-* The second will be the correct exchange of information in the chat. If you write something in the chat you expects it to reach the other person almost instantly, not only that, it needs to be exactly what you have written.[High priority] 
 
 ****
 
+
+=== Quality Tree
+
+image::images/QualityTree.png[]
+
+
+
 === Quality Scenarios
 
-[role="arc42help"]
+
 ****
 
 [cols=3*,options="header"]
@@ -56,3 +63,4 @@ image::images/Diagram_quality_requeriments_01.png[]
 
 
 ****
+

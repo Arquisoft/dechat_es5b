@@ -22,7 +22,6 @@ async function login(credentials){
 	return result;
 }
 
-//POD utility funcs
 async function createChatFolder(url,ToLog) {
     return await fileClient.createFolder(url).then(success => {
 			if(ToLog)
@@ -57,7 +56,7 @@ async function deleteFolder(url,ToLog){
 }
 
 async function writeMessage(url,content,ToLog){
-    return await fileClient.createFile(url,content,"text/plain").then( fileCreated => {
+    return await fileClient.createFile(url,content).then(fileCreated => {
         if(ToLog)
             console.log(`Created file ${fileCreated}.`);
 		return true;
