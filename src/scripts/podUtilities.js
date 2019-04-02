@@ -25,7 +25,7 @@ async function deleteFolder(url,ToLog){
 }
 
 async function writeMessage(url,content,ToLog){
-    await fileClient.createFile(url,content,"text/plain").then( fileCreated => {
+    await fileClient.createFile(url,content).then( fileCreated => {
         if(ToLog)
             console.log(`Created file ${fileCreated}.`);
       }, err => console.log(err) );
@@ -48,8 +48,8 @@ async function updateTurtle(url,newContent,ToLog){
 //We have to know about what returns the method fileClient.readFile(url)
 async function readMessage(url,ToLog){
 	return await fileClient.readFile(url).then(  body => {
-        if(ToLog)
-            //console.log(`File	content is : ${body}.`);
+        /*if(ToLog)
+            console.log(`File	content is : ${body}.`);*/
 	  return body;
 	}, err => console.log(err) );
 }

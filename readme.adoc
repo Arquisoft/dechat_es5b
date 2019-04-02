@@ -20,7 +20,7 @@ git clone https://github.com/Arquisoft/dechat_es5b.git
 ----
 
 == Launch the app
-Once the repository has been cloned, you have to to start the Node.js command prompt and move to the root folder of the project:
+Once the repository has been cloned, you have to move to the root folder of the project:
 
 ----
 cd dechat_es5b
@@ -35,13 +35,26 @@ npm install
 Once the installation is complete, you have to execute:
 
 ----
-npm start
+npm run start
 ----
 
 Now the application is ready to be used. You only have to open the web browser and access to:
 
 ----
 http://localhost:1919
+----
+
+== Test
+To launch the tests, you have to execute:
+
+----
+npm run test
+----
+
+To launch the acceptance tests, you have to execute:
+
+----
+npm run acceptance
 ----
 
 == Documentation
