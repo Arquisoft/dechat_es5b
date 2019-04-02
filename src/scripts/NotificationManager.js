@@ -14,14 +14,15 @@ async function writeNotification(receiverURI, user){
         //List all user
         var userList = readAllNotification(receiverURI);
         
+        
         //UpdateList
         for(var i=0; i<userList.length;i++){
             if(userList[i]==user)
                 var existe=0;
         }
 
-        if(!existe)
-        userList.add(user);
+        if(existe!=0)
+            userList.push(user);
         //AddUsers
         var text= "    noti:news";
         for(var i=0; i<userList.length;i++){
@@ -54,7 +55,7 @@ async function readAllNotification(receiverURI){
         //Return all user with notifications
         var usersText = file.split("\"");
         for(var i=0; i<usersText.length ; i=i+2){
-            userList.add(usersText[i]);
+            userList.push(usersText[i]);
         }
     }   
     return userList;
