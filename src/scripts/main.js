@@ -31,7 +31,7 @@ $('#sendButton').click(
 		else {
 			//Message to be sent, contents of file.
 			var text = $('#messageText').val();
-			//if (!text.trim().length === 0) {
+			if (!(text.trim().length === 0)) {
 				//Send MSG
 				console.log("Sending from:" + chatM.INFO.userName + "		To:" + chatM.INFO.receiverName + "			text:" + text);
 				await chatM.sendMessage(text);
@@ -39,7 +39,7 @@ $('#sendButton').click(
 				//Erase input field
 				$('#messageText').val('');
 				updateMessages(await chatM.receiveMessages());
-			//}
+			}
 		}
 	}
 );
