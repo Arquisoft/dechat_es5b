@@ -3,7 +3,7 @@ var assert = require('assert');
 var chatM = require('../src/scripts/chatManager.js');
 var podUtils = require('../src/scripts/podUtilities.js');
 
-const timeout = 2000;
+const timeout = 800;
 
 var credentials = {
     "idp": "https://solid.community",
@@ -41,7 +41,7 @@ describe('Test POD Utilities', function() {
     });
     it('createFile', async function() {
         this.timeout(timeout);
-        assert.equal(await podUtils.createFile(testFileUrl, "test create file", true), true);
+        assert.equal(await podUtils.createFile(testFileUrl + ".txt", "test create file", true), true);
         assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), "test create file");
     });
     it('readFile', async function() {
@@ -68,26 +68,29 @@ describe('Test POD Utilities', function() {
 });
 
 describe('Test Chat Manager', function() {
+	chatM.INFO.userURI = credentials.base + "/";
+	chatM.INFO.receiverURI = receiver.idp + "/";
+	chatM.INFO.receiverName = receiver.username;
+	const sendFolder = credentials.base + "/public/SolidChat/" + receiver.username + "/chat.txt";
+	
     it('sendMessage', async function() {
-        this.timeout(4000);
-        chatM.INFO.userURI = credentials.base + "/";
-        chatM.INFO.receiverURI = receiver.idp + "/";
-        chatM.INFO.receiverName = receiver.username;
-        const sendFolder = credentials.base + "/public/SolidChat/" + receiver.username;
-
-        var folder = await podUtils.readFolder(sendFolder, true);
-        if (folder === null) {
+        this.timeout(timeout);
+        
+		var parsed;
+        var folder = await podUtils.readFile(sendFolder, true);
+        if (!folder) {
             var length = 0;
         } else {
-            var length = folder.files.length;
+			parsed = JSON.parse(folder);
+            var length = parsed.length;
         }
         assert.equal(await chatM.sendMessage("newMessage"), true);
-        folder = await podUtils.readFolder(sendFolder, true);
-        assert.equal(folder.files.length, length + 1);
+        folder = JSON.parse(await podUtils.readFile(sendFolder, true));
+        assert.equal(folder.length, length + 1);
     });
 
     it('receiveMessage', async function() {
-        this.timeout(4000);
+        this.timeout(timeout);
         var messages = await chatM.receiveMessages();
         assert.equal(messages.length, 5);
     });
