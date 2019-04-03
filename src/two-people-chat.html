@@ -32,12 +32,18 @@
 				<div class="dropdown-menu">
 					<a class="dropdown-item disabled">Signed in as<br><strong id="fullName"></strong></a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" id="profile" target="_blank">Go to SOLID profile</a>
-					<a class="dropdown-item disabled">Work in progress here!</a>
+					<a class="dropdown-item" id="profile" target="_blank">Go to your SOLID profile</a>
+					<a class="dropdown-item" href="#" id="navBarLogout">Log out</a>
 				</div>
 			</li>
 			<li class="nav-item">
-				<a class="whitecolor nav-link" href="#" id="navBarLogout">Log out</a>
+				<a class="whitecolor nav-link" href="#" id="minimizeElectron">&#95;</a>
+			</li>
+			<li class="nav-item">
+				<a class="whitecolor nav-link" href="#" id="maximizeElectron">&square;</a>
+			</li>
+			<li class="nav-item">
+				<a class="whitecolor nav-link" href="#" id="closeElectron">&times;</a>
 			</li>
 		</ul>
 	</nav>
@@ -81,7 +87,7 @@
 	
 	<script src="scripts/solid-auth-client.bundle.js"></script>
     <script src="index.js"></script>
-	<script src="scripts/botones.js"></script>
+	<script src="scripts/windowButtonControls.js"></script>
 	<script>
 		$('#navBarLogout').click(function() {
 			solid.auth.logout().then(() => console.log("Sesión cerrada"));
