@@ -27,4 +27,4 @@ Since DeChat is under SOLID architecture, we will be using WebID to communicate 
 
 As indicated above, the chat is composed of two main elements: login and chat room. It's necessary to bear in mind that the application needs a web browser to be able to use it. Here is a case of use that explains how it works:
 
-image:03_chat_components.png[Chat components diagram]
+image::images/03_chat_components.png[Chat components diagram]
