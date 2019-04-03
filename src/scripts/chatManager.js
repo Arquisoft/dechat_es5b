@@ -11,8 +11,7 @@ class message {
     }
 }
 
-var INFO =
-{
+var INFO = {
     user: "",
     userName: "",
     userURI: "",
@@ -29,8 +28,8 @@ var MESSAGES = {
 
 //SEND Message function login
 async function sendMessage(text) {
-	var ret = false;
-	
+    var ret = false;
+
     //Define folders name
     var solidChat = INFO.userURI + "public/SolidChat/";
     var folder = solidChat + INFO.receiverName.replace(/ /g, "-") + "/";
@@ -54,7 +53,7 @@ async function sendMessage(text) {
         var messages = JSON.parse(err3);
         messages.push(new message(text, new Date().getTime()));
         jsonString = JSON.stringify(messages);
-		
+
         ret = await podUtils.createFile(filename, jsonString, ToLog);
     } catch (error) {
 
@@ -102,10 +101,10 @@ async function sendMessage(text) {
         jsonString = JSON.stringify(messages);
 
         ret = await podUtils.createFile(filename, jsonString, ToLog);
-		
-        notiMan.writeNotification(INFO.receiverURI,INFO.user);
+
+        notiMan.writeNotification(INFO.receiverURI, INFO.user);
     }
-	return ret;
+    return ret;
 }
 
 async function receiveMessages() {
@@ -117,7 +116,7 @@ async function receiveMessages() {
     var rFolder = INFO.receiverURI + "public/SolidChat/" + INFO.userName.trim().replace(/ /g, "-") + "/";
     var uFile = uFolder + "chat.txt";
     var rFile = rFolder + "chat.txt";
-	
+
     var userMessages;
     var receiveMessages;
 
@@ -143,18 +142,18 @@ async function receiveMessages() {
 
     uParsed.forEach(element => {
         var date = new Date(Number(element.date));
-        var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " "
-            + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " +
+            date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
         dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + INFO.userName + " (you) " + strDate + "</p></div>", date));
     });
     rParsed.forEach(element => {
         var date = new Date(Number(element.date));
-        var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " "
-            + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " +
+            date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
         dict.push(new message("<div class=\"containerChat\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + INFO.receiverName + " " + strDate + "</p></div>", date));
     });
 
-    dict.sort(function (a, b) {
+    dict.sort(function(a, b) {
         return a.date > b.date ? 1 : a.date < b.date ? -1 : 0;
     });
 
@@ -165,21 +164,22 @@ async function receiveMessages() {
     MESSAGES.toShow = MESSAGES.toShow.slice(-10);
 
     //Delete existing notifiations
-    notiMan.deleteNotification(INFO.userURI,INFO.receiver);
+    notiMan.deleteNotification(INFO.userURI, INFO.receiver);
 
     return MESSAGES.toShow;
 }
 
 //Function for main.js
 //Return users with new msg
-async function newNotifications(){
+async function newNotifications() {
     //TO-DO----------------------------------------------------------------------------------
 }
 
 module.exports = {
     sendMessage: sendMessage,
     receiveMessages: receiveMessages,
-    newNotifications: newNotifications, 
+    newNotifications: newNotifications,
     INFO: INFO,
+    MESSAGES: MESSAGES,
     ToLog: ToLog
 }
