@@ -546,30 +546,19 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect2">
 <h3 id="whitebox-overall-system"><a class="anchor" href="#whitebox-overall-system"></a>Whitebox Overall System</h3>
 <div class="paragraph">
-<p>We have decomposed the block in two parts: We have the login part and the chat room part, which we will decompose later.
-It is necessary to incorporate the login module since the application is customized according to the logged user.</p>
+<p>We have two views, the main one (index.html), which is the one used to perform the user&#8217;s logging, and the secondary one (two-people-chat.html) which purpose is to make possible the chat between two people.</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="./images/05_block_view_diagram.png" alt="Hierarchy of building blocks"></span></p>
+<p>It is necessary to incorporate the login module since the application is customized according to the logged user. For example, the friends list will not be the same for all users, but each user will have their own friends list.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/05_block_view_diagram.png" alt="Hierarchy of building blocks">
+</div>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Contained building blocks</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p>Login:
-The user can use this module to log into the application. This module is the previous to the chat screen.</p>
-</li>
-<li>
-<p>Chat:
-This module will be divided later. It provides the basic chat functionality.</p>
-</li>
-</ul>
-</div>
-</dd>
-<dt class="hdlist1">Important interfaces</dt>
 </dl>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -585,41 +574,98 @@ This module will be divided later. It provides the basic chat functionality.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">LogIn</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows the user to have a customized version of the application on his device.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Chat room</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows the user to communicate by chatting using data about friends stored on the POD.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DeChat_es5b</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It represents the application and allows the user to chat with any other person.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="login-using-data-about-friends-stored-on-the-pod"><a class="anchor" href="#login-using-data-about-friends-stored-on-the-pod"></a>LogIn using data about friends stored on the POD:</h4>
+<h4 id="level-1"><a class="anchor" href="#level-1"></a>Level 1</h4>
 <div class="paragraph">
-<p>The purpose of this box is that the user is able to log in with his own user account that allows him to obtain an experience of the application as personalized as possible.</p>
+<p>This level specifies the main views with which the user will interact.</p>
 </div>
-<div class="paragraph">
-<p>Solid Community is used to be able to log in using their POD server. The user interface is like any other login screen in a web application.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Contained building blocks</dt>
+</dl>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">index.html</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The purpose of this box is to let the user log in with his own user account, so it allows him obtain an experience of the application as personalized as possible.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">two-people-chat.html</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The purpose of this box is to ensure that two users can communicate by chatting.</p>
+<p class="tableblock">The user interface will show a side navigation bar showing the friends of the authenticated user with whom he can chat.</p>
+<p class="tableblock">The interface also shows a panel in which the conversation is shown in real time.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">index.js</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Both principal viewa contain the index.js script. This script contains all the application functionality, which is specified on level 2.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
-<h4 id="chat-room"><a class="anchor" href="#chat-room"></a>Chat room:</h4>
+<h4 id="level-2"><a class="anchor" href="#level-2"></a>Level 2</h4>
 <div class="paragraph">
-<p>The purpose of this box is to ensure that two users can communicate by chatting.</p>
+<p>This level contains the application core information. All the functionality of the script index.js.</p>
 </div>
-<div class="paragraph">
-<p>The user interface will show a side navigation bar showing the friends of the authenticated user with whom he can chat.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Contained building blocks</dt>
+</dl>
 </div>
-<div class="paragraph">
-<p>The interface also shows, once the friend with whom to chat is selected, a panel in which the conversation is shown in real time.</p>
-</div>
-<div class="paragraph">
-<p>Below is a sketch of the interface of our chat room.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/05_chat_room_sketch.png" alt="Chat room sketch"></span></p>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">main.js</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is the main script of the hierarchy. Its task is to bring together all the main functionalities.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LogInManager.js</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is the script in charge of the functionality that has to do with the user&#8217;s login.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">popup.html</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is the corresponding view with the pop-up window that appears when you try to log in to the application.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ChatManager.js</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The script in charge of all the functionality pertaining to the sending and receiving of messages between users.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NotificationManager.js</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is the script which purpose is to add the notifications functionality to the chat.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PodUtilities.js</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It implements an adapter by adding functionality to the solid-file-client library. It is used by all scripts in the logic layer to communicate with PODs.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -627,7 +673,7 @@ This module will be divided later. It provides the basic chat functionality.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-03-13 11:25:25 CET
+Last updated 2019-04-03 18:07:23 CEST
 </div>
 </div>
 </body>

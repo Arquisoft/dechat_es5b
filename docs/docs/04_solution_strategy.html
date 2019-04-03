@@ -528,7 +528,12 @@ table.CodeRay td.code>pre{padding:0}
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#section-solution-strategy">Solution Strategy</a></li>
+<li><a href="#section-solution-strategy">Solution Strategy</a>
+<ul class="sectlevel2">
+<li><a href="#technology-decisions">Technology Decisions</a></li>
+<li><a href="#decisions-on-how-to-achieve-key-quality-goals">Decisions on how to achieve key quality goals</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -537,46 +542,93 @@ table.CodeRay td.code>pre{padding:0}
 <h2 id="section-solution-strategy"><a class="anchor" href="#section-solution-strategy"></a>Solution Strategy</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Due to the social content of our chat and other solid apps that we&#8217;ve seen we decided that the best option is to do it in a web enviroment and run it on a server so it&#8217;s more user-friendly.
-Our application structure is based on a JavaScript and TpeScript application with HTML components that follow solid&#8217;s style guide and pattern in the app apearence.</p>
+<p>Due to the social content of the application and other solid apps that we&#8217;ve seen we decided that
+the best option is to do it in a web enviroment so it&#8217;s more user-friendly.
+At the moment the plan for our application structure is based on a JavaScript application with HTML components that follow solid&#8217;s style guide and pattern in the app apearence.</p>
 </div>
 <div class="paragraph">
-<p>For the teamwork, project development and documentation we&#8217;ll be using a GitHub repository to keep thigs in order.</p>
+<p>For the teamwork, project development and documentation we&#8217;ll be using a GitHub repository to keep things in order.</p>
 </div>
-<div class="paragraph">
-<p>Decisions taken about the chat:</p>
-</div>
+<div class="sect2">
+<h3 id="technology-decisions"><a class="anchor" href="#technology-decisions"></a>Technology Decisions</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Solid: by subject requirements.</p>
+<p><strong>Solid</strong>: by subject requirements.</p>
 </li>
 <li>
-<p>Solid-file-client: a library for creating and managing files and folders in Solid data stores.</p>
+<p><strong>Solid-file-client</strong>: a library for creating and managing files and folders in Solid data stores.</p>
 </li>
 <li>
-<p>Webpack: bundle JavaScript files for usage in a browser.</p>
+<p><strong>Webpack</strong>: bundle JavaScript files for usage in a browser.</p>
 </li>
 <li>
-<p>Node.js: JavaScript runtime built on Chrome&#8217;s V8 JavaScript engine.</p>
+<p><strong>Node.js</strong>: JavaScript runtime built on Chrome&#8217;s V8 JavaScript engine.</p>
 </li>
 <li>
-<p>Bootstrap: open source toolkit for designing web sites.</p>
+<p><strong>Bootstrap</strong>: open source toolkit for designing web sites.</p>
 </li>
 <li>
-<p>GitHub: also by subject requierements.</p>
+<p><strong>GitHub</strong>: also by subject requierements.</p>
 </li>
 <li>
-<p>AsciidocFX: Asciidoc document editor to perform the documentation.</p>
+<p><strong>AsciidocFX</strong>: Asciidoc document editor to perform the documentation.</p>
+</li>
+<li>
+<p><strong>Mocha</strong>: Runs unit tests.</p>
+</li>
+<li>
+<p><strong>Cucumber</strong>: Runs automated acceptance tests written in a behavior-based development style.</p>
+</li>
+<li>
+<p><strong>Travis CI</strong>: It is a distributed and hosted continuous integration service that is used to create and test software projects hosted on GitHub.</p>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="decisions-on-how-to-achieve-key-quality-goals"><a class="anchor" href="#decisions-on-how-to-achieve-key-quality-goals"></a>Decisions on how to achieve key quality goals</h3>
+<div class="sect3">
+<h4 id="decentralized"><a class="anchor" href="#decentralized"></a>Decentralized</h4>
+<div class="paragraph">
+<p>In the first iteration of the project we have carried out a research task about what the SOLID project means. Once this information was understood, all team members were ready to contribute their own ideas and carry out the implementation of the application in the following iteration.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="usable"><a class="anchor" href="#usable"></a>Usable</h4>
+<div class="paragraph">
+<p>We have made a template of what the user interface should be to get an idea about the design of the application before we start to implement it.</p>
+</div>
+<div class="paragraph">
+<p>The colors purple, lilac and white have been used so that the user does not forget that he is using SOLID.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/05_chat_room_sketch.png" alt="Chat room sketch">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="clean-code-and-design"><a class="anchor" href="#clean-code-and-design"></a>Clean code and design</h4>
+<div class="paragraph">
+<p>At first we focused more on chat functionality rather than trying to make a clean code. We realized that this was a mistake, so we decided to restructure the project to make it more modular and no longer a big ball of mud.</p>
+</div>
+<div class="paragraph">
+<p>To do this, we have based ourselves on clean architecture, to which the following diagram refers:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/clean-architecture.jpeg" alt="Clean Architecture">
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-03-13 10:34:55 CET
+Last updated 2019-04-03 18:07:03 CEST
 </div>
 </div>
 </body>
