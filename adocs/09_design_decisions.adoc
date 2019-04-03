@@ -2,19 +2,20 @@
 == Design Decisions
 In this document we'll show important, expensive, large scale or risky architecture decisions that may greatly influence our project.
 
-**TODO**
-
 .Decisions list:
 
-
-* Our team has decided to write the code of this program in https://www.javascript.com/[Javascript] using https://nodejs.org/es/[Node.js] as the execution platform for the sake of reducing the dependence on frameworks.
+* Our team has decided to write the code of this program in https://www.javascript.com/[JavaScript] using https://nodejs.org/en/[Node.js] as the execution platform for the sake of reducing the dependence on frameworks.
 
 * In addition we are going to base ourselves on the Solid-chess that has been previously presented to us since it's a great example of our goal.
 
-* We chose to use the https://github.com/jeff-zucker/solid-file-client[solid file client library]and https://webpack.js.org/[WebPack] package for the managing of files and folders of this chat as we are based on Solid.
+* We chose to use the https://github.com/jeff-zucker/solid-file-client[Solid file client library] and https://webpack.js.org/[WebPack] package for the managing of files and folders of this chat as we are based on Solid.
 
-* As we are using https://www.javascript.com/[Javascript] we will use https://mochajs.org/[Mocha] and https://www.chaijs.com/[Chai] for the unit tests because it's convenient.
+* We are using https://mochajs.org/[Mocha] and https://www.chaijs.com/[Chai] for the unit tests because it's convenient.
 
-* We are using https://cucumber.io/[Cucumber] for acceptance tests as recommended by our professor.
+* We are using https://cucumber.io/[Cucumber] for acceptance tests as recommended by our teacher.
 
 * We are using https://getbootstrap.com/[Bootstrap] to design the project because some of our members knew how to use it.
+
+* We also try to use https://angular.io/[Angular technology], but we discard it because of its complicity. We agreed to use then Node.js.
+
+* We also discard to use other programming languages like Java or SpringBoot because they didn't match the functionality our chat needed.
