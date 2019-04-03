@@ -41,5 +41,3 @@ The user interface will show a side navigation bar showing the friends of the au
 The interface also shows, once the friend with whom to chat is selected, a panel in which the conversation is shown in real time.
 
 Below is a sketch of the interface of our chat room.
-
-image::images/05_chat_room_sketch.png["Chat room sketch"]

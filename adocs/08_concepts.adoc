@@ -1,48 +1,32 @@
 [[section-concepts]]
 == Cross-cutting Concepts
 
-**TODO**
+=== User Experience concepts (UX)
+==== User interface:
+We have implemented a user interface using the bootstrap library. It's composed of two main pages: login page and chat room. The interface prototype is shown in the next prototype:
 
-.Content
-This section describes overall, principal regulations and solution ideas that are
-relevant in multiple parts (= cross-cutting) of your system.
-Such concepts are often related to multiple building blocks.
-They can include many different topics, such as
+image::images/05_chat_room_sketch.png["Chat room interface"]
 
-* domain models
-* architecture patterns or design patterns
-* rules for using specific technology
-* principal, often technical decisions of overall decisions
-* implementation rules
+==== Internacionalization:
+We are developing a term file for possible future translation of the application into Chinese.
 
-.Motivation
-Concepts form the basis for _conceptual integrity_ (consistency, homogeneity)
-of the architecture. Thus, they are an important contribution to achieve inner qualities of your system.
+=== Design patterns
+==== Design Pattern: Adapter
+To implement the solid-file-client library (which allows us to communicate with the PODs) we have made use of an adapter that adds functionality to the initial library.
+The Adapter is called PodUtilities. The solid-file-client library is imported  in this class and it is called by the logic classes to communicate with the PODs and get the data.
 
-Some of these concepts cannot be assigned to individual building blocks
-(e.g. security or safety). This is the place in the template that we provided for a
-cohesive specification of such concepts.
+image::images/Adapter.png["Adapter pattern"]
 
-.Form
-The form can be varied:
+==== Architectural pattern: Three-tier architecture
+We have separated architecture into layers of presentation, logic and persistence. The implementation of the previous architecture has been carried out following the following diagram below:
 
-* concept papers with any kind of structure
-* cross-cutting model excerpts or scenarios using notations of the architecture views
-* sample implementations, especially for technical concepts
-* reference to typical usage of standard frameworks (e.g. using Hibernate for object/relational mapping)
+image::images/tiers.png["Three-tier architecture"]
 
-.Structure
-A potential (but not mandatory) structure for this section could be:
+=== Development concepts
+==== Test
+We have developed an extensive and exhaustive test layer that can be launched by following the steps indicated in the readme.
 
-* Domain concepts
-* User Experience concepts (UX)
-* Safety and security concepts
-* Architecture and design patterns
-* "Under-the-hood"
-* development concepts
-* operational concepts
-
-Note: it might be difficult to assign individual concepts to one specific topic
-on this list.
+==== Deploy
+The chat application is displayed on the page associated with the git repository. It can be accessed from the following https://arquisoft.github.io/dechat_es5b/[deChat_es5b].
 
 image::images/08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscutting concepts"]
