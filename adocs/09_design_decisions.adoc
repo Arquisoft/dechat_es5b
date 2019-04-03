@@ -6,7 +6,7 @@ In this document we'll show important, expensive, large scale or risky architect
 
 * Our team has decided to write the code of this program in https://www.javascript.com/[JavaScript] using https://nodejs.org/en/[Node.js] as the execution platform for the sake of reducing the dependence on frameworks.
 
-* In addition we are going to base ourselves on the Solid-chess that has been previously presented to us since it's a great example of our goal.
+* We toke an initial idea from the Solid-chess that has been previously presented to us since it's a great example of our goal.
 
 * We chose to use the https://github.com/jeff-zucker/solid-file-client[Solid file client library] and https://webpack.js.org/[WebPack] package for the managing of files and folders of this chat as we are based on Solid.
 

@@ -3,7 +3,7 @@ var assert = require('assert');
 var chatM = require('../src/scripts/chatManager.js');
 var podUtils = require('../src/scripts/podUtilities.js');
 
-const timeout = 1500;
+const timeout = 2000;
 
 var credentials = {
     "idp": "https://solid.community",
@@ -74,7 +74,7 @@ describe('Test Chat Manager', function() {
 	const sendFolder = credentials.base + "/public/SolidChat/" + receiver.username + "/chat.txt";
 	
     it('sendMessage', async function() {
-        this.timeout(2000);
+        this.timeout(timeout);
         
 		var parsed;
         var folder = await podUtils.readFile(sendFolder, true);

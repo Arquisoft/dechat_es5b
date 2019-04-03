@@ -1,12 +1,12 @@
 [[section-architecture-constraints]]
 == Architecture Constraints
-In this part, we go to explain any requirements that limited our team in the freedom of design, the implementation decisions and the decisions about the development process that we have taken.
+In this part we will explain the requirements that we have to keep in mind to make the right design, implementation and development choices.
 
 === Technical Constraints
 [width="100%",options="header"]
 |====================
 | Code | Constraint | Motive 
-| TC01 | Use of SOLID | Application must be developed following the SOLID specifications with a decentralized control of the user's data
+| TC01 | Use of SOLID | The application must be developed following the SOLID specifications with a decentralized control of the user's data
 | TC02 | Independent operating system and browser | Application must run in any operating system and in the main web browsers
 |====================
 

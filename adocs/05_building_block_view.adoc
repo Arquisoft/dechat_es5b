@@ -5,39 +5,53 @@ The building block view shows the static decomposition of the system into buildi
 
 === Whitebox Overall System
 
-We have decomposed the block in two parts: We have the login part and the chat room part, which we will decompose later.
+We have two views, the main one (index.html), which is the one used to perform the user's logging, and the secondary one (two-people-chat.html) which purpose is to make possible the chat between two people.
 
-It is necessary to incorporate the login module since the application is customized according to the logged user.
+It is necessary to incorporate the login module since the application is customized according to the logged user. For example, the friends list will not be the same for all users, but each user will have their own friends list.
 
 image::images/05_block_view_diagram.png["Hierarchy of building blocks"]
 
 Contained building blocks::
-    - Login: 
-    The user can use this module to log into the application. This module is prior to the chat screen.
-    - Chat:
-    This module will be divided later. It provides the basic chat functionality.
-
-Important interfaces::
 [cols="1,2" options="header"]
 |===
 | Name | Responsibility
-| LogIn |Allows the user to have a customized version of the application on his device.
-| Chat room |Allows the user to communicate by chatting using data about friends stored on the POD.
+| DeChat_es5b | It represents the application and allows the user to chat with any other person.
 |===
 
+==== Level 1
 
-==== LogIn using data about friends stored on the POD:
+This level specifies the main views with which the user will interact. 
 
-The purpose of this box is that the user is able to log in with his own user account that allows him to obtain an experience of the application as personalized as possible.
-
-Solid Community is used to be able to log in using their POD server. The user interface is like any other login screen in a web application.
-
-==== Chat room:
-
-The purpose of this box is to ensure that two users can communicate by chatting.
+Contained building blocks::
+[cols="1,2" options="header"]
+|===
+| Name | Responsibility
+| index.html | The purpose of this box is to let the user log in with his own user account, so it allows him obtain an experience of the application as personalized as possible.
+| two-people-chat.html | The purpose of this box is to ensure that two users can communicate by chatting.
 
 The user interface will show a side navigation bar showing the friends of the authenticated user with whom he can chat.
 
-The interface also shows, once the friend with whom to chat is selected, a panel in which the conversation is shown in real time.
+The interface also shows a panel in which the conversation is shown in real time.
+| index.js | Both principal viewa contain the index.js script. This script contains all the application functionality, which is specified on level 2.
+|===
 
-Below is a sketch of the interface of our chat room.
+==== Level 2
+
+This level contains the application core information. All the functionality of the script index.js.
+
+Contained building blocks::
+[cols="1,2" options="header"]
+|===
+| Name | Responsibility
+| main.js | It is the main script of the hierarchy. Its task is to bring together all the main functionalities.
+
+| LogInManager.js | It is the script in charge of the functionality that has to do with the user's login.
+
+| popup.html | This is the corresponding view with the pop-up window that appears when you try to log in to the application.
+
+| ChatManager.js | The script in charge of all the functionality pertaining to the sending and receiving of messages between users.
+
+| NotificationManager.js | It is the script which purpose is to add the notifications functionality to the chat.
+
+| PodUtilities.js | It implements an adapter by adding functionality to the solid-file-client library. It is used by all scripts in the logic layer to communicate with PODs.
+|===
