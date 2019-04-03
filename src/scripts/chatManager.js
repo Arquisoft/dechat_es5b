@@ -2,6 +2,7 @@ var podUtils = require('./podUtilities.js');
 var notiMan = require('./NotificationManager.js');
 
 const ToLog = true;
+const notify= false;
 
 
 class message {
@@ -54,7 +55,10 @@ async function sendMessage(text) {
         messages.push(new message(text, new Date().getTime()));
         jsonString = JSON.stringify(messages);
 
+
         ret = await podUtils.createFile(filename, jsonString, ToLog);
+        if(notify)
+        await notiMan.writeNotification(INFO.receiverURI, INFO.user);
     } catch (error) {
 
         //IF folder doesnt exist: create new user folder
@@ -96,13 +100,14 @@ async function sendMessage(text) {
             console.log("Creating chat file");
 
         var messages = [];
-
         messages.push(new message(text, new Date().getTime()));
         jsonString = JSON.stringify(messages);
 
+        
         ret = await podUtils.createFile(filename, jsonString, ToLog);
-
-        notiMan.writeNotification(INFO.receiverURI, INFO.user);
+        if(notify)
+        await notiMan.writeNotification(INFO.receiverURI, INFO.user);
+        
     }
     return ret;
 }
@@ -164,6 +169,7 @@ async function receiveMessages() {
     MESSAGES.toShow = MESSAGES.toShow.slice(-10);
 
     //Delete existing notifiations
+    if(notify)
     notiMan.deleteNotification(INFO.userURI, INFO.receiver);
 
     return MESSAGES.toShow;
