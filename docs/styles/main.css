@@ -48,6 +48,10 @@ dt {
 	background-color: #9c84ff !important;
 }
 
+.nav-link:hover { 
+  background-color: pink;
+}
+
 /* Friends list two-people-chat.html */
 .sidebar {
 	height: 100%;
