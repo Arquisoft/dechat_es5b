@@ -29,7 +29,9 @@ This section defines the most important domain and technical terms:
 
 | Chat  | A chat is a computer application that allows two or more people to communicate using instant messaging.
 
-| Constraints   | Constraints are limitations to which our project must conform. They can be technical, organizational, ...
+| Constraints   | Constraints are limitations to which our project must conform. They can be technical or organizational
+
+| Coveralls | See the latest code-coverage statistics on all of the project including the total percentages covered and the lines covered
 
 | Decentralized computing   | Decentralized computing is the allocation of resources, both hardware and software, to each individual workstation, or office location. In contrast, centralized computing exists when the majority of functions are carried out, or obtained from a remote centralized location.
 
