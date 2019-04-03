@@ -43,6 +43,7 @@ async function writeNotification(receiverURI, user){
     var receiverInbox = receiverURI+"inbox/";
         //List all user
         var List=[];
+        console.log("#####Leyendo");
         List = await readAllNotification(receiverURI);
         
         var existe=0;
@@ -79,7 +80,7 @@ async function writeNotification(receiverURI, user){
 //Methor for constantly reading new Notifications from others chat
 async function readAllNotification(receiverURI){
     //Read Notification file
-    var receiverInbox = receiverURI;
+    var receiverInbox = receiverURI+"inbox/";
     var fileURL = receiverInbox+notAppend+".ttl";
     var file = await podUtils.readFile(fileURL,true);
 
