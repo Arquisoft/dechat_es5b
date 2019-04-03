@@ -22,10 +22,21 @@
 </head>
 <body>
 	<nav class="navbar navbar-dark">
-	  <a class="navbar-brand" href="#">
-		<img src="images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="chatLogo">
-		DeChat ES5B
-	  </a>
+		<a class="navbar-brand" href="#">
+			<img src="images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="chatLogo">
+			DeChat ES5B
+		</a>
+		<ul class="nav nav-pills nodrag">
+			<li class="nav-item">
+				<a class="whitecolor nav-link" href="#" id="minimizeElectron">&#95;</a>
+			</li>
+			<li class="nav-item">
+				<a class="whitecolor nav-link" href="#" id="maximizeElectron">&square;</a>
+			</li>
+			<li class="nav-item">
+				<a class="whitecolor nav-link" href="#" id="closeElectron">&times;</a>
+			</li>
+		</ul>
 	 </nav>
 	
 	<div class="jumbotron centered">
@@ -78,5 +89,6 @@
 		  </div>
 		</div>
 		<!-- IDP Modal end -->
+	<script src="scripts/windowButtonControls.js"></script>
 </body>
 </html>
