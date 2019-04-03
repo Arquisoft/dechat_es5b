@@ -3,8 +3,10 @@
 == Deployment View
 
 The product is a descentralized chat based in SOLID and his PODs.
-Base application will be able to run in any machine based in web applications.
+Base application will be able to run in any machine based in web applications like Chrome.
 
 Developing an descetralized app means that a central server is not required to store any information used by the user, beside the server needed to authentificate the user connection. this last requirement may be solved by using the SOLID Community sistem already implemented for the signing up/login process.
 
-By the moment infrastructure is no needed and planned.
+A SOLID server and a DeChat instance were deployed in an Amazon Web Services EC2 Server, but were terminated due to server issues.
+
+By default, SOLID Servers have a 25 MB disk limit. This can be a problem, for example, when uploading photos or videos to chats, as they can eat up all free space quickly.

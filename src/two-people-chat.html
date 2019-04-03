@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Decentralized chat using Solid">
+    <title>deChat_ES5B - Chat room</title>
+	<link rel="icon" type="image/png" href="./images/siteIcon.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="./scripts/jquery.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color:#EBEBEB;">
+	<nav class="navbar sticky-top navbar-dark">
+		<a class="navbar-brand" href="#">
+			<img src="./images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="chatLogo">
+			DeChat ES5B
+		</a>
+		
+		<ul class="nav nav-pills">
+			<li class="nav-item dropdown">
+				<a class="whitecolor nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					User Profile
+				</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item disabled">Signed in as<br><strong id="fullName"></strong></a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" id="profile" target="_blank">Go to SOLID profile</a>
+					<a class="dropdown-item disabled">Work in progress here!</a>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a class="whitecolor nav-link" href="/" id="logout">Log out</a>
+			</li>
+		</ul>
+	</nav>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="sidebar-nav-fixed affix sidebar">
+					<div class="well">
+						<h5 class="centered whitecolor" style="padding: 0.75em;">Friend list</h5>
+						<p style="text-align:center;">Please select a friend before you start chatting</p>
+						<div class="list-group list-group-flush forcefullwidth" id="friends">
+							<button type="button" class="list-group-item list-group-item-action noactive" disabled>Loading, please wait...</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="col-md-8">
+				<div class="jumbotron chatplace">
+					<h1 style="margin-bottom: 0.5em;">Welcome to your decentralized chat room</h1>
+					<div class="container" id="divConversation">
+						<section>
+							<div id="MessageArea">
+								<div id="messages"></div>
+								<div class="input-group mb-3">
+									<input type="text" class="form-control" placeholder="Type a message..." id="messageText" aria-label="Type a message..." aria-describedby="basic-addon2">
+									<div class="input-group-append">
+										<button class="btn btn-outline-secondary" type="button" id="sendButton">Send</button>
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer>
+			<p>DeChat ES5B</p>
+		</footer>
+	</div>
+	
+    <script src="./scripts/solid-auth-client.bundle.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
