@@ -528,7 +528,13 @@ table.CodeRay td.code>pre{padding:0}
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#section-concepts">Cross-cutting Concepts</a></li>
+<li><a href="#section-concepts">Cross-cutting Concepts</a>
+<ul class="sectlevel2">
+<li><a href="#user-experience-concepts-ux">User Experience concepts (UX)</a></li>
+<li><a href="#design-patterns">Design patterns</a></li>
+<li><a href="#development-concepts">Development concepts</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -536,107 +542,78 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect1">
 <h2 id="section-concepts"><a class="anchor" href="#section-concepts"></a>Cross-cutting Concepts</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="user-experience-concepts-ux"><a class="anchor" href="#user-experience-concepts-ux"></a>User Experience concepts (UX)</h3>
+<div class="sect3">
+<h4 id="user-interface"><a class="anchor" href="#user-interface"></a>User interface:</h4>
 <div class="paragraph">
-<p><strong>TODO</strong></p>
+<p>We have implemented a user interface using the bootstrap library. It&#8217;s composed of two main pages: login page and chat room. The interface prototype is shown in the next prototype:</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/05_chat_room_sketch.png" alt="Chat room interface">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="internacionalization"><a class="anchor" href="#internacionalization"></a>Internacionalization:</h4>
 <div class="paragraph">
-<div class="title">Content</div>
-<p>This section describes overall, principal regulations and solution ideas that are
-relevant in multiple parts (= cross-cutting) of your system.
-Such concepts are often related to multiple building blocks.
-They can include many different topics, such as</p>
+<p>We are developing a term file for possible future translation of the application into Chinese.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>domain models</p>
-</li>
-<li>
-<p>architecture patterns or design patterns</p>
-</li>
-<li>
-<p>rules for using specific technology</p>
-</li>
-<li>
-<p>principal, often technical decisions of overall decisions</p>
-</li>
-<li>
-<p>implementation rules</p>
-</li>
-</ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="design-patterns"><a class="anchor" href="#design-patterns"></a>Design patterns</h3>
+<div class="sect3">
+<h4 id="design-pattern-adapter"><a class="anchor" href="#design-pattern-adapter"></a>Design Pattern: Adapter</h4>
 <div class="paragraph">
-<div class="title">Motivation</div>
-<p>Concepts form the basis for <em>conceptual integrity</em> (consistency, homogeneity)
-of the architecture. Thus, they are an important contribution to achieve inner qualities of your system.</p>
+<p>To implement the solid-file-client library (which allows us to communicate with the PODs) we have made use of an adapter that adds functionality to the initial library.
+The Adapter is called PodUtilities. The solid-file-client library is imported  in this class and it is called by the logic classes to communicate with the PODs and get the data.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Adapter.png" alt="Adapter pattern">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="architectural-pattern-three-tier-architecture"><a class="anchor" href="#architectural-pattern-three-tier-architecture"></a>Architectural pattern: Three-tier architecture</h4>
 <div class="paragraph">
-<p>Some of these concepts cannot be assigned to individual building blocks
-(e.g. security or safety). This is the place in the template that we provided for a
-cohesive specification of such concepts.</p>
+<p>We have separated architecture into layers of presentation, logic and persistence. The implementation of the previous architecture has been carried out following the following diagram below:</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/tiers.png" alt="Three-tier architecture">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="development-concepts"><a class="anchor" href="#development-concepts"></a>Development concepts</h3>
+<div class="sect3">
+<h4 id="test"><a class="anchor" href="#test"></a>Test</h4>
 <div class="paragraph">
-<div class="title">Form</div>
-<p>The form can be varied:</p>
+<p>We have developed an extensive and exhaustive test layer that can be launched by following the steps indicated in the readme.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>concept papers with any kind of structure</p>
-</li>
-<li>
-<p>cross-cutting model excerpts or scenarios using notations of the architecture views</p>
-</li>
-<li>
-<p>sample implementations, especially for technical concepts</p>
-</li>
-<li>
-<p>reference to typical usage of standard frameworks (e.g. using Hibernate for object/relational mapping)</p>
-</li>
-</ul>
 </div>
+<div class="sect3">
+<h4 id="deploy"><a class="anchor" href="#deploy"></a>Deploy</h4>
 <div class="paragraph">
-<div class="title">Structure</div>
-<p>A potential (but not mandatory) structure for this section could be:</p>
+<p>The chat application is displayed on the page associated with the git repository. It can be accessed from the following <a href="https://arquisoft.github.io/dechat_es5b/">deChat_es5b</a>.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Domain concepts</p>
-</li>
-<li>
-<p>User Experience concepts (UX)</p>
-</li>
-<li>
-<p>Safety and security concepts</p>
-</li>
-<li>
-<p>Architecture and design patterns</p>
-</li>
-<li>
-<p>"Under-the-hood"</p>
-</li>
-<li>
-<p>development concepts</p>
-</li>
-<li>
-<p>operational concepts</p>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="./images/08-Crosscutting-Concepts-Structure-EN.png" alt="Possible topics for crosscutting concepts">
 </div>
-<div class="paragraph">
-<p>Note: it might be difficult to assign individual concepts to one specific topic
-on this list.</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/08-Crosscutting-Concepts-Structure-EN.png" alt="Possible topics for crosscutting concepts"></span></p>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-03-12 21:47:10 CET
+Last updated 2019-04-03 18:07:46 CEST
 </div>
 </div>
 </body>

@@ -53,7 +53,7 @@ image::images/QualityTree.png[]
 |High
 
 |Usability
-|It should be possible to add new users to the chat while others are talking, without any problems.
+|It should be possible to chat with 2 or more users at the same time, without any problems.
 |High
 
 |Usability

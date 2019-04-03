@@ -537,19 +537,34 @@ table.CodeRay td.code>pre{padding:0}
 <h2 id="section-design-decisions"><a class="anchor" href="#section-design-decisions"></a>Design Decisions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this document we&#8217;ll show important, expensive, large scale or risky architecture decisions including rationals.</p>
-</div>
-<div class="paragraph">
-<p><strong>TODO</strong></p>
+<p>In this document we&#8217;ll show important, expensive, large scale or risky architecture decisions that may greatly influence our project.</p>
 </div>
 <div class="ulist">
 <div class="title">Decisions list:</div>
 <ul>
 <li>
-<p>Our team has decided to use the Angular program recommended by the Solid website to create this chat.</p>
+<p>Our team has decided to write the code of this program in <a href="https://www.javascript.com/">JavaScript</a> using <a href="https://nodejs.org/en/">Node.js</a> as the execution platform for the sake of reducing the dependence on frameworks.</p>
 </li>
 <li>
-<p>In addition we are going to base ourselves on the Solid-chess that has been previously presented to us.</p>
+<p>We toke an initial idea from the Solid-chess that has been previously presented to us since it&#8217;s a great example of our goal.</p>
+</li>
+<li>
+<p>We chose to use the <a href="https://github.com/jeff-zucker/solid-file-client">Solid file client library</a> and <a href="https://webpack.js.org/">WebPack</a> package for the managing of files and folders of this chat as we are based on Solid.</p>
+</li>
+<li>
+<p>We are using <a href="https://mochajs.org/">Mocha</a> and <a href="https://www.chaijs.com/">Chai</a> for the unit tests because it&#8217;s convenient.</p>
+</li>
+<li>
+<p>We are using <a href="https://cucumber.io/">Cucumber</a> for acceptance tests as recommended by our teacher.</p>
+</li>
+<li>
+<p>We are using <a href="https://getbootstrap.com/">Bootstrap</a> to design the project because some of our members knew how to use it.</p>
+</li>
+<li>
+<p>We also try to use <a href="https://angular.io/">Angular technology</a>, but we discard it because of its complicity. We agreed to use then Node.js.</p>
+</li>
+<li>
+<p>We also discard to use other programming languages like Java or SpringBoot because they didn&#8217;t match the functionality our chat needed.</p>
 </li>
 </ul>
 </div>
@@ -558,7 +573,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-03-12 21:47:10 CET
+Last updated 2019-04-03 18:00:41 CEST
 </div>
 </div>
 </body>
