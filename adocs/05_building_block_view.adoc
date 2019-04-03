@@ -5,9 +5,9 @@ The building block view shows the static decomposition of the system into buildi
 
 === Whitebox Overall System
 
-We have decomposed the block in two parts: We have the login part and the chat room part, which we will decompose later.
+We have two views, the main one (index.html), which is the one used to perform the user's logging, and the secondary one (two-people-chat.html) which purpose is to make possible the chat between two people.
 
-It is necessary to incorporate the login module since the application is customized according to the logged user.
+It is necessary to incorporate the login module since the application is customized according to the logged user. For example, the friends list will not be the same for all users, but each user will have their own friends list.
 
 image::images/05_block_view_diagram.png["Hierarchy of building blocks"]
 
