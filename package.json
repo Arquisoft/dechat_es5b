@@ -1,84 +1,84 @@
 {
-    "name": "dechat_es5b",
-    "version": "1.0.0",
-    "description": "A decentralized chat",
-    "private": true,
-    "presets": [
-        "@babel/preset-es2016"
-    ],
-    "scripts": {
-        "start": "webpack && node App.js",
-        "test": "mocha \"./test/*\"",
-        "acceptance": "cd acceptance-tests && cucumber-js",
-        "test-with-coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-        "travisRepo": "./test/travisRepo.sh",
-        "travis-deploy-once": "travis-deploy-once",
-        "puml": "puml",
-        "docs": "asciidoctorjs  adocs/index.adoc --destination-dir docs"
-    },
-    "bin": {},
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/arquisoft/dechat_es5b.git"
-    },
-    "author": "Equipo ES5B",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/arquisoft/dechat_es5b/issues"
-    },
-    "homepage": "https://github.com/arquisoft/dechat_es5b",
-    "devDependencies": {
-        "@babel/cli": "^7.2.3",
-        "@babel/core": "^7.4.0",
-        "@babel/node": "^7.2.2",
-        "@babel/preset-env": "^7.4.2",
-        "@babel/register": "^7.4.0",
-        "asciidoctor-cli": "^1.5.6-rc.1",
-        "asciidoctor.js": "^1.5.9",
-        "babel-plugin-istanbul": "^5.1.1",
-        "chai": "4.2.x",
-        "coveralls": "^3.0.3",
-        "cucumber": "^5.1.0",
-        "eslint": "^5.x",
-        "gulp": "^4.0.0",
-        "gulp-cli": "^2.1.0",
-        "gulp-exec": "^3.0.2",
-        "gulp-puml": "^0.1.24",
-        "gulp-svg2png": "^2.0.2",
-        "jsdoc": "^3.5.5",
-        "mocha": "^6.0.2",
-        "mocha-lcov-reporter": "^1.3.0",
-        "node-plantuml": "^0.8.1",
-        "nyc": "^13.3.0",
-        "webpack": "^4.29.6",
-        "webpack-cli": "^3.3.0"
-    },
-    "dependencies": {
-        "codacy-coverage": "^3.4.0",
-        "cucumber": "^5.1.0",
-        "express": "^4.16.4",
-        "jsonld-request": "^0.2.0",
-        "path": "^0.12.7",
-        "rdflib": "^0.20.0",
-        "solid-file-client": "^0.4.9",
-        "standard": "^12.0.1"
-    },
-    "directories": {
-        "doc": "docs",
-        "test": "test"
-    },
-    "keywords": [
-        "solid",
-        "chat",
-        "message",
-        "discusssion",
-        "decentralized",
-        "web",
-        "rdf",
-        "ldp",
-        "linked",
-        "pane",
-        "app",
-        "data"
-    ]
+  "name": "dechat_es5b",
+  "version": "1.0.0",
+  "description": "A decentralized chat",
+  "private": true,
+  "presets": [
+    "@babel/preset-es2016"
+  ],
+  "scripts": {
+    "start": "webpack && node App.js",
+    "test": "mocha \"./test/*\"",
+    "test-with-coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "acceptance": "cd acceptance-tests && cucumber-js",
+    "travisRepo": "./test/travisRepo.sh",
+    "travis-deploy-once": "travis-deploy-once",
+    "puml": "puml",
+    "docs": "asciidoctorjs  adocs/index.adoc --destination-dir docs"
+  },
+  "bin": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arquisoft/dechat_es5b.git"
+  },
+  "author": "Equipo ES5B",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arquisoft/dechat_es5b/issues"
+  },
+  "homepage": "https://github.com/arquisoft/dechat_es5b",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/register": "^7.4.0",
+    "asciidoctor-cli": "^1.5.6-rc.1",
+    "asciidoctor.js": "^1.5.9",
+    "babel-plugin-istanbul": "^5.1.1",
+    "chai": "4.2.x",
+    "coveralls": "^3.0.3",
+    "cucumber": "^5.1.0",
+    "eslint": "^5.x",
+    "gulp": "^4.0.0",
+    "gulp-cli": "^2.1.0",
+    "gulp-exec": "^3.0.2",
+    "gulp-puml": "^0.1.24",
+    "gulp-svg2png": "^2.0.2",
+    "jsdoc": "^3.5.5",
+    "mocha": "^6.0.2",
+    "mocha-lcov-reporter": "^1.3.0",
+    "node-plantuml": "^0.8.1",
+    "nyc": "^13.3.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "codacy-coverage": "^3.4.0",
+    "cucumber": "^5.1.0",
+    "express": "^4.16.4",
+    "jsonld-request": "^0.2.0",
+    "path": "^0.12.7",
+    "rdflib": "^0.20.0",
+    "solid-file-client": "^0.4.9",
+    "standard": "^12.0.1"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "keywords": [
+    "solid",
+    "chat",
+    "message",
+    "discusssion",
+    "decentralized",
+    "web",
+    "rdf",
+    "ldp",
+    "linked",
+    "pane",
+    "app",
+    "data"
+  ]
 }
