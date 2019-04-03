@@ -3,5 +3,11 @@ Feature: Can I send a message to nobody?
 
   Scenario Outline: Could the user send a message without chosing a friend?
 	Given I'm using the chat app
-    When I send a message "<message>" 
-    Then The chat says "Nope"
+    When I send a message "<message>" to nobody
+    Then The chat says I can't send the message
+	
+  Examples:
+	| message |
+	| hi |
+	| how are you? |
+	| good thanks |

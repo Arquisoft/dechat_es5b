@@ -11,7 +11,7 @@ Given('I\'m using the chat app', function() {
 When('I send a message {string} to my {string} friend', function(message, friendName) {
     chatManager1.INFO.receiver = friendName;
     chatManager1.getReceiver = function() { return chatManager1.INFO.receiver; }
-    chatManager1.sendMessage = function() { return message; }
+    chatManager1.sendMessage = function(message) { return message; }
     this.reply = chatManager1.sendMessage(message);
 });
 
@@ -67,19 +67,16 @@ function containsFriend(friendName, friends) {
     return false;
 }
 
-
-
-
-
-
-var nope;
 // NOT CHOOSING FRIEND
-When('I send a message {string}', function(message) {
-    if (chatManager1.INFO.receiver == null)
-        this.nope = "Nope";
-    else this.nope = "Talking alone succesfull!";
+When('I send a message {string} to nobody', function(message) {
+    chatManager1.INFO.receiver = null; // MY FRIEND -> NOBODY
+    chatManager1.sendMessage = function(message) {
+        if (chatManager1.INFO.receiver != null) return message;
+        else return null;
+    }
+    this.reply = chatManager1.sendMessage(message);
 });
 
-Then('The chat says "Nope"', function() {
-    assert.equal(nope, "Nope");
+Then('The chat says I can\'t send the message', function() {
+    assert.equal(this.reply, null);
 });
