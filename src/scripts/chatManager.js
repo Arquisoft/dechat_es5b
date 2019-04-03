@@ -2,6 +2,7 @@ var podUtils = require('./podUtilities.js');
 var notiMan = require('./NotificationManager.js');
 
 const ToLog = true;
+const notify= false;
 
 
 class message {
@@ -56,6 +57,7 @@ async function sendMessage(text) {
 
 
         ret = await podUtils.createFile(filename, jsonString, ToLog);
+        if(notify)
         await notiMan.writeNotification(INFO.receiverURI, INFO.user);
     } catch (error) {
 
@@ -103,6 +105,7 @@ async function sendMessage(text) {
 
         
         ret = await podUtils.createFile(filename, jsonString, ToLog);
+        if(notify)
         await notiMan.writeNotification(INFO.receiverURI, INFO.user);
         
     }
@@ -166,7 +169,8 @@ async function receiveMessages() {
     MESSAGES.toShow = MESSAGES.toShow.slice(-10);
 
     //Delete existing notifiations
-    //notiMan.deleteNotification(INFO.userURI, INFO.receiver);
+    if(notify)
+    notiMan.deleteNotification(INFO.userURI, INFO.receiver);
 
     return MESSAGES.toShow;
 }

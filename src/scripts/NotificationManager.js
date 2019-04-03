@@ -82,10 +82,12 @@ async function readAllNotification(receiverURI){
     //Read Notification file
     var receiverInbox = receiverURI+"inbox/";
     var fileURL = receiverInbox+notAppend+".ttl";
+
+    //ERROR 403 forbidden
     var file = await podUtils.readFile(fileURL,true);
 
     var userList=[];
-    if(file){
+    if(file!=null){
         //Return all user with notifications
         var usersText = file.split("\"");
         for(var i=0; i<usersText.length ; i++){
