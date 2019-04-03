@@ -1,6 +1,6 @@
 const assert = require('assert');
 const { Given, When, Then } = require('cucumber');
-const chatManager1 = require("../../../src/chat/scripts/chatManager.js");
+const chatManager1 = require("../../../src/scripts/chatManager.js");
 
 // SEND MESSAGE
 Given('I\'m using the chat app', function() {
