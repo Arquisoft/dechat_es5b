@@ -17,5 +17,5 @@ $("#maximizeElectron").click(function () {
   var ventana = remote.getCurrentWindow();
 
   //If maximized, unmaximize it, otherwise maximize
-  window.isMaximized() ? window.unmaximize() : window.maximize();
+  ventana.isMaximized() ? ventana.unmaximize() : ventana.maximize();
 });
