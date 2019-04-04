@@ -26,7 +26,7 @@
 			<img src="images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="chatLogo">
 			DeChat ES5B
 		</a>
-		<ul class="nav nav-pills nodrag">
+		<ul class="nav nav-pills nodrag electronElement">
 			<li class="nav-item">
 				<a class="whitecolor nav-link" href="#" id="minimizeElectron">&#95;</a>
 			</li>
@@ -89,6 +89,15 @@
 		  </div>
 		</div>
 		<!-- IDP Modal end -->
-	<script src="scripts/windowButtonControls.js"></script>
+	
+	<script>
+		if(typeof process == 'undefined'){
+			console.log("ejecutando en web");
+			$(".electronElement").hide();
+		}else{
+			console.log("ejecutando en electron");
+			$.getScript( "scripts/windowButtonControls.js");
+		}
+	</script>
 </body>
 </html>
