@@ -4,10 +4,7 @@ async function login() {
 	let session = await podUtils.getSession();
 	if (session == null){
 		console.log("sesion true:" + session);
-		if($('#desiredIDP').val() == "")
-			$('#modalIDP').modal('show');
-		else
-			podUtils.loginNoPopup($('#desiredIDP').val());
+		podUtils.loginNoPopup($('#desiredIDP').val());
 	}else{
 		console.log("sesion false:" + session);
 		$('#login').addClass('d-none');

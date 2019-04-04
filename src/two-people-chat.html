@@ -37,16 +37,13 @@
 					<a class="dropdown-item" href="#" id="navBarLogout">Log out</a>
 				</div>
 			</li>
-			<li>
-                <a class="whitecolor nav-link" href="https://arquisoft.github.io/dechat_es5b/docs/" id="logout">About the chat</a>
-            </li>
-			<li class="nav-item">
+			<li class="nav-item electronElement">
 				<a class="whitecolor nav-link" href="#" id="minimizeElectron">&#95;</a>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item electronElement">
 				<a class="whitecolor nav-link" href="#" id="maximizeElectron">&square;</a>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item electronElement">
 				<a class="whitecolor nav-link" href="#" id="closeElectron">&times;</a>
 			</li>
 		</ul>
@@ -93,6 +90,13 @@
     <script src="index.js"></script>
 	<script src="scripts/windowButtonControls.js"></script>
 	<script>
+		if(typeof process == 'undefined'){
+			console.log("ejecutando en web");
+			$(".electronElement").hide();
+		}else{
+			console.log("ejecutando en electron");
+			$.getScript( "scripts/windowButtonControls.js");
+		}
 		$('#navBarLogout').click(function() {
 			solid.auth.logout().then(() => console.log("Sesión cerrada"));
 			window.location.href = "/";
