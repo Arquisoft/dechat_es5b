@@ -1,4 +1,5 @@
 const fileClient = require('solid-file-client');
+const auth = require('solid-auth-client');
 
 async function login(credentials) {
 	var result;
@@ -20,6 +21,14 @@ async function login(credentials) {
 		});
 	}
 	return result;
+}
+
+async function loginNoPopup(idProvider){
+	await solid.auth.login(idProvider);
+}
+
+async function getSession(){
+	return await solid.auth.currentSession();
 }
 
 async function logout() {
@@ -115,6 +124,8 @@ async function deleteMessage(url, ToLog) {
 module.exports = {
 	login: login,
 	logout: logout,
+	loginNoPopup: loginNoPopup,
+	getSession: getSession,
 	createFolder: createChatFolder,
 	readFolder: readFolder,
 	deleteFolder: deleteFolder,

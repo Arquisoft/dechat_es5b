@@ -4,24 +4,44 @@
     <meta charset="UTF-8">
 	<meta name="description" content="Decentralized chat using Solid">
     <title>deChat_ES5B</title>
-	<link rel="icon" type="image/png" href="./images/siteIcon.png">
+	<link rel="icon" type="image/png" href="images/siteIcon.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/"/>
-	<script src="./scripts/jquery.js"></script>
-    <link rel="stylesheet" href="./styles/main.css">
+	
+    <!-- Insert this line above script imports  -->
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+	<script src="scripts/jquery.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="scripts/solid-auth-client.bundle.js"></script>
+	<script defer src="index.js"></script>
+	<!-- Insert this line after script imports -->
+	<script>if (window.module) module = window.module;</script>
+	
+	<link rel="stylesheet" href="styles/main.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 	<nav class="navbar navbar-dark">
-	  <a class="navbar-brand" href="#">
-		<img src="./images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="chatLogo">
-		DeChat ES5B
-	  </a>
+		<a class="navbar-brand" href="#">
+			<img src="images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="chatLogo">
+			DeChat ES5B
+		</a>
+		<ul class="nav nav-pills nodrag">
+			<li class="nav-item">
+				<a class="whitecolor nav-link" href="#" id="minimizeElectron">&#95;</a>
+			</li>
+			<li class="nav-item">
+				<a class="whitecolor nav-link" href="#" id="maximizeElectron">&square;</a>
+			</li>
+			<li class="nav-item">
+				<a class="whitecolor nav-link" href="#" id="closeElectron">&times;</a>
+			</li>
+		</ul>
 	 </nav>
 	
 	<div class="jumbotron centered">
 		<h1>Welcome to our descentralized chat</h1>
-		<img src="./images/logo.svg" width="50" height="50" alt="chatLogo">
+		<img src="images/logo.svg" width="50" height="50" alt="chatLogo">
 		<div class="container">
 			<h2>Log in with your Solid POD!</h2>
 			<p id="login">
@@ -44,7 +64,31 @@
 		</div>
 	</div>
 	
-	<script src="./scripts/solid-auth-client.bundle.js"></script>
-	<script src="./index.js"></script>
+	<!-- IDP Modal start -->
+		<div class="modal fade" id="modalIDP" tabindex="-1" role="dialog" aria-labelledby="modalIDPLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="modalIDPTitle">Select your Identity Provider (IDP)</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body">
+				<div class="form-group row">
+					<div class="input-group col-sm-10">
+						<input type="text" class="form-control" placeholder="WebID" id="desiredIDP">
+					</div>
+				</div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" id="solidLogin">Log in with Solid Community</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" id="login">Log in</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<!-- IDP Modal end -->
+	<script src="scripts/windowButtonControls.js"></script>
 </body>
 </html>
