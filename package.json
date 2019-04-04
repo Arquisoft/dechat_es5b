@@ -6,8 +6,11 @@
   "presets": [
     "@babel/preset-es2016"
   ],
+  "main": "main.js",
   "scripts": {
     "start": "webpack && node App.js",
+	"electronstart": "webpack && electron .",
+    "electronpack": "webpack && electron-packager . DeChat ES5B --electron-version=4.1.3",
     "test": "mocha \"./test/*\"",
     "test-with-coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "acceptance": "cd acceptance-tests && cucumber-js",
@@ -38,6 +41,8 @@
     "babel-plugin-istanbul": "^5.1.1",
     "chai": "4.2.x",
     "coveralls": "^3.0.3",
+    "electron": "^4.1.3",
+    "electron-packager": "^13.1.1",
     "cucumber": "^5.1.0",
     "eslint": "^5.x",
     "gulp": "^4.0.0",

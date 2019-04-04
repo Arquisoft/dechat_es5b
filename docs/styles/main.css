@@ -69,23 +69,40 @@ dt {
 
 /* Chat containers */
 .containerChat {
+	width: inherit;
+	overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+	height: auto;
   border-color: #ccc;
   background-color: #CABDFF;
   border-radius: 5px;
   padding: 10px;
   margin: 0.5em;
-  text-align: left;
+	text-align: left;
+	overflow: visible;
+	border-left:1em solid transparent;
+	border-right:1em solid transparent;
+	
 }
 
 /* Darker chat container */
 .containerChatDarker { 
+	width: inherit;
+	overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+	height: auto;
   border: 2px solid #dedede;
   background-color: #f1f1f1;
   border-radius: 5px;
   padding: 10px;
   margin: 0.5em;
-  text-align: right;
+	text-align: right;
+	border-left:1em solid transparent;
+	border-right:1em solid transparent;
 }
+
 
 dt:after {
     ontent: ': ';
@@ -121,6 +138,7 @@ dt:after {
 	margin: 0em;
 	padding: 0em;
 }
+
 
 #noMarginMessge {
 	font-size: 18px;

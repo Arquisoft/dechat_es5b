@@ -7,9 +7,24 @@ var chatM = require('./chatManager.js');
 const store = $rdf.graph();
 const fetcher = new $rdf.Fetcher(store);
 
+//Si ya estamos conectados, redirigimos al chat
+$(document).ready(async function() {
+  let session = await solid.auth.currentSession();
+	if (session && window.location.href.replace(/^(?:\/\/|[^\/]+)*\//, "/").split('#')[0]=='/'){
+		// esto comprueba si la sesion esta iniciada (session es true) y si la ruta es la del
+		// login (window.location.href es la ruta absoluta, el replace retira http://localhost:1919 o el correspondiente dominio)
+		window.location.href = "two-people-chat.html";
+	}
+});
+
 // Log the user in and out on click
-$('#login  button').click(() => loginM.login(null));
+$('#login  button').click(() => loginM.login());
 $('#logout button').click(() => loginM.logout());
+
+$("#solidLogin").click(function() {
+		  $('#desiredIDP').val('https://solid.community');
+		  loginM.login();
+		});
 
 // Update components to match the user's login status
 solid.auth.trackSession(session => {
@@ -105,7 +120,7 @@ function updateMessages(toShow) {
 	if (chatM.ToLog)
 		console.log("Update msgs");
 	var messages = "";
-  $('#messages').empty();
+	$('#messages').empty();
 	toShow.forEach((message) => {
 		messages = messages + message;
 	});
