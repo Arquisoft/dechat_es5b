@@ -1,7 +1,6 @@
 [[section-runtime-view]]
 == Runtime View
 
-
 [role="arc42help"]
 In this section, we will develop the main runtime views of use cases of our application.
 
@@ -9,9 +8,10 @@ In this section, we will develop the main runtime views of use cases of our appl
 The login process will be done by users when they log in with their pesonal id to access the chat.
 
 1. The user click on the login button.
-2. The application asks the user how to login: solid community account, inrupt account.
-3. The user enter his credentials.
-4. The server approve or deny the authentication.
+2. The user enters his or her credentials.
+3. LoginManager call PodUtilities login method to try to login.
+4. The server deny the authentication.
+5. The server approve the authentication.
 6. The user can start chatting.
 
 image::images/06_login.png[Log in diagram]

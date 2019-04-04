@@ -1,7 +1,7 @@
 [[section-system-scope-and-context]]
 == System Scope and Context
 
-DeChat must allow communication between two users through text messages. In addition, it may be possible in following versions create user groups which all participants can send and receive messages. In addition, it must allow the sending of files, such as images or videos, to the recipient.
+DeChat must allow communication between two users through text messages. In addition, it may be possible in following versions create user gro ups which all participants can send and receive messages.
 
 Security and privacy is DeChat priority. Messages will never leave user own Solid POD. Instead, recipient system will be asked to retrieve message from senders POD, and will never save messages to recipient POD.
 DeChat will only store where message is placed, so app knows where are messages stored when user starts application.
@@ -27,4 +27,4 @@ Since DeChat is under SOLID architecture, we will be using WebID to communicate 
 
 As indicated above, the chat is composed of two main elements: login and chat room. It's necessary to bear in mind that the application needs a web browser to be able to use it. Here is a case of use that explains how it works:
 
-image:03_chat_components.png[Chat components diagram]
+image::images/03_chat_components.png[Chat components diagram]

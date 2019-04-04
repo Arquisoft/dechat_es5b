@@ -2,19 +2,37 @@
 == Solution Strategy
 
 Due to the social content of the application and other solid apps that we've seen we decided that
-the best option is to do it in a web enviroment and run it on a server so it's more user-friendly.
+the best option is to do it in a web enviroment so it's more user-friendly.
 At the moment the plan for our application structure is based on a JavaScript application with HTML components that follow solid's style guide and pattern in the app apearence.
 
 For the teamwork, project development and documentation we'll be using a GitHub repository to keep things in order.
 
-Decisions taken about the chat:
+=== Technology Decisions
+* *Solid*: by subject requirements.
+* *Solid-file-client*: a library for creating and managing files and folders in Solid data stores.
+* *Webpack*: bundle JavaScript files for usage in a browser.
+* *Node.js*: JavaScript runtime built on Chrome's V8 JavaScript engine.
+* *Bootstrap*: open source toolkit for designing web sites.
+* *GitHub*: also by subject requierements.
+* *AsciidocFX*: Asciidoc document editor to perform the documentation.
+* *Mocha*: Runs unit tests.
+* *Cucumber*: Runs automated acceptance tests written in a behavior-based development style.
+* *Travis CI*: It is a distributed and hosted continuous integration service that is used to create and test software projects hosted on GitHub.
 
-* Solid: by subject requirements.
-* Solid-file-client: a library for creating and managing files and folders in Solid data stores.
-* Webpack: bundle JavaScript files for usage in a browser.
-* Node.js: JavaScript runtime built on Chrome's V8 JavaScript engine.
-* Bootstrap: open source toolkit for designing web sites.
-* GitHub: also by subject requierements.
-* AsciidocFX: Asciidoc document editor to perform the documentation.
+=== Decisions on how to achieve key quality goals
+==== Decentralized
+In the first iteration of the project we have carried out a research task about what the SOLID project means. Once this information was understood, all team members were ready to contribute their own ideas and carry out the implementation of the application in the following iteration.
 
+==== Usable
+We have made a template of what the user interface should be to get an idea about the design of the application before we start to implement it.
 
+The colors purple, lilac and white have been used so that the user does not forget that he is using SOLID.
+
+image::images/05_chat_room_sketch.png["Chat room sketch"]
+
+==== Clean code and design
+At first we focused more on chat functionality rather than trying to make a clean code. We realized that this was a mistake, so we decided to restructure the project to make it more modular and no longer a big ball of mud. 
+
+To do this, we have based ourselves on clean architecture, to which the following diagram refers:
+
+image::images/clean-architecture.jpeg["Clean Architecture"]

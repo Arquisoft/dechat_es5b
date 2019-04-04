@@ -1,34 +1,31 @@
-const fileClient = require('solid-file-client')
-const auth = require('solid-auth-client');
+var podUtils = require('./podUtilities.js');
 
-async function login () {
-	const session = await solid.auth.currentSession();
-	if (!session){
+async function login() {
+	let session = await podUtils.getSession();
+	if (session == null){
+		console.log("sesion true:" + session);
 		if($('#desiredIDP').val() == "")
 			$('#modalIDP').modal('show');
 		else
-			await solid.auth.login($('#desiredIDP').val());
+			podUtils.loginNoPopup($('#desiredIDP').val());
 	}else{
-		console.log(`Logged in as ${session.webId}`);
+		console.log("sesion false:" + session);
 		$('#login').addClass('d-none');
 		$('#logout').removeClass('d-none');
 		$('#chatRef').removeClass('d-none');
 	}
-    return true;
 }
 
-async function logout () {
-	solid.auth.logout().then(() => console.log("Sesión cerrada"));
+async function logout() {
+    podUtils.logout();
     $('#login').removeClass('d-none');
     $('#logout').addClass('d-none');
     $('#chatRef').addClass('d-none');
-    return true;
 }
 function setIDP(name){
 	console.log(name);
 }
 
-async function cosroro(){}
 module.exports = {
     login: login,
     logout: logout

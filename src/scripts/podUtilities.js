@@ -1,65 +1,137 @@
 const fileClient = require('solid-file-client');
+const auth = require('solid-auth-client');
 
-//POD utility funcs
-async function createChatFolder(url,ToLog) {
-    await fileClient.createFolder(url).then(success => {
-        if(ToLog)
-            console.log(`Created folder ${url}.`);
-      }, err => console.log(err) );
+async function login(credentials) {
+	var result;
+	if (credentials == null) {
+		result = await fileClient.popupLogin().then(webId => {
+			console.log(`Logged in as ${webId}.`);
+			return true;
+		}, err => {
+			console.log(err);
+			return false;
+		});
+	} else {
+		result = await fileClient.login(credentials).then((session) => {
+			console.log(`Logged in as ` + session.webId);
+			return true;
+		}, err => {
+			console.log(err);
+			return false;
+		});
+	}
+	return result;
 }
 
-//We have to know about what returns the method fileClient.readFolder(url)
-async function readFolder(url,ToLog){
-    return await fileClient.readFolder(url).then(folder => {
-        if(ToLog)
-            console.log(`Read ${folder.name}, it has ${folder.files.length} files.`);
-        return folder;
-      }, err => console.log(err) );
+async function loginNoPopup(idProvider){
+	await solid.auth.login(idProvider);
 }
 
-async function deleteFolder(url,ToLog){
-	await fileClient.deleteFolder(url).then(success => {
-        if(ToLog)
-            console.log(`Deleted ${url}.`);
-	}, err => console.log(err) );
+async function getSession(){
+	return await solid.auth.currentSession();
 }
 
-async function writeMessage(url,content,ToLog){
-    await fileClient.createFile(url,content,"text/plain").then( fileCreated => {
-        if(ToLog)
-            console.log(`Created file ${fileCreated}.`);
-      }, err => console.log(err) );
+async function logout() {
+	return await fileClient.logout().then(success => {
+		console.log(`Bye now!`);
+		return true;
+	}, err => {
+		console.log(err);
+		return false;
+	});
 }
 
-//We have to know about what returns the method fileClient.readFile(url)
-async function readMessage(url,ToLog){
-	return await fileClient.readFile(url).then(  body => {
-        if(ToLog)
-            //console.log(`File	content is : ${body}.`);
-	  return body;
-	}, err => console.log(err) );
+async function createChatFolder(url, ToLog) {
+	return await fileClient.createFolder(url).then(success => {
+		if (ToLog)
+			console.log(`Created folder ${url}.`);
+		return true;
+	}, err => {
+		console.log(err);
+		return false;
+	});
 }
 
-//I've put this method here in case we end up using it.
-async function updateMessage(url,ToLog){
-	await fileClient.updateFile( url, newContent, contentType ).then( success => {
-		if(ToLog)
-            console.log( `Updated ${url}.`)
-	}, err => console.log(err) );
+async function readFolder(url, ToLog) {
+	return await fileClient.readFolder(url).then(folder => {
+		if (ToLog)
+			console.log(`Read ${folder.name}, it has ${folder.files.length} files.`);
+		return folder;
+	}, err => {
+		console.log(err);
+		return null;
+	});
 }
 
-async function deleteMessage(url,ToLog){
-	await fileClient.deleteFile(url).then(success => {
-	    if(ToLog)
-            console.log(`Deleted ${url}.`);
-	}, err => console.log(err) );
+async function deleteFolder(url, ToLog) {
+	return await fileClient.deleteFolder(url).then(success => {
+		if (ToLog)
+			console.log(`Deleted ${url}.`);
+		return true;
+	}, err => {
+		console.log(err);
+		return false;
+	});
+}
+
+async function writeMessage(url, content, ToLog) {
+	return await fileClient.createFile(url, content).then(fileCreated => {
+		if (ToLog)
+			console.log(`Created file ${fileCreated}.`);
+		return true;
+	}, err => {
+		console.log(err);
+		return false;
+	});
+}
+
+async function writeTurtle(url, content, ToLog) {
+	await fileClient.createFile(url, content, "text/turtle").then(fileCreated => {
+		if (ToLog)
+			console.log(`Created file ${fileCreated}.`);
+	}, err => console.log(err));
+}
+
+async function updateTurtle(url, newContent, ToLog) {
+	await fileClient.updateFile(url, newContent, "text/turtle").then(success => {
+		if (ToLog)
+			console.log(`Updated ${url}.`)
+	}, err => console.log(err));
+}
+
+async function readMessage(url, ToLog) {
+	return await fileClient.readFile(url).then(body => {
+		//if(ToLog)
+		//console.log(`File	content is : ${body}.`);
+		return body;
+	}, err => {
+		console.log(err);
+		return null;
+	});
+}
+
+async function deleteMessage(url, ToLog) {
+	return await fileClient.deleteFile(url).then(success => {
+		if (ToLog)
+			console.log(`Deleted ${url}.`);
+		return true;
+	}, err => {
+		console.log(err);
+		return false;
+	});
 }
 
 module.exports = {
-	createFolder : createChatFolder,
-	readFolder : readFolder,
-	deleteFolder : deleteFolder,
-	createFile : writeMessage,
-	readFile : readMessage,
-	deleteFile : deleteMessage
+	login: login,
+	logout: logout,
+	loginNoPopup: loginNoPopup,
+	getSession: getSession,
+	createFolder: createChatFolder,
+	readFolder: readFolder,
+	deleteFolder: deleteFolder,
+	createFile: writeMessage,
+	readFile: readMessage,
+	deleteFile: deleteMessage,
+	writeTurtle: writeTurtle,
+	updateTurtle: updateTurtle
 }

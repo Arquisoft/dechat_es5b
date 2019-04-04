@@ -2,6 +2,15 @@
 == Quality Requirements
 Here we will explain using scenarios some of the quality requeriments of this project.
 
+=== User stories:
+Below we describe the user stories we have used in the acceptance tests:
+
+* As a dechat_5b user I want to know if i'm chatting with the right friend
+* As a dechat_5b user I want to see my friend's list
+* As a dechat_5b user I want to know if I can send a message without chosing a friend
+* As a dechat_5b user I want to know if I can recieve a message from a contact
+* As a dechat_5b user I want to know if I can send a message to a contact
+
 ****
 .List of requirements
 
@@ -53,7 +62,7 @@ image::images/QualityTree.png[]
 |High
 
 |Usability
-|It should be possible to add new users to the chat while others are talking, without any problems.
+|It should be possible to chat with 2 or more users at the same time, without any problems.
 |High
 
 |Usability
