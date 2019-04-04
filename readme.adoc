@@ -10,9 +10,10 @@ image:https://cdn-eliostruyf.azureedge.net/wp-content/uploads/2016/10/101116_081
 image:https://software.intel.com/sites/default/files/managed/fa/a0/Runtime-logo-Node.jpg["Nodejs", link="https://nodejs.org/en/about/",200,200]
 
 == Beginnings
-Our app requires https://nodejs.org/en/[Node.js] to use it.
+You can download https://github.com/Arquisoft/dechat_es5b/releases[latest release] or compile it from source.
+In order to compile from source code, clone repository and install https://nodejs.org/en/[Node.js].
 
-== Clone our repository
+
 Using, for example, the desktop app https://git-scm.com/[Git] or any other version control tool, you have to execute:
 
 ----
@@ -20,7 +21,9 @@ git clone https://github.com/Arquisoft/dechat_es5b.git
 ----
 
 == Launch the app
-Once the repository has been cloned, you have to move to the root folder of the project:
+Releases can be directly executed.
+
+If you compile from source, you have to move to the root folder of the project:
 
 ----
 cd dechat_es5b
@@ -35,14 +38,10 @@ npm install
 Once the installation is complete, you have to execute:
 
 ----
-npm run start
+npm start
 ----
 
-Now the application is ready to be used. You only have to open the web browser and access to:
-
-----
-http://localhost:1919
-----
+Now the application is ready to be used. A window will be opened and DeChat will be ready to go.
 
 == Test
 To launch the tests, you have to execute:
