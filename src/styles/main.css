@@ -23,13 +23,21 @@ dt {
     float: left;
 }
 
+/* This CSS rules tells electron when click and holding mouse over navbar, it should move the screen*/
 .navbar{
 	-webkit-user-select: none !important;
 	-webkit-app-region: drag !important;
 }
 
+/* This tells electron that avobe rules do not apply on buttons (or all elements having this class) */
 .nodrag{
 	-webkit-app-region: no-drag !important;
+}
+
+/* Solves bootstrap bug and aligns dropdowns to the left */
+.dropdown-menu-right {
+    right: 0 !important;
+    left: auto !important;
 }
 
 .centered{
