@@ -105,7 +105,7 @@ function updateMessages(toShow) {
 	if (chatM.ToLog)
 		console.log("Update msgs");
 	var messages = "";
-  $('#messages').empty();
+	$('#messages').empty();
 	toShow.forEach((message) => {
 		messages = messages + message;
 	});
