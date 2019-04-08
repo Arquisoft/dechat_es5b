@@ -4,7 +4,7 @@ let lang;
  */
 function setLanguage(locale){
 	switch(locale){
-		case "en_US":
+		case "en-US":
 			lang = {
 				"title": "DeChat ES5B - Chatroom",
 				"dropdownUser": "User Profile",
@@ -14,12 +14,10 @@ function setLanguage(locale){
 				"h5friends": "Friend list",
 				"h5friendsDescription": "Please select a friend before you start chatting",
 				"h1title": "Welcome to your decentralized chat room",
-				"sendButton": "Send",
-				"": "",
-				"": ""
+				"sendButton": "Send"
 			}
 			break;
-		case "es_ES":
+		case "es-ES":
 			lang = {
 				"title": "DeChat ES5B - Sala de chat",
 				"dropdownUser": "Perfil",
@@ -29,9 +27,7 @@ function setLanguage(locale){
 				"h5friends": "Listado de amigos",
 				"h5friendsDescription": "Selecciona un amigo antes de comenzar a chatear",
 				"h1title": "Bienvenido a tu sala de chat descentralizada",
-				"sendButton": "Enviar",
-				"": "",
-				"": ""
+				"sendButton": "Enviar"
 			}
 			break;
 		case "zh-CN":
@@ -44,15 +40,14 @@ function setLanguage(locale){
 				"h5friends": "好友列表",
 				"h5friendsDescription": "请在开始聊天之前选择一位朋友",
 				"h1title": "欢迎来到您的分散聊天室",
-				"sendButton": "发送",
-				"": "",
-				"": ""
+				"sendButton": "发送"
 			}
 			break;
 		default:
 			console.error("No language set");
 	}
-	//Set navbar phrases
+	
+	//Set phrases
 	document.title = lang.title;
 	$("#dropdownUser").text(lang.dropdownUser);
 	$("#profile").text(lang.profile);
@@ -65,4 +60,4 @@ function setLanguage(locale){
 	//$("#").text(lang.);
 }
 
-setLanguage("en_US");
+setLanguage("en-US");

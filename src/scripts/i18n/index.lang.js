@@ -4,7 +4,7 @@ let lang;
  */
 function setLanguage(locale){
 	switch(locale){
-		case "en_US":
+		case "en-US":
 			lang = {
 				"title": "DeChat ES5B - Your decentralized chat",
 				"about": "About the chat",
@@ -27,7 +27,7 @@ function setLanguage(locale){
 				"idpLogin": "Log in"
 			}
 			break;
-		case "es_ES":
+		case "es-ES":
 			lang = {
 				"title": "DeChat ES5B - Chatea con tus amigos de forma descentralizada",
 				"about": "Acerca de",
@@ -76,7 +76,7 @@ function setLanguage(locale){
 		default:
 			console.error("No language set");
 	}
-	//Set navbar phrases
+	//Set phrases
 	document.title = lang.title;
 	$("#about").text(lang.about);
 	$("#langSelector").text(lang.langSelector);
@@ -98,4 +98,4 @@ function setLanguage(locale){
 	$("#idpLogin").text(lang.idpLogin);
 }
 
-setLanguage("en_US");
+setLanguage("en-US");
