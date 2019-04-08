@@ -13,6 +13,7 @@
 	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 	<script src="scripts/jquery.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script defer src="scripts/i18n/two-people-chat.lang.js"></script>
 	<!-- Insert this line after script imports -->
 	<script>if (window.module) module = window.module;</script>
 </head>
@@ -26,14 +27,20 @@
 		
 		<ul class="nav nav-pills nodrag">
 			<li class="nav-item dropdown">
-				<a class="whitecolor nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					User Profile
-				</a>
+				<a class="whitecolor nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdownUser"></a>
 				<div class="dropdown-menu dropdown-menu-right">
 					<a class="dropdown-item disabled">Signed in as<br><strong id="fullName"></strong></a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" id="profile" target="_blank">Go to your SOLID profile</a>
-					<a class="dropdown-item" href="#" id="navBarLogout">Log out</a>
+					<a class="dropdown-item" id="profile" target="_blank"></a>
+					<a class="dropdown-item" href="#" id="navBarLogout"></a>
+				</div>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="whitecolor nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="langSelector"></a>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item" href="#" onclick="setLanguage('en-US')">English</a>
+					<a class="dropdown-item" href="#" onclick="setLanguage('es-ES')">Español</a>
+					<a class="dropdown-item" href="#" onclick="setLanguage('zh-CN')">中文</a>
 				</div>
 			</li>
 			<li class="nav-item electronElement">
@@ -52,8 +59,8 @@
 			<div class="col-md-3">
 				<div class="sidebar-nav-fixed affix sidebar">
 					<div class="well">
-						<h5 class="centered whitecolor" style="padding: 0.75em;">Friend list</h5>
-						<p style="text-align:center;">Please select a friend before you start chatting</p>
+						<h5 class="centered whitecolor" style="padding: 0.75em;" id="h5friends"></h5>
+						<p style="text-align:center;" id="h5friendsDescription"></p>
 						<div class="list-group list-group-flush forcefullwidth" id="friends">
 							<button type="button" class="list-group-item list-group-item-action noactive" disabled>Loading, please wait...</button>
 						</div>
@@ -63,7 +70,7 @@
 		
 			<div class="col-md-8">
 				<div class="jumbotron chatplace">
-					<h1 style="margin-bottom: 0.5em;">Welcome to your decentralized chat room</h1>
+					<h1 style="margin-bottom: 0.5em;" id="h1title"></h1>
 					<div class="container" id="divConversation">
 						<section>
 							<div id="MessageArea">
@@ -71,7 +78,7 @@
 								<div class="input-group mb-3">
 									<input type="text" class="form-control" placeholder="Type a message..." id="messageText" aria-label="Type a message..." aria-describedby="basic-addon2">
 									<div class="input-group-append">
-										<button class="btn btn-outline-secondary" type="button" id="sendButton">Send</button>
+										<button class="btn btn-outline-secondary" type="button" id="sendButton"></button>
 									</div>
 								</div>
 							</div>
@@ -84,14 +91,13 @@
 	
 	<script src="scripts/solid-auth-client.bundle.js"></script>
     <script src="index.js"></script>
-	<script src="scripts/windowButtonControls.js"></script>
 	<script>
 		if(typeof process == 'undefined'){
 			console.log("ejecutando en web");
 			$(".electronElement").hide();
 		}else{
 			console.log("ejecutando en electron");
-			$.getScript( "scripts/windowButtonControls.js");
+			$.getScript("scripts/windowButtonControls.js");
 		}
 		$('#navBarLogout').click(function() {
 			solid.auth.logout().then(() => console.log("Sesión cerrada"));

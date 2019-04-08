@@ -14,6 +14,7 @@
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script src="scripts/solid-auth-client.bundle.js"></script>
 	<script defer src="index.js"></script>
+	<script defer src="scripts/i18n/index.lang.js"></script>
 	<!-- Insert this line after script imports -->
 	<script>if (window.module) module = window.module;</script>
 	
@@ -27,9 +28,20 @@
 			DeChat ES5B
 		</a>
 		<ul class="nav nav-pills nodrag">
-			<li>
-                <a class="whitecolor nav-link" href="https://arquisoft.github.io/dechat_es5b/docs/" target="_blank">About the chat</a>
+			<li class="nav-item">
+                <a class="whitecolor nav-link" href="https://arquisoft.github.io/dechat_es5b/docs/" target="_blank" id="about"></a>
             </li>
+			<li class="nav-item notElectronElement">
+                <a class="whitecolor nav-link" href="https://github.com/Arquisoft/dechat_es5b/releases" target="_blank" id="desktopApp"></a>
+            </li>
+			<li class="nav-item dropdown">
+				<a class="whitecolor nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="langSelector"></a>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item" href="#" onclick="setLanguage('en-US')">English</a>
+					<a class="dropdown-item" href="#" onclick="setLanguage('es-ES')">Español</a>
+					<a class="dropdown-item" href="#" onclick="setLanguage('zh-CN')">中文</a>
+				</div>
+			</li>
 			<li class="nav-item electronElement">
 				<a class="whitecolor nav-link" href="#" id="minimizeElectron">&#95;</a>
 			</li>
@@ -43,26 +55,24 @@
 	 </nav>
 	
 	<div class="jumbotron centered">
-		<h1>Welcome to our descentralized chat</h1>
+		<h1 id="h1header"></h1>
 		<img src="images/logo.svg" width="50" height="50" alt="chatLogo">
 		<div class="container">
-			<h2>Log in with your Solid POD!</h2>
+			<h2 id="h2header"></h2>
 			<p id="login">
-				<button type="button" class="btn btn-outline-primary">Log in</button>
+				<button type="button" class="btn btn-outline-primary" id="logInBtn"></button>
 			</p>
 			<p class="d-none" id="logout">
-				Hi! You are now logged in.
-				<br>
-				<button type="button" class="btn btn-outline-primary">Log out</button>
+				<button type="button" class="btn btn-outline-primary" id="logOutBtn"></button>
 			</p>
-			<a class="btn btn-primary btn-lg active d-none" id="chatRef" href="two-people-chat.html" role="button" aria-pressed="true">Enter to Chat</a>
+			<a class="btn btn-primary btn-lg active d-none" id="chatRef" href="two-people-chat.html" role="button" aria-pressed="true"></a>
 			<div class="container" id="divWithShade">
-				<h3>Start chatting</h3>
-				<p>Just log in with your Solid community account and start chatting.</p>
-				<p>You must have friends in your solid community account to be able to chat.</p>
-				<h3>How it works</h3>
-				<p>Our deChat is a decentralized chat site, build on top of Solid.</p>
-				<p>All personal data about the chat is stored on your POD.</p>
+				<h3 id="h3header"></h3>
+				<p id="desc1"></p>
+				<p id="desc2"></p>
+				<h3 id="h3header2"></h3>
+				<p id="desc3"></p>
+				<p id="desc4"></p>
 			</div>
 		</div>
 	</div>
@@ -72,13 +82,13 @@
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
 			  <div class="modal-header">
-				<h5 class="modal-title" id="modalIDPTitle">Select your Identity Provider (IDP)</h5>
+				<h5 class="modal-title" id="modalIDPTitle"></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				  <span aria-hidden="true">&times;</span>
 				</button>
 			  </div>
 			  <div class="modal-body">
-				<p>If you want to login using Solid Community Server, leave this field empty and click "Login with Solid Community"</p>
+				<p id="modalIDPDescription"></p>
 				<div class="form-group row">
 					<div class="input-group col-sm-10">
 						<input type="text" class="form-control" placeholder="WebID" id="desiredIDP">
@@ -86,8 +96,8 @@
 				</div>
 			  </div>
 			  <div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal" id="solidLogin">Log in with Solid Community</button>
-				<button type="button" class="btn btn-primary" data-dismiss="modal" id="idpLogin">Log in</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" id="solidLogin"></button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" id="idpLogin"></button>
 			  </div>
 			</div>
 		  </div>
@@ -100,6 +110,7 @@
 			$(".electronElement").hide();
 		}else{
 			console.log("ejecutando en electron");
+			$(".notElectronElement").hide();
 			$.getScript( "scripts/windowButtonControls.js");
 		}
 	</script>
