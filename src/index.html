@@ -34,9 +34,13 @@
 			<li class="nav-item notElectronElement">
                 <a class="whitecolor nav-link" href="https://github.com/Arquisoft/dechat_es5b/releases" target="_blank" id="desktopApp"></a>
             </li>
-			<li class="nav-item">
-                <a class="whitecolor nav-link">Selector idioma</a>
-            </li>
+			<li class="nav-item dropdown">
+				<a class="whitecolor nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="langSelector"></a>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item" href="#" onclick="setLoginLanguage('en_US')">English</a>
+					<a class="dropdown-item" href="#" onclick="setLoginLanguage('es_ES')">Español</a>
+				</div>
+			</li>
 			<li class="nav-item electronElement">
 				<a class="whitecolor nav-link" href="#" id="minimizeElectron">&#95;</a>
 			</li>
@@ -58,7 +62,7 @@
 				<button type="button" class="btn btn-outline-primary" id="logInBtn"></button>
 			</p>
 			<p class="d-none" id="logout">
-				<button type="button" class="btn btn-outline-primary" id="logOutBtn">Log out</button>
+				<button type="button" class="btn btn-outline-primary" id="logOutBtn"></button>
 			</p>
 			<a class="btn btn-primary btn-lg active d-none" id="chatRef" href="two-people-chat.html" role="button" aria-pressed="true">Enter to Chat</a>
 			<div class="container" id="divWithShade">
