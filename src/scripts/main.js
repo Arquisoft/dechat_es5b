@@ -18,13 +18,17 @@ $(document).ready(async function() {
 });
 
 // Log the user in and out on click
-$('#login  button').click(() => loginM.login());
+$('#login  button').click(() => $('#modalIDP').modal('show'));
 $('#logout button').click(() => loginM.logout());
 
 $("#solidLogin").click(function() {
-		  $('#desiredIDP').val('https://solid.community');
-		  loginM.login();
-		});
+	$('#desiredIDP').val('https://solid.community');
+	loginM.login();
+});
+
+$("#idpLogin").click(function() {
+	loginM.login();
+});
 
 // Update components to match the user's login status
 solid.auth.trackSession(session => {
