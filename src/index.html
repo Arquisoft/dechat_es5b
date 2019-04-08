@@ -14,6 +14,7 @@
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script src="scripts/solid-auth-client.bundle.js"></script>
 	<script defer src="index.js"></script>
+	<script defer src="scripts/i18n/index.lang.js"></script>
 	<!-- Insert this line after script imports -->
 	<script>if (window.module) module = window.module;</script>
 	
@@ -27,8 +28,14 @@
 			DeChat ES5B
 		</a>
 		<ul class="nav nav-pills nodrag">
-			<li>
-                <a class="whitecolor nav-link" href="https://arquisoft.github.io/dechat_es5b/docs/" target="_blank">About the chat</a>
+			<li class="nav-item">
+                <a class="whitecolor nav-link" href="https://arquisoft.github.io/dechat_es5b/docs/" target="_blank" id="about"></a>
+            </li>
+			<li class="nav-item notElectronElement">
+                <a class="whitecolor nav-link" href="https://github.com/Arquisoft/dechat_es5b/releases" target="_blank" id="desktopApp"></a>
+            </li>
+			<li class="nav-item">
+                <a class="whitecolor nav-link">Selector idioma</a>
             </li>
 			<li class="nav-item electronElement">
 				<a class="whitecolor nav-link" href="#" id="minimizeElectron">&#95;</a>
@@ -43,17 +50,15 @@
 	 </nav>
 	
 	<div class="jumbotron centered">
-		<h1>Welcome to our descentralized chat</h1>
+		<h1 id="h1header"></h1>
 		<img src="images/logo.svg" width="50" height="50" alt="chatLogo">
 		<div class="container">
-			<h2>Log in with your Solid POD!</h2>
+			<h2 id="h2header"></h2>
 			<p id="login">
-				<button type="button" class="btn btn-outline-primary">Log in</button>
+				<button type="button" class="btn btn-outline-primary" id="logInBtn"></button>
 			</p>
 			<p class="d-none" id="logout">
-				Hi! You are now logged in.
-				<br>
-				<button type="button" class="btn btn-outline-primary">Log out</button>
+				<button type="button" class="btn btn-outline-primary" id="logOutBtn">Log out</button>
 			</p>
 			<a class="btn btn-primary btn-lg active d-none" id="chatRef" href="two-people-chat.html" role="button" aria-pressed="true">Enter to Chat</a>
 			<div class="container" id="divWithShade">
@@ -100,6 +105,7 @@
 			$(".electronElement").hide();
 		}else{
 			console.log("ejecutando en electron");
+			$(".notElectronElement").hide();
 			$.getScript( "scripts/windowButtonControls.js");
 		}
 	</script>
