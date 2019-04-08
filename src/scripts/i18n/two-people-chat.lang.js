@@ -1,39 +1,35 @@
 let lang;
 /**
- * Update login screen language
+ * Update two-people-chat.html language
  */
 function setLanguage(locale){
 	switch(locale){
 		case "en_US":
 			lang = {
-				"title": "DeChat ES5B - Your decentralized chat",
-				"about": "About the chat",
+				"title": "DeChat ES5B - Chatroom",
+				"dropdownUser": "User Profile",
+				"profile": "Go to your SOLID profile",
+				"navBarLogout": "Log out",
 				"langSelector": "Language",
-				"desktopApp": "Download desktop app",
-				"h1header": "Welcome to our descentralized chat",
-				"h2header": "Log in with your Solid POD!",
-				"logInBtn": "Log in",
-				"logOutBtn": "Log out",
-				"": "",
-				"": "",
-				"": "",
+				"h5friends": "Friend list",
+				"h5friendsDescription": "Please select a friend before you start chatting",
+				"h1title": "Welcome to your decentralized chat room",
+				"sendButton": "Send",
 				"": "",
 				"": ""
 			}
 			break;
 		case "es_ES":
 			lang = {
-				"title": "DeChat ES5B - Chatea con tus amigos de forma descentralizada",
-				"about": "Acerca de",
+				"title": "DeChat ES5B - Sala de chat",
+				"dropdownUser": "Perfil",
+				"profile": "Ir a tu perfil de SOLID",
+				"navBarLogout": "Cerrar sesión",
 				"langSelector": "Idioma",
-				"desktopApp": "Descarga la aplicación",
-				"h1header": "Bienvenido a nuestro chat descentralizado",
-				"h2header": "Inicia sesión con tu POD de SOLID",
-				"logInBtn": "Inicia sesión",
-				"logOutBtn": "Cerrar sesión",
-				"": "",
-				"": "",
-				"": "",
+				"h5friends": "Listado de amigos",
+				"h5friendsDescription": "Selecciona un amigo antes de comenzar a chatear",
+				"h1title": "Bienvenido a tu sala de chat descentralizada",
+				"sendButton": "Enviar",
 				"": "",
 				"": ""
 			}
@@ -43,13 +39,15 @@ function setLanguage(locale){
 	}
 	//Set navbar phrases
 	document.title = lang.title;
-	$("#about").text(lang.about);
+	$("#dropdownUser").text(lang.dropdownUser);
+	$("#profile").text(lang.profile);
+	$("#navBarLogout").text(lang.navBarLogout);
 	$("#langSelector").text(lang.langSelector);
-	$("#desktopApp").text(lang.desktopApp);
-	$("#h1header").text(lang.h1header);
-	$("#h2header").text(lang.h2header);
-	$("#logInBtn").text(lang.logInBtn);
-	$("#logOutBtn").text(lang.logOutBtn);
+	$("#h5friends").text(lang.h5friends);
+	$("#h5friendsDescription").text(lang.h5friendsDescription);
+	$("#h1title").text(lang.h1title);
+	$("#sendButton").text(lang.sendButton);
+	//$("#").text(lang.);
 }
 
 setLanguage("en_US");
