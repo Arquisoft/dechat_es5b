@@ -59,5 +59,4 @@ function setLanguage(locale){
 	$("#sendButton").text(lang.sendButton);
 	//$("#").text(lang.);
 }
-
 setLanguage("en-US");

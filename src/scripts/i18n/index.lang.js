@@ -97,5 +97,4 @@ function setLanguage(locale){
 	$("#solidLogin").text(lang.solidLogin);
 	$("#idpLogin").text(lang.idpLogin);
 }
-
 setLanguage("en-US");
