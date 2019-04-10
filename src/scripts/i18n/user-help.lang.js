@@ -7,14 +7,8 @@ function setLanguage(locale){
 		case "en-US":
 			lang = {
 				"title": "DeChat ES5B - Your decentralized chat",
-				"about": "About the chat",
 				"langSelector": "Language",
-				"desktopApp": "Download desktop app",
-				"h1header": "Welcome to our descentralized chat",
-				"h2header": "Log in with your Solid POD!",
-				"logInBtn": "Log in",
-				"logOutBtn": "Log out",
-				"chatRef": "Enter to chat",
+				"h1header": "DeChat_es5b User Manual",
 				"h3header": "Start chatting",
 				"desc1": "Just log in with your Solid community account and start chatting.",
 				"desc2": "You must have friends in your solid community account to be able to chat.",
@@ -35,14 +29,8 @@ function setLanguage(locale){
 		case "es-ES":
 			lang = {
 				"title": "DeChat ES5B - Chatea con tus amigos de forma descentralizada",
-				"about": "Acerca de",
 				"langSelector": "Idioma",
-				"desktopApp": "Descarga la aplicación",
-				"h1header": "Bienvenido a nuestro chat descentralizado",
-				"h2header": "Inicia sesión con tu POD de SOLID",
-				"logInBtn": "Inicia sesión",
-				"logOutBtn": "Cerrar sesión",
-				"chatRef": "Enter to chat",
+				"h1header": "DeChat_es5b Manual de Usuario",
 				"h3header": "Chatea ahora",
 				"desc1": "Simplemente inicia sesión en tu cuenta de SOLID usando tu POD y comienza a chatear.",
 				"desc2": "Debes tener una cuenta de SOLID para poder chatear.",
@@ -63,14 +51,8 @@ function setLanguage(locale){
 		case "zh-CN":
 			lang = {
 				"title": "DeChat ES5B - 您的分散聊天室",
-				"about": "关于聊天室",
 				"langSelector": "语言",
-				"desktopApp": "桌面應用",
-				"h1header": "欢迎来到您的分散聊天室",
-				"h2header": "使用您的 Solid POD 登录",
-				"logInBtn": "登录",
-				"logOutBtn": "登出",
-				"chatRef": "进入聊天室",
+				"h1header": "用戶手冊",
 				"h3header": "开始聊天",
 				"desc1": "只需使用您的 Solid 社区帐户登录即可开始聊天。",
 				"desc2": "您必须拥有可靠的社区帐户中的朋友才能聊天。",
