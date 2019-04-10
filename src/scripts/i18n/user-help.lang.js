@@ -45,25 +45,9 @@ function setLanguage(locale){
 	}
 	//Set phrases
 	document.title = lang.title;
-	$("#about").text(lang.about);
 	$("#langSelector").text(lang.langSelector);
-	$("#desktopApp").text(lang.desktopApp);
 	$("#h1header").text(lang.h1header);
-	$("#h2header").text(lang.h2header);
-	$("#logInBtn").text(lang.logInBtn);
-	$("#logOutBtn").text(lang.logOutBtn);
-	$("#chatRef").text(lang.chatRef);
 	$("#h3header").text(lang.h3header);
-	$("#desc1").text(lang.desc1);
-	$("#desc2").text(lang.desc2);
-	$("#h3header2").text(lang.h3header2);
-	$("#desc3").text(lang.desc3);
-	$("#desc4").text(lang.desc4);
-	$("#desc5").text(lang.desc5);
-	$("#modalIDPTitle").text(lang.modalIDPTitle);
-	$("#modalIDPDescription").text(lang.modalIDPDescription);
-	$("#solidLogin").text(lang.solidLogin);
-	$("#idpLogin").text(lang.idpLogin);
 	$("#desktop_app").text(lang.desktop_app);
 	$("#about_us").text(lang.about_us);
 	$("#development").text(lang.development);
