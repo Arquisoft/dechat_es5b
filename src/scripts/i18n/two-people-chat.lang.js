@@ -3,6 +3,9 @@ let lang;
  * Update two-people-chat.html language
  */
 function setLanguage(locale){
+	// This saves user preference in localStorage to
+	// persist locale across windows (and sessions)
+	window.localStorage.userLocale = locale;
 	switch(locale){
 		case "en-US":
 			lang = {
@@ -47,6 +50,7 @@ function setLanguage(locale){
 			}
 			break;
 		default:
+			setLanguage("en-US");
 			console.error("No language set");
 	}
 	
@@ -63,4 +67,8 @@ function setLanguage(locale){
 	$("#sendButton").text(lang.sendButton);
 	//$("#").text(lang.);
 }
-setLanguage("en-US");
+if (typeof window.localStorage.userLocale == "undefined") {
+    //User did not selected language, changing to default
+	window.localStorage.userLocale = "en-US";
+}
+setLanguage(window.localStorage.userLocale);
