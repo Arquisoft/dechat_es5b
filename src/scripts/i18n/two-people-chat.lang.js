@@ -8,6 +8,7 @@ function setLanguage(locale){
 			lang = {
 				"title": "DeChat ES5B - Chatroom",
 				"dropdownUser": "User Profile",
+				"signed": "Signed in as",
 				"profile": "Go to your SOLID profile",
 				"navBarLogout": "Log out",
 				"langSelector": "Language",
@@ -21,6 +22,7 @@ function setLanguage(locale){
 			lang = {
 				"title": "DeChat ES5B - Sala de chat",
 				"dropdownUser": "Perfil",
+				"signed": "Logueado como",
 				"profile": "Ir a tu perfil de SOLID",
 				"navBarLogout": "Cerrar sesión",
 				"langSelector": "Idioma",
@@ -34,6 +36,7 @@ function setLanguage(locale){
 			lang = {
 				"title": "DeChat ES5B - 聊天室",
 				"dropdownUser": "用户资料",
+				"signed": "確定為",
 				"profile": "转到您的SOLID个人资料",
 				"navBarLogout": "登出",
 				"langSelector": "语言",
@@ -50,6 +53,7 @@ function setLanguage(locale){
 	//Set phrases
 	document.title = lang.title;
 	$("#dropdownUser").text(lang.dropdownUser);
+	$("#signed").text(lang.signed);
 	$("#profile").text(lang.profile);
 	$("#navBarLogout").text(lang.navBarLogout);
 	$("#langSelector").text(lang.langSelector);
