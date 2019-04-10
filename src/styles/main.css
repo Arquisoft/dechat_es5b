@@ -135,13 +135,6 @@ dt:after {
 	-moz-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
 }
 
-#divWithShadeManual {
-	padding: 2em;
-	-webkit-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
-	-moz-box-shadow: 3px 3px 3px 3px rgba(153,153,153,1);
-	text-align: left;
-}
-
 #chatRef {
 	margin-bottom: 1em;
 }
