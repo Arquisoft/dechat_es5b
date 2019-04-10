@@ -29,10 +29,7 @@
 		</a>
 		<ul class="nav nav-pills nodrag">
 			<li class="nav-item">
-                <a class="whitecolor nav-link" href="https://arquisoft.github.io/dechat_es5b/docs/" target="_blank" id="about"></a>
-            </li>
-			<li class="nav-item notElectronElement">
-                <a class="whitecolor nav-link" href="https://github.com/Arquisoft/dechat_es5b/releases" target="_blank" id="desktopApp"></a>
+                <a class="whitecolor nav-link" href="./user-help.html" target="_blank" id="about"></a>
             </li>
 			<li class="nav-item dropdown">
 				<a class="whitecolor nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="langSelector"></a>
@@ -73,36 +70,83 @@
 				<h3 id="h3header2"></h3>
 				<p id="desc3"></p>
 				<p id="desc4"></p>
+				<p id="desc5"></p>
 			</div>
 		</div>
 	</div>
 	
 	<!-- IDP Modal start -->
-		<div class="modal fade" id="modalIDP" tabindex="-1" role="dialog" aria-labelledby="modalIDPLabel" aria-hidden="true">
-		  <div class="modal-dialog" role="document">
-			<div class="modal-content">
-			  <div class="modal-header">
-				<h5 class="modal-title" id="modalIDPTitle"></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				  <span aria-hidden="true">&times;</span>
-				</button>
-			  </div>
-			  <div class="modal-body">
-				<p id="modalIDPDescription"></p>
-				<div class="form-group row">
-					<div class="input-group col-sm-10">
-						<input type="text" class="form-control" placeholder="WebID" id="desiredIDP">
-					</div>
+	<div class="modal fade" id="modalIDP" tabindex="-1" role="dialog" aria-labelledby="modalIDPLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="modalIDPTitle"></h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			<p id="modalIDPDescription"></p>
+			<div class="form-group row">
+				<div class="input-group col-sm-10">
+					<input type="text" class="form-control" placeholder="WebID" id="desiredIDP">
 				</div>
-			  </div>
-			  <div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal" id="solidLogin"></button>
-				<button type="button" class="btn btn-primary" data-dismiss="modal" id="idpLogin"></button>
-			  </div>
 			</div>
 		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal" id="solidLogin"></button>
+			<button type="button" class="btn btn-primary" data-dismiss="modal" id="idpLogin"></button>
+		  </div>
 		</div>
-		<!-- IDP Modal end -->
+	  </div>
+	</div>
+	<!-- IDP Modal end -->
+		
+	<!-- Footer -->
+	<footer class="page-footer font-small indigo">
+		<!-- Footer Links -->
+		<div class="container">
+		  <!-- Grid row-->
+		  <div class="row text-center d-flex justify-content-center pt-5 mb-3">
+			<!-- Grid column -->
+			<div class="col-md-2 mb-3">
+			  <h6 class="text-uppercase font-weight-bold">
+				<a href="https://github.com/Arquisoft/dechat_es5b/wiki" id="about_us"></a>
+			  </h6>
+			</div>
+			<!-- Grid column -->
+			<!-- Grid column -->
+			<div class="col-md-2 mb-3">
+			  <h6 class="text-uppercase font-weight-bold">
+				<a href="https://github.com/Arquisoft/dechat_es5b/releases/download/0.3/DeChat-win32-x64.zip" id="desktop_app"></a>
+			  </h6>
+			</div>
+			<!-- Grid column -->
+			<!-- Grid column -->
+			<div class="col-md-2 mb-3">
+			  <h6 class="text-uppercase font-weight-bold">
+				<a href="https://github.com/Arquisoft/dechat_es5b" id="development"></a>
+			  </h6>
+			</div>
+			<!-- Grid column -->
+			<!-- Grid column -->
+			<div class="col-md-2 mb-3">
+			  <h6 class="text-uppercase font-weight-bold">
+				<a href="https://arquisoft.github.io/dechat_es5b/docs/" id="arc42"></a>
+			  </h6>
+			</div>
+			<!-- Grid column -->
+		  </div>
+		  <!-- Grid row-->
+		</div>
+		<!-- Footer Links -->
+		<!-- Copyright -->
+		<div class="footer-copyright text-center py-3">© 2019 Copyright:
+		  <a href="https://github.com/Arquisoft/dechat_es5b/blob/master/LICENSE">Arquisoft DeChat_es5b Group</a>
+		</div>
+		<!-- Copyright -->
+	</footer>
+	<!-- Footer -->
 	
 	<script>
 		if(typeof process == 'undefined'){

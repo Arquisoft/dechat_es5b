@@ -2,7 +2,7 @@ var podUtils = require('./podUtilities.js');
 var notiMan = require('./NotificationManager.js');
 
 const ToLog = true;
-const notify= false;
+const notify = false;
 
 
 class message {
@@ -57,8 +57,8 @@ async function sendMessage(text) {
 
 
         ret = await podUtils.createFile(filename, jsonString, ToLog);
-        if(notify)
-        await notiMan.writeNotification(INFO.receiverURI, INFO.user);
+        if (notify)
+            await notiMan.writeNotification(INFO.receiverURI, INFO.user);
     } catch (error) {
 
         //IF folder doesnt exist: create new user folder
@@ -103,11 +103,11 @@ async function sendMessage(text) {
         messages.push(new message(text, new Date().getTime()));
         jsonString = JSON.stringify(messages);
 
-        
+
         ret = await podUtils.createFile(filename, jsonString, ToLog);
-        if(notify)
-        await notiMan.writeNotification(INFO.receiverURI, INFO.user);
-        
+        if (notify)
+            await notiMan.writeNotification(INFO.receiverURI, INFO.user);
+
     }
     return ret;
 }
@@ -158,7 +158,7 @@ async function receiveMessages() {
         dict.push(new message("<div class=\"containerChat\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + INFO.receiverName + " " + strDate + "</p></div>", date));
     });
 
-    dict.sort(function(a, b) {
+    dict.sort(function (a, b) {
         return a.date > b.date ? 1 : a.date < b.date ? -1 : 0;
     });
 
@@ -169,8 +169,8 @@ async function receiveMessages() {
     MESSAGES.toShow = MESSAGES.toShow.slice(-10);
 
     //Delete existing notifiations
-    if(notify)
-    notiMan.deleteNotification(INFO.userURI, INFO.receiver);
+    if (notify)
+        notiMan.deleteNotification(INFO.userURI, INFO.receiver);
 
     return MESSAGES.toShow;
 }
