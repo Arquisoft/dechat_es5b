@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
 	<meta name="description" content="Decentralized chat using Solid">
-    <title>deChat_ES5B</title>
+    <title>deChat_ES5B - User manual</title>
 	<link rel="icon" type="image/png" href="images/siteIcon.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="/"/>
 	
     <!-- Insert this line above script imports  -->
 	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
@@ -14,7 +13,7 @@
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script src="scripts/solid-auth-client.bundle.js"></script>
 	<script defer src="index.js"></script>
-	<script defer src="scripts/i18n/index.lang.js"></script>
+	<script defer src="scripts/i18n/user-help.lang.js"></script>
 	<!-- Insert this line after script imports -->
 	<script>if (window.module) module = window.module;</script>
 	
@@ -22,15 +21,12 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-	<nav class="navbar navbar-dark">
-		<a class="navbar-brand" href="#">
-			<img src="images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="chatLogo">
+	<nav class="navbar sticky-top navbar-dark">
+		<a class="navbar-brand" href="/" style="color:white;">
+			<img src="./images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="chatLogo">
 			DeChat ES5B
 		</a>
 		<ul class="nav nav-pills nodrag">
-			<li class="nav-item">
-                <a class="whitecolor nav-link" href="./user-help.html" target="_blank" id="about"></a>
-            </li>
 			<li class="nav-item dropdown">
 				<a class="whitecolor nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="langSelector"></a>
 				<div class="dropdown-menu dropdown-menu-right">
@@ -49,58 +45,16 @@
 				<a class="whitecolor nav-link" href="#" id="closeElectron">&times;</a>
 			</li>
 		</ul>
-	 </nav>
+	</nav>
 	
 	<div class="jumbotron centered">
 		<h1 id="h1header"></h1>
 		<img src="images/logo.svg" width="50" height="50" alt="chatLogo">
 		<div class="container">
-			<h2 id="h2header"></h2>
-			<p id="login">
-				<button type="button" class="btn btn-outline-primary" id="logInBtn"></button>
-			</p>
-			<p class="d-none" id="logout">
-				<button type="button" class="btn btn-outline-primary" id="logOutBtn"></button>
-			</p>
-			<a class="btn btn-primary btn-lg active d-none" id="chatRef" href="two-people-chat.html" role="button" aria-pressed="true"></a>
-			<div class="container" id="divWithShade">
-				<h3 id="h3header"></h3>
-				<p id="desc1"></p>
-				<p id="desc2"></p>
-				<h3 id="h3header2"></h3>
-				<p id="desc3"></p>
-				<p id="desc4"></p>
-				<p id="desc5"></p>
-			</div>
+			<h3 id="h3header"></h3>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/rpyZ2WfCMTo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</div>
 	</div>
-	
-	<!-- IDP Modal start -->
-	<div class="modal fade" id="modalIDP" tabindex="-1" role="dialog" aria-labelledby="modalIDPLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<h5 class="modal-title" id="modalIDPTitle"></h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			  <span aria-hidden="true">&times;</span>
-			</button>
-		  </div>
-		  <div class="modal-body">
-			<p id="modalIDPDescription"></p>
-			<div class="form-group row">
-				<div class="input-group col-sm-10">
-					<input type="text" class="form-control" placeholder="WebID" id="desiredIDP">
-				</div>
-			</div>
-		  </div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal" id="solidLogin"></button>
-			<button type="button" class="btn btn-primary" data-dismiss="modal" id="idpLogin"></button>
-		  </div>
-		</div>
-	  </div>
-	</div>
-	<!-- IDP Modal end -->
 		
 	<!-- Footer -->
 	<footer class="page-footer font-small indigo">
