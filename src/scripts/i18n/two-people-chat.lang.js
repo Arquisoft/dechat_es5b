@@ -47,6 +47,7 @@ function setLanguage(locale){
 			}
 			break;
 		default:
+			setLanguage("en-US");
 			console.error("No language set");
 	}
 	
