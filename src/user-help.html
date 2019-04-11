@@ -9,9 +9,9 @@
 	
     <!-- Insert this line above script imports  -->
 	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-	<script src="scripts/jquery.js"></script>
+	<script src="lib/jquery.js"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-	<script src="scripts/solid-auth-client.bundle.js"></script>
+	<script src="lib/solid-auth-client.bundle.js"></script>
 	<script defer src="index.js"></script>
 	<script defer src="scripts/i18n/user-help.lang.js"></script>
 	<!-- Insert this line after script imports -->
@@ -109,7 +109,7 @@
 		}else{
 			console.log("ejecutando en electron");
 			$(".notElectronElement").hide();
-			$.getScript( "scripts/windowButtonControls.js");
+			$.getScript("scripts/windowButtonControls.js");
 		}
 	</script>
 </body>

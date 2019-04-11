@@ -1,21 +1,25 @@
 const $rdf = require('rdflib');
 const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
-var loginM = require('./LogInManager.js');
 var chatM = require('./chatManager.js');
+var loginM = require('./LogInManager.js');
 
 // Set up a local data store and associated data fetcher
 const store = $rdf.graph();
 const fetcher = new $rdf.Fetcher(store);
 
-// Log the user in and out on click
+//Show modal on login button click
 $('#login  button').click(() => $('#modalIDP').modal('show'));
+
+// Logout on button click
 $('#logout button').click(() => loginM.logout());
 
+//"Login with SOLID Community" should redirect to solid.community login page
 $("#solidLogin").click(function() {
 	$('#desiredIDP').val('https://solid.community');
 	loginM.login();
 });
 
+//Login with desired IDP button
 $("#idpLogin").click(function() {
 	loginM.login();
 });
