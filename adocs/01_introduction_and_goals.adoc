@@ -1,13 +1,13 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
-Our project is part of a university proposal with a basis in cooperation with the company Inrupt and the use of its SOLID design.
+Our project is part of a university proposal with basis on a colaboration with the company Inrupt and the use of theirs SOLID design.
 
-In it we will provide a response to the request for a decentralized chat using SOLID. It will consist of the principle of separating the information from the application giving the user the power to control all their data.
+In this project we will provide a response to the request for a decentralized chat using SOLID. It will consist on the principle of separating the information from the application giving users the power to control all their data.
 
 In this documentation we will explain all the relevant concepts of our decentralized chat, based on SOLID, following the Arc42 template.
 
 === Requirements Overview
-It is a chat so its most basic requirements are to send and receive messages. But there are other requirements that we are going to explain:
+It is a chat so its most basic requirements are to send and receive messages. But there are other requirements described as follows:
 
 ==== Chat Requirements
 [width="100%",options="header"]
