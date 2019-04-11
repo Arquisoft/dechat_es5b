@@ -3,6 +3,9 @@ let lang;
  * Update login screen language
  */
 function setLanguage(locale){
+	// This saves user preference in localStorage to
+	// persist locale across windows (and sessions)
+	window.localStorage.userLocale = locale;
 	switch(locale){
 		case "en-US":
 			lang = {
@@ -41,6 +44,7 @@ function setLanguage(locale){
 			}
 			break;
 		default:
+			setLanguage("en-US");
 			console.error("No language set");
 	}
 	//Set phrases
@@ -53,4 +57,8 @@ function setLanguage(locale){
 	$("#development").text(lang.development);
 	$("#arc42").text(lang.arc42);
 }
-setLanguage("en-US");
+if (typeof window.localStorage.userLocale == "undefined") {
+    //User did not select language, changing to default
+	window.localStorage.userLocale = "en-US";
+}
+setLanguage(window.localStorage.userLocale);
