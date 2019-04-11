@@ -45,7 +45,7 @@ function setLanguage(locale){
 				"h2header": "Inicia sesión con tu POD de SOLID",
 				"logInBtn": "Inicia sesión",
 				"logOutBtn": "Cerrar sesión",
-				"chatRef": "Enter to chat",
+				"chatRef": "Entrar al chat",
 				"h3header": "Chatea ahora",
 				"desc1": "Simplemente inicia sesión en tu cuenta de SOLID usando tu POD y comienza a chatear.",
 				"desc2": "Debes tener una cuenta de SOLID para poder chatear.",
