@@ -10,7 +10,7 @@ const fetcher = new $rdf.Fetcher(store);
 //Si ya estamos conectados, redirigimos al chat
 $(document).ready(async function() {
   let session = await solid.auth.currentSession();
-	if (session && window.location.href.replace(/^(?:\/\/|[^\/]+)*\//, "/").split('#')[0]=='/'){
+	if (session && window.location.href.replace(/^(?:\/\/|[^\/]+)*\//, "/").split('#')[0]=='/') {
 		// esto comprueba si la sesion esta iniciada (session es true) y si la ruta es la del
 		// login (window.location.href es la ruta absoluta, el replace retira http://localhost:1919 o el correspondiente dominio)
 		window.location.href = "two-people-chat.html";
