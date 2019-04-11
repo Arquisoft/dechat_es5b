@@ -68,7 +68,7 @@ function setLanguage(locale){
 	//$("#").text(lang.);
 }
 if (typeof window.localStorage.userLocale == "undefined") {
-    //User did not selected language, changing to default
+    //User did not select language, changing to default
 	window.localStorage.userLocale = "en-US";
 }
 setLanguage(window.localStorage.userLocale);
