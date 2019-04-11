@@ -58,7 +58,7 @@ function setLanguage(locale){
 	$("#arc42").text(lang.arc42);
 }
 if (typeof window.localStorage.userLocale == "undefined") {
-    //User did not selected language, changing to default
+    //User did not select language, changing to default
 	window.localStorage.userLocale = "en-US";
 }
 setLanguage(window.localStorage.userLocale);
