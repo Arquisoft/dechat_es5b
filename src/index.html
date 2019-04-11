@@ -155,6 +155,12 @@
 			$(".notElectronElement").hide();
 			$.getScript( "scripts/windowButtonControls.js");
 		}
+		$(document).ready(async function() {
+		  let session = await solid.auth.currentSession();
+			if (session) {
+				window.location.href = "two-people-chat.html";
+			}
+		});
 	</script>
 </body>
 </html>

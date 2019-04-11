@@ -6,7 +6,9 @@
     <title>deChat_ES5B</title>
 	<link rel="icon" type="image/png" href="images/siteIcon.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+	<link rel="stylesheet" href="styles/main.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<base href="/"/>
     <!-- Insert this line above script imports  -->
 	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 	<script src="scripts/jquery.js"></script>
@@ -16,13 +18,10 @@
 	<script defer src="scripts/i18n/index.lang.js"></script>
 	<!-- Insert this line after script imports -->
 	<script>if (window.module) module = window.module;</script>
-	
-	<link rel="stylesheet" href="styles/main.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-	<nav class="navbar navbar-dark">
-		<a class="navbar-brand" style="color:white;">
+	<nav class="navbar sticky-top navbar-dark">
+		<a class="navbar-brand" href="#">
 			<img src="images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="chatLogo">
 			DeChat ES5B
 		</a>
@@ -156,6 +155,12 @@
 			$(".notElectronElement").hide();
 			$.getScript( "scripts/windowButtonControls.js");
 		}
+		$(document).ready(async function() {
+		  let session = await solid.auth.currentSession();
+			if (session) {
+				window.location.href = "two-people-chat.html";
+			}
+		});
 	</script>
 </body>
 </html>
