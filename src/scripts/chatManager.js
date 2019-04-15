@@ -33,7 +33,7 @@ async function sendMessage(text) {
 
     //Define folders name
     var solidChat = INFO.userURI + "public/SolidChat/";
-    var folder = solidChat + INFO.receiverName.replace(/ /g, "-") ;
+    var folder = solidChat + INFO.receiverName.replace(/ /g, "-") + "/";
     var filename = folder + "/chat.txt";
 
     //WritingMessage
