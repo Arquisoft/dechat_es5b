@@ -81,8 +81,11 @@ describe('Test POD Utilities', function() {
 });
 
 describe('Test Chat Manager', function() {
-	credentials.password = "CE.ji.JU-55";
-    podUtils.login(credentials).then();
+	it('Login Success', async function() {
+        this.timeout(4000);
+		credentials.password = "CE.ji.JU-55";
+        assert.equal(await podUtils.login(credentials), true);
+    });
 	
 	chatM.INFO.userURI = credentials.base + "/";
 	chatM.INFO.receiverURI = receiver.idp + "/";
@@ -90,7 +93,7 @@ describe('Test Chat Manager', function() {
 	const sendFolder = credentials.base + "/public/SolidChat/" + receiver.username + "/chat.txt";
 
     it('sendMessage', async function() {
-        this.timeout(5000);
+        this.timeout(timeout);
         
 		var parsed;
         var folder = await podUtils.readFile(sendFolder, true);
@@ -112,7 +115,10 @@ describe('Test Chat Manager', function() {
 		assert.equal(messages[9].includes("newMessage"),true);
     });
 	
-	podUtils.logout().then();
+	it('logout', async function() {
+        this.timeout(timeout);
+		assert.equal(await podUtils.logout(),true);
+    });
 	
 	it('sendMessage when there is no SolidChat folder', async function() {
 		this.timeout(10000);
