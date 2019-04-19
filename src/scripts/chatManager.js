@@ -174,6 +174,11 @@ async function receiveMessages() {
     return MESSAGES.toShow;
 }
 
+async function createGoup(name){
+	//TO-DO-------------------------------------------------------------------------------------------------------------------------------
+	console.log(name);
+}
+
 //Function for main.js
 //Return users with new msg
 async function newNotifications() {

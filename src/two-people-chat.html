@@ -62,6 +62,14 @@
 					<div class="well">
 						<h5 class="centered whitecolor" style="padding: 0.75em;" id="h5friends"></h5>
 						<p style="text-align:center;" id="h5friendsDescription"></p>
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" placeholder="search friends by name" id="searcher" aria-label=". . ." aria-describedby="basic-addon2"/>
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" type="button" id="searchButton" >
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+							</div>
+						</div>
 						<div class="list-group list-group-flush forcefullwidth" id="friends">
 							<button type="button" class="list-group-item list-group-item-action noactive" disabled>Loading, please wait...</button>
 						</div>
