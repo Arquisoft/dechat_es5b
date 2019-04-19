@@ -7,6 +7,13 @@ var loginM = require('./LogInManager.js');
 const store = $rdf.graph();
 const fetcher = new $rdf.Fetcher(store);
 
+class friend {
+	constructor(uri, name){
+		this.uri = uri;
+		this.name= name;
+	}
+}
+
 //Show modal on login button click
 $('#login  button').click(() => $('#modalIDP').modal('show'));
 
@@ -82,8 +89,22 @@ async function loadProfile() {
 	});
 
 	// Display their friends
-	const friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
+	var friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
 	$('#friends').empty();
+	
+	const names = await Promise.all(friends.map(async friend => {
+		await fetcher.load(friend);
+		return await store.any(friend,FOAF('name')).toString();
+	}));
+	console.log(names);
+	names.sort(function (a,b) {
+		return a.toLowerCase().localeCompare(b.toLowerCase());
+	});
+	console.log(names);
+	
+	console.log('array sorted');
+	
+	console.log(friends);
 	friends.forEach(
 		async (friend) => {
 			await fetcher.load(friend);
@@ -124,4 +145,3 @@ function updateMessages(toShow) {
 	});
 	$('#messages').append(messages);
 }
-
