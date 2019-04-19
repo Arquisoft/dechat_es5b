@@ -98,11 +98,10 @@ async function loadProfile() {
 		await fetcher.load(f);
 		sortedFriends.push(new friend(f.value, await store.any(f,FOAF('name')).toString()));
 	}));
-	console.log(sortedFriends);
+	
 	sortedFriends.sort(function (a,b) {
 		return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
 	});
-	console.log('array sorted');
 	
 	sortedFriends.forEach(
 		async (friend) => {
