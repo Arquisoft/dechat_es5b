@@ -1,7 +1,7 @@
 var podUtils = require('./podUtilities.js');
 var notiMan = require('./NotificationManager.js');
 
-const ToLog = false;
+const ToLog = true;
 const notify = false;
 
 
@@ -60,9 +60,6 @@ async function sendMessage(text) {
             };
         chat.messages.push(message);
         jsonString = JSON.stringify(chat);
-
-        console.log(jsonString);
-
 
         ret = await podUtils.writeMsgJsonld( folder + "chatld", jsonString, ToLog);
         if (notify)
