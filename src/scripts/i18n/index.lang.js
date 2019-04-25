@@ -88,6 +88,34 @@ function setLanguage(locale) {
 				"arc42": "arc42文檔"
 			}
 			break;
+      case "gl-GL":
+            lang = {
+                "title": "DeChat ES5B - O teu chat descentralizado",
+                "about": "Sobre o chat",
+                "langSelector": "Lingua",
+                "desktopApp": "Descarga a aplicación de escritorio",
+                "h1header": "Benvido ao noso chat descentralizado",
+                "h2header": "Entra en sesión co teu POD de Solid",
+                "logInBtn": "Entrar",
+                "logOutBtn": "Desconectar",
+                "chatRef": "Entrar ao chat",
+                "h3header": "Empezar",
+                "desc1": "Entra con o teu POD de Solid e empeza e chatear",
+                "desc2": "Necesitas ter amigos na tua conta de solid community para poder chatear",
+                "h3header2": "Como funciona",
+                "desc3": "O noso deChat é un chat descentralizado baseado en Solid.",
+                "desc4": "Todos os teus datos persoais do chat almacearanse no teu POD.",
+                "desc5": "Tamén podes utilizar a nosa aplicación de escritorio.",
+                "modalIDPTitle": "Selecciona o teo proveedor de identidade (IDP) ou WebID",
+                "modalIDPDescription": "Se queres entrar usando Solid COmmunity, deixa esta campo vacío e fai click en \"Entrar con Solid Community\"",
+                "solidLogin": "Entrar con Solid Community",
+                "idpLogin": "Entrar",
+                "desktop_app": "Aplicación de escritorio",
+                "about_us": "Sobre nós",
+                "development": "Desenvolvemento",
+                "arc42": "Arc42 Docs"
+            }
+            break;
 		default:
 			setLanguage("en-US");
 			console.error("No language set");
