@@ -136,8 +136,8 @@ async function receiveMessages() {
     //Define folders name
     var uFolder = INFO.userURI + "public/SolidChat/" + INFO.receiverName.trim().replace(/ /g, "-") + "/";
     var rFolder = INFO.receiverURI + "public/SolidChat/" + INFO.userName.trim().replace(/ /g, "-") + "/";
-    var uFile = uFolder + "chat.txt";
-    var rFile = rFolder + "chat.txt";
+    var uFile = uFolder + "/chatld.jsonld";
+    var rFile = rFolder + "/chatld.jsonld";
 
     var userMessages;
     var receiveMessages;
@@ -159,17 +159,17 @@ async function receiveMessages() {
         receiveMessages = "[]";
     }
 
-    var uParsed = JSON.parse(userMessages);
-    var rParsed = JSON.parse(receiveMessages);
+    var uParsed = JSON.parse(userMessages).messages;
+    var rParsed = JSON.parse(receiveMessages).messages;
 
     uParsed.forEach(element => {
-        var date = new Date(Number(element.date));
+        var date = new Date(Number(element.dateSent));
         var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " +
             date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
         dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + INFO.userName + " (you) " + strDate + "</p></div>", date));
     });
     rParsed.forEach(element => {
-        var date = new Date(Number(element.date));
+        var date = new Date(Number(element.dateSent));
         var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " +
             date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
         dict.push(new message("<div class=\"containerChat\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + INFO.receiverName + " " + strDate + "</p></div>", date));
