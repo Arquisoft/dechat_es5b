@@ -34,7 +34,7 @@ async function sendMessage(text) {
     //Define folders name
     var solidChat = INFO.userURI + "public/SolidChat/";
     var folder = solidChat + INFO.receiverName.replace(/ /g, "-") + "/";
-    var filename = folder + "/chatld.jsonld";
+    var filename = folder + "/chatld";
 
     //WritingMessage
     if (ToLog)
@@ -161,20 +161,22 @@ async function receiveMessages() {
 
     var uParsed = JSON.parse(userMessages).messages;
     var rParsed = JSON.parse(receiveMessages).messages;
-
+    if(uParsed){
     uParsed.forEach(element => {
         var date = new Date(Number(element.dateSent));
         var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " +
             date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
         dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + INFO.userName + " (you) " + strDate + "</p></div>", date));
     });
+    }
+    if(rParsed){
     rParsed.forEach(element => {
         var date = new Date(Number(element.dateSent));
         var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " +
             date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
         dict.push(new message("<div class=\"containerChat\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + INFO.receiverName + " " + strDate + "</p></div>", date));
     });
-
+    }
     dict.sort(function (a, b) {
         return a.date > b.date ? 1 : a.date < b.date ? -1 : 0;
     });
