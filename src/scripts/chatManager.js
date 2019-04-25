@@ -34,7 +34,7 @@ async function sendMessage(text) {
     //Define folders name
     var solidChat = INFO.userURI + "public/SolidChat/";
     var folder = solidChat + INFO.receiverName.replace(/ /g, "-") + "/";
-    var filename = folder + "/chat.txt";
+    var filename = folder + "/chatld.jsonld";
 
     //WritingMessage
     if (ToLog)
@@ -51,8 +51,14 @@ async function sendMessage(text) {
 
         await podUtils.deleteFile(filename);
 
-        var messages = JSON.parse(err3);
-        messages.push(new message(text, new Date().getTime()));
+        var chat = JSON.parse(err3);
+        var message={
+            "@Type": "message",
+            "sender": INFO.userURI,
+            "dateSent": new Date().getTime(),
+            "text": text
+            };
+        chat.messages.push(message);
         jsonString = JSON.stringify(messages);
 
 
@@ -98,12 +104,24 @@ async function sendMessage(text) {
         }
         if (ToLog)
             console.log("Creating chat file");
-		
-        var messages = [];
-        messages.push(new message(text, new Date().getTime()));
-        jsonString = JSON.stringify(messages);
+        
+        //chat is the full chat component in jsonld
+        var chat={
+            "@context": "http://schema.org/",
+            "@type": "Conversation",
+            "messages":[
+                {
+                "@Type": "message",
+                "sender": INFO.userURI,
+                "dateSent": new Date().getTime(),
+                "text": text
+                }
+            ]
+        };
 
-        ret = await podUtils.createFile(filename, jsonString, ToLog);
+        jsonString = JSON.stringify(chat);
+
+        ret = await podUtils.writeMsgJsonld(filename, jsonString, ToLog);
         if (notify)
             await notiMan.writeNotification(INFO.receiverURI, INFO.user);
 
