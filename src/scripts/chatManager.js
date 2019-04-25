@@ -59,7 +59,8 @@ async function sendMessage(text) {
             "text": text
             };
         chat.messages.push(message);
-        jsonString = JSON.stringify(messages);
+        jsonString = JSON.stringify(chat);
+
         console.log(jsonString);
 
 
