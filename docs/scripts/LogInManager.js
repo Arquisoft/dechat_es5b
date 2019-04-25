@@ -19,9 +19,6 @@ async function logout() {
     $('#logout').addClass('d-none');
     $('#chatRef').addClass('d-none');
 }
-function setIDP(name){
-	console.log(name);
-}
 
 module.exports = {
     login: login,

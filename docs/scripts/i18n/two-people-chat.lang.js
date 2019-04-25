@@ -49,6 +49,20 @@ function setLanguage(locale) {
                 "sendButton": "发送"
             }
             break;
+        case "gl-GL":
+            lang = {
+                "title": "DeChat ES5B - Sala de chat",
+                "dropdownUser": "Perfil",
+                "signed": "Logueado como",
+                "profile": "Ir ao teu perfil de SOLID",
+                "navBarLogout": "Pechar sesión",
+                "langSelector": "Lingua",
+                "h5friends": "Listado de amigos",
+                "h5friendsDescription": "Selecciona un amigo antes de comezar a chatear",
+                "h1title": "Benvido á tua sala de chat descentralizada",
+                "sendButton": "Enviar"
+            }
+            break;
         default:
             setLanguage("en-US");
             console.error("No language set");
