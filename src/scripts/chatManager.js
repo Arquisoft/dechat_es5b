@@ -1,7 +1,7 @@
 var podUtils = require('./podUtilities.js');
 var notiMan = require('./NotificationManager.js');
 
-const ToLog = true;
+const ToLog = false;
 const notify = false;
 
 
@@ -34,7 +34,7 @@ async function sendMessage(text) {
     //Define folders name
     var solidChat = INFO.userURI + "public/SolidChat/";
     var folder = solidChat + INFO.receiverName.replace(/ /g, "-") + "/";
-    var filename = folder + "/chatld";
+    var filename = folder + "chatld.jsonld";
 
     //WritingMessage
     if (ToLog)
@@ -60,9 +60,10 @@ async function sendMessage(text) {
             };
         chat.messages.push(message);
         jsonString = JSON.stringify(messages);
+        console.log(jsonString);
 
 
-        ret = await podUtils.writeMsgJson(filename, jsonString, ToLog);
+        ret = await podUtils.writeMsgJsonld( folder + "chatld", jsonString, ToLog);
         if (notify)
             await notiMan.writeNotification(INFO.receiverURI, INFO.user);
     } catch (error) {
@@ -121,7 +122,7 @@ async function sendMessage(text) {
 
         jsonString = JSON.stringify(chat);
 
-        ret = await podUtils.writeMsgJsonld(filename, jsonString, ToLog);
+        ret = await podUtils.writeMsgJsonld( folder + "chatld", jsonString, ToLog);
         if (notify)
             await notiMan.writeNotification(INFO.receiverURI, INFO.user);
 
@@ -136,8 +137,8 @@ async function receiveMessages() {
     //Define folders name
     var uFolder = INFO.userURI + "public/SolidChat/" + INFO.receiverName.trim().replace(/ /g, "-") + "/";
     var rFolder = INFO.receiverURI + "public/SolidChat/" + INFO.userName.trim().replace(/ /g, "-") + "/";
-    var uFile = uFolder + "/chatld.jsonld";
-    var rFile = rFolder + "/chatld.jsonld";
+    var uFile = uFolder + "chatld.jsonld";
+    var rFile = rFolder + "chatld.jsonld";
 
     var userMessages;
     var receiveMessages;
