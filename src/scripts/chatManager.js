@@ -56,7 +56,7 @@ async function sendMessage(text) {
         jsonString = JSON.stringify(messages);
 
 
-        ret = await podUtils.createFile(filename, jsonString, ToLog);
+        ret = await podUtils.writeMsgJson(filename, jsonString, ToLog);
         if (notify)
             await notiMan.writeNotification(INFO.receiverURI, INFO.user);
     } catch (error) {
