@@ -43,6 +43,18 @@ function setLanguage(locale){
 				"arc42": "arc42文檔"
 			}
 			break;
+		case "gl-GL":
+			lang = {
+				"title": "DeChat ES5B - Manual de usuario",
+				"langSelector": "Lingua",
+				"h1header": "DeChat_es5b Manual de Usuario",
+				"h3header": "Aquí podes ver un vídeo sobre cómo utilizar o noso chat",
+				"desktop_app": "App para escritorio",
+				"about_us": "Sobre nós",
+				"development": "Desenvolvemento",
+				"arc42": "Arc42 Docs"
+			}
+			break;
 		default:
 			setLanguage("en-US");
 			console.error("No language set");

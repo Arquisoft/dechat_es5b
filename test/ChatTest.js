@@ -23,7 +23,7 @@ const testFileUrl = testFolderUrl + "testfile";
 
 describe('Log In', function() {
 	it('Login Fail', async function() {
-        this.timeout(4000);
+        this.timeout(5000);
 		credentials.password = "123456";
         assert.equal(await podUtils.login(credentials), false);
     });
@@ -32,47 +32,66 @@ describe('Log In', function() {
 		credentials.password = "CE.ji.JU-55";
         assert.equal(await podUtils.login(credentials), true);
     });
+	it('logout', async function() {
+        this.timeout(timeout);
+		assert.equal(await podUtils.logout(),true);
+    });
 });
 
 describe('Test POD Utilities', function() {
-    it('createFolder', async function() {
-        this.timeout(timeout);
-        assert.equal(await podUtils.createFolder(testFolderUrl, true), true);
+	it('Login Success', async function() {
+        this.timeout(4000);
+		credentials.password = "CE.ji.JU-55";
+        assert.equal(await podUtils.login(credentials), true);
     });
-    it('createFile', async function() {
+	it('createFolder', async function() {
+		this.timeout(timeout);
+		assert.equal(await podUtils.createFolder(testFolderUrl, true), true);
+	});
+	it('createFile', async function() {
+		this.timeout(timeout);
+		assert.equal(await podUtils.createFile(testFileUrl + ".txt", "test create file", true), true);
+		assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), "test create file");
+	});
+	it('readFile', async function() {
+		this.timeout(timeout);
+		assert.equal(await podUtils.readFile(receiver.testReadFile, true), "hola");
+	});
+	it('readFolder', async function() {
+		this.timeout(timeout);
+		const folder = await podUtils.readFolder(testFolderUrl, true);
+		assert.equal(folder.name, "test");
+		assert.equal(folder.files.length, 1);
+		assert.equal(testFolderUrl, "https://pruebaes5b.solid.community/public/test/");
+	});
+	it('deleteFile', async function() {
+		this.timeout(timeout);
+		assert.equal(await podUtils.deleteFile(testFileUrl + ".txt", true), true);
+		assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), null);
+	});
+	it('deleteFolder', async function() {
+		this.timeout(timeout);
+		assert.equal(await podUtils.deleteFolder(testFolderUrl, true), true);
+		assert.equal(await podUtils.readFolder(testFolderUrl, true), null);
+	});
+	it('logout', async function() {
         this.timeout(timeout);
-        assert.equal(await podUtils.createFile(testFileUrl + ".txt", "test create file", true), true);
-        assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), "test create file");
-    });
-    it('readFile', async function() {
-        this.timeout(timeout);
-        assert.equal(await podUtils.readFile(receiver.testReadFile, true), "hola");
-    });
-    it('readFolder', async function() {
-        this.timeout(timeout);
-        const folder = await podUtils.readFolder(testFolderUrl, true);
-        assert.equal(folder.name, "test");
-        assert.equal(folder.files.length, 1);
-        assert.equal(testFolderUrl, "https://pruebaes5b.solid.community/public/test/");
-    });
-    it('deleteFile', async function() {
-        this.timeout(timeout);
-        assert.equal(await podUtils.deleteFile(testFileUrl + ".txt", true), true);
-        assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), null);
-    });
-    it('deleteFolder', async function() {
-        this.timeout(timeout);
-        assert.equal(await podUtils.deleteFolder(testFolderUrl, true), true);
-        assert.equal(await podUtils.readFolder(testFolderUrl, true), null);
+		assert.equal(await podUtils.logout(),true);
     });
 });
 
 describe('Test Chat Manager', function() {
+	it('Login Success', async function() {
+        this.timeout(4000);
+		credentials.password = "CE.ji.JU-55";
+        assert.equal(await podUtils.login(credentials), true);
+    });
+	
 	chatM.INFO.userURI = credentials.base + "/";
 	chatM.INFO.receiverURI = receiver.idp + "/";
 	chatM.INFO.receiverName = receiver.username;
 	const sendFolder = credentials.base + "/public/SolidChat/" + receiver.username + "/chat.txt";
-	
+
     it('sendMessage', async function() {
         this.timeout(timeout);
         
