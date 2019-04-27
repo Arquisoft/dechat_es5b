@@ -48,6 +48,15 @@ $('#groupButton').click(() =>
 	$('#modalGroup').modal('show')
 );
 
+//Adds a friend to the creation group list
+$('#modalAddFriend').click(() => {
+	var name = $('#friends-to-add').find(".active").text();
+	if(name != ""){
+		$('#friends-to-add').find(".active").remove();
+		addFriendToList(name, '#added-friends');
+	}
+});
+
 //SendMessage Function, Send Button on click action
 $('#sendButton').click(
 	async function sendFunc() {
@@ -130,16 +139,7 @@ async function loadProfile() {
 						updateMessages(await chatM.receiveMessages());
 					}
 				));
-			$('#friends-to-add').append(
-				$('<button>').attr('type', 'button').addClass("list-group-item list-group-item-action noactive").text(friend.name).click(
-					async function () {
-						//Add the selected marker (That blue thing..)
-						$("#friends-to-add button").removeClass("active");
-						$("#friends-to-add button").addClass("noactive");
-						$(this).removeClass("noactive");
-						$(this).addClass("active");
-					}
-				));
+			addFriendToList(friend.name, '#friends-to-add');
 		});
 }
 
@@ -157,4 +157,17 @@ function updateMessages(toShow) {
 		messages = messages + message;
 	});
 	$('#messages').append(messages);
+}
+
+
+function addFriendToList(friendName, list){
+	$(list).append(
+		$('<button>').attr('type', 'button').addClass("list-group-item list-group-item-action noactive").text(friendName).click(
+			async function () {
+				$("#friends-to-add button").removeClass("active");
+				$("#friends-to-add button").addClass("noactive");
+				$(this).removeClass("noactive");
+				$(this).addClass("active");
+			}
+		));
 }
