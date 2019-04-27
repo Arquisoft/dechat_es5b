@@ -85,6 +85,28 @@ async function writeMessage(url, content, ToLog) {
 	});
 }
 
+async function writeMsgJson(url, content, ToLog) {
+	return await fileClient.createFile(url, content,"text/json").then(fileCreated => {
+		if (ToLog)
+			console.log(`Created file ${fileCreated}.`);
+		return true;
+	}, err => {
+		console.log(err);
+		return false;
+	});
+}
+
+async function writeMsgJsonld(url, content, ToLog) {
+	return await fileClient.createFile(url, content,"application/ld+json").then(fileCreated => {
+		if (ToLog)
+			console.log(`Created file ${fileCreated}.`);
+		return true;
+	}, err => {
+		console.log(err);
+		return false;
+	});
+}
+
 async function writeTurtle(url, content, ToLog) {
 	await fileClient.createFile(url, content, "text/turtle").then(fileCreated => {
 		if (ToLog)
@@ -133,5 +155,7 @@ module.exports = {
 	readFile: readMessage,
 	deleteFile: deleteMessage,
 	writeTurtle: writeTurtle,
-	updateTurtle: updateTurtle
+	updateTurtle: updateTurtle,
+	writeMsgJson:writeMsgJson,
+	writeMsgJsonld:writeMsgJsonld
 }

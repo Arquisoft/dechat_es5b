@@ -1,21 +1,32 @@
 const $rdf = require('rdflib');
 const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
-var loginM = require('./LogInManager.js');
 var chatM = require('./chatManager.js');
+var loginM = require('./LogInManager.js');
 
 // Set up a local data store and associated data fetcher
 const store = $rdf.graph();
 const fetcher = new $rdf.Fetcher(store);
 
-// Log the user in and out on click
+class friend {
+	constructor(uri, name){
+		this.uri = uri;
+		this.name= name;
+	}
+}
+
+//Show modal on login button click
 $('#login  button').click(() => $('#modalIDP').modal('show'));
+
+// Logout on button click
 $('#logout button').click(() => loginM.logout());
 
+//"Login with SOLID Community" should redirect to solid.community login page
 $("#solidLogin").click(function() {
 	$('#desiredIDP').val('https://solid.community');
 	loginM.login();
 });
 
+//Login with desired IDP button
 $("#idpLogin").click(function() {
 	loginM.login();
 });
@@ -80,17 +91,29 @@ async function loadProfile() {
 	// Display their friends
 	const friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
 	$('#friends').empty();
-	friends.forEach(
+	
+	var sortedFriends = [];
+	
+	await Promise.all(friends.map(async f => {
+		await fetcher.load(f);
+		sortedFriends.push(new friend(f.value, await store.any(f,FOAF('name')).toString()));
+	}));
+	
+	sortedFriends.sort(function (a,b) {
+		return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+	});
+	
+	sortedFriends.forEach(
 		async (friend) => {
 			await fetcher.load(friend);
 			$('#friends').append(
-				$('<button>').attr('type', 'button').addClass("list-group-item list-group-item-action noactive").text(store.any(friend, FOAF('name'))).click(
+				$('<button>').attr('type', 'button').addClass("list-group-item list-group-item-action noactive").text(friend.name).click(
 					async function () {
 						if (chatM.ToLog)
 							console.log("load new receiver");
 						//Store all reciever info need for future
-						chatM.INFO.receiver = friend.value;
-						chatM.INFO.receiverName = store.any(friend, FOAF('name')).toString().trim();
+						chatM.INFO.receiver = friend.uri;
+						chatM.INFO.receiverName = friend.name.trim();
 						chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0, (chatM.INFO.receiver.length - 15));
 
 						//Add the selected marker (That blue thing..)
@@ -120,4 +143,3 @@ function updateMessages(toShow) {
 	});
 	$('#messages').append(messages);
 }
-

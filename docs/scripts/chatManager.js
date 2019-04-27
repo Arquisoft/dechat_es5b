@@ -98,11 +98,10 @@ async function sendMessage(text) {
         }
         if (ToLog)
             console.log("Creating chat file");
-
+		
         var messages = [];
         messages.push(new message(text, new Date().getTime()));
         jsonString = JSON.stringify(messages);
-
 
         ret = await podUtils.createFile(filename, jsonString, ToLog);
         if (notify)

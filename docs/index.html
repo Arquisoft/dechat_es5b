@@ -11,11 +11,11 @@
 	
     <!-- Insert this line above script imports  -->
 	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-	<script src="scripts/jquery.js"></script>
+	<script src="lib/jquery.js"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-	<script src="scripts/solid-auth-client.bundle.js"></script>
-	<script defer src="index.js"></script>
+	<script src="lib/solid-auth-client.bundle.js"></script>
 	<script defer src="scripts/i18n/index.lang.js"></script>
+	<script defer src="index.js"></script>
 	<!-- Insert this line after script imports -->
 	<script>if (window.module) module = window.module;</script>
 </head>
@@ -32,9 +32,10 @@
 			<li class="nav-item dropdown">
 				<a class="whitecolor nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="langSelector"></a>
 				<div class="dropdown-menu dropdown-menu-right">
-					<a class="dropdown-item" href="#" onclick="setLanguage('en-US')">English</a>
-					<a class="dropdown-item" href="#" onclick="setLanguage('es-ES')">Español</a>
-					<a class="dropdown-item" href="#" onclick="setLanguage('zh-CN')">中文</a>
+					<a class="dropdown-item" href="#" onclick="setLanguage('en-US')"><img src="./images/555417.svg" width="28" height="23" class="d-inline-block align-center"> English</a>
+					<a class="dropdown-item" href="#" onclick="setLanguage('es-ES')"><img src="./images/555635.svg" width="28" height="23" class="d-inline-block align-center"> Español</a>
+					<a class="dropdown-item" href="#" onclick="setLanguage('zh-CN')"><img src="./images/206818.svg" width="28" height="23" class="d-inline-block align-center"> 中文</a>
+					<a class="dropdown-item" href="#" onclick="setLanguage('gl-GL')"><img src="./images/Galician.png" width="23" height="18" class="d-inline-block align-center"> Galego</a>
 				</div>
 			</li>
 			<li class="nav-item electronElement">
@@ -153,10 +154,13 @@
 		}else{
 			console.log("ejecutando en electron");
 			$(".notElectronElement").hide();
-			$.getScript( "scripts/windowButtonControls.js");
+			$.getScript("scripts/windowButtonControls.js");
 		}
+		
+		//Check if we are already logged in.
+		//If so, redirect to chat
 		$(document).ready(async function() {
-		  let session = await solid.auth.currentSession();
+			let session = await solid.auth.currentSession();
 			if (session) {
 				window.location.href = "two-people-chat.html";
 			}
