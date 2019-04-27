@@ -18,12 +18,14 @@ function setLanguage(locale) {
                 "h5friends": "Friends list",
                 "h5friendsDescription": "Please select a friend before you start chatting",
 				"groupButton": "Create a group",
+				"searcher": "Search friends by name",
+				"searchButton": "Search",
                 "h1title": "Welcome to your decentralized chat room",
                 "sendButton": "Send",
 				"modalGroupTitle": "Create a group",
 				"modalGroupDescription": "Select your friends and put them in the new group",
-				"modalAddFriend": "Add to group",
-				"modalRemoveFriend": "Remove from group",
+				"modalAddFriend": "Add to group >",
+				"modalRemoveFriend": "< Remove from group",
 				"modalCreateGroup": "Create group",
 				"modalGroupTitleCol1": "Friends list",
 				"modalGroupTitleCol2": "Friends added to the group"
@@ -40,12 +42,14 @@ function setLanguage(locale) {
                 "h5friends": "Listado de amigos",
                 "h5friendsDescription": "Selecciona un amigo antes de comenzar a chatear",
 				"groupButton": "Crea un grupo",
+				"searcher": "Busca amigos por su nombre",
+				"searchButton": "Buscar",
                 "h1title": "Bienvenido a tu sala de chat descentralizada",
                 "sendButton": "Enviar",
 				"modalGroupTitle": "Crear un grupo",
 				"modalGroupDescription": "Selecciona a tus amigos y mételos en el nuevo grupo",
-				"modalAddFriend": "Añadir amigo",
-				"modalRemoveFriend": "Eliminar amigo",
+				"modalAddFriend": "Añadir amigo >",
+				"modalRemoveFriend": "< Eliminar amigo",
 				"modalCreateGroup": "Crear grupo",
 				"modalGroupTitleCol1": "Lista de amigos",
 				"modalGroupTitleCol2": "Amigos añadidos al grupo"
@@ -62,12 +66,14 @@ function setLanguage(locale) {
                 "h5friends": "好友列表",
                 "h5friendsDescription": "请在开始聊天之前选择一位朋友",
 				"groupButton": "创建一个组",
+				"searcher": "按名称查找朋友",
+				"searchButton": "搜索",
                 "h1title": "欢迎来到您的分散聊天室",
                 "sendButton": "发送",
 				"modalGroupTitle": "创建一个组",
 				"modalGroupDescription": "选择您的朋友并将其放入新组中",
-				"modalAddFriend": "加好友",
-				"modalRemoveFriend": "删除朋友",
+				"modalAddFriend": "加好友 >",
+				"modalRemoveFriend": "< 删除朋友",
 				"modalCreateGroup": "创建组",
 				"modalGroupTitleCol1": "朋友列表",
 				"modalGroupTitleCol2": "朋友加入了该组"
@@ -84,12 +90,14 @@ function setLanguage(locale) {
                 "h5friends": "Listado de amigos",
                 "h5friendsDescription": "Selecciona un amigo antes de comezar a chatear",
 				"groupButton": "Crea un grupo",
+				"searcher": "Busca amigos por nome",
+				"searchButton": "Buscar",
                 "h1title": "Benvido á tua sala de chat descentralizada",
                 "sendButton": "Enviar",
 				"modalGroupTitle": "Crear un grupo",
 				"modalGroupDescription": "Selecciona os teus amigos e colócaos no novo grupo",
-				"modalAddFriend": "Engadir amigo",
-				"modalRemoveFriend": "Eliminar amigo",
+				"modalAddFriend": "Engadir amigo >",
+				"modalRemoveFriend": "< Eliminar amigo",
 				"modalCreateGroup": "Crear grupo",
 				"modalGroupTitleCol1": "Lista de amigos",
 				"modalGroupTitleCol2": "Amigos engadidos ao grupo"
@@ -110,6 +118,8 @@ function setLanguage(locale) {
     $("#h5friends").text(lang.h5friends);
     $("#h5friendsDescription").text(lang.h5friendsDescription);
 	$("#groupButton").text(lang.groupButton);
+	$("#searchButton").text(lang.searchButton);
+	$("#searcher").attr('placeholder', lang.searcher);
     $("#h1title").text(lang.h1title);
     $("#sendButton").text(lang.sendButton);
 	$("#modalGroupTitle").text(lang.modalGroupTitle);

@@ -163,3 +163,12 @@ dt:after {
 	margin-bottom: 0em;
 	padding-bottom: 0em;
 }
+
+div[name="modal-friends-list"] {
+	margin-top: 0.75em;
+	padding: 0.3em;
+	border-width: 0.1em;
+	border-style: solid;
+	border-color: #9C84FF;
+	border-radius: 0.2em;
+}
