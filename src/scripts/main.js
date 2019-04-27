@@ -57,6 +57,15 @@ $('#modalAddFriend').click(() => {
 	}
 });
 
+//Removes a friend from the creation group list
+$('#modalRemoveFriend').click(() => {
+	var name = $('#added-friends').find(".active").text();
+	if(name != ""){
+		$('#added-friends').find(".active").remove();
+		addFriendToList(name, '#friends-to-add');
+	}
+});
+
 //SendMessage Function, Send Button on click action
 $('#sendButton').click(
 	async function sendFunc() {
