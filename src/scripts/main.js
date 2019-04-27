@@ -43,6 +43,11 @@ solid.auth.trackSession(session => {
 	loadProfile();
 });
 
+//Creates a group with selected users
+$('#groupButton').click(() =>
+	$('#modalGroup').modal('show')
+);
+
 //SendMessage Function, Send Button on click action
 $('#sendButton').click(
 	async function sendFunc() {
@@ -123,6 +128,16 @@ async function loadProfile() {
 						$(this).addClass("active");
 						//Show messages
 						updateMessages(await chatM.receiveMessages());
+					}
+				));
+			$('#friends-to-add').append(
+				$('<button>').attr('type', 'button').addClass("list-group-item list-group-item-action noactive").text(friend.name).click(
+					async function () {
+						//Add the selected marker (That blue thing..)
+						$("#friends-to-add button").removeClass("active");
+						$("#friends-to-add button").addClass("noactive");
+						$(this).removeClass("noactive");
+						$(this).addClass("active");
 					}
 				));
 		});

@@ -63,10 +63,11 @@
 					<div class="well">
 						<h5 class="centered whitecolor" style="padding: 0.75em;" id="h5friends"></h5>
 						<p style="text-align:center;" id="h5friendsDescription"></p>
+						<button class="btn btn-primary btn-lg btn-block" type="button" id="groupButton" style="background-color: #9C84FF;"></button>
 						<div class="input-group mb-3">
 							<input type="text" class="form-control" placeholder="search friends by name" id="searcher" aria-label=". . ." aria-describedby="basic-addon2"/>
 							<div class="input-group-append">
-								<button class="btn btn-outline-secondary" type="button" id="searchButton" >
+								<button class="btn btn-primary" type="button" id="searchButton" style="background-color: #9C84FF;">
 									<span class="glyphicon glyphicon-search"></span>
 								</button>
 							</div>
@@ -98,6 +99,40 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- CreateGroup Modal start -->
+	<div class="modal fade" id="modalGroup" tabindex="-1" role="dialog" aria-labelledby="modalGroupLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="modalGroupTitle"></h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			<p id="modalGroupDescription"></p>
+			<div class="container">
+			  <div class="row">
+				<div class="col">
+				  <button  type="button" class="btn btn-secondary btn-lg btn-block" id="modalAddFriend" style="font-size:0.9em; background-color: #634fb5;"></button>
+				  <h6 style="text-align:center;" id="modalGroupTitleCol1"></h6>
+				  <div class="list-group list-group-flush forcefullwidth" id="friends-to-add">
+				  </div>
+				</div>
+				<div class="col" id="added-friends">
+				  <button type="button" class="btn btn-secondary btn-lg btn-block" data-dismiss="modal" id="modalCreateGroup" style="font-size:0.9em; background-color: #634fb5;"></button>
+				  <h6 style="text-align:center;" id="modalGroupTitleCol2"></h6>
+				  <div class="list-group list-group-flush forcefullwidth" id="friends-to-add">
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<!-- CreateGroup Modal end -->
 	
 	<script src="lib/solid-auth-client.bundle.js"></script>
     <script src="index.js"></script>
