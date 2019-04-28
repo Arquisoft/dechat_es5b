@@ -4,12 +4,8 @@ const auth = require('solid-auth-client');
 async function login(credentials) {
     var result;
     if (credentials == null) {
-        result = await fileClient.popupLogin().then(webId => {
-            console.log(`Logged in as ${webId}.`);
-            return true;
-        }, err => {
-            return false;
-        });
+        console.log('Invalid credentials');
+        return false;
     } else {
         result = await fileClient.login(credentials).then((session) => {
             console.log(`Logged in as ` + session.webId);
@@ -23,11 +19,11 @@ async function login(credentials) {
 }
 
 async function loginNoPopup(idProvider) {
-    await solid.auth.login(idProvider);
+    await auth.login(idProvider);
 }
 
 async function getSession() {
-    return await solid.auth.currentSession();
+    return await auth.currentSession();
 }
 
 async function logout() {
@@ -85,23 +81,31 @@ async function writeMessage(url, content, ToLog) {
 }
 
 async function writeTurtle(url, content, ToLog) {
-    await fileClient.createFile(url, content, "text/turtle").then(fileCreated => {
+    return await fileClient.createFile(url, content, "text/turtle").then(fileCreated => {
         if (ToLog)
             console.log(`Created file ${fileCreated}.`);
-    }, err => console.log(err));
+        return true;
+    }, err => {
+        console.log(err);
+        return false;
+    });
 }
 
 async function updateTurtle(url, newContent, ToLog) {
-    await fileClient.updateFile(url, newContent, "text/turtle").then(success => {
+    return await fileClient.updateFile(url, newContent, "text/turtle").then(success => {
         if (ToLog)
             console.log(`Updated ${url}.`)
-    }, err => console.log(err));
+        return true;
+    }, err => {
+        console.log(err);
+        return false;
+    });
 }
 
 async function readMessage(url, ToLog) {
     return await fileClient.readFile(url).then(body => {
-        //if(ToLog)
-        //console.log(`File	content is : ${body}.`);
+        if (ToLog)
+            console.log(`The file exist and it has been readed.`);
         return body;
     }, err => {
         console.log(err);

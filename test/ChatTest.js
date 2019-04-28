@@ -20,8 +20,9 @@ const receiver = {
 
 const testFolderUrl = credentials.base + "/public/test/";
 const testFileUrl = testFolderUrl + "testfile";
+const testFileUrlTtl = testFolderUrl + "testttlfile";
 
-describe('Log In', function() {
+describe('Log In and Session', function() {
     it('Login Fail', async function() {
         this.timeout(5000);
         credentials.password = "123456";
@@ -38,6 +39,9 @@ describe('Log In', function() {
     });
     it('Login using null credentials', async function() {
         assert.equal(await podUtils.login(null), false);
+    });
+    it('Invalid, nonexistent session', async function() {
+        assert.equal(await podUtils.getSession(), null);
     });
 });
 
@@ -62,7 +66,7 @@ describe('Test POD Utilities', function() {
     });
     it('readFolder', async function() {
         this.timeout(timeout);
-        const folder = await podUtils.readFolder(testFolderUrl, true);
+        var folder = await podUtils.readFolder(testFolderUrl, true);
         assert.equal(folder.name, "test");
         assert.equal(folder.files.length, 1);
         assert.equal(testFolderUrl, "https://pruebaes5b.solid.community/public/test/");
@@ -72,10 +76,24 @@ describe('Test POD Utilities', function() {
         assert.equal(await podUtils.deleteFile(testFileUrl + ".txt", true), true);
         assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), null);
     });
+    it('createTurtle', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.writeTurtle(testFileUrlTtl, ":timeStamp\na msg:message ;\nmsg:text \"#El Mensaje\" .", true), true);
+    });
+    it('deleteFile', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.deleteFile(testFileUrlTtl + ".ttl", true), true);
+        assert.equal(await podUtils.readFile(testFileUrlTtl + ".ttl", true), null);
+    });
     it('deleteFolder', async function() {
         this.timeout(timeout);
         assert.equal(await podUtils.deleteFolder(testFolderUrl, true), true);
         assert.equal(await podUtils.readFolder(testFolderUrl, true), null);
+    });
+    it('updateInexistentTurtle', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.updateTurtle("file.ttl", ":timeStamp\na msg:message ;\nmsg:text \"#Nuevo Mensaje\" .", true),
+            false);
     });
     it('logout', async function() {
         this.timeout(timeout);
@@ -96,7 +114,7 @@ describe('Test Chat Manager', function() {
     const sendFolder = credentials.base + "/public/SolidChat/" + receiver.username + "/chat.txt";
 
     it('sendMessage', async function() {
-        this.timeout(timeout);
+        this.timeout(4000);
 
         var parsed;
         var folder = await podUtils.readFile(sendFolder, true);
