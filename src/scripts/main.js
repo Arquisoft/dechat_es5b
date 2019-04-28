@@ -13,6 +13,7 @@ class friend {
 		this.name= name;
 	}
 }
+var friends = null;
 
 //Show modal on login button click
 $('#login  button').click(() => $('#modalIDP').modal('show'));
@@ -69,25 +70,40 @@ $('#modalRemoveFriend').click(() => {
 //Creates a group chat
 $('#modalCreateGroup').click(() => {
 	var groupName = $('#modalGroupName').val();
-	var friends = $('#added-friends').find('button');
+	var friendsToAdd = $('#added-friends').find('button');
 	var error = false;
 	
 	if(groupName == '') {
 		$('#modalGroupName').attr('style', 'border-color: red;');
 		error = true;
 	}
-	if(friends.length == 0){
+	if(friendsToAdd.length == 0){
 		$('#modalAddFriend').attr('style', 'border-color: red;');
 		error = true;
 	}
 	
-	for(var i = 0; i < friends.length; i++){
-		console.log($(friends[i]).text());
+	chatM.GROUP.name = groupName;
+	var f;
+
+	for(var i = 0; i < friendsToAdd.length; i++){
+		f = friends.find(function (element){
+			return element.name == $(friendsToAdd[i]).text();
+		});
+		
+		chatM.GROUP.friends.push({
+			uri: f.uri,
+			name: f.name,
+			utilUri: f.uri.substr(0, (f.uri.length - 15))
+		});
 	}
 	
 	if(!error){
 		restartModalDialog();
 		$('#modalGroup').modal('hide');
+		
+		if(chatM.createGroup()){
+			console.log('teóricamente se han creado las carpetas');
+		}
 	}
 });
 
@@ -154,7 +170,7 @@ async function loadProfile() {
 	});
 
 	// Display their friends
-	const friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
+	friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
 	$('#friends').empty();
 	
 	var sortedFriends = [];
@@ -167,6 +183,8 @@ async function loadProfile() {
 	sortedFriends.sort(function (a,b) {
 		return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
 	});
+	
+	friends = sortedFriends;
 	
 	sortedFriends.forEach(
 		async (friend) => {

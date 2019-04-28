@@ -27,6 +27,11 @@ var MESSAGES = {
     toShow: []
 }
 
+var GROUP = {
+	name: "",
+	friends: []
+}
+
 //SEND Message function login
 async function sendMessage(text) {
     var ret = false;
@@ -109,6 +114,7 @@ async function sendMessage(text) {
             "@context": "http://schema.org/",
             "@type": "Conversation",
 			"people": 1,
+			"isGroup": false,
             "messages":[
                 {
                 "@Type": "message",
@@ -199,9 +205,22 @@ async function receiveMessages() {
     return MESSAGES.toShow;
 }
 
-async function createGoup(name){
-	//TO-DO-------------------------------------------------------------------------------------------------------------------------------
-	console.log(name);
+async function createGroup(){
+	var groupName = GROUP.name.replace(/ /g, "-") + "/";
+	
+	//Creating Group for this user and all friends
+    // This user
+	var ret = await createFolder(INFO.userURI, groupName);
+	if(!ret) return false;
+	
+	for(var i = 0; i < GROUP.friends.length; i++){
+		created = await createFolder(GROUP.friends[i].utilUri, groupName);
+		if(!created){
+			return false;
+		}
+	}
+	
+	return true;
 }
 
 //Function for main.js
@@ -210,11 +229,61 @@ async function newNotifications() {
     //TO-DO----------------------------------------------------------------------------------
 }
 
+async function createFolder(basicUri, folderName){
+	var ret = false;
+	
+	//Define folders name
+    var solidChat = basicUri + "public/SolidChat/";
+    var folder = solidChat + folderName;
+	
+	if (ToLog)
+        console.log("Creating folder: " + folderName);
+    
+	//IF folder doesnt exist: create new folder
+	if (ToLog)
+		console.log("Check folder: " + folderName + " folder");
+	try {
+		var err2 = await podUtils.readFolder(folder, ToLog);
+		if (!err2) {
+			if (ToLog)
+				console.log("Folder doesnt exist");
+			throw ("error")
+		}
+	} catch (error) {
+
+		//Check Folder SolidChat
+		if (ToLog)
+			console.log("Check SolidChat Exist")
+		try {
+			var err = await podUtils.readFolder(solidChat, ToLog);
+			if (!err) {
+				if (ToLog)
+					console.log("Solid-chat folder doesnt exist");
+				throw ("error")
+			}
+		} catch (error) {
+			//New Solid-Chat folder
+			await podUtils.createFolder(solidChat, ToLog);
+			if (ToLog)
+				console.log("Solid-chat folder created");
+		}
+		console.log('-----------------------------' + folder);
+		//New Folder:
+		ret = await podUtils.createFolder(folder, ToLog);
+		if (ToLog)
+			console.log('Group folder created');
+
+	}
+	return ret;
+}
+
 module.exports = {
     sendMessage: sendMessage,
     receiveMessages: receiveMessages,
     newNotifications: newNotifications,
+	createGroup: createGroup,
     INFO: INFO,
     MESSAGES: MESSAGES,
+	GROUP: GROUP,
     ToLog: ToLog
 }
