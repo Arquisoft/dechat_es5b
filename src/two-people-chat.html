@@ -104,7 +104,7 @@
 		<div class="modal-content">
 		  <div class="modal-header">
 			<h5 class="modal-title" id="modalGroupTitle"></h5>
-			<button type="button" class="close" data-dismiss='modal' aria-label="Close">
+			<button type="button" class="close" data-dismiss='modal' aria-label="Close" id="modalCloseButton">
 			  <span aria-hidden="true">&times;</span>
 			</button>
 		  </div>
@@ -113,11 +113,9 @@
 			<div class="container">
 			  <div class="row">
 			    <div class="col">
-					<form>
-						<input type="text" class="form-control" id="modalGroupName" required/>
-						<button type="button" class="btn btn-secondary btn-lg btn-block noactive" data-dismiss='modal' 
-							id="modalCreateGroup" style="font-size:1em; margin: 0.5em 0em;"></button>
-					</form>
+					<input type="text" class="form-control" id="modalGroupName"/>
+					<button type="button" class="btn btn-secondary btn-lg btn-block noactive"  
+						id="modalCreateGroup" style="font-size:1em; margin: 0.5em 0em;"></button>
 				</div>
 			  </div>
 			  <div class="row">

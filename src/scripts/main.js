@@ -68,12 +68,35 @@ $('#modalRemoveFriend').click(() => {
 
 //Creates a group chat
 $('#modalCreateGroup').click(() => {
+	var groupName = $('#modalGroupName').val();
+	var friends = $('#added-friends').find('button');
+	var error = false;
 	
+	if(groupName == '') {
+		$('#modalGroupName').attr('style', 'border-color: red;');
+		error = true;
+	}
+	if(friends.length == 0){
+		$('#modalAddFriend').attr('style', 'border-color: red;');
+		error = true;
+	}
 	
+	for(var i = 0; i < friends.length; i++){
+		console.log($(friends[i]).text());
+	}
+	
+	if(!error){
+		restartModalDialog();
+		$('#modalGroup').modal('hide');
+	}
+});
+
+$('#modalCloseButton').click(() => {
+	restartModalDialog();
 });
 
 //Restart the modal status
-$("button[data-dismiss='modal']").click(() => {
+function restartModalDialog() {
 	//Erase input field
 	$('#modalGroupName').val('');
 	
@@ -83,7 +106,7 @@ $("button[data-dismiss='modal']").click(() => {
 		addFriendToList($(buttons[i]).text(), '#friends-to-add');
 	}
 	$('#added-friends').empty();
-});
+};
 
 //SendMessage Function, Send Button on click action
 $('#sendButton').click(
