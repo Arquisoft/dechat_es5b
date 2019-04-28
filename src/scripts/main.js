@@ -109,6 +109,24 @@ $('#filtro-nombre').on(
 	}
 );
 
+async function getFriends() {
+	const friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
+	$('#friends').empty();
+	
+	var sortedFriends = [];
+	
+	await Promise.all(friends.map(async f => {
+		await fetcher.load(f);
+		sortedFriends.push(new friend(f.value, await store.any(f,FOAF('name')).toString()));
+	}));
+	
+	sortedFriends.sort(function (a,b) {
+		return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+	});
+	
+	return sortedFriends;
+}
+
 async function loadProfile() {
 	if (chatM.ToLog)
 		console.log("loading Profile");
@@ -134,19 +152,7 @@ async function loadProfile() {
 	});
 
 	// Display their friends
-	const friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
-	$('#friends').empty();
-	
-	var sortedFriends = [];
-	
-	await Promise.all(friends.map(async f => {
-		await fetcher.load(f);
-		sortedFriends.push(new friend(f.value, await store.any(f,FOAF('name')).toString()));
-	}));
-	
-	sortedFriends.sort(function (a,b) {
-		return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
-	});
+	var sortedFriends = await getFriends();
 	
 	sortedFriends.forEach(
 		async (friend) => {
