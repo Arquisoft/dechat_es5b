@@ -66,6 +66,25 @@ $('#modalRemoveFriend').click(() => {
 	}
 });
 
+//Creates a group chat
+$('#modalCreateGroup').click(() => {
+	
+	
+});
+
+//Restart the modal status
+$("button[data-dismiss='modal']").click(() => {
+	//Erase input field
+	$('#modalGroupName').val('');
+	
+	//Moves all friends to the first list of the modal dialogue.
+	var buttons = $('#added-friends').find('button');
+	for(var i = 0; i < buttons.length; i++){
+		addFriendToList($(buttons[i]).text(), '#friends-to-add');
+	}
+	$('#added-friends').empty();
+});
+
 //SendMessage Function, Send Button on click action
 $('#sendButton').click(
 	async function sendFunc() {

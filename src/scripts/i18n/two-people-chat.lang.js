@@ -26,6 +26,7 @@ function setLanguage(locale) {
 				"modalGroupDescription": "Select your friends and put them in the new group",
 				"modalAddFriend": "Add to group >",
 				"modalRemoveFriend": "< Remove from group",
+				"modalGroupName": "Group name",
 				"modalCreateGroup": "Create group",
 				"modalGroupTitleCol1": "Friends list",
 				"modalGroupTitleCol2": "Friends added to the group"
@@ -50,6 +51,7 @@ function setLanguage(locale) {
 				"modalGroupDescription": "Selecciona a tus amigos y mételos en el nuevo grupo",
 				"modalAddFriend": "Añadir amigo >",
 				"modalRemoveFriend": "< Eliminar amigo",
+				"modalGroupName": "Nombre del grupo",
 				"modalCreateGroup": "Crear grupo",
 				"modalGroupTitleCol1": "Lista de amigos",
 				"modalGroupTitleCol2": "Amigos añadidos al grupo"
@@ -74,6 +76,7 @@ function setLanguage(locale) {
 				"modalGroupDescription": "选择您的朋友并将其放入新组中",
 				"modalAddFriend": "加好友 >",
 				"modalRemoveFriend": "< 删除朋友",
+				"modalGroupName": "组名",
 				"modalCreateGroup": "创建组",
 				"modalGroupTitleCol1": "朋友列表",
 				"modalGroupTitleCol2": "朋友加入了该组"
@@ -98,6 +101,7 @@ function setLanguage(locale) {
 				"modalGroupDescription": "Selecciona os teus amigos e colócaos no novo grupo",
 				"modalAddFriend": "Engadir amigo >",
 				"modalRemoveFriend": "< Eliminar amigo",
+				"modalGroupName": "Nome do grupo",
 				"modalCreateGroup": "Crear grupo",
 				"modalGroupTitleCol1": "Lista de amigos",
 				"modalGroupTitleCol2": "Amigos engadidos ao grupo"
@@ -126,6 +130,7 @@ function setLanguage(locale) {
 	$("#modalGroupDescription").text(lang.modalGroupDescription);
 	$("#modalAddFriend").text(lang.modalAddFriend);
 	$("#modalRemoveFriend").text(lang.modalRemoveFriend);
+	$("#modalGroupName").attr('placeholder',lang.modalGroupName);
 	$("#modalCreateGroup").text(lang.modalCreateGroup);
 	$("#modalGroupTitleCol1").text(lang.modalGroupTitleCol1);
 	$("#modalGroupTitleCol2").text(lang.modalGroupTitleCol2);

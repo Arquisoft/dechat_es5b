@@ -104,7 +104,7 @@
 		<div class="modal-content">
 		  <div class="modal-header">
 			<h5 class="modal-title" id="modalGroupTitle"></h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<button type="button" class="close" data-dismiss='modal' aria-label="Close">
 			  <span aria-hidden="true">&times;</span>
 			</button>
 		  </div>
@@ -112,7 +112,15 @@
 			<p id="modalGroupDescription"></p>
 			<div class="container">
 			  <div class="row">
-				<button type="button" class="btn btn-secondary btn-lg btn-block noactive" data-dismiss="modal" id="modalCreateGroup" style="font-size:0.9em; margin: 0.75em;"></button>
+			    <div class="col">
+					<form>
+						<input type="text" class="form-control" id="modalGroupName" required/>
+						<button type="button" class="btn btn-secondary btn-lg btn-block noactive" data-dismiss='modal' 
+							id="modalCreateGroup" style="font-size:1em; margin: 0.5em 0em;"></button>
+					</form>
+				</div>
+			  </div>
+			  <div class="row">
 				<div class="col">
 				  <button  type="button" class="btn btn-secondary btn-lg btn-block noactive" id="modalAddFriend" style="font-size:0.9em;"></button>
 				  <div name="modal-friends-list">

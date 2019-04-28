@@ -108,6 +108,7 @@ async function sendMessage(text) {
         var chat={
             "@context": "http://schema.org/",
             "@type": "Conversation",
+			"people": 1,
             "messages":[
                 {
                 "@Type": "message",
@@ -131,6 +132,8 @@ async function sendMessage(text) {
 async function receiveMessages() {
     if (ToLog)
         console.log("ReceivingMessages")
+	
+	var dict = [];
 
     //Define folders name
     var uFolder = INFO.userURI + "public/SolidChat/" + INFO.receiverName.trim().replace(/ /g, "-") + "/";
@@ -141,8 +144,8 @@ async function receiveMessages() {
     var userMessages;
     var receiveMessages;
 
-    var dict = [];
-    userMessages = await podUtils.readFile(uFile, ToLog);
+    
+    userMessages = await podUtils.readFile(uFile, ToLog); 
     receiveMessages = await podUtils.readFile(rFile, ToLog);
     if (!userMessages) {
         if (ToLog)
@@ -157,9 +160,12 @@ async function receiveMessages() {
         //await podUtils.createFile(rFile, JSON.stringify(dict), ToLog);
         receiveMessages = "[]";
     }
-
-    var uParsed = JSON.parse(userMessages).messages;
-    var rParsed = JSON.parse(receiveMessages).messages;
+	
+	var uChat = JSON.parse(userMessages);
+    var uParsed = uChat.messages;
+	var rChat = JSON.parse(receiveMessages);
+    var rParsed = rChat.messages;
+	console.log(uChat.people);
     if(uParsed){
     uParsed.forEach(element => {
         var date = new Date(Number(element.dateSent));
