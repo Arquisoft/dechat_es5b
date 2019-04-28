@@ -65,47 +65,16 @@ $('#sendButton').click(
 );
 
 $('#filtro-nombre').on(
-	'input', async function(e){ 
-		const friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
-		$('#friends').empty();
-		var sortedFriends = [];
-		await Promise.all(friends.map(async f => {
-			await fetcher.load(f);
-			sortedFriends.push(new friend(f.value, await store.any(f,FOAF('name')).toString()));
-		}));
-		var filteredFriends = [];
-		
+	'input', async function(e){
+		var sortedFriends = await getFriends(), filteredFriends = [];
 		var nombreFiltro = $("#filtro-nombre").val();
+		
 		for (i = 0; i < sortedFriends.length; i++) {
 			if (sortedFriends[i].name.toLowerCase().indexOf(nombreFiltro.toLowerCase()) != -1 ){ 
 				filteredFriends.push(sortedFriends[i]);
 			}
 		}
-		
-		filteredFriends.forEach(
-		async (friend) => {
-			await fetcher.load(friend);
-			$('#friends').append(
-				$('<button>').attr('type', 'button').addClass("list-group-item list-group-item-action noactive").text(friend.name).click(
-					async function () {
-						if (chatM.ToLog)
-							console.log("load new receiver");
-						//Store all reciever info need for future
-						chatM.INFO.receiver = friend.uri;
-						chatM.INFO.receiverName = friend.name.trim();
-						chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0, (chatM.INFO.receiver.length - 15));
-
-						//Add the selected marker (That blue thing..)
-						$("#friends button").removeClass("active");
-						$("#friends button").addClass("noactive");
-						$(this).removeClass("noactive");
-						$(this).addClass("active");
-						//Show messages
-						updateMessages(await chatM.receiveMessages());
-					}
-				));
-		});
-		
+		showFriends(filteredFriends);
 	}
 );
 
@@ -125,6 +94,32 @@ async function getFriends() {
 	});
 	
 	return sortedFriends;
+}
+
+async function showFriends(sortedFriends) {
+	sortedFriends.forEach(
+	async (friend) => {
+		await fetcher.load(friend);
+		$('#friends').append(
+			$('<button>').attr('type', 'button').addClass("list-group-item list-group-item-action noactive").text(friend.name).click(
+				async function () {
+					if (chatM.ToLog)
+						console.log("load new receiver");
+					//Store all reciever info need for future
+					chatM.INFO.receiver = friend.uri;
+					chatM.INFO.receiverName = friend.name.trim();
+					chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0, (chatM.INFO.receiver.length - 15));
+
+					//Add the selected marker (That blue thing..)
+					$("#friends button").removeClass("active");
+					$("#friends button").addClass("noactive");
+					$(this).removeClass("noactive");
+					$(this).addClass("active");
+					//Show messages
+					updateMessages(await chatM.receiveMessages());
+				}
+			));
+	});
 }
 
 async function loadProfile() {
@@ -152,31 +147,7 @@ async function loadProfile() {
 	});
 
 	// Display their friends
-	var sortedFriends = await getFriends();
-	
-	sortedFriends.forEach(
-		async (friend) => {
-			await fetcher.load(friend);
-			$('#friends').append(
-				$('<button>').attr('type', 'button').addClass("list-group-item list-group-item-action noactive").text(friend.name).click(
-					async function () {
-						if (chatM.ToLog)
-							console.log("load new receiver");
-						//Store all reciever info need for future
-						chatM.INFO.receiver = friend.uri;
-						chatM.INFO.receiverName = friend.name.trim();
-						chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0, (chatM.INFO.receiver.length - 15));
-
-						//Add the selected marker (That blue thing..)
-						$("#friends button").removeClass("active");
-						$("#friends button").addClass("noactive");
-						$(this).removeClass("noactive");
-						$(this).addClass("active");
-						//Show messages
-						updateMessages(await chatM.receiveMessages());
-					}
-				));
-		});
+	showFriends(await getFriends());
 }
 
 
