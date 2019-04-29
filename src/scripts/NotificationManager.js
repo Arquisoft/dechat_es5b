@@ -20,8 +20,7 @@ async function deleteNotification(userURI, reciver) {
         for (var i = 0; i < newList.length; i++) {
             text += " \"" + newList[i] + "\",";
         }
-        text = text.slice(0, -1);
-        text += " .";
+        text = text.slice(0, -1) + " .";
     }
 
     //Write final Notification
@@ -65,13 +64,9 @@ async function writeNotification(receiverURI, user) {
     text += " .";
 
     //Write final Notification
-    var noti = "@prefix : <#> . \n"
-    noti += "@prefix noti: <http://schema.org/> . \n"
-    noti += "@prefix user: <" + receiverURI + "/> . \n"
-    noti += "\n"
-    noti += ":notifications \n"
-    noti += "   a noti:Notification ; \n"
-    noti += text;
+    var noti = "@prefix : <#> . \n" + "@prefix noti: <http://schema.org/> . \n";
+    noti += "@prefix user: <" + receiverURI + "/> . \n" + "\n";
+    noti += ":notifications \n" + "   a noti:Notification ; \n" + text;
     await podUtils.deleteFile(receiverInbox + notAppend + ".ttl", false);
     await podUtils.writeTurtle(receiverInbox + notAppend, noti, false);
 
@@ -96,12 +91,9 @@ async function readAllNotification(receiverURI) {
 
         }
     } else {
-        var noti = "@prefix : <#> . \n"
-        noti += "@prefix noti: <http://schema.org/> . \n"
-        noti += "@prefix user: <" + receiverURI + "/> . \n"
-        noti += "\n"
-        noti += ":notifications \n"
-        noti += "   a noti:Notification ; \n"
+        var noti = "@prefix : <#> . \n" + "@prefix noti: <http://schema.org/> . \n";
+        noti += "@prefix user: <" + receiverURI + "/> . \n" + "\n";
+        noti += ":notifications \n" + "   a noti:Notification ; \n";
         await podUtils.writeTurtle(receiverInbox + notAppend, noti, false);
     }
     return userList;

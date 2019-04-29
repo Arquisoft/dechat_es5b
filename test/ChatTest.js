@@ -187,12 +187,16 @@ describe('Notification Manager', function() {
         this.timeout(timeout);
         assert.equal(await notiMa.writeNotification(credentials.base + "/", receiver.username), true);
     });
+    it('readUserWhoSentNotification', async function() {
+        this.timeout(timeout);
+        assert.notEqual(await notiMa.readAllNotification(credentials.base + "/"), null);
+    });
     it('readContentFolder', async function() {
         this.timeout(timeout);
         var folder = await podUtils.readFolder(notiMaUrl, true);
         assert.notEqual(folder.files.length, 0);
     });
-    it('deleteNotification', async function() {
+    it('markNotificationAsRead', async function() {
         this.timeout(timeout);
         assert.equal(await notiMa.deleteNotification(credentials.base + "/", receiver.username), true);
     });
