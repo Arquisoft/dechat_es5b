@@ -197,7 +197,7 @@ describe('Notification Manager', function() {
         assert.notEqual(folder.files.length, 0);
     });
     it('deleteNotification', async function() {
-        this.timeout(timeout);
+        this.timeout(6000);
         assert.equal(await notiMa.deleteNotification(credentials.base + "/", receiver.username), true);
     });
     it('deleteFile', async function() {
