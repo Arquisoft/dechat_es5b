@@ -2,8 +2,9 @@ require('chai');
 var assert = require('assert');
 var chatM = require('../src/scripts/chatManager.js');
 var podUtils = require('../src/scripts/podUtilities.js');
+var notiMa = require('../src/scripts/NotificationManager.js');
 
-const timeout = 2000;
+const timeout = 4000;
 
 var credentials = {
     "idp": "https://solid.community",
@@ -22,6 +23,7 @@ const testFolderUrl = credentials.base + "/public/test/";
 const testFileUrl = testFolderUrl + "testfile";
 const testFolderUrlTtl = credentials.base + "/public/testTtl/";
 const testFileUrlTtl = testFolderUrlTtl + "testttlfile";
+const notiMaUrl = "https://pruebaes5b.solid.community/inbox/";
 
 describe('Log In and Session', function() {
     it('Login Fail', async function() {
@@ -30,7 +32,7 @@ describe('Log In and Session', function() {
         assert.equal(await podUtils.login(credentials), false);
     });
     it('Login Success', async function() {
-        this.timeout(4000);
+        this.timeout(timeout);
         credentials.password = "CE.ji.JU-55";
         assert.equal(await podUtils.login(credentials), true);
     });
@@ -48,7 +50,7 @@ describe('Log In and Session', function() {
 
 describe('Test POD Utilities', function() {
     it('Login Success', async function() {
-        this.timeout(4000);
+        this.timeout(timeout);
         credentials.password = "CE.ji.JU-55";
         assert.equal(await podUtils.login(credentials), true);
     });
@@ -119,7 +121,7 @@ describe('Test POD Utilities', function() {
 
 describe('Test Chat Manager', function() {
     it('Login Success', async function() {
-        this.timeout(4000);
+        this.timeout(timeout);
         credentials.password = "CE.ji.JU-55";
         assert.equal(await podUtils.login(credentials), true);
     });
@@ -157,7 +159,7 @@ describe('Test Chat Manager', function() {
         chatM.INFO.userURI = pepaCredentials.base + "/";
 
         assert.equal(await podUtils.login(pepaCredentials), true);
-        assert.equal(await chatM.sendMessage("pepaMessage"), true);
+        assert.equal(await chatM.sendMessage("pepaMessage", true), true);
         var messages = await chatM.receiveMessages();
         assert.equal(messages[0].includes("pepaMessage"), true);
 
@@ -166,5 +168,45 @@ describe('Test Chat Manager', function() {
         assert.equal(await podUtils.deleteFolder(pepaFolder, true), true);
 
         chatM.INFO.userURI = credentials.base + "/";
+        assert.equal(await podUtils.logout(), true);
+    });
+});
+
+describe('Notification Manager', function() {
+    it('Login Success', async function() {
+        this.timeout(timeout);
+        credentials.password = "CE.ji.JU-55";
+        assert.equal(await podUtils.login(credentials), true);
+    });
+    it('createNotificationsTtl', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.readFile(credentials.base + "/inbox/SolidChatNot.ttl", true), null);
+        assert.notEqual(await notiMa.readAllNotification(credentials.base + "/"), null);
+    });
+    it('writeNotification', async function() {
+        this.timeout(timeout);
+        assert.equal(await notiMa.writeNotification(credentials.base + "/", receiver.username), true);
+    });
+    it('readAllNotifications', async function() {
+        this.timeout(timeout);
+        assert.notEqual(await notiMa.readAllNotification(credentials.base + "/"), null);
+    });
+    it('readContentFolder', async function() {
+        this.timeout(timeout);
+        var folder = await podUtils.readFolder(notiMaUrl, true);
+        assert.notEqual(folder.files.length, 0);
+    });
+    it('deleteNotification', async function() {
+        this.timeout(6000);
+        assert.equal(await notiMa.deleteNotification(credentials.base + "/", receiver.username), true);
+    });
+    it('deleteFile', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.deleteFile(credentials.base + "/inbox/SolidChatNot.ttl", true), true);
+        assert.equal(await podUtils.readFile(credentials.base + "/inbox/SolidChatNot.ttl", true), null);
+    });
+    it('logout', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.logout(), true);
     });
 });
