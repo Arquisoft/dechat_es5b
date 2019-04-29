@@ -91,9 +91,12 @@ async function readAllNotification(receiverURI) {
 
         }
     } else {
-        var noti = "@prefix : <#> . \n" + "@prefix noti: <http://schema.org/> . \n";
-        noti += "@prefix user: <" + receiverURI + "/> . \n" + "\n";
-        noti += ":notifications \n" + "   a noti:Notification ; \n";
+        var noti = "@prefix : <#> . \n"
+        noti += "@prefix noti: <http://schema.org/> . \n"
+        noti += "@prefix user: <" + receiverURI + "/> . \n"
+        noti += "\n"
+        noti += ":notifications \n"
+        noti += "   a noti:Notification ; \n"
         await podUtils.writeTurtle(receiverInbox + notAppend, noti, false);
     }
     return userList;
