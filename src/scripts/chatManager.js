@@ -208,33 +208,15 @@ async function receiveMessages() {
 async function createGroup(){
 	var groupName = GROUP.name.replace(/ /g, "-") + "/";
 	
-	//Creating Group for this user and all friends
-    // This user
-	var ret = await createFolder(INFO.userURI, groupName);
-	if(!ret) return false;
-	
-	for(var i = 0; i < GROUP.friends.length; i++){
-		created = await createFolder(GROUP.friends[i].utilUri, groupName);
-		if(!created){
-			return false;
-		}
-	}
-	
-	return true;
+	return await createGroupFolder(INFO.userURI, groupName);
 }
 
-//Function for main.js
-//Return users with new msg
-async function newNotifications() {
-    //TO-DO----------------------------------------------------------------------------------
-}
-
-async function createFolder(basicUri, folderName){
-	var ret = false;
+async function createGroupFolder(basicUri, folderName){
+	var created = true;
 	
 	//Define folders name
     var solidChat = basicUri + "public/SolidChat/";
-    var folder = solidChat + folderName;
+    const folder = solidChat + folderName;
 	
 	if (ToLog)
         console.log("Creating folder: " + folderName);
@@ -263,24 +245,26 @@ async function createFolder(basicUri, folderName){
 			}
 		} catch (error) {
 			//New Solid-Chat folder
-			await podUtils.createFolder(solidChat, ToLog);
+			created = await podUtils.createFolder(solidChat, ToLog);
 			if (ToLog)
 				console.log("Solid-chat folder created");
 		}
 		console.log('-----------------------------' + folder);
 		//New Folder:
-		ret = await podUtils.createFolder(folder, ToLog);
+		created = await podUtils.createFolder(folder, ToLog);
 		if (ToLog)
 			console.log('Group folder created');
 
 	}
-	return ret;
+	if(created)
+		return folder;
+	else
+		return false;
 }
 
 module.exports = {
     sendMessage: sendMessage,
     receiveMessages: receiveMessages,
-    newNotifications: newNotifications,
 	createGroup: createGroup,
     INFO: INFO,
     MESSAGES: MESSAGES,

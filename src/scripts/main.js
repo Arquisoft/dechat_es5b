@@ -68,7 +68,7 @@ $('#modalRemoveFriend').click(() => {
 });
 
 //Creates a group chat
-$('#modalCreateGroup').click(() => {
+$('#modalCreateGroup').click(async function(){
 	var groupName = $('#modalGroupName').val();
 	var friendsToAdd = $('#added-friends').find('button');
 	var error = false;
@@ -98,12 +98,15 @@ $('#modalCreateGroup').click(() => {
 	}
 	
 	if(!error){
-		restartModalDialog();
-		$('#modalGroup').modal('hide');
-		
-		chatM.createGroup().then( (success) => {
-			if(success)
-				console.log('Group folder has been created');
+		chatM.createGroup().then( (folder) => {
+			if(!folder){
+				console.log('Error Creating Group folder');
+				restartModalDialog();
+				$('#modalGroup').modal('hide');
+			}else{
+				$('#modalUrl').text(folder);
+				$('#modalUrlGroup').modal('show');
+			}
 		});
 	}
 });

@@ -29,7 +29,9 @@ function setLanguage(locale) {
 				"modalGroupName": "Group name",
 				"modalCreateGroup": "Create group",
 				"modalGroupTitleCol1": "Friends list",
-				"modalGroupTitleCol2": "Friends added to the group"
+				"modalGroupTitleCol2": "Friends added to the group",
+				"modalUrlGroupTitle": "Group URL",
+				"modalUrlGroupDescription": "Copy this URL so you can chat with your friends in a group:"
             }
             break;
         case "es-ES":
@@ -54,7 +56,9 @@ function setLanguage(locale) {
 				"modalGroupName": "Nombre del grupo",
 				"modalCreateGroup": "Crear grupo",
 				"modalGroupTitleCol1": "Lista de amigos",
-				"modalGroupTitleCol2": "Amigos añadidos al grupo"
+				"modalGroupTitleCol2": "Amigos añadidos al grupo",
+				"modalUrlGroupTitle": "URL del grupo",
+				"modalUrlGroupDescription": "Copia esta URL para poder chatear con tus amigos en grupo:"
             }
             break;
         case "zh-CN":
@@ -79,7 +83,9 @@ function setLanguage(locale) {
 				"modalGroupName": "组名",
 				"modalCreateGroup": "创建组",
 				"modalGroupTitleCol1": "朋友列表",
-				"modalGroupTitleCol2": "朋友加入了该组"
+				"modalGroupTitleCol2": "朋友加入了该组",
+				"modalUrlGroupTitle": "组URL",
+				"modalUrlGroupDescription": "复制此网址以与群组中的朋友聊天："
             }
             break;
         case "gl-GL":
@@ -104,7 +110,9 @@ function setLanguage(locale) {
 				"modalGroupName": "Nome do grupo",
 				"modalCreateGroup": "Crear grupo",
 				"modalGroupTitleCol1": "Lista de amigos",
-				"modalGroupTitleCol2": "Amigos engadidos ao grupo"
+				"modalGroupTitleCol2": "Amigos engadidos ao grupo",
+				"modalUrlGroupTitle": "URL do grupo",
+				"modalUrlGroupDescription": "Copia este URL para falar cos teus amigos nun grupo:"
             }
             break;
         default:
@@ -134,6 +142,8 @@ function setLanguage(locale) {
 	$("#modalCreateGroup").text(lang.modalCreateGroup);
 	$("#modalGroupTitleCol1").text(lang.modalGroupTitleCol1);
 	$("#modalGroupTitleCol2").text(lang.modalGroupTitleCol2);
+	$("#modalUrlGroupTitle").text(lang.modalUrlGroupTitle);
+	$("#modalUrlGroupDescription").text(lang.modalUrlGroupDescription);
     //$("#").text(lang.);
 }
 if (typeof window.localStorage.userLocale == "undefined") {
