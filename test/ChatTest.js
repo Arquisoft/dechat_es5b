@@ -180,7 +180,7 @@ describe('Notification Manager', function() {
     });
     it('createNotificationsTtl', async function() {
         this.timeout(timeout);
-        assert.equal(await podUtils.readFile(credentials.base + "/inbox/SolidChatNot", true), null);
+        assert.equal(await podUtils.readFile(credentials.base + "/inbox/SolidChatNot.ttl", true), null);
         assert.notEqual(await notiMa.readAllNotification(credentials.base + "/"), null);
     });
     it('writeNotification', async function() {
