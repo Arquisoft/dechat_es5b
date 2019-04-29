@@ -33,9 +33,6 @@ async function deleteNotification(userURI, reciver) {
     noti += "   a noti:Notification ; \n"
     noti += text;
 
-    console.log("\n\n" + userInbox + notAppend + ".ttl");
-
-
     await podUtils.deleteFile(userInbox + notAppend + ".ttl", false);
     await podUtils.writeTurtle(userInbox + notAppend, noti, false);
 
@@ -44,11 +41,9 @@ async function deleteNotification(userURI, reciver) {
 
 //Method for write new Notification on send Msg
 async function writeNotification(receiverURI, user) {
-
     var receiverInbox = receiverURI + "inbox/";
     //List all user
     var List = [];
-    console.log("#####Leyendo");
     List = await readAllNotification(receiverURI);
 
     var existe = 0;
@@ -77,9 +72,7 @@ async function writeNotification(receiverURI, user) {
     noti += ":notifications \n"
     noti += "   a noti:Notification ; \n"
     noti += text;
-    console.log("#########Borrando");
     await podUtils.deleteFile(receiverInbox + notAppend + ".ttl", false);
-    console.log("########Escribiendo");
     await podUtils.writeTurtle(receiverInbox + notAppend, noti, false);
 
     return true;
@@ -90,7 +83,6 @@ async function readAllNotification(receiverURI) {
     var receiverInbox = receiverURI;
     var fileURL = receiverInbox + notAppend + ".ttl";
 
-    //ERROR 403 forbidden
     var file = await podUtils.readFile(fileURL, true);
 
     var userList = [];
