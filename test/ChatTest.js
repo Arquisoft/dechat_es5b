@@ -176,7 +176,8 @@ describe('Notification Manager', function() {
         credentials.password = "CE.ji.JU-55";
         assert.equal(await podUtils.login(credentials), true);
     });
-    /*it('writeNotification', async function() {
+    /*403 FORBIDEN
+    it('writeNotification', async function() {
         this.timeout(timeout);
         assert.equal(await notiMa.writeNotification(credentials.base + "/", receiver.username), true);
     });*/
