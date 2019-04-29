@@ -216,7 +216,8 @@ async function createGroupFolder(basicUri, folderName){
 	
 	//Define folders name
     var solidChat = basicUri + "public/SolidChat/";
-    const folder = solidChat + folderName;
+	var groups = solidChat +"Groups/";
+    var folder = groups + folderName;
 	
 	if (ToLog)
         console.log("Creating folder: " + folderName);
@@ -232,29 +233,39 @@ async function createGroupFolder(basicUri, folderName){
 			throw ("error")
 		}
 	} catch (error) {
-
-		//Check Folder SolidChat
-		if (ToLog)
-			console.log("Check SolidChat Exist")
+		//CHeck Group Folder
 		try {
-			var err = await podUtils.readFolder(solidChat, ToLog);
-			if (!err) {
-				if (ToLog)
-					console.log("Solid-chat folder doesnt exist");
-				throw ("error")
-			}
-		} catch (error) {
-			//New Solid-Chat folder
-			created = await podUtils.createFolder(solidChat, ToLog);
+			var err3 = await podUtils.readFolder(groups, ToLog);
+			if(!err3)
+				throw ("error");
+		} catch(error) {
+			
+			//Check Folder SolidChat
 			if (ToLog)
-				console.log("Solid-chat folder created");
+				console.log("Check SolidChat Exist")
+			try {
+				var err = await podUtils.readFolder(solidChat, ToLog);
+				if (!err) {
+					if (ToLog)
+						console.log("Solid-chat folder doesnt exist");
+					throw ("error")
+				}
+			} catch (error) {
+				//New Solid-Chat folder
+				created = await podUtils.createFolder(solidChat, ToLog);
+				if(!created) return false;
+				if (ToLog)
+					console.log("Solid-chat folder created");
+			}
+			
+			created = await podUtils.createFolder(groups, ToLog);
+			if(!created) return false;
+			if (ToLog)
+				console.log("Groups folder created");
 		}
 		console.log('-----------------------------' + folder);
 		//New Folder:
 		created = await podUtils.createFolder(folder, ToLog);
-		if (ToLog)
-			console.log('Group folder created');
-
 	}
 	if(created)
 		return folder;
