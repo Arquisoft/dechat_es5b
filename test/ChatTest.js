@@ -20,87 +20,108 @@ const receiver = {
 
 const testFolderUrl = credentials.base + "/public/test/";
 const testFileUrl = testFolderUrl + "testfile";
+const testFileUrlTtl = testFolderUrl + "testttlfile";
 
-describe('Log In', function() {
-	it('Login Fail', async function() {
+describe('Log In and Session', function() {
+    it('Login Fail', async function() {
         this.timeout(5000);
-		credentials.password = "123456";
+        credentials.password = "123456";
         assert.equal(await podUtils.login(credentials), false);
     });
     it('Login Success', async function() {
         this.timeout(4000);
-		credentials.password = "CE.ji.JU-55";
+        credentials.password = "CE.ji.JU-55";
         assert.equal(await podUtils.login(credentials), true);
     });
-	it('logout', async function() {
+    it('logout', async function() {
         this.timeout(timeout);
-		assert.equal(await podUtils.logout(),true);
+        assert.equal(await podUtils.logout(), true);
+    });
+    it('Login using null credentials', async function() {
+        assert.equal(await podUtils.login(null), false);
+    });
+    it('Invalid, nonexistent session', async function() {
+        assert.equal(await podUtils.getSession(), null);
     });
 });
 
 describe('Test POD Utilities', function() {
-	it('Login Success', async function() {
+    it('Login Success', async function() {
         this.timeout(4000);
-		credentials.password = "CE.ji.JU-55";
+        credentials.password = "CE.ji.JU-55";
         assert.equal(await podUtils.login(credentials), true);
     });
-	it('createFolder', async function() {
-		this.timeout(timeout);
-		assert.equal(await podUtils.createFolder(testFolderUrl, true), true);
-	});
-	it('createFile', async function() {
-		this.timeout(timeout);
-		assert.equal(await podUtils.createFile(testFileUrl + ".txt", "test create file", true), true);
-		assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), "test create file");
-	});
-	it('readFile', async function() {
-		this.timeout(timeout);
-		assert.equal(await podUtils.readFile(receiver.testReadFile, true), "hola");
-	});
-	it('readFolder', async function() {
-		this.timeout(timeout);
-		const folder = await podUtils.readFolder(testFolderUrl, true);
-		assert.equal(folder.name, "test");
-		assert.equal(folder.files.length, 1);
-		assert.equal(testFolderUrl, "https://pruebaes5b.solid.community/public/test/");
-	});
-	it('deleteFile', async function() {
-		this.timeout(timeout);
-		assert.equal(await podUtils.deleteFile(testFileUrl + ".txt", true), true);
-		assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), null);
-	});
-	it('deleteFolder', async function() {
-		this.timeout(timeout);
-		assert.equal(await podUtils.deleteFolder(testFolderUrl, true), true);
-		assert.equal(await podUtils.readFolder(testFolderUrl, true), null);
-	});
-	it('logout', async function() {
+    it('createFolder', async function() {
         this.timeout(timeout);
-		assert.equal(await podUtils.logout(),true);
+        assert.equal(await podUtils.createFolder(testFolderUrl, true), true);
+    });
+    it('createFile', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.createFile(testFileUrl + ".txt", "test create file", true), true);
+        assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), "test create file");
+    });
+    it('readFile', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.readFile(receiver.testReadFile, true), "hola");
+    });
+    it('readFolder', async function() {
+        this.timeout(timeout);
+        var folder = await podUtils.readFolder(testFolderUrl, true);
+        assert.equal(folder.name, "test");
+        assert.equal(folder.files.length, 1);
+        assert.equal(testFolderUrl, "https://pruebaes5b.solid.community/public/test/");
+    });
+    it('deleteFile', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.deleteFile(testFileUrl + ".txt", true), true);
+        assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), null);
+    });
+    it('createTurtle', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.writeTurtle(testFileUrlTtl, ":timeStamp\na msg:message ;\nmsg:text \"#El Mensaje\" .", true), true);
+    });
+    it('deleteFile', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.deleteFile(testFileUrlTtl + ".ttl", true), true);
+        assert.equal(await podUtils.readFile(testFileUrlTtl + ".ttl", true), null);
+    });
+    it('deleteFolder', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.deleteFolder(testFolderUrl, true), true);
+        assert.equal(await podUtils.readFolder(testFolderUrl, true), null);
+    });
+    it('updateInexistentTurtle', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.updateTurtle("file.ttl", ":timeStamp\na msg:message ;\nmsg:text \"#Nuevo Mensaje\" .", true),
+            false);
+    });
+    it('logout', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.logout(), true);
     });
 });
 
 describe('Test Chat Manager', function() {
-	it('Login Success', async function() {
+    it('Login Success', async function() {
         this.timeout(4000);
-		credentials.password = "CE.ji.JU-55";
+        credentials.password = "CE.ji.JU-55";
         assert.equal(await podUtils.login(credentials), true);
     });
-	
-	chatM.INFO.userURI = credentials.base + "/";
-	chatM.INFO.receiverURI = receiver.idp + "/";
-	chatM.INFO.receiverName = receiver.username;
-	const sendFolder = credentials.base + "/public/SolidChat/" + receiver.username + "/chat.txt";
+
+    chatM.INFO.userURI = credentials.base + "/";
+    chatM.INFO.receiverURI = receiver.idp + "/";
+    chatM.INFO.receiverName = receiver.username;
+    const sendFolder = credentials.base + "/public/SolidChat/" + receiver.username + "/chat.txt";
 
     it('sendMessage', async function() {
-        this.timeout(timeout);
-        
-		var parsed;
+        this.timeout(4000);
+
+        var parsed;
         var folder = await podUtils.readFile(sendFolder, true);
         if (!folder) {
             var length = 0;
         } else {
-			parsed = JSON.parse(folder);
+            parsed = JSON.parse(folder);
             var length = parsed.length;
         }
         assert.equal(await chatM.sendMessage("newMessage"), true);
@@ -112,36 +133,36 @@ describe('Test Chat Manager', function() {
         this.timeout(3000);
         var messages = await chatM.receiveMessages();
         assert.equal(messages.length, 10);
-		assert.equal(messages[9].includes("newMessage"),true);
+        assert.equal(messages[9].includes("newMessage"), true);
     });
-	
-	it('logout', async function() {
+
+    it('logout', async function() {
         this.timeout(timeout);
-		assert.equal(await podUtils.logout(),true);
+        assert.equal(await podUtils.logout(), true);
     });
-	
-	it('sendMessage when there is no SolidChat folder', async function() {
-		this.timeout(10000);
-		
-		const pepaCredentials = {
-			"idp": "https://solid.community",
-			"username": "pepa",
-			"base": "https://pepa.solid.community",
-			"password": "4152524152636352"
-		}
-		const pepaFolder = pepaCredentials.base + "/public/SolidChat/";
-		
-		chatM.INFO.userURI = pepaCredentials.base + "/";
-		
-		assert.equal(await podUtils.login(pepaCredentials), true);
-		assert.equal(await chatM.sendMessage("pepaMessage"), true);
-		var messages = await chatM.receiveMessages();
-		assert.equal(messages[0].includes("pepaMessage"),true);
-		
-		assert.equal(await podUtils.deleteFile(pepaFolder + receiver.username + "/chat.txt",true), true);
-		assert.equal(await podUtils.deleteFolder(pepaFolder  + receiver.username + "/",true), true);
-		assert.equal(await podUtils.deleteFolder(pepaFolder,true), true);
-		
-		chatM.INFO.userURI = credentials.base + "/";
+
+    it('sendMessage when there is no SolidChat folder', async function() {
+        this.timeout(10000);
+
+        const pepaCredentials = {
+            "idp": "https://solid.community",
+            "username": "pepa",
+            "base": "https://pepa.solid.community",
+            "password": "4152524152636352"
+        }
+        const pepaFolder = pepaCredentials.base + "/public/SolidChat/";
+
+        chatM.INFO.userURI = pepaCredentials.base + "/";
+
+        assert.equal(await podUtils.login(pepaCredentials), true);
+        assert.equal(await chatM.sendMessage("pepaMessage"), true);
+        var messages = await chatM.receiveMessages();
+        assert.equal(messages[0].includes("pepaMessage"), true);
+
+        assert.equal(await podUtils.deleteFile(pepaFolder + receiver.username + "/chat.txt", true), true);
+        assert.equal(await podUtils.deleteFolder(pepaFolder + receiver.username + "/", true), true);
+        assert.equal(await podUtils.deleteFolder(pepaFolder, true), true);
+
+        chatM.INFO.userURI = credentials.base + "/";
     });
 });
