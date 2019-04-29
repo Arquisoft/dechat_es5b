@@ -309,10 +309,33 @@ async function createGroupFolder(basicUri, folderName){
 		return false;
 }
 
+async function readGroups(){
+	var solidChat = INFO.userURI + "public/SolidChat/";
+	var groupsFolder = solidChat +"Groups/";
+	
+	var groups = [];
+	var group, metadata;
+	var folders = await podUtils.readFolder(groupsFolder, true);
+	for (var i = 0; i < folders.folders.length; i++){
+		group = await podUtils.readFolder(folders.folders[i].url, true);
+		for (var j = 0; j < group.files.length ; j++){
+			if(group.files[i].name == 'metadata.jsonld') {
+				metadata = await podUtils.readFile(group.files[i].url, true);
+				metadata = JSON.parse(metadata);
+				groups.push(metadata.group);
+				break;
+			}
+		}
+	}
+		
+	return groups;
+}
+
 module.exports = {
     sendMessage: sendMessage,
     receiveMessages: receiveMessages,
 	createGroup: createGroup,
+	readGroups: readGroups,
     INFO: INFO,
     MESSAGES: MESSAGES,
 	GROUP: GROUP,

@@ -238,6 +238,25 @@ async function loadProfile() {
 				));
 			addFriendToList(friend.name, '#friends-to-add');
 		});
+		
+	chatM.readGroups().then( (groups) => {
+		groups.forEach( (group) => {
+			$('#friends').append(
+					$('<button>').attr('type', 'button').addClass("list-group-item list-group-item-action noactive").text(group.name).click(
+						async function () {
+							chatM.GROUP = group;
+							
+							//Add the selected marker (That blue thing..)
+							$("#friends button").removeClass("active");
+							$("#friends button").addClass("noactive");
+							$(this).removeClass("noactive");
+							$(this).addClass("active");
+							//Show messages
+							updateMessages(await chatM.receiveMessages());
+						}
+					));
+		});
+	});
 }
 
 
