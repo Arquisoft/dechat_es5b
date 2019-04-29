@@ -101,9 +101,10 @@ $('#modalCreateGroup').click(() => {
 		restartModalDialog();
 		$('#modalGroup').modal('hide');
 		
-		if(chatM.createGroup()){
-			console.log('teóricamente se han creado las carpetas');
-		}
+		chatM.createGroup().then( (success) => {
+			if(success)
+				console.log('Group folder has been created');
+		});
 	}
 });
 
