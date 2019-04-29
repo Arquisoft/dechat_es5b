@@ -20,7 +20,8 @@ const receiver = {
 
 const testFolderUrl = credentials.base + "/public/test/";
 const testFileUrl = testFolderUrl + "testfile";
-const testFileUrlTtl = testFolderUrl + "testttlfile";
+const testFolderUrlTtl = credentials.base + "/public/testTtl/";
+const testFileUrlTtl = testFolderUrlTtl + "testttlfile";
 
 describe('Log In and Session', function() {
     it('Login Fail', async function() {
@@ -59,40 +60,55 @@ describe('Test POD Utilities', function() {
         this.timeout(timeout);
         assert.equal(await podUtils.createFile(testFileUrl + ".txt", "test create file", true), true);
         assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), "test create file");
+        assert.equal(await podUtils.writeMsgJson(testFileUrl + ".json", "test json file", true), true);
+        assert.equal(await podUtils.readFile(testFileUrl + ".json", true), "test json file");
+        assert.equal(await podUtils.writeMsgJson(testFileUrl + ".jsonld", "test jsonld file", true), true);
+        assert.equal(await podUtils.readFile(testFileUrl + ".jsonld", true), "test jsonld file");
     });
     it('readFile', async function() {
         this.timeout(timeout);
         assert.equal(await podUtils.readFile(receiver.testReadFile, true), "hola");
     });
-    it('readFolder', async function() {
+    it('readFolderWithContent', async function() {
         this.timeout(timeout);
         var folder = await podUtils.readFolder(testFolderUrl, true);
         assert.equal(folder.name, "test");
-        assert.equal(folder.files.length, 1);
+        assert.equal(folder.files.length, 3);
         assert.equal(testFolderUrl, "https://pruebaes5b.solid.community/public/test/");
     });
     it('deleteFile', async function() {
         this.timeout(timeout);
         assert.equal(await podUtils.deleteFile(testFileUrl + ".txt", true), true);
         assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), null);
+        assert.equal(await podUtils.deleteFile(testFileUrl + ".json", true), true);
+        assert.equal(await podUtils.readFile(testFileUrl + ".json", true), null);
+        assert.equal(await podUtils.deleteFile(testFileUrl + ".jsonld", true), true);
+        assert.equal(await podUtils.readFile(testFileUrl + ".jsonld", true), null);
     });
-    it('createTurtle', async function() {
+    it('readEmptyFolder', async function() {
         this.timeout(timeout);
-        assert.equal(await podUtils.writeTurtle(testFileUrlTtl, ":timeStamp\na msg:message ;\nmsg:text \"#El Mensaje\" .", true), true);
-    });
-    it('deleteFile', async function() {
-        this.timeout(timeout);
-        assert.equal(await podUtils.deleteFile(testFileUrlTtl + ".ttl", true), true);
-        assert.equal(await podUtils.readFile(testFileUrlTtl + ".ttl", true), null);
+        var folder = await podUtils.readFolder(testFolderUrl, true);
+        assert.equal(folder.name, "test");
+        assert.equal(folder.files.length, 0);
+        assert.equal(testFolderUrl, "https://pruebaes5b.solid.community/public/test/");
     });
     it('deleteFolder', async function() {
         this.timeout(timeout);
         assert.equal(await podUtils.deleteFolder(testFolderUrl, true), true);
         assert.equal(await podUtils.readFolder(testFolderUrl, true), null);
     });
-    it('updateInexistentTurtle', async function() {
+    it('createTurtle', async function() {
         this.timeout(timeout);
-        assert.equal(await podUtils.updateTurtle("file.ttl", ":timeStamp\na msg:message ;\nmsg:text \"#Nuevo Mensaje\" .", true),
+        assert.equal(await podUtils.writeTurtle(testFileUrlTtl, ":timeStamp\na msg:message ;\nmsg:text \"#El Mensaje\" .", true), true);
+    });
+    it('updateExistentTurtle', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.updateTurtle(testFileUrlTtl, ":timeStamp\na msg:message ;\nmsg:text \"#Nuevo Mensaje\" .", true),
+            true);
+    });
+    it('updateNonEexistentTurtle', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.updateTurtle("file.ttl", ":timeStamp\na msg:message ;\nmsg:text \"#No existe\" .", true),
             false);
     });
     it('logout', async function() {
