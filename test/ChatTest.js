@@ -178,16 +178,16 @@ describe('Notification Manager', function() {
         credentials.password = "CE.ji.JU-55";
         assert.equal(await podUtils.login(credentials), true);
     });
-    it('readEmptyFolder', async function() {
+    it('createNotificationsTtl', async function() {
         this.timeout(timeout);
-        var folder = await podUtils.readFolder(notiMaUrl, true);
-        assert.equal(folder.files.length, 0);
+        assert.equal(await podUtils.readFile(credentials.base + "/inbox/SolidChatNot", true), null);
+        assert.notEqual(await notiMa.readAllNotification(credentials.base + "/"), null);
     });
     it('writeNotification', async function() {
         this.timeout(timeout);
         assert.equal(await notiMa.writeNotification(credentials.base + "/", receiver.username), true);
     });
-    it('readUserWhoSentNotification', async function() {
+    it('readAllNotifications', async function() {
         this.timeout(timeout);
         assert.notEqual(await notiMa.readAllNotification(credentials.base + "/"), null);
     });
@@ -196,7 +196,7 @@ describe('Notification Manager', function() {
         var folder = await podUtils.readFolder(notiMaUrl, true);
         assert.notEqual(folder.files.length, 0);
     });
-    it('markNotificationAsRead', async function() {
+    it('deleteNotification', async function() {
         this.timeout(timeout);
         assert.equal(await notiMa.deleteNotification(credentials.base + "/", receiver.username), true);
     });
