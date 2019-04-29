@@ -33,8 +33,13 @@ async function deleteNotification(userURI, reciver) {
     noti += "   a noti:Notification ; \n"
     noti += text;
 
+    console.log("\n\n" + userInbox + notAppend + ".ttl");
+
+
     await podUtils.deleteFile(userInbox + notAppend + ".ttl", false);
     await podUtils.writeTurtle(userInbox + notAppend, noti, false);
+
+    return true;
 }
 
 //Method for write new Notification on send Msg
@@ -76,11 +81,13 @@ async function writeNotification(receiverURI, user) {
     await podUtils.deleteFile(receiverInbox + notAppend + ".ttl", false);
     console.log("########Escribiendo");
     await podUtils.writeTurtle(receiverInbox + notAppend, noti, false);
+
+    return true;
 }
 //Methor for constantly reading new Notifications from others chat
 async function readAllNotification(receiverURI) {
     //Read Notification file
-    var receiverInbox = receiverURI + "inbox/";
+    var receiverInbox = receiverURI;
     var fileURL = receiverInbox + notAppend + ".ttl";
 
     //ERROR 403 forbidden

@@ -2,8 +2,9 @@ require('chai');
 var assert = require('assert');
 var chatM = require('../src/scripts/chatManager.js');
 var podUtils = require('../src/scripts/podUtilities.js');
+var notiMa = require('../src/scripts/NotificationManager.js');
 
-const timeout = 2000;
+const timeout = 4000;
 
 var credentials = {
     "idp": "https://solid.community",
@@ -143,7 +144,6 @@ describe('Test Chat Manager', function() {
         this.timeout(timeout);
         assert.equal(await podUtils.logout(), true);
     });
-
     it('sendMessage when there is no SolidChat folder', async function() {
         this.timeout(10000);
 
@@ -167,5 +167,25 @@ describe('Test Chat Manager', function() {
         assert.equal(await podUtils.deleteFolder(pepaFolder, true), true);
 
         chatM.INFO.userURI = credentials.base + "/";
+    });
+});
+
+describe('Notification Manager', function() {
+    it('Login Success', async function() {
+        this.timeout(4000);
+        credentials.password = "CE.ji.JU-55";
+        assert.equal(await podUtils.login(credentials), true);
+    });
+    /*it('writeNotification', async function() {
+        this.timeout(timeout);
+        assert.equal(await notiMa.writeNotification(credentials.base + "/", receiver.username), true);
+    });*/
+    it('deleteNotification', async function() {
+        this.timeout(timeout);
+        assert.equal(await notiMa.deleteNotification(credentials.base + "/", receiver.username), true);
+    });
+    it('logout', async function() {
+        this.timeout(timeout);
+        assert.equal(await podUtils.logout(), true);
     });
 });
