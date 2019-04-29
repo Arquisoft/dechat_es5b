@@ -97,6 +97,8 @@ $('#modalCreateGroup').click(async function(){
 		});
 	}
 	
+	var group = chatM.GROUP;
+	
 	if(!error){
 		restartModalDialog();
 		$('#modalGroup').modal('hide');
@@ -107,6 +109,21 @@ $('#modalCreateGroup').click(async function(){
 			}else{
 				$('#modalUrl').text(folder);
 				$('#modalUrlGroup').modal('show');
+				
+				$('#friends').append(
+					$('<button>').attr('type', 'button').addClass("list-group-item list-group-item-action noactive").text(groupName).click(
+						async function () {
+							chatM.GROUP = group;
+							
+							//Add the selected marker (That blue thing..)
+							$("#friends button").removeClass("active");
+							$("#friends button").addClass("noactive");
+							$(this).removeClass("noactive");
+							$(this).addClass("active");
+							//Show messages
+							updateMessages(await chatM.receiveMessages());
+						}
+					));
 			}
 		});
 	}
