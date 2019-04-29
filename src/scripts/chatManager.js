@@ -28,7 +28,7 @@ var MESSAGES = {
 }
 
 //SEND Message function login
-async function sendMessage(text) {
+async function sendMessage(text, test) {
     var ret = false;
 
     //Define folders name
@@ -39,7 +39,7 @@ async function sendMessage(text) {
     //WritingMessage
     try {
         var err3 = await podUtils.readFile(filename);
-        if (!err3) {
+        if (!err3 || test) {
             throw ("error");
         }
 
@@ -62,14 +62,14 @@ async function sendMessage(text) {
         //IF folder doesnt exist: create new user folder
         try {
             var err2 = await podUtils.readFolder(folder, ToLog);
-            if (!err2) {
+            if (!err2 || test) {
                 throw ("error");
             }
         } catch (error) {
             //Check Folder SolidChat
             try {
                 var err = await podUtils.readFolder(solidChat, ToLog);
-                if (!err) {
+                if (!err || test) {
                     throw ("error");
                 }
             } catch (error) {
@@ -98,7 +98,6 @@ async function sendMessage(text) {
         ret = await podUtils.writeMsgJsonld(folder + "chatld", jsonString, ToLog);
         if (notify)
             await notiMan.writeNotification(INFO.receiverURI, INFO.user);
-
     }
     return ret;
 }

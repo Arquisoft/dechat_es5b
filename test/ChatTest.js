@@ -143,6 +143,7 @@ describe('Test Chat Manager', function() {
         this.timeout(timeout);
         assert.equal(await podUtils.logout(), true);
     });
+
     it('sendMessage when there is no SolidChat folder', async function() {
         this.timeout(10000);
 
@@ -157,7 +158,7 @@ describe('Test Chat Manager', function() {
         chatM.INFO.userURI = pepaCredentials.base + "/";
 
         assert.equal(await podUtils.login(pepaCredentials), true);
-        assert.equal(await chatM.sendMessage("pepaMessage"), true);
+        assert.equal(await chatM.sendMessage("pepaMessage", true), true);
         var messages = await chatM.receiveMessages();
         assert.equal(messages[0].includes("pepaMessage"), true);
 
