@@ -40,6 +40,11 @@ dt {
     left: auto !important;
 }
 
+/* Solves bootstrap overflow bug on modal dialog */
+.modalOverflowFix{
+	word-wrap: break-word;
+}
+
 .centered{
 	font-weight: bold;
 	text-align: center;
