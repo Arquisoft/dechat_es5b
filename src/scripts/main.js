@@ -98,11 +98,12 @@ $('#modalCreateGroup').click(async function(){
 	}
 	
 	if(!error){
+		restartModalDialog();
+		$('#modalGroup').modal('hide');
+				
 		chatM.createGroup().then( (folder) => {
 			if(!folder){
 				console.log('Error Creating Group folder');
-				restartModalDialog();
-				$('#modalGroup').modal('hide');
 			}else{
 				$('#modalUrl').text(folder);
 				$('#modalUrlGroup').modal('show');
@@ -125,7 +126,13 @@ function restartModalDialog() {
 	for(var i = 0; i < buttons.length; i++){
 		addFriendToList($(buttons[i]).text(), '#friends-to-add');
 	}
+	
+	// The list of added friends is emptied
 	$('#added-friends').empty();
+	
+	// If there has been an error, return the border to its original color.
+	$('#modalGroupName').attr('style', 'border-color: #545b62;');
+	$('#modalAddFriend').attr('style', 'border-color: #545b62;');
 };
 
 //SendMessage Function, Send Button on click action
