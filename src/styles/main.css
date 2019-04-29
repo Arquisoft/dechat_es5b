@@ -74,14 +74,24 @@ dt {
   background-color: pink;
 }
 
-/* Friends list two-people-chat.html */
-.sidebar {
-	height: 100%;
-	max-width: 300px;
+.split {
 	position: fixed;
-	z-index: 1;
+	overflow-y: scroll;
+}
+
+/* Control the left side */
+.left {
+	height: 100%;
+	width: 20%;
 	left: 0;
 	background-color: #8975dd;
+}
+
+/* Control the right side */
+.right {
+	height: 100%;
+	width: 80%;
+	right: 0;
 }
 
 /* Main part of chat */

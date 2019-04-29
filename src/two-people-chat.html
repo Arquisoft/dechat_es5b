@@ -56,43 +56,36 @@
 			</li>
 		</ul>
 	</nav>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-3">
-				<div class="sidebar-nav-fixed affix sidebar">
-					<div class="well">
-						<h5 class="centered whitecolor" style="padding: 0.75em;" id="h5friends"></h5>
-						<p style="text-align:center;" id="h5friendsDescription"></p>
-						<button class="btn btn-primary btn-lg btn-block noactive" type="button" id="groupButton"></button>
-						<div class="input-group mb-3">
-							<input type="text" class="form-control" id="searcher" aria-label=". . ." aria-describedby="basic-addon2"/>
-							<div class="input-group-append">
-								<button class="btn btn-primary noactive" type="button" id="searchButton"></button>
-							</div>
-						</div>
-						<div class="list-group list-group-flush forcefullwidth" id="friends">
-							<button type="button" class="list-group-item list-group-item-action noactive" disabled>Loading, please wait...</button>
-						</div>
-					</div>
+	<div>
+		<div class="split left">
+			<h5 class="centered whitecolor" style="padding: 0.75em;" id="h5friends"></h5>
+			<p style="text-align:center;" id="h5friendsDescription"></p>
+			<button class="btn btn-primary btn-lg btn-block noactive" type="button" id="groupButton"></button>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" id="searcher" aria-label=". . ." aria-describedby="basic-addon2"/>
+				<div class="input-group-append">
+					<button class="btn btn-primary noactive" type="button" id="searchButton"></button>
 				</div>
 			</div>
-		
-			<div class="col-md-8">
-				<div class="jumbotron chatplace">
-					<h1 style="margin-bottom: 0.5em;" id="h1title"></h1>
-					<div class="container" id="divConversation">
-						<section>
-							<div id="MessageArea">
-								<div id="messages"></div>
-								<div class="input-group mb-3">
-									<input type="text" class="form-control" placeholder=". . ." id="messageText" aria-label=". . ." aria-describedby="basic-addon2">
-									<div class="input-group-append">
-										<button class="btn btn-outline-secondary" type="button" id="sendButton"></button>
-									</div>
+			<div class="list-group list-group-flush forcefullwidth" id="friends">
+				<button type="button" class="list-group-item list-group-item-action noactive" disabled>Loading, please wait...</button>
+			</div>
+		</div>
+		<div class="split right">
+			<div class="jumbotron chatplace">
+				<h1 style="margin-bottom: 0.5em;" id="h1title"></h1>
+				<div class="container" id="divConversation">
+					<section>
+						<div id="MessageArea">
+							<div id="messages"></div>
+							<div class="input-group mb-3">
+								<input type="text" class="form-control" placeholder=". . ." id="messageText" aria-label=". . ." aria-describedby="basic-addon2">
+								<div class="input-group-append">
+									<button class="btn btn-outline-secondary" type="button" id="sendButton"></button>
 								</div>
 							</div>
-						</section>
-					</div>
+						</div>
+					</section>
 				</div>
 			</div>
 		</div>
