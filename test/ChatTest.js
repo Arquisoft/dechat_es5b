@@ -111,36 +111,22 @@ describe('Test Chat Manager', function() {
     chatM.INFO.userURI = credentials.base + "/";
     chatM.INFO.receiverURI = receiver.idp + "/";
     chatM.INFO.receiverName = receiver.username;
-    const sendFolder = credentials.base + "/public/SolidChat/" + receiver.username + "/chat.txt";
+    const sendFolder = credentials.base + "/public/SolidChat/" + receiver.username + "/chatld.jsonld";
 
     it('sendMessage', async function() {
-        this.timeout(4000);
-
-        var parsed;
-        var folder = await podUtils.readFile(sendFolder, true);
-        if (!folder) {
-            var length = 0;
-        } else {
-            parsed = JSON.parse(folder);
-            var length = parsed.length;
-        }
+        this.timeout(timeout);
         assert.equal(await chatM.sendMessage("newMessage"), true);
-        folder = JSON.parse(await podUtils.readFile(sendFolder, true));
-        assert.equal(folder.length, length + 1);
+        assert.notEqual(await podUtils.readFile(sendFolder, true), null);
     });
-
     it('receiveMessage', async function() {
         this.timeout(3000);
         var messages = await chatM.receiveMessages();
-        assert.equal(messages.length, 10);
-        assert.equal(messages[9].includes("newMessage"), true);
+        assert.notEqual(messages[messages.length - 1].indexOf("newMessage"), -1);
     });
-
     it('logout', async function() {
         this.timeout(timeout);
         assert.equal(await podUtils.logout(), true);
     });
-
     it('sendMessage when there is no SolidChat folder', async function() {
         this.timeout(10000);
 

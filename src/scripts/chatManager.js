@@ -34,7 +34,7 @@ async function sendMessage(text) {
     //Define folders name
     var solidChat = INFO.userURI + "public/SolidChat/";
     var folder = solidChat + INFO.receiverName.replace(/ /g, "-") + "/";
-    var filename = folder + "/chat.txt";
+    var filename = folder + "chatld.jsonld";
 
     //WritingMessage
     if (ToLog)
@@ -51,12 +51,17 @@ async function sendMessage(text) {
 
         await podUtils.deleteFile(filename);
 
-        var messages = JSON.parse(err3);
-        messages.push(new message(text, new Date().getTime()));
-        jsonString = JSON.stringify(messages);
+        var chat = JSON.parse(err3);
+        var message={
+            "@Type": "message",
+            "sender": INFO.userURI,
+            "dateSent": new Date().getTime(),
+            "text": text
+            };
+        chat.messages.push(message);
+        jsonString = JSON.stringify(chat);
 
-
-        ret = await podUtils.createFile(filename, jsonString, ToLog);
+        ret = await podUtils.writeMsgJsonld( folder + "chatld", jsonString, ToLog);
         if (notify)
             await notiMan.writeNotification(INFO.receiverURI, INFO.user);
     } catch (error) {
@@ -98,12 +103,24 @@ async function sendMessage(text) {
         }
         if (ToLog)
             console.log("Creating chat file");
-		
-        var messages = [];
-        messages.push(new message(text, new Date().getTime()));
-        jsonString = JSON.stringify(messages);
+        
+        //chat is the full chat component in jsonld
+        var chat={
+            "@context": "http://schema.org/",
+            "@type": "Conversation",
+            "messages":[
+                {
+                "@Type": "message",
+                "sender": INFO.userURI,
+                "dateSent": new Date().getTime(),
+                "text": text
+                }
+            ]
+        };
 
-        ret = await podUtils.createFile(filename, jsonString, ToLog);
+        jsonString = JSON.stringify(chat);
+
+        ret = await podUtils.writeMsgJsonld( folder + "chatld", jsonString, ToLog);
         if (notify)
             await notiMan.writeNotification(INFO.receiverURI, INFO.user);
 
@@ -118,8 +135,8 @@ async function receiveMessages() {
     //Define folders name
     var uFolder = INFO.userURI + "public/SolidChat/" + INFO.receiverName.trim().replace(/ /g, "-") + "/";
     var rFolder = INFO.receiverURI + "public/SolidChat/" + INFO.userName.trim().replace(/ /g, "-") + "/";
-    var uFile = uFolder + "chat.txt";
-    var rFile = rFolder + "chat.txt";
+    var uFile = uFolder + "chatld.jsonld";
+    var rFile = rFolder + "chatld.jsonld";
 
     var userMessages;
     var receiveMessages;
@@ -141,22 +158,24 @@ async function receiveMessages() {
         receiveMessages = "[]";
     }
 
-    var uParsed = JSON.parse(userMessages);
-    var rParsed = JSON.parse(receiveMessages);
-
+    var uParsed = JSON.parse(userMessages).messages;
+    var rParsed = JSON.parse(receiveMessages).messages;
+    if(uParsed){
     uParsed.forEach(element => {
-        var date = new Date(Number(element.date));
+        var date = new Date(Number(element.dateSent));
         var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " +
             date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
         dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + INFO.userName + " (you) " + strDate + "</p></div>", date));
     });
+    }
+    if(rParsed){
     rParsed.forEach(element => {
-        var date = new Date(Number(element.date));
+        var date = new Date(Number(element.dateSent));
         var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " +
             date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
         dict.push(new message("<div class=\"containerChat\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + INFO.receiverName + " " + strDate + "</p></div>", date));
     });
-
+    }
     dict.sort(function (a, b) {
         return a.date > b.date ? 1 : a.date < b.date ? -1 : 0;
     });

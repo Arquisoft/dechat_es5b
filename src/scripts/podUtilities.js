@@ -80,6 +80,28 @@ async function writeMessage(url, content, ToLog) {
     });
 }
 
+async function writeMsgJson(url, content, ToLog) {
+	return await fileClient.createFile(url, content,"text/json").then(fileCreated => {
+		if (ToLog)
+			console.log(`Created file ${fileCreated}.`);
+		return true;
+	}, err => {
+		console.log(err);
+		return false;
+	});
+}
+
+async function writeMsgJsonld(url, content, ToLog) {
+	return await fileClient.createFile(url, content,"application/ld+json").then(fileCreated => {
+		if (ToLog)
+			console.log(`Created file ${fileCreated}.`);
+		return true;
+	}, err => {
+		console.log(err);
+		return false;
+	});
+}
+
 async function writeTurtle(url, content, ToLog) {
     return await fileClient.createFile(url, content, "text/turtle").then(fileCreated => {
         if (ToLog)
@@ -125,16 +147,18 @@ async function deleteMessage(url, ToLog) {
 }
 
 module.exports = {
-    login: login,
-    logout: logout,
-    loginNoPopup: loginNoPopup,
-    getSession: getSession,
-    createFolder: createChatFolder,
-    readFolder: readFolder,
-    deleteFolder: deleteFolder,
-    createFile: writeMessage,
-    readFile: readMessage,
-    deleteFile: deleteMessage,
-    writeTurtle: writeTurtle,
-    updateTurtle: updateTurtle
+	login: login,
+	logout: logout,
+	loginNoPopup: loginNoPopup,
+	getSession: getSession,
+	createFolder: createChatFolder,
+	readFolder: readFolder,
+	deleteFolder: deleteFolder,
+	createFile: writeMessage,
+	readFile: readMessage,
+	deleteFile: deleteMessage,
+	writeTurtle: writeTurtle,
+	updateTurtle: updateTurtle,
+	writeMsgJson:writeMsgJson,
+	writeMsgJsonld:writeMsgJsonld
 }
