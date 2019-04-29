@@ -218,6 +218,7 @@ async function createGroupFolder(basicUri, folderName){
     var solidChat = basicUri + "public/SolidChat/";
 	var groups = solidChat +"Groups/";
     var folder = groups + folderName;
+	var metadataUrl = folder + '/metadata.jsonld';
 	
 	if (ToLog)
         console.log("Creating folder: " + folderName);
@@ -232,6 +233,27 @@ async function createGroupFolder(basicUri, folderName){
 				console.log("Folder doesnt exist");
 			throw ("error")
 		}
+		
+		// If the group already exists, the new group replaces the old one
+		var err4 = await podUtils.readFile(metadataUrl);
+        if (err4) {
+            await podUtils.deleteFile(metadataUrl);
+        }
+
+		// Creates the metadata file for the current group
+		var metadata = {
+            "@context": "http://schema.org/",
+            "@type": "Group Chat",
+			"people": GROUP.friends.length,
+			"isGroup": true,
+			"url": folder,
+			"group": GROUP
+        };
+
+        jsonString = JSON.stringify(metadata);
+
+        ret = await podUtils.writeMsgJsonld( folder + "metadata", jsonString, ToLog);
+		
 	} catch (error) {
 		//CHeck Group Folder
 		try {
@@ -266,6 +288,20 @@ async function createGroupFolder(basicUri, folderName){
 		console.log('-----------------------------' + folder);
 		//New Folder:
 		created = await podUtils.createFolder(folder, ToLog);
+		
+		// New metadata file
+		var metadata = {
+            "@context": "http://schema.org/",
+            "@type": "Group Chat",
+			"people": GROUP.friends.length,
+			"isGroup": true,
+			"url": folder,
+			"group": GROUP
+        };
+
+        jsonString = JSON.stringify(metadata);
+
+        ret = await podUtils.writeMsgJsonld( folder + "metadata", jsonString, ToLog);
 	}
 	if(created)
 		return folder;
