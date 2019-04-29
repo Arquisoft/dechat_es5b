@@ -4,7 +4,7 @@ var chatM = require('../src/scripts/chatManager.js');
 var podUtils = require('../src/scripts/podUtilities.js');
 var notiMa = require('../src/scripts/NotificationManager.js');
 
-const timeout = 4000;
+const timeout = 10000;
 
 var credentials = {
     "idp": "https://solid.community",
@@ -15,8 +15,7 @@ var credentials = {
 
 const receiver = {
     "idp": "https://cristina.solid.community",
-    "username": "cristinamartin",
-    "testReadFile": "https://cristina.solid.community/public/SolidChat/Cristina-Mart%C3%ADn-Rey/1552487905499.txt"
+    "username": "cristinamartin"
 }
 
 const testFolderUrl = credentials.base + "/public/test/";
@@ -27,7 +26,7 @@ const notiMaUrl = "https://pruebaes5b.solid.community/inbox/";
 
 describe('Log In and Session', function() {
     it('Login Fail', async function() {
-        this.timeout(5000);
+        this.timeout(timeout);
         credentials.password = "123456";
         assert.equal(await podUtils.login(credentials), false);
     });
@@ -63,13 +62,13 @@ describe('Test POD Utilities', function() {
         assert.equal(await podUtils.createFile(testFileUrl + ".txt", "test create file", true), true);
         assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), "test create file");
         assert.equal(await podUtils.writeMsgJson(testFileUrl + ".json", "test json file", true), true);
-        assert.equal(await podUtils.readFile(testFileUrl + ".json", true), "test json file");
         assert.equal(await podUtils.writeMsgJson(testFileUrl + ".jsonld", "test jsonld file", true), true);
-        assert.equal(await podUtils.readFile(testFileUrl + ".jsonld", true), "test jsonld file");
     });
     it('readFile', async function() {
         this.timeout(timeout);
-        assert.equal(await podUtils.readFile(receiver.testReadFile, true), "hola");
+        assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), "test create file");
+        assert.equal(await podUtils.readFile(testFileUrl + ".json", true), "test json file");
+        assert.equal(await podUtils.readFile(testFileUrl + ".jsonld", true), "test jsonld file");
     });
     it('readFolderWithContent', async function() {
         this.timeout(timeout);
@@ -137,7 +136,7 @@ describe('Test Chat Manager', function() {
         assert.notEqual(await podUtils.readFile(sendFolder, true), null);
     });
     it('receiveMessage', async function() {
-        this.timeout(3000);
+        this.timeout(timeout);
         var messages = await chatM.receiveMessages();
         assert.notEqual(messages[messages.length - 1].indexOf("newMessage"), -1);
     });
@@ -146,7 +145,7 @@ describe('Test Chat Manager', function() {
         assert.equal(await podUtils.logout(), true);
     });
     it('sendMessage when there is no SolidChat folder', async function() {
-        this.timeout(10000);
+        this.timeout(20000);
 
         const pepaCredentials = {
             "idp": "https://solid.community",
@@ -197,7 +196,7 @@ describe('Notification Manager', function() {
         assert.notEqual(folder.files.length, 0);
     });
     it('deleteNotification', async function() {
-        this.timeout(6000);
+        this.timeout(timeout);
         assert.equal(await notiMa.deleteNotification(credentials.base + "/", receiver.username), true);
     });
     it('deleteFile', async function() {
