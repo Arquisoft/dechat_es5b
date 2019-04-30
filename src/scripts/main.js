@@ -90,7 +90,7 @@ $('#modalCreateGroup').click(async function(){
 	
 	chatM.GROUP.name = groupName;
 	var f;
-
+	console.log(friends);
 	for(var i = 0; i < friendsToAdd.length; i++){
 		f = friends.find(function (element){
 			return element.name == $(friendsToAdd[i]).text();
@@ -241,7 +241,7 @@ $('#filtro-nombre').on(
 );
 
 async function getFriends() {
-	const friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
+	friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
 	$('#friends').empty();
 	
 	var sortedFriends = [];
@@ -255,6 +255,7 @@ async function getFriends() {
 		return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
 	});
 	
+	friends = sortedFriends;
 	return sortedFriends;
 }
 
@@ -283,6 +284,7 @@ async function showFriends(sortedFriends) {
 					updateMessages(await chatM.receiveMessages());
 				}
 			));
+		addFriendToList(friend.name, '#friends-to-add');
 	});
 }
 
