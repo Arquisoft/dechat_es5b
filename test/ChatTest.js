@@ -162,7 +162,7 @@ describe('Test Chat Manager', function() {
         chatM.INFO.userURI = pepaCredentials.base + "/";
 
         assert.equal(await podUtils.login(pepaCredentials), true);
-        assert.equal(await chatM.sendMessage("pepaMessage", true), true);
+        assert.equal(await chatM.sendMessage("pepaMessage",false, true), true);
         var messages = await chatM.receiveMessages();
         assert.equal(messages[0].includes("pepaMessage"), true);
 
