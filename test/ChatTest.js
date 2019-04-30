@@ -133,9 +133,11 @@ describe('Test Chat Manager', function() {
 
     it('sendMessage', async function() {
         this.timeout(timeout);
+        assert.equal(await chatM.setUpFolder(true), true);
         assert.equal(await chatM.checkNewMessages(receiver.idp + "/", receiver.username), false);
         assert.equal(await chatM.sendMessage("newMessage"), true);
         assert.notEqual(await podUtils.readFile(sendFolder, true), null);
+        assert.equal(await chatM.setUpFolder(false), true);
     });
     it('receiveMessage', async function() {
         this.timeout(timeout);

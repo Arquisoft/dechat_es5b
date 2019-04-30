@@ -27,7 +27,7 @@ var MESSAGES = {
     toShow: []
 }
 
-async function setUpFolder() {
+async function setUpFolder(dontHave) {
     var ret = false;
 
     //Define folders name
@@ -38,21 +38,23 @@ async function setUpFolder() {
     //WritingMessage
     try {
         var err3 = await podUtils.readFile(filename);
-        if (!err3) {
+        if (!err3 || dontHave) {
             throw ("error");
+        } else {
+            ret = true;
         }
     } catch (error) {
         //IF folder doesnt exist: create new user folder
         try {
             var err2 = await podUtils.readFolder(folder, ToLog);
-            if (!err2) {
+            if (!err2 || dontHave) {
                 throw ("error");
             }
         } catch (error) {
             //Check Folder SolidChat
             try {
                 var err = await podUtils.readFolder(solidChat, ToLog);
-                if (!err) {
+                if (!err || dontHave) {
                     throw ("error");
                 }
             } catch (error) {
@@ -63,7 +65,7 @@ async function setUpFolder() {
             //New Folder:
             await podUtils.createFolder(folder, ToLog);
         }
-        await podUtils.writeMessage(folder + "cache.txt", "");
+        return await podUtils.writeMessage(folder + "cache.txt", "");
     }
     return ret;
 }
