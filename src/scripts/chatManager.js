@@ -151,17 +151,17 @@ async function checkNewMessages(receiverFolder, receiver) {
             throw ('error');
         let receiveMessages = await podUtils.readFile(rFolder + "chatld.jsonld", ToLog);
         let parsedReciever = JSON.parse(receiveMessages).messages.pop().text;
-        console.log("gratefully checked  " + cache + "  " + parsedReciever + " ");
+        //console.log("gratefully checked  " + cache + "  " + parsedReciever + " ");
         if (cache == "" && parsedReciever == "")
             return false;
         if (cache != parsedReciever) {
-            console.log("OH GOD PLEEEEEASE");
+            //console.log("OH GOD PLEEEEEASE");
             return true;
         } else
             return false;
     } catch (error) {
-        console.log(error);
-        console.log("Cannot check notifications  " + receiver + "  " + INFO.userName);
+        //console.log(error);
+        //console.log("Cannot check notifications  " + receiver + "  " + INFO.userName);
         return false;
     }
 }

@@ -117,7 +117,7 @@ async function getFriendsAlternative() {
 async function checkNotifications() {
 	let friends = await getFriendsAlternative();
 	let ls = $(".list-group-item-action");
-	console.log(ls);
+	//console.log(ls);
 	for (let i = 0; i < ls.length; i++) {
 		let uri = friends[i].uri.substr(0, (friends[i].uri.length - 15));
 		let name = friends[i].name.trim();
@@ -129,23 +129,18 @@ async function checkNotifications() {
 			ls[i].innerHTML = friends[i].name;
 		}
 	}
-	console.log($(".list-group-item-action"));
+	//console.log($(".list-group-item-action"));
 }
 
 window.setInterval(async function () {
 	await checkNotifications();
-}, 8000);
+}, 6000);
 
-//.append($('<button>').attr('type', 'ico').addClass("ico").text(""))
+
 async function showFriends(sortedFriends) {
 	sortedFriends.forEach(
 		async (friend) => {
 			let notification = false;
-			console.log(friend.uri.substr(0, (friend.uri.length - 15)));
-			/*if (await chatM.checkNewMessages(friend.uri.substr(0, (friend.uri.length - 15)), friend.name.trim())) {
-				notification = true;
-			}*/
-			console.log("el resultado es: " + notification);
 			await fetcher.load(friend);
 			let = clase = "";
 			if (notification) {
