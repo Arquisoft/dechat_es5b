@@ -11,6 +11,7 @@ function setLanguage(locale) {
             lang = {
                 "title": "DeChat ES5B - Chatroom",
                 "dropdownUser": "User Profile",
+				"dropdownGroup": "Groups",
                 "signed": "Signed in as",
                 "profile": "Go to your SOLID profile",
                 "navBarLogout": "Log out",
@@ -18,6 +19,7 @@ function setLanguage(locale) {
                 "h5friends": "Friends list",
                 "h5friendsDescription": "Please select a friend before you start chatting",
 				"groupButton": "Create a group",
+				"groupJoin": "Join a group",
 				"searcher": "Search friends by name",
 				"searchButton": "Search",
                 "h1title": "Welcome to your decentralized chat room",
@@ -38,6 +40,7 @@ function setLanguage(locale) {
             lang = {
                 "title": "DeChat ES5B - Sala de chat",
                 "dropdownUser": "Perfil",
+				"dropdownGroup": "Grupos",
                 "signed": "Logueado como",
                 "profile": "Ir a tu perfil de SOLID",
                 "navBarLogout": "Cerrar sesión",
@@ -45,6 +48,7 @@ function setLanguage(locale) {
                 "h5friends": "Listado de amigos",
                 "h5friendsDescription": "Selecciona un amigo antes de comenzar a chatear",
 				"groupButton": "Crea un grupo",
+				"groupJoin": "Únete a un grupo",
 				"searcher": "Busca amigos por su nombre",
 				"searchButton": "Buscar",
                 "h1title": "Bienvenido a tu sala de chat descentralizada",
@@ -65,6 +69,7 @@ function setLanguage(locale) {
             lang = {
                 "title": "DeChat ES5B - 聊天室",
                 "dropdownUser": "用户资料",
+				"dropdownGroup": "组",
                 "signed": "確定為",
                 "profile": "转到您的SOLID个人资料",
                 "navBarLogout": "登出",
@@ -72,6 +77,7 @@ function setLanguage(locale) {
                 "h5friends": "好友列表",
                 "h5friendsDescription": "请在开始聊天之前选择一位朋友",
 				"groupButton": "创建一个组",
+				"groupJoin": "加入一个小组",
 				"searcher": "按名称查找朋友",
 				"searchButton": "搜索",
                 "h1title": "欢迎来到您的分散聊天室",
@@ -92,6 +98,7 @@ function setLanguage(locale) {
             lang = {
                 "title": "DeChat ES5B - Sala de chat",
                 "dropdownUser": "Perfil",
+				"dropdownGroup": "Grupos",
                 "signed": "Logueado como",
                 "profile": "Ir ao teu perfil de SOLID",
                 "navBarLogout": "Pechar sesión",
@@ -99,6 +106,7 @@ function setLanguage(locale) {
                 "h5friends": "Listado de amigos",
                 "h5friendsDescription": "Selecciona un amigo antes de comezar a chatear",
 				"groupButton": "Crea un grupo",
+				"groupJoin": "Únete a un grupo",
 				"searcher": "Busca amigos por nome",
 				"searchButton": "Buscar",
                 "h1title": "Benvido á tua sala de chat descentralizada",
@@ -123,6 +131,7 @@ function setLanguage(locale) {
     //Set phrases
     document.title = lang.title;
     $("#dropdownUser").text(lang.dropdownUser);
+	$("#dropdownGroup").text(lang.dropdownGroup);
     $("#signed").text(lang.signed);
     $("#profile").text(lang.profile);
     $("#navBarLogout").text(lang.navBarLogout);
@@ -130,6 +139,7 @@ function setLanguage(locale) {
     $("#h5friends").text(lang.h5friends);
     $("#h5friendsDescription").text(lang.h5friendsDescription);
 	$("#groupButton").text(lang.groupButton);
+	$("#groupJoin").text(lang.groupJoin);
 	$("#searchButton").text(lang.searchButton);
 	$("#searcher").attr('placeholder', lang.searcher);
     $("#h1title").text(lang.h1title);
