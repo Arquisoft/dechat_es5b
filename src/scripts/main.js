@@ -50,6 +50,11 @@ $('#groupButton').click(() =>
 	$('#modalGroup').modal('show')
 );
 
+//Allows the user to join an already formed group
+$('#groupJoin').click(() =>
+	$('#modalJoinGroup').modal('show')
+);
+
 //Adds a friend to the creation group list
 $('#modalAddFriend').click(() => {
 	var name = $('#friends-to-add').find(".active").text();

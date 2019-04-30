@@ -33,7 +33,10 @@ function setLanguage(locale) {
 				"modalGroupTitleCol1": "Friends list",
 				"modalGroupTitleCol2": "Friends added to the group",
 				"modalUrlGroupTitle": "Group URL",
-				"modalUrlGroupDescription": "Copy this URL so you can chat with your friends in a group:"
+				"modalUrlGroupDescription": "Copy this URL so you can chat with your friends in a group:",
+				"modalJoinGroupTitle": "Join the group with your friends!",
+				"modalJoinGroupDescription": "Use the URL to join the group:",
+				"modalButtonJoin": "Join"
             }
             break;
         case "es-ES":
@@ -62,7 +65,10 @@ function setLanguage(locale) {
 				"modalGroupTitleCol1": "Lista de amigos",
 				"modalGroupTitleCol2": "Amigos añadidos al grupo",
 				"modalUrlGroupTitle": "URL del grupo",
-				"modalUrlGroupDescription": "Copia esta URL para poder chatear con tus amigos en grupo:"
+				"modalUrlGroupDescription": "Copia esta URL para poder chatear con tus amigos en grupo:",
+				"modalJoinGroupTitle": "¡Únete al grupo con tus amigos!",
+				"modalJoinGroupDescription": "Utiliza la URL para unirte al grupo:",
+				"modalButtonJoin": "Unirse"
             }
             break;
         case "zh-CN":
@@ -91,7 +97,10 @@ function setLanguage(locale) {
 				"modalGroupTitleCol1": "朋友列表",
 				"modalGroupTitleCol2": "朋友加入了该组",
 				"modalUrlGroupTitle": "组URL",
-				"modalUrlGroupDescription": "复制此网址以与群组中的朋友聊天："
+				"modalUrlGroupDescription": "复制此网址以与群组中的朋友聊天：",
+				"modalJoinGroupTitle": "和你的朋友一起加入小组！",
+				"modalJoinGroupDescription": "使用URL加入组：",
+				"modalButtonJoin": "加入"
             }
             break;
         case "gl-GL":
@@ -120,7 +129,10 @@ function setLanguage(locale) {
 				"modalGroupTitleCol1": "Lista de amigos",
 				"modalGroupTitleCol2": "Amigos engadidos ao grupo",
 				"modalUrlGroupTitle": "URL do grupo",
-				"modalUrlGroupDescription": "Copia este URL para falar cos teus amigos nun grupo:"
+				"modalUrlGroupDescription": "Copia este URL para falar cos teus amigos nun grupo:",
+				"modalJoinGroupTitle": "Únete ao grupo cos teus amigos!",
+				"modalJoinGroupDescription": "Usa a URL para unirse ao grupo:",
+				"modalButtonJoin": "Unirse"
             }
             break;
         default:
@@ -154,6 +166,9 @@ function setLanguage(locale) {
 	$("#modalGroupTitleCol2").text(lang.modalGroupTitleCol2);
 	$("#modalUrlGroupTitle").text(lang.modalUrlGroupTitle);
 	$("#modalUrlGroupDescription").text(lang.modalUrlGroupDescription);
+	$("#modalJoinGroupTitle").text(lang.modalJoinGroupTitle);
+	$("#modalJoinGroupDescription").text(lang.modalJoinGroupDescription);
+	$("#modalButtonJoin").text(lang.modalButtonJoin);
     //$("#").text(lang.);
 }
 if (typeof window.localStorage.userLocale == "undefined") {

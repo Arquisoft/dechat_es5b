@@ -159,6 +159,29 @@
 	</div>
 	<!-- UrlGroupModal Modal end -->
 	
+	<!-- UrlJoinModal Modal start -->
+	<div class="modal fade" id="modalJoinGroup" tabindex="-1" role="dialog" aria-labelledby="modalJoinGroupLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="modalJoinGroupTitle"></h5>
+			<button type="button" class="close" data-dismiss='modal' aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			<p id="modalJoinGroupDescription"></p>
+			<div class="row"/>
+				<input type="text" class="form-control" id="toJoin" placeholder="URL" aria-describedby="basic-addon2">
+			</div><div class="row"/>
+				<button class="btn btn-primary btn-lg btn-block noactive" type="button" id="modalButtonJoin" style="font-size:1.2em; margin: 0.5em 0.5em;"></button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<!-- UrlJoinModal Modal end -->
+	
 	<script src="lib/solid-auth-client.bundle.js"></script>
     <script src="index.js"></script>
 	<script>
