@@ -160,6 +160,7 @@ async function showFriends(sortedFriends) {
 						chatM.INFO.receiver = friend.uri;
 						chatM.INFO.receiverName = friend.name.trim();
 						chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0, (chatM.INFO.receiver.length - 15));
+						chatM.setUpFolder();
 
 						//Add the selected marker (That blue thing..)
 						$("#friends button").removeClass("active");

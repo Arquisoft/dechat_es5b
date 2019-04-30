@@ -27,6 +27,47 @@ var MESSAGES = {
     toShow: []
 }
 
+async function setUpFolder() {
+    var ret = false;
+
+    //Define folders name
+    var solidChat = INFO.userURI + "public/SolidChat/";
+    var folder = solidChat + INFO.receiverName.replace(/ /g, "-") + "/";
+    var filename = folder + "chatld.jsonld";
+
+    //WritingMessage
+    try {
+        var err3 = await podUtils.readFile(filename);
+        if (!err3) {
+            throw ("error");
+        }
+    } catch (error) {
+        //IF folder doesnt exist: create new user folder
+        try {
+            var err2 = await podUtils.readFolder(folder, ToLog);
+            if (!err2) {
+                throw ("error");
+            }
+        } catch (error) {
+            //Check Folder SolidChat
+            try {
+                var err = await podUtils.readFolder(solidChat, ToLog);
+                if (!err) {
+                    throw ("error");
+                }
+            } catch (error) {
+                //New Solid-Chat folder
+                await podUtils.createFolder(solidChat, ToLog);
+            }
+
+            //New Folder:
+            await podUtils.createFolder(folder, ToLog);
+        }
+        await podUtils.writeMessage(folder + "cache.txt", "");
+    }
+    return ret;
+}
+
 //SEND Message function login
 async function sendMessage(text, test) {
     var ret = false;
@@ -111,7 +152,7 @@ async function checkNewMessages(receiverFolder, receiver) {
         let receiveMessages = await podUtils.readFile(rFolder + "chatld.jsonld", ToLog);
         let parsedReciever = JSON.parse(receiveMessages).messages.pop().text;
         console.log("gratefully checked  " + cache + "  " + parsedReciever + " ");
-        if (cache == "" || parsedReciever == "")
+        if (cache == "" && parsedReciever == "")
             return false;
         if (cache != parsedReciever) {
             console.log("OH GOD PLEEEEEASE");
@@ -208,5 +249,6 @@ module.exports = {
     checkNewMessages: checkNewMessages,
     INFO: INFO,
     MESSAGES: MESSAGES,
-    ToLog: ToLog
+    ToLog: ToLog,
+    setUpFolder:setUpFolder
 }
