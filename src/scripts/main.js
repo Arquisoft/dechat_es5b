@@ -134,7 +134,7 @@ async function checkNotifications() {
 
 window.setInterval(async function () {
 	await checkNotifications();
-}, 6000);
+}, 4500);
 
 
 async function showFriends(sortedFriends) {
@@ -164,7 +164,7 @@ async function showFriends(sortedFriends) {
 						$(this).addClass("active");
 						//Show messages
 						updateMessages(await chatM.receiveMessages());
-						await checkNotifications();
+						//await checkNotifications();
 					}
 				));
 
@@ -173,7 +173,7 @@ async function showFriends(sortedFriends) {
 
 window.setInterval(async function () {
 	updateMessages(await chatM.receiveMessages());
-}, 3000);
+}, 2000);
 
 async function loadProfile() {
 	if (chatM.ToLog)
