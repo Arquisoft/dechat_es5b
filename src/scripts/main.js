@@ -121,7 +121,7 @@ async function checkNotifications() {
 	for (let i = 0; i < ls.length; i++) {
 		let uri = friends[i].uri.substr(0, (friends[i].uri.length - 15));
 		let name = friends[i].name.trim();
-		if (await chatM.checkNewMessages(uri, name)) {
+		if (await chatM.checkNewMessages(uri, name) && ls[i].classList[2] == 'noactive') {
 			ls[i].classList.add("noti");
 			ls[i].innerHTML += '<i class="ico"></i>';
 		}else{
@@ -129,12 +129,12 @@ async function checkNotifications() {
 			ls[i].innerHTML = friends[i].name;
 		}
 	}
-	//console.log($(".list-group-item-action"));
+	console.log($(".list-group-item-action"));
 }
 
 window.setInterval(async function () {
 	await checkNotifications();
-}, 4500);
+}, 5000);
 
 
 async function showFriends(sortedFriends) {
@@ -164,7 +164,7 @@ async function showFriends(sortedFriends) {
 						$(this).addClass("active");
 						//Show messages
 						updateMessages(await chatM.receiveMessages());
-						//await checkNotifications();
+						await checkNotifications();
 					}
 				));
 
