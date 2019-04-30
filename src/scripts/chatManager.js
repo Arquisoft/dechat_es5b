@@ -264,19 +264,20 @@ async function createGroupFolder(basicUri, folderName){
             await podUtils.deleteFile(metadataUrl);
         }
 
-		// Creates the metadata file for the current group
+		//Define metadata object
+		// Creates the metadata file for the group
 		var metadata = {
-            "@context": "http://schema.org/",
-            "@type": "Group Chat",
+			"@context": "http://schema.org/",
+			"@type": "Group Chat",
 			"people": GROUP.friends.length,
 			"isGroup": true,
 			"url": folder,
 			"group": GROUP
-        };
+		};
 
-        jsonString = JSON.stringify(metadata);
-
-        ret = await podUtils.writeMsgJsonld( folder + "metadata", jsonString, ToLog);
+		var jsonString = JSON.stringify(metadata);
+		
+        ret = await podUtils.writeMsgJsonld( folder + "/metadata", jsonString, ToLog);
 		
 	} catch (error) {
 		//CHeck Group Folder
@@ -312,25 +313,53 @@ async function createGroupFolder(basicUri, folderName){
 		console.log('-----------------------------' + folder);
 		//New Folder:
 		created = await podUtils.createFolder(folder, ToLog);
-		
-		// New metadata file
+
+		//Define metadata object
+		// Creates the metadata file for the group
 		var metadata = {
-            "@context": "http://schema.org/",
-            "@type": "Group Chat",
+			"@context": "http://schema.org/",
+			"@type": "Group Chat",
 			"people": GROUP.friends.length,
 			"isGroup": true,
 			"url": folder,
 			"group": GROUP
-        };
+		};
 
-        jsonString = JSON.stringify(metadata);
-
-        ret = await podUtils.writeMsgJsonld( folder + "metadata", jsonString, ToLog);
+		var jsonString = JSON.stringify(metadata);
+		
+        ret = await podUtils.writeMsgJsonld( folder + "/metadata", jsonString, ToLog);
 	}
 	if(created)
 		return folder;
 	else
 		return false;
+}
+
+async function joinGroup (url) {
+	var metadata = url + 'metadata.jsonld';
+	metadata = await podUtils.readFile(metadata, ToLog);
+	
+	if(!metadata) {
+		return false;
+	} else {
+		metadata = JSON.parse(metadata);
+		var previous = GROUP;
+		GROUP = metadata.group;
+		
+		var ret = false;
+		for( var i = 0; i < metadata.people; i++){
+			if(GROUP.friends[i].uri == INFO.user){
+				ret = await createGroupFolder(INFO.userURI, GROUP.name);
+			}
+		}
+		if(!ret)
+			return ret;
+		else {
+			ret = GROUP;
+			GROUP = previous;
+			return ret;
+		}
+	}
 }
 
 async function readGroups(){
@@ -359,32 +388,11 @@ async function receiveGroupMessages() {
 	var dict = [];
 	
 	var folder = INFO.userURI + "public/SolidChat/Groups/" + GROUP.name +'/';
-	var file = folder + "chatld.jsonld";
-
-    var userMessages = await podUtils.readFile(file, ToLog); 
-
-    if (!userMessages) {
-        if (ToLog)
-            console.log("User chat file doesnt exist");
-        userMessages = "[]";
-    }
-	
-	var chat = JSON.parse(userMessages);
-    var parsed = chat.messages;
-	
-    if(parsed){
-		parsed.forEach(element => {
-			var date = new Date(Number(element.dateSent));
-			var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " +
-				date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-			dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + INFO.userName + " (you) " + strDate + "</p></div>", date));
-		});
-    }
 	
 	var friend;
 	for (var i = 0; i < GROUP.friends.length; i++) {
 		friend = GROUP.friends[i];
-		file = friend.utilUri + "public/SolidChat/Groups/" + GROUP.name +'/' + "chatld.jsonld";
+		var file = friend.utilUri + "public/SolidChat/Groups/" + GROUP.name +'/' + "chatld.jsonld";
 		userMessages = await podUtils.readFile(file, ToLog); 
 		
 		if (!userMessages) {
@@ -428,6 +436,7 @@ module.exports = {
     sendMessage: sendMessage,
     receiveMessages: receiveMessages,
 	createGroup: createGroup,
+	joinGroup: joinGroup,
 	readGroups: readGroups,
 	receiveGroupMessages: receiveGroupMessages,
     INFO: INFO,

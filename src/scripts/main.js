@@ -103,6 +103,13 @@ $('#modalCreateGroup').click(async function(){
 		});
 	}
 	
+	//Adding this user
+	chatM.GROUP.friends.push({
+		uri: chatM.INFO.user,
+		name: chatM.INFO.userName,
+		utilUri: chatM.INFO.userURI
+	});
+	
 	var group = chatM.GROUP;
 	
 	if(!error){
@@ -132,6 +139,41 @@ $('#modalCreateGroup').click(async function(){
 							updateMessages(await chatM.receiveGroupMessages());
 						}
 					));
+			}
+		});
+	}
+});
+
+//Allows the user to join an already formed group
+$('#modalButtonJoin').click(() => {
+	var URL = $('#toJoin').val();
+	
+	if(URL == '') {
+		alert('No se ha introducido ninguna URL.');
+	} else {
+		chatM.joinGroup(URL).then( (group) => {
+			if(!group) {
+				alert('Something went wrong while joining the group.');
+			} else {				
+				$('#friends').append(
+					$('<button>').attr('type', 'button').addClass("list-group-item list-group-item-action noactive").text(group.name).click(
+						async function () {
+							chatM.GROUP.name = group.name;
+							chatM.GROUP.friends = group.friends;
+							current = chatM.GROUP;
+							
+							//Add the selected marker (That blue thing..)
+							$("#friends button").removeClass("active");
+							$("#friends button").addClass("noactive");
+							$(this).removeClass("noactive");
+							$(this).addClass("active");
+							//Show messages
+							updateMessages(await chatM.receiveGroupMessages());
+						}
+					));
+					
+				$('#modalJoinGroup').modal('hide');
+				$('#toJoin').val('');
 			}
 		});
 	}
