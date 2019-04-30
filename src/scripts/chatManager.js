@@ -169,7 +169,7 @@ async function sendMessage(text, isGroup, test) {
                 ]
             };
         }
-        await podUtils.writeMessage(folder + "cache.txt", "");
+        //await podUtils.writeMessage(folder + "cache.txt", "");
 
 
         jsonString = JSON.stringify(chat);
