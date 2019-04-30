@@ -404,12 +404,18 @@ async function receiveGroupMessages() {
 		chat = JSON.parse(userMessages);
 		parsed = chat.messages;
 		
+		var containerType;
 		if(parsed){
 			parsed.forEach(element => {
 				var date = new Date(Number(element.dateSent));
 				var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " +
 					date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-				dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + friend.name + " (you) " + strDate + "</p></div>", date));
+				if(friend.uri == INFO.user)
+					dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + element.text +
+						"</p><p id=\"username\">" + friend.name + " (you) " + strDate + "</p></div>", date));
+				else
+					dict.push(new message("<div class=\"containerChat\"><p id=\"noMarginMessge\">" + element.text + 
+						"</p><p id=\"username\">" + friend.name + " " + strDate + "</p></div>", date));				
 			});
 		}
 		
