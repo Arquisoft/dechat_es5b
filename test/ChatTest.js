@@ -15,7 +15,7 @@ var credentials = {
 const receiver = {
     "idp": "https://cristina.solid.community",
     "username": "cristinamartin",
-    "testReadFile": "https://cristina.solid.community/public/SolidChat/Cristina-Mart%C3%ADn-Rey/1552487905499.txt"
+    "testReadFile": "https://cristina.solid.community/public/SolidChat/Cristina-Mart%C3%ADn-Rey/cache.txt"
 }
 
 const testFolderUrl = credentials.base + "/public/test/";
@@ -55,7 +55,7 @@ describe('Test POD Utilities', function() {
 	});
 	it('readFile', async function() {
 		this.timeout(timeout);
-		assert.equal(await podUtils.readFile(receiver.testReadFile, true), "hola");
+		assert.equal(await podUtils.readFile(receiver.testReadFile, true), "jajajaj te confundiste");
 	});
 	it('readFolder', async function() {
 		this.timeout(timeout);
