@@ -81,8 +81,9 @@ dt {
 
 /* Control the left side */
 .left {
-	height: 100%;
 	width: 20%;
+	top: 54px;
+	bottom: 0;
 	left: 0;
 	background-color: #8975dd;
 }
