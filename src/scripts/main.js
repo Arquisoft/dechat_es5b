@@ -8,9 +8,9 @@ const store = $rdf.graph();
 const fetcher = new $rdf.Fetcher(store);
 
 class friend {
-	constructor(uri, name){
+	constructor(uri, name) {
 		this.uri = uri;
-		this.name= name;
+		this.name = name;
 	}
 }
 var friends = null;
@@ -23,13 +23,13 @@ $('#login  button').click(() => $('#modalIDP').modal('show'));
 $('#logout button').click(() => loginM.logout());
 
 //"Login with SOLID Community" should redirect to solid.community login page
-$("#solidLogin").click(function() {
+$("#solidLogin").click(function () {
 	$('#desiredIDP').val('https://solid.community');
 	loginM.login();
 });
 
 //Login with desired IDP button
-$("#idpLogin").click(function() {
+$("#idpLogin").click(function () {
 	loginM.login();
 });
 
@@ -205,6 +205,7 @@ function restartModalDialog() {
 //SendMessage Function, Send Button on click action
 $('#sendButton').click(
 	async function sendFunc() {
+		//await checkNotifications();
 		if (document.getElementById("friends").value == "")
 			alert("Debe seleccionar un usuario.");
 		else {
@@ -227,12 +228,12 @@ $('#sendButton').click(
 );
 
 $('#filtro-nombre').on(
-	'input', async function(e){
+	'input', async function (e) {
 		var sortedFriends = await getFriends(), filteredFriends = [];
 		var nombreFiltro = $("#filtro-nombre").val();
-		
+
 		for (i = 0; i < sortedFriends.length; i++) {
-			if (sortedFriends[i].name.toLowerCase().indexOf(nombreFiltro.toLowerCase()) != -1 ){ 
+			if (sortedFriends[i].name.toLowerCase().indexOf(nombreFiltro.toLowerCase()) != -1) {
 				filteredFriends.push(sortedFriends[i]);
 			}
 		}
@@ -243,21 +244,61 @@ $('#filtro-nombre').on(
 async function getFriends() {
 	friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
 	$('#friends').empty();
-	
+
 	var sortedFriends = [];
-	
+
 	await Promise.all(friends.map(async f => {
 		await fetcher.load(f);
-		sortedFriends.push(new friend(f.value, await store.any(f,FOAF('name')).toString()));
+		sortedFriends.push(new friend(f.value, await store.any(f, FOAF('name')).toString()));
 	}));
-	
-	sortedFriends.sort(function (a,b) {
+
+	sortedFriends.sort(function (a, b) {
 		return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
 	});
-	
-	friends = sortedFriends;
+
+  friends = sortedFriends;
 	return sortedFriends;
 }
+
+async function getFriendsAlternative() {
+	const friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
+
+	var sortedFriends = [];
+
+	await Promise.all(friends.map(async f => {
+		await fetcher.load(f);
+		sortedFriends.push(new friend(f.value, await store.any(f, FOAF('name')).toString()));
+	}));
+
+	sortedFriends.sort(function (a, b) {
+		return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+	});
+
+	return sortedFriends;
+}
+
+async function checkNotifications() {
+	let friends = await getFriendsAlternative();
+	let ls = $(".list-group-item-action");
+	//console.log(ls);
+	for (let i = 0; i < ls.length; i++) {
+		let uri = friends[i].uri.substr(0, (friends[i].uri.length - 15));
+		let name = friends[i].name.trim();
+		if (await chatM.checkNewMessages(uri, name) && ls[i].classList[2] == 'noactive') {
+			ls[i].classList.add("noti");
+			ls[i].innerHTML += '<i class="ico"></i>';
+		}else{
+			ls[i].classList.remove("noti");
+			ls[i].innerHTML = friends[i].name;
+		}
+	}
+	console.log($(".list-group-item-action"));
+}
+
+window.setInterval(async function () {
+	await checkNotifications();
+}, 5000);
+
 
 async function showFriends(sortedFriends) {
 	sortedFriends.forEach(
@@ -272,6 +313,7 @@ async function showFriends(sortedFriends) {
 					chatM.INFO.receiver = friend.uri;
 					chatM.INFO.receiverName = friend.name.trim();
 					chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0, (chatM.INFO.receiver.length - 15));
+          chatM.setUpFolder();
 
 					current = chatM.INFO;
 					
@@ -282,11 +324,16 @@ async function showFriends(sortedFriends) {
 					$(this).addClass("active");
 					//Show messages
 					updateMessages(await chatM.receiveMessages());
+          await checkNotifications();
 				}
 			));
 		addFriendToList(friend.name, '#friends-to-add');
 	});
 }
+
+window.setInterval(async function () {
+	updateMessages(await chatM.receiveMessages());
+}, 2000);
 
 async function loadProfile() {
 	if (chatM.ToLog)
@@ -339,12 +386,15 @@ async function loadProfile() {
 }
 
 
+
 window.setInterval(async function () {
 	if(current.isGroup)
 		updateMessages(await chatM.receiveGroupMessages());
 	else
 		updateMessages(await chatM.receiveMessages());
 }, 2000);
+
+
 
 function updateMessages(toShow) {
 	if (chatM.ToLog)

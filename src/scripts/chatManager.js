@@ -33,6 +33,49 @@ var MESSAGES = {
     toShow: []
 }
 
+async function setUpFolder(dontHave) {
+    var ret = false;
+
+    //Define folders name
+    var solidChat = INFO.userURI + "public/SolidChat/";
+    var folder = solidChat + INFO.receiverName.replace(/ /g, "-") + "/";
+    var filename = folder + "chatld.jsonld";
+
+    //WritingMessage
+    try {
+        var err3 = await podUtils.readFile(filename);
+        if (!err3 || dontHave) {
+            throw ("error");
+        } else {
+            ret = true;
+        }
+    } catch (error) {
+        //IF folder doesnt exist: create new user folder
+        try {
+            var err2 = await podUtils.readFolder(folder, ToLog);
+            if (!err2 || dontHave) {
+                throw ("error");
+            }
+        } catch (error) {
+            //Check Folder SolidChat
+            try {
+                var err = await podUtils.readFolder(solidChat, ToLog);
+                if (!err || dontHave) {
+                    throw ("error");
+                }
+            } catch (error) {
+                //New Solid-Chat folder
+                await podUtils.createFolder(solidChat, ToLog);
+            }
+
+            //New Folder:
+            await podUtils.createFolder(folder, ToLog);
+        }
+        return await podUtils.writeMessage(folder + "cache.txt", "");
+    }
+    return ret;
+}
+
 //SEND Message function login
 async function sendMessage(text, isGroup, test) {
     var ret = false;
@@ -93,6 +136,7 @@ async function sendMessage(text, isGroup, test) {
         }
 
         //chat is the full chat component in jsonld
+
 		var chat;
 		if(isGroup) {
 			chat={
@@ -125,14 +169,34 @@ async function sendMessage(text, isGroup, test) {
 				]
 			};
 		}
+        await podUtils.writeMessage(folder + "cache.txt", "");
+
 
         jsonString = JSON.stringify(chat);
 
         ret = await podUtils.writeMsgJsonld(folder + "chatld", jsonString, ToLog);
-        if (notify)
-            await notiMan.writeNotification(INFO.receiverURI, INFO.user);
     }
     return ret;
+}
+
+async function checkNewMessages(receiverFolder, receiver) {
+    let uFolder = INFO.userURI + "public/SolidChat/" + receiver.trim().replace(/ /g, "-") + "/";
+    var rFolder = receiverFolder + "public/SolidChat/" + INFO.userName.trim().replace(/ /g, "-") + "/";
+    try {
+        let cache = await podUtils.readFile(uFolder + "cache.txt", ToLog);
+        if (cache == null)
+            throw ('error');
+        let receiveMessages = await podUtils.readFile(rFolder + "chatld.jsonld", ToLog);
+        let parsedReciever = JSON.parse(receiveMessages).messages.pop().text;
+        if (cache == "" && parsedReciever == "")
+            return false;
+        if (cache != parsedReciever) {
+            return true;
+        } else
+            return false;
+    } catch (error) {
+        return false;
+    }
 }
 
 async function receiveMessages() {
@@ -165,6 +229,23 @@ async function receiveMessages() {
 
     var uParsed = JSON.parse(userMessages).messages;
     var rParsed = JSON.parse(receiveMessages).messages;
+
+    let tosend;
+    if (rParsed) {
+        tosend = rParsed.pop();
+        rParsed.push(tosend);
+        tosend = tosend.text;
+    }
+
+    if (uFolder && tosend) {
+        if (await podUtils.readFile(uFolder + "cache.txt") == null)
+            await podUtils.writeMessage(uFolder + "cache.txt", tosend);
+        else {
+            await podUtils.deleteFile(uFolder + "cache.txt")
+            await podUtils.writeMessage(uFolder + "cache.txt", tosend);
+        }
+    }
+
     if (uParsed) {
         uParsed.forEach(element => {
             var date = new Date(Number(element.dateSent));
@@ -190,10 +271,6 @@ async function receiveMessages() {
         MESSAGES.toShow.push(n.text)
     });
     MESSAGES.toShow = MESSAGES.toShow.slice(-10);
-
-    //Delete existing notifiations
-    if (notify)
-        notiMan.deleteNotification(INFO.userURI, INFO.receiver);
 
     return MESSAGES.toShow;
 }
@@ -417,5 +494,7 @@ module.exports = {
     INFO: INFO,
     MESSAGES: MESSAGES,
 	GROUP: GROUP,
-    ToLog: ToLog
+    ToLog: ToLog,
+    checkNewMessages: checkNewMessages,
+    setUpFolder: setUpFolder
 }
