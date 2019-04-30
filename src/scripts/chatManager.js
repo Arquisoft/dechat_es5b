@@ -92,14 +92,35 @@ async function sendMessage(text, test) {
                 "text": text
             }]
         };
+        await podUtils.writeMessage(folder + "cache.txt", "");
 
         jsonString = JSON.stringify(chat);
 
         ret = await podUtils.writeMsgJsonld(folder + "chatld", jsonString, ToLog);
-        if (notify)
-            await notiMan.writeNotification(INFO.receiverURI, INFO.user);
     }
     return ret;
+}
+
+async function checkNewMessages(receiverFolder, receiver) {
+    let uFolder = INFO.userURI + "public/SolidChat/" + receiver.trim().replace(/ /g, "-") + "/";
+    var rFolder = receiverFolder + "public/SolidChat/" + INFO.userName.trim().replace(/ /g, "-") + "/";
+    try {
+        let cache = await podUtils.readFile(uFolder + "cache.txt", ToLog)
+        if (!cache)
+            throw ('error');
+        let receiveMessages = await podUtils.readFile(rFolder + "chatld.jsonld", ToLog);
+        let parsedReciever = JSON.parse(receiveMessages).messages.pop().text;
+        console.log("gratefully checked  " + cache + "  " + parsedReciever + " ");
+        if (cache != parsedReciever) {
+            console.log("OH GOD PLEEEEEASE");
+            return true;
+        } else
+            return false;
+    } catch (error) {
+        console.log(error);
+        console.log("Cannot check notifications  " + receiver + "  " + INFO.userName);
+        return false;
+    }
 }
 
 async function receiveMessages() {
@@ -127,6 +148,24 @@ async function receiveMessages() {
 
     var uParsed = JSON.parse(userMessages).messages;
     var rParsed = JSON.parse(receiveMessages).messages;
+
+    let tosend;
+    if (rParsed) {
+        tosend = rParsed.pop();
+        rParsed.push(tosend);
+        tosend = tosend.text;
+    }
+    if (uFolder && tosend) {
+        try {
+            if (!await podUtils.readFile(uFolder + "cache.txt"))
+                throw ('error');
+            await podUtils.deleteFile(uFolder + "cache.txt")
+            await podUtils.writeMessage(uFolder + "cache.txt", tosend);
+        } catch (error) {
+            //await podUtils.writeMessage(uFolder + "cache.txt", tosend);
+        }
+    }
+
     if (uParsed) {
         uParsed.forEach(element => {
             var date = new Date(Number(element.dateSent));
@@ -143,7 +182,7 @@ async function receiveMessages() {
             dict.push(new message("<div class=\"containerChat\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + INFO.receiverName + " " + strDate + "</p></div>", date));
         });
     }
-    dict.sort(function(a, b) {
+    dict.sort(function (a, b) {
         return a.date > b.date ? 1 : a.date < b.date ? -1 : 0;
     });
 
@@ -152,10 +191,6 @@ async function receiveMessages() {
         MESSAGES.toShow.push(n.text)
     });
     MESSAGES.toShow = MESSAGES.toShow.slice(-10);
-
-    //Delete existing notifiations
-    if (notify)
-        notiMan.deleteNotification(INFO.userURI, INFO.receiver);
 
     return MESSAGES.toShow;
 }
@@ -169,7 +204,7 @@ async function newNotifications() {
 module.exports = {
     sendMessage: sendMessage,
     receiveMessages: receiveMessages,
-    newNotifications: newNotifications,
+    checkNewMessages: checkNewMessages,
     INFO: INFO,
     MESSAGES: MESSAGES,
     ToLog: ToLog

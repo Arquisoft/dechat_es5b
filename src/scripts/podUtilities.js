@@ -128,5 +128,6 @@ module.exports = {
     writeTurtle: writeTurtle,
     updateTurtle: updateTurtle,
     writeMsgJson: writeMsgJson,
-    writeMsgJsonld: writeMsgJsonld
+    writeMsgJsonld: writeMsgJsonld,
+    writeMessage: writeMessage
 }
