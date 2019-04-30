@@ -124,7 +124,7 @@ $('#modalCreateGroup').click(async function(){
 							$(this).removeClass("noactive");
 							$(this).addClass("active");
 							//Show messages
-							updateMessages(await chatM.receiveMessages());
+							updateMessages(await chatM.receiveGroupMessages());
 						}
 					));
 			}
@@ -170,7 +170,10 @@ $('#sendButton').click(
 
 				//Erase input field
 				$('#messageText').val('');
-				updateMessages(await chatM.receiveMessages());
+				if(current.isGroup)
+					updateMessages(await chatM.receiveGroupMessages());
+				else
+					updateMessages(await chatM.receiveMessages());
 			}
 		}
 	}
@@ -260,7 +263,7 @@ async function loadProfile() {
 							$(this).addClass("active");
 							
 							//Show messages
-							//updateMessages(await chatM.receiveGroupMessages());
+							updateMessages(await chatM.receiveGroupMessages());
 						}
 					));
 		});
@@ -269,8 +272,10 @@ async function loadProfile() {
 
 
 window.setInterval(async function () {
-	updateMessages(await chatM.receiveMessages());
-	//updateMessages(await receiveGroupMessages());
+	if(current.isGroup)
+		updateMessages(await chatM.receiveGroupMessages());
+	else
+		updateMessages(await chatM.receiveMessages());
 }, 2000);
 
 function updateMessages(toShow) {

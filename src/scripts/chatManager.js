@@ -339,12 +339,12 @@ async function readGroups(){
 	
 	var groups = [];
 	var group, metadata;
-	var folders = await podUtils.readFolder(groupsFolder, true);
+	var folders = await podUtils.readFolder(groupsFolder, ToLog);
 	for (var i = 0; i < folders.folders.length; i++){
-		group = await podUtils.readFolder(folders.folders[i].url, true);
+		group = await podUtils.readFolder(folders.folders[i].url, ToLog);
 		for (var j = 0; j < group.files.length ; j++){
-			if(group.files[i].name == 'metadata.jsonld') {
-				metadata = await podUtils.readFile(group.files[i].url, true);
+			if(group.files[j].name == 'metadata.jsonld') {
+				metadata = await podUtils.readFile(group.files[j].url, ToLog);
 				metadata = JSON.parse(metadata);
 				groups.push(metadata.group);
 				break;
@@ -355,17 +355,81 @@ async function readGroups(){
 	return groups;
 }
 
-/*async function receiveGroupMessages() {
-	var groupFolder = INFO.userURI + "public/SolidChat/Groups/";
+async function receiveGroupMessages() {
+	var dict = [];
 	
+	var folder = INFO.userURI + "public/SolidChat/Groups/" + GROUP.name +'/';
+	var file = folder + "chatld.jsonld";
+
+    var userMessages = await podUtils.readFile(file, ToLog); 
+
+    if (!userMessages) {
+        if (ToLog)
+            console.log("User chat file doesnt exist");
+        userMessages = "[]";
+    }
 	
-}*/
+	var chat = JSON.parse(userMessages);
+    var parsed = chat.messages;
+	
+    if(parsed){
+		parsed.forEach(element => {
+			var date = new Date(Number(element.dateSent));
+			var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " +
+				date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+			dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + INFO.userName + " (you) " + strDate + "</p></div>", date));
+		});
+    }
+	
+	var friend;
+	for (var i = 0; i < GROUP.friends.length; i++) {
+		friend = GROUP.friends[i];
+		file = friend.utilUri + "public/SolidChat/Groups/" + GROUP.name +'/' + "chatld.jsonld";
+		userMessages = await podUtils.readFile(file, ToLog); 
+		
+		if (!userMessages) {
+			if (ToLog)
+				console.log("User chat file doesnt exist");
+			userMessages = "[]";
+		}
+		
+		chat = JSON.parse(userMessages);
+		parsed = chat.messages;
+		
+		if(parsed){
+			parsed.forEach(element => {
+				var date = new Date(Number(element.dateSent));
+				var strDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " +
+					date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+				dict.push(new message("<div class=\"containerChatDarker\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + friend.name + " (you) " + strDate + "</p></div>", date));
+			});
+		}
+		
+		 //Delete existing notifiations
+		if (notify)
+			notiMan.deleteNotification(INFO.userURI, friend.uri);
+	}
+	
+    dict.sort(function (a, b) {
+        return a.date > b.date ? 1 : a.date < b.date ? -1 : 0;
+    });
+
+    MESSAGES.toShow = [];
+    dict.forEach((n) => {
+        MESSAGES.toShow.push(n.text)
+    });
+    MESSAGES.toShow = MESSAGES.toShow.slice(-10);
+	MESSAGES.toShow.unshift("<p> URL: "+ folder +"</p>");
+
+    return MESSAGES.toShow;
+}
 
 module.exports = {
     sendMessage: sendMessage,
     receiveMessages: receiveMessages,
 	createGroup: createGroup,
 	readGroups: readGroups,
+	receiveGroupMessages: receiveGroupMessages,
     INFO: INFO,
     MESSAGES: MESSAGES,
 	GROUP: GROUP,
