@@ -14,6 +14,7 @@ class friend {
 	}
 }
 var friends = null;
+var current = null;
 
 //Show modal on login button click
 $('#login  button').click(() => $('#modalIDP').modal('show'));
@@ -113,7 +114,9 @@ $('#modalCreateGroup').click(async function(){
 				$('#friends').append(
 					$('<button>').attr('type', 'button').addClass("list-group-item list-group-item-action noactive").text(groupName).click(
 						async function () {
-							chatM.GROUP = group;
+							chatM.GROUP.name = group.name;
+							chatM.GROUP.friends = group.friends;
+							current = chatM.GROUP;
 							
 							//Add the selected marker (That blue thing..)
 							$("#friends button").removeClass("active");
@@ -163,7 +166,7 @@ $('#sendButton').click(
 			if (!(text.trim().length === 0)) {
 				//Send MSG
 				console.log("Sending from:" + chatM.INFO.userName + "		To:" + chatM.INFO.receiverName + "			text:" + text);
-				await chatM.sendMessage(text);
+				await chatM.sendMessage(text, current.isGroup);
 
 				//Erase input field
 				$('#messageText').val('');
@@ -226,6 +229,8 @@ async function loadProfile() {
 						chatM.INFO.receiver = friend.uri;
 						chatM.INFO.receiverName = friend.name.trim();
 						chatM.INFO.receiverURI = chatM.INFO.receiver.substr(0, (chatM.INFO.receiver.length - 15));
+						
+						current = chatM.INFO;
 
 						//Add the selected marker (That blue thing..)
 						$("#friends button").removeClass("active");
@@ -244,15 +249,18 @@ async function loadProfile() {
 			$('#friends').append(
 					$('<button>').attr('type', 'button').addClass("list-group-item list-group-item-action noactive").text(group.name).click(
 						async function () {
-							chatM.GROUP = group;
+							chatM.GROUP.name = group.name;
+							chatM.GROUP.friends = group.friends;
+							current = chatM.GROUP;
 							
 							//Add the selected marker (That blue thing..)
 							$("#friends button").removeClass("active");
 							$("#friends button").addClass("noactive");
 							$(this).removeClass("noactive");
 							$(this).addClass("active");
+							
 							//Show messages
-							updateMessages(await chatM.receiveMessages());
+							//updateMessages(await chatM.receiveGroupMessages());
 						}
 					));
 		});
@@ -262,6 +270,7 @@ async function loadProfile() {
 
 window.setInterval(async function () {
 	updateMessages(await chatM.receiveMessages());
+	//updateMessages(await receiveGroupMessages());
 }, 2000);
 
 function updateMessages(toShow) {

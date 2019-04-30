@@ -4,7 +4,6 @@ var notiMan = require('./NotificationManager.js');
 const ToLog = true;
 const notify = false;
 
-
 class message {
     constructor(text, date) {
         this.text = text;
@@ -18,7 +17,14 @@ var INFO = {
     userURI: "",
     receiver: "",
     receiverName: "",
-    receiverURI: ""
+    receiverURI: "",
+	isGroup: false
+}
+
+var GROUP = {
+	isGroup: true,
+	name: "",
+	friends: []
 }
 
 var MESSAGES = {
@@ -27,18 +33,18 @@ var MESSAGES = {
     toShow: []
 }
 
-var GROUP = {
-	name: "",
-	friends: []
-}
-
 //SEND Message function login
-async function sendMessage(text) {
+async function sendMessage(text, isGroup) {
     var ret = false;
-
+	console.log(isGroup);
+	
     //Define folders name
     var solidChat = INFO.userURI + "public/SolidChat/";
-    var folder = solidChat + INFO.receiverName.replace(/ /g, "-") + "/";
+    var folder;
+	if(isGroup)
+		folder = solidChat + "Groups/" + GROUP.name.replace(/ /g, "-") + "/";
+	else
+		folder = solidChat + INFO.receiverName.replace(/ /g, "-") + "/";
     var filename = folder + "chatld.jsonld";
 
     //WritingMessage
@@ -110,20 +116,38 @@ async function sendMessage(text) {
             console.log("Creating chat file");
         
         //chat is the full chat component in jsonld
-        var chat={
-            "@context": "http://schema.org/",
-            "@type": "Conversation",
-			"people": 1,
-			"isGroup": false,
-            "messages":[
-                {
-                "@Type": "message",
-                "sender": INFO.userURI,
-                "dateSent": new Date().getTime(),
-                "text": text
-                }
-            ]
-        };
+		var chat;
+		if(isGroup) {
+			chat={
+				"@context": "http://schema.org/",
+				"@type": "Conversation",
+				"people": GROUP.friends.length,
+				"isGroup": true,
+				"messages":[
+					{
+					"@Type": "message",
+					"sender": INFO.userURI,
+					"dateSent": new Date().getTime(),
+					"text": text
+					}
+				]
+			};
+		} else {
+			chat={
+				"@context": "http://schema.org/",
+				"@type": "Conversation",
+				"people": 1,
+				"isGroup": false,
+				"messages":[
+					{
+					"@Type": "message",
+					"sender": INFO.userURI,
+					"dateSent": new Date().getTime(),
+					"text": text
+					}
+				]
+			};
+		}
 
         jsonString = JSON.stringify(chat);
 
@@ -330,6 +354,12 @@ async function readGroups(){
 		
 	return groups;
 }
+
+/*async function receiveGroupMessages() {
+	var groupFolder = INFO.userURI + "public/SolidChat/Groups/";
+	
+	
+}*/
 
 module.exports = {
     sendMessage: sendMessage,
