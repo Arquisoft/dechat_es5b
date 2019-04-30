@@ -46,7 +46,7 @@ solid.auth.trackSession(session => {
 //SendMessage Function, Send Button on click action
 $('#sendButton').click(
 	async function sendFunc() {
-		await checkNotifications();
+		//await checkNotifications();
 		if (document.getElementById("friends").value == "")
 			alert("Debe seleccionar un usuario.");
 		else {
@@ -132,6 +132,10 @@ async function checkNotifications() {
 	console.log($(".list-group-item-action"));
 }
 
+window.setInterval(async function () {
+	await checkNotifications();
+}, 8000);
+
 //.append($('<button>').attr('type', 'ico').addClass("ico").text(""))
 async function showFriends(sortedFriends) {
 	sortedFriends.forEach(
@@ -164,14 +168,16 @@ async function showFriends(sortedFriends) {
 						$(this).addClass("active");
 						//Show messages
 						updateMessages(await chatM.receiveMessages());
-						window.setInterval(async function () {
-							updateMessages(await chatM.receiveMessages());
-						}, 2000);
+						await checkNotifications();
 					}
 				));
 
 		});
 }
+
+window.setInterval(async function () {
+	updateMessages(await chatM.receiveMessages());
+}, 3000);
 
 async function loadProfile() {
 	if (chatM.ToLog)

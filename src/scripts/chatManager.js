@@ -106,11 +106,13 @@ async function checkNewMessages(receiverFolder, receiver) {
     var rFolder = receiverFolder + "public/SolidChat/" + INFO.userName.trim().replace(/ /g, "-") + "/";
     try {
         let cache = await podUtils.readFile(uFolder + "cache.txt", ToLog)
-        if (!cache)
+        if (cache == null)
             throw ('error');
         let receiveMessages = await podUtils.readFile(rFolder + "chatld.jsonld", ToLog);
         let parsedReciever = JSON.parse(receiveMessages).messages.pop().text;
         console.log("gratefully checked  " + cache + "  " + parsedReciever + " ");
+        if (cache == "" || parsedReciever == "")
+            return false;
         if (cache != parsedReciever) {
             console.log("OH GOD PLEEEEEASE");
             return true;
@@ -155,14 +157,13 @@ async function receiveMessages() {
         rParsed.push(tosend);
         tosend = tosend.text;
     }
+
     if (uFolder && tosend) {
-        try {
-            if (!await podUtils.readFile(uFolder + "cache.txt"))
-                throw ('error');
+        if (await podUtils.readFile(uFolder + "cache.txt") == null)
+            await podUtils.writeMessage(uFolder + "cache.txt", tosend);
+        else {
             await podUtils.deleteFile(uFolder + "cache.txt")
             await podUtils.writeMessage(uFolder + "cache.txt", tosend);
-        } catch (error) {
-            //await podUtils.writeMessage(uFolder + "cache.txt", tosend);
         }
     }
 
