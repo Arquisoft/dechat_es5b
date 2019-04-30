@@ -126,12 +126,14 @@ describe('Test Chat Manager', function() {
     });
 
     chatM.INFO.userURI = credentials.base + "/";
+    chatM.INFO.username = credentials.username;
     chatM.INFO.receiverURI = receiver.idp + "/";
     chatM.INFO.receiverName = receiver.username;
     const sendFolder = credentials.base + "/public/SolidChat/" + receiver.username + "/chatld.jsonld";
 
     it('sendMessage', async function() {
         this.timeout(timeout);
+        assert.equal(await chatM.checkNewMessages(receiver.idp + "/", receiver.username), false);
         assert.equal(await chatM.sendMessage("newMessage"), true);
         assert.notEqual(await podUtils.readFile(sendFolder, true), null);
     });

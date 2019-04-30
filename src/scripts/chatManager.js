@@ -146,22 +146,18 @@ async function checkNewMessages(receiverFolder, receiver) {
     let uFolder = INFO.userURI + "public/SolidChat/" + receiver.trim().replace(/ /g, "-") + "/";
     var rFolder = receiverFolder + "public/SolidChat/" + INFO.userName.trim().replace(/ /g, "-") + "/";
     try {
-        let cache = await podUtils.readFile(uFolder + "cache.txt", ToLog)
+        let cache = await podUtils.readFile(uFolder + "cache.txt", ToLog);
         if (cache == null)
             throw ('error');
         let receiveMessages = await podUtils.readFile(rFolder + "chatld.jsonld", ToLog);
         let parsedReciever = JSON.parse(receiveMessages).messages.pop().text;
-        //console.log("gratefully checked  " + cache + "  " + parsedReciever + " ");
         if (cache == "" && parsedReciever == "")
             return false;
         if (cache != parsedReciever) {
-            //console.log("OH GOD PLEEEEEASE");
             return true;
         } else
             return false;
     } catch (error) {
-        //console.log(error);
-        //console.log("Cannot check notifications  " + receiver + "  " + INFO.userName);
         return false;
     }
 }
@@ -224,7 +220,7 @@ async function receiveMessages() {
             dict.push(new message("<div class=\"containerChat\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + INFO.receiverName + " " + strDate + "</p></div>", date));
         });
     }
-    dict.sort(function (a, b) {
+    dict.sort(function(a, b) {
         return a.date > b.date ? 1 : a.date < b.date ? -1 : 0;
     });
 
@@ -250,5 +246,5 @@ module.exports = {
     INFO: INFO,
     MESSAGES: MESSAGES,
     ToLog: ToLog,
-    setUpFolder:setUpFolder
+    setUpFolder: setUpFolder
 }
