@@ -129,9 +129,9 @@ function setLanguage(locale) {
 				"modalGroupTitleCol1": "Lista de amigos",
 				"modalGroupTitleCol2": "Amigos engadidos ao grupo",
 				"modalUrlGroupTitle": "URL do grupo",
-				"modalUrlGroupDescription": "Copia este URL para falar cos teus amigos nun grupo:",
+				"modalUrlGroupDescription": "Copia esta URL para falar cos teus amigos nun grupo:",
 				"modalJoinGroupTitle": "Únete ao grupo cos teus amigos!",
-				"modalJoinGroupDescription": "Usa a URL para unirse ao grupo:",
+				"modalJoinGroupDescription": "Usa a URL para unirte ao grupo:",
 				"modalButtonJoin": "Unirse"
             }
             break;
