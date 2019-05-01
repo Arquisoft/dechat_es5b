@@ -222,6 +222,7 @@ $('#sendButton').click(
 					updateMessages(await chatM.receiveGroupMessages());
 				else
 					updateMessages(await chatM.receiveMessages());
+				scrollDown();
 			}
 		}
 	}
@@ -326,6 +327,7 @@ async function showFriends(sortedFriends) {
 						$(this).addClass("active");
 						//Show messages
 						updateMessages(await chatM.receiveMessages());
+						scrollDown();
 						await checkNotifications();
 					}
 				));
@@ -376,10 +378,16 @@ async function loadProfile() {
 						$(this).addClass("active");
 						//Show messages
 						updateMessages(await chatM.receiveGroupMessages());
+						scrollDown();
 					}
 				));
 		});
 	});
+}
+
+function scrollDown() {
+	var element = document.getElementById("scroll");
+	element.scrollTop = element.scrollHeight;
 }
 
 window.setInterval(async function () {
