@@ -245,7 +245,7 @@ $('#filtro-nombre').on(
 async function getFriends() {
 	friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
 	$('#friends').empty();
-
+	
 	var sortedFriends = [];
 
 	await Promise.all(friends.map(async f => {
