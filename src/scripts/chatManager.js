@@ -1,8 +1,6 @@
 var podUtils = require('./podUtilities.js');
-var notiMan = require('./NotificationManager.js');
 
 const ToLog = true;
-const notify = false;
 
 class message {
     constructor(text, date) {
@@ -108,8 +106,6 @@ async function sendMessage(text, isGroup) {
         jsonString = JSON.stringify(chat);
 
         ret = await podUtils.writeMsgJsonld(folder + "chatld", jsonString, ToLog);
-        if (notify)
-            await notiMan.writeNotification(INFO.receiverURI, INFO.user);
     } catch (error) {
         //IF folder doesnt exist: create new user folder
         try {
@@ -434,9 +430,6 @@ async function receiveGroupMessages() {
             });
         }
 
-        //Delete existing notifiations
-        if (notify)
-            notiMan.deleteNotification(INFO.userURI, friend.uri);
     }
 
     dict.sort(function(a, b) {
