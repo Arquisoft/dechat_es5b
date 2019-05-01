@@ -182,6 +182,21 @@ describe('Test Chat Manager', function() {
         assert.equal(await podUtils.deleteFolder("https://pruebaes5b.solid.community/public/SolidChat/Groups/pruebatest/", true), true);
         assert.equal(await podUtils.deleteFolder("https://pruebaes5b.solid.community/public/SolidChat/Groups/", true), true);
     });
+    it('createGroup', async function() {
+        this.timeout(timeout);
+        const chatFolder = "https://pruebaes5b.solid.community/public/SolidChat/Groups/pruebacreate/metadata.jsonld";
+        chatM.GROUP.name = "pruebacreate";
+        assert.notEqual(await chatM.createGroup(), null);
+        assert.notEqual(await podUtils.readFile(chatFolder, true), null);
+    });
+    it('joinGroup', async function() {
+        this.timeout(timeout);
+        const chatFolder = "https://pruebaes5b.solid.community/public/SolidChat/Groups/pruebacreate/metadata.jsonld";
+        chatM.GROUP.name = "pruebacreate";
+        assert.equal(await podUtils.deleteFile(chatFolder, true), true);
+        assert.equal(await podUtils.deleteFolder("https://pruebaes5b.solid.community/public/SolidChat/Groups/pruebacreate/", true), true);
+        assert.equal(await podUtils.deleteFolder("https://pruebaes5b.solid.community/public/SolidChat/Groups/", true), true);
+    });
     it('receiveMessage', async function() {
         this.timeout(timeout);
         var messages = await chatM.receiveMessages();
@@ -220,6 +235,10 @@ describe('Test Chat Manager', function() {
         assert.equal(await podUtils.deleteFolder("https://pepa.solid.community/public/SolidChat/Groups/pruebapepa/", true), true);
         assert.equal(await podUtils.deleteFolder("https://pepa.solid.community/public/SolidChat/Groups/", true), true);
         assert.equal(await podUtils.deleteFolder("https://pepa.solid.community/public/SolidChat/", true), true);
+
+        var messages = await chatM.receiveMessages();
+        assert.notEqual(messages, null);
+        assert.equal(messages.length, 0);
 
         chatM.INFO.userURI = credentials.base + "/";
         assert.equal(await podUtils.logout(), true);
