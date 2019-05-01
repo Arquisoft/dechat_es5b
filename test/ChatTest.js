@@ -6,7 +6,7 @@ var notiMa = require('../src/scripts/NotificationManager.js');
 
 const timeout = 10000;
 
-var credentials = {
+const credentials = {
     "idp": "https://solid.community",
     "username": "pruebaes5b",
     "base": "https://pruebaes5b.solid.community",
@@ -62,7 +62,7 @@ describe('Test POD Utilities', function() {
         assert.equal(await podUtils.createFile(testFileUrl + ".txt", "test create file", true), true);
         assert.equal(await podUtils.readFile(testFileUrl + ".txt", true), "test create file");
         assert.equal(await podUtils.writeMsgJson(testFileUrl + ".json", "test json file", true), true);
-        assert.equal(await podUtils.writeMsgJson(testFileUrl + ".jsonld", "test jsonld file", true), true);
+        assert.equal(await podUtils.writeMsgJsonld(testFileUrl, "test jsonld file", true), true);
     });
     it('readFile', async function() {
         this.timeout(timeout);
@@ -135,9 +135,21 @@ describe('Test Chat Manager', function() {
         this.timeout(timeout);
         assert.equal(await chatM.setUpFolder(true), true);
         assert.equal(await chatM.checkNewMessages(receiver.idp + "/", receiver.username), false);
-        assert.equal(await chatM.sendMessage("newMessage"), true);
+        assert.equal(await chatM.sendMessage("newMessage", false), true);
         assert.notEqual(await podUtils.readFile(sendFolder, true), null);
         assert.equal(await chatM.setUpFolder(false), true);
+    });
+    it('sendGroupMessage', async function() {
+        this.timeout(timeout);
+        var chatFolder = "https://pruebaes5b.solid.community/public/SolidChat/Groups/prueba_test/chatld.jsonld";
+        chatM.GROUP.name = "prueba_test";
+        chatM.GROUP.friends = [credentials.username, receiver.username];
+        assert.equal(await chatM.sendMessage("newGroupMessage", true), true);
+        assert.notEqual(await podUtils.readFile(chatFolder, true), null);
+        await podUtils.deleteFile(chatFolder, true);
+        await podUtils.deleteFolder("https://pruebaes5b.solid.community/public/SolidChat/Groups/prueba_test/", true);
+        assert.equal(await chatM.sendMessage("newGroupMessage", true), true);
+        assert.notEqual(await podUtils.readFile(chatFolder, true), null);
     });
     it('receiveMessage', async function() {
         this.timeout(timeout);
@@ -158,15 +170,14 @@ describe('Test Chat Manager', function() {
             "password": "4152524152636352"
         }
         const pepaFolder = pepaCredentials.base + "/public/SolidChat/";
-
         chatM.INFO.userURI = pepaCredentials.base + "/";
 
         assert.equal(await podUtils.login(pepaCredentials), true);
-        assert.equal(await chatM.sendMessage("pepaMessage",false, true), true);
+        assert.equal(await chatM.sendMessage("pepaMessage", false), true);
         var messages = await chatM.receiveMessages();
         assert.equal(messages[0].includes("pepaMessage"), true);
 
-        assert.equal(await podUtils.deleteFile(pepaFolder + receiver.username + "/chat.txt", true), true);
+        assert.equal(await podUtils.deleteFile(pepaFolder + receiver.username + "/chatld.jsonld", true), true);
         assert.equal(await podUtils.deleteFolder(pepaFolder + receiver.username + "/", true), true);
         assert.equal(await podUtils.deleteFolder(pepaFolder, true), true);
 
