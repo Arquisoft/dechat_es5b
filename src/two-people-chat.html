@@ -15,7 +15,8 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script defer src="scripts/i18n/two-people-chat.lang.js"></script>
 	<!-- Insert this line after script imports -->
-	<script>if (window.module) module = window.module;</script>
+	<script>if (window.module) module = window.module;
+		</script>
 </head>
 
 <body style="background-color:#EBEBEB;">
@@ -74,7 +75,7 @@
 				<button type="button" class="list-group-item list-group-item-action noactive" disabled>Loading, please wait...</button>
 			</div>
 		</div>
-		<div class="split right">
+		<div class="split right scroll" id="scroll">
 			<div class="jumbotron chatplace">
 				<h1 style="margin-bottom: 0.5em;" id="h1title"></h1>
 				<div class="container" id="divConversation">

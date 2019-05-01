@@ -76,7 +76,6 @@ dt {
 
 .split {
 	position: fixed;
-	overflow-y: scroll;
 }
 
 /* Control the left side */
@@ -117,6 +116,10 @@ dt {
 	border-left:1em solid transparent;
 	border-right:1em solid transparent;
 	
+}
+
+.scroll {
+	overflow-y: scroll;  
 }
 
 .noti{
