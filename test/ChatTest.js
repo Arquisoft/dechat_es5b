@@ -42,9 +42,6 @@ describe('Log In and Session', function() {
     it('Login using null credentials', async function() {
         assert.equal(await podUtils.login(null), false);
     });
-    it('Invalid, nonexistent session', async function() {
-        assert.equal(await podUtils.getSession(), null);
-    });
 });
 
 describe('Test POD Utilities', function() {
