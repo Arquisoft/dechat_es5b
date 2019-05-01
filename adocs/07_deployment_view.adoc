@@ -9,4 +9,6 @@ Developing an descetralized app means that a central server is not required to s
 
 A SOLID server and a DeChat instance were deployed in an Amazon Web Services EC2 Server, but were terminated due to server issues.
 
+At this moment DeChat can be downloaded as a Windows app (win32_x64) directly or download source and compile it to Linux or MacOS target. If you do not want to download binaries, you can still use this chat at GitHub Pages (https://arquisoft.github.io/dechat_es5b)
+
 By default, SOLID Servers have a 25 MB disk limit. This can be a problem, for example, when uploading photos or videos to chats, as they can eat up all free space quickly.
