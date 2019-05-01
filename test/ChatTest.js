@@ -4,7 +4,7 @@ var chatM = require('../src/scripts/chatManager.js');
 var podUtils = require('../src/scripts/podUtilities.js');
 var notiMa = require('../src/scripts/NotificationManager.js');
 
-const timeout = 12000;
+const timeout = 10000;
 
 const credentials = {
     "idp": "https://solid.community",
