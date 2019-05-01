@@ -8,14 +8,16 @@ We have implemented a user interface using the bootstrap library. It's composed 
 image::images/05_chat_room_sketch.png["Chat room interface"]
 
 ==== Internacionalization:
-We are developing a term file for possible future translation of the application into Chinese.
+DeChat ES5B is internationalized. At this moment, you can browse our chat in English (default), Spanish, Chinese (Simplified) and Galego.
+
+A browser-based system were implemented. This means that you do not need to reaload the whole page to change language.
 
 === Design patterns
 ==== Design Pattern: Adapter
 To implement the solid-file-client library (which allows us to communicate with the PODs) we have made use of an adapter that adds functionality to the initial library.
 The Adapter is called PodUtilities. The solid-file-client library is imported  in this class and it is called by the logic classes to communicate with the PODs and get the data.
 
-image::images/Adapter.png["Adapter pattern"]
+image::images/08-Adapter.png["Adapter pattern"]
 
 ==== Architectural pattern: Three-tier architecture
 We have separated architecture into layers of presentation, logic and persistence. The implementation of the previous architecture has been carried out following the following diagram below:

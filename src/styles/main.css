@@ -75,21 +75,20 @@ dt {
 }
 
 .split {
+	top: 54px;
+	bottom: 0;
 	position: fixed;
 }
 
 /* Control the left side */
 .left {
 	width: 20%;
-	top: 54px;
-	bottom: 0;
 	left: 0;
 	background-color: #8975dd;
 }
 
 /* Control the right side */
 .right {
-	height: 100%;
 	width: 80%;
 	right: 0;
 }
