@@ -256,7 +256,7 @@ async function receiveMessages() {
     dict.forEach((n) => {
         MESSAGES.toShow.push(n.text)
     });
-    MESSAGES.toShow = MESSAGES.toShow.slice(-10);
+    //MESSAGES.toShow = MESSAGES.toShow.slice(-10);
 
     return MESSAGES.toShow;
 }
@@ -447,7 +447,7 @@ async function receiveGroupMessages() {
     dict.forEach((n) => {
         MESSAGES.toShow.push(n.text)
     });
-    MESSAGES.toShow = MESSAGES.toShow.slice(-10);
+    //MESSAGES.toShow = MESSAGES.toShow.slice(-10);
     MESSAGES.toShow.unshift("<p> URL: " + folder + "</p>");
 
     return MESSAGES.toShow;

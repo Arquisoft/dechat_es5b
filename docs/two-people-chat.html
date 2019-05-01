@@ -37,6 +37,13 @@
 				</div>
 			</li>
 			<li class="nav-item dropdown">
+				<a class="whitecolor nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdownGroup"></a>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item" id="groupButton"></a>
+					<a class="dropdown-item" href="#" id="groupJoin"></a>
+				</div>
+			</li>
+			<li class="nav-item dropdown">
 				<a class="whitecolor nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="langSelector"></a>
 				<div class="dropdown-menu dropdown-menu-right">
 					<a class="dropdown-item" href="#" onclick="setLanguage('en-US')"><img src="./images/555417.svg" width="28" height="23" class="d-inline-block align-center"> English</a>
@@ -56,40 +63,121 @@
 			</li>
 		</ul>
 	</nav>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-3">
-				<div class="sidebar-nav-fixed affix sidebar">
-					<div class="well">
-						<h5 class="centered whitecolor" style="padding: 0.75em;" id="h5friends"></h5>
-						<p style="text-align:center;" id="h5friendsDescription"></p>
-						<div class="list-group list-group-flush forcefullwidth" id="friends">
-							<button type="button" class="list-group-item list-group-item-action noactive" disabled>Loading, please wait...</button>
-						</div>
-					</div>
-				</div>
+	<div>
+		<div class="split left">
+			<h5 class="centered whitecolor" style="padding: 0.75em;" id="h5friends"></h5>
+			<p style="text-align:center;" id="h5friendsDescription"></p>
+			<div class="container" style="margin-bottom: 1em;">
+				<input type="text" class="form-control" placeholder="Filter by name" id="filtro-nombre"/>
 			</div>
-		
-			<div class="col-md-8">
-				<div class="jumbotron chatplace">
-					<h1 style="margin-bottom: 0.5em;" id="h1title"></h1>
-					<div class="container" id="divConversation">
-						<section>
-							<div id="MessageArea">
-								<div id="messages"></div>
-								<div class="input-group mb-3">
-									<input type="text" class="form-control" placeholder=". . ." id="messageText" aria-label=". . ." aria-describedby="basic-addon2">
-									<div class="input-group-append">
-										<button class="btn btn-outline-secondary" type="button" id="sendButton"></button>
-									</div>
+			<div class="list-group list-group-flush forcefullwidth" id="friends">
+				<button type="button" class="list-group-item list-group-item-action noactive" disabled>Loading, please wait...</button>
+			</div>
+		</div>
+		<div class="split right scroll" id="scroll">
+			<div class="jumbotron chatplace">
+				<h1 style="margin-bottom: 0.5em;" id="h1title"></h1>
+				<div class="container" id="divConversation">
+					<section>
+						<div id="MessageArea">
+							<div id="messages"></div>
+							<div class="input-group mb-3">
+								<input type="text" class="form-control" placeholder=". . ." id="messageText" aria-label=". . ." aria-describedby="basic-addon2">
+								<div class="input-group-append">
+									<button class="btn btn-outline-secondary" type="button" id="sendButton"></button>
 								</div>
 							</div>
-						</section>
-					</div>
+						</div>
+					</section>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<!-- CreateGroup Modal start -->
+	<div class="modal fade" id="modalGroup" tabindex="-1" role="dialog" aria-labelledby="modalGroupLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="modalGroupTitle"></h5>
+			<button type="button" class="close" data-dismiss='modal' aria-label="Close" id="modalCloseButton">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			<p id="modalGroupDescription"></p>
+			<div class="container">
+			  <div class="row">
+			    <div class="col">
+					<input type="text" class="form-control" id="modalGroupName"/>
+					<button type="button" class="btn btn-secondary btn-lg btn-block noactive"  
+						id="modalCreateGroup" style="font-size:1em; margin: 0.5em 0em;"></button>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="col">
+				  <button  type="button" class="btn btn-secondary btn-lg btn-block noactive" id="modalAddFriend" style="font-size:0.9em;"></button>
+				  <div name="modal-friends-list">
+					  <h6 style="text-align:center;" id="modalGroupTitleCol1"></h6>
+					  <div class="list-group list-group-flush forcefullwidth" id="friends-to-add"></div>
+				  </div>
+				</div>
+				<div class="col">
+				  <button  type="button" class="btn btn-secondary btn-lg btn-block noactive" id="modalRemoveFriend" style="font-size:0.9em;"></button>
+				  <div name="modal-friends-list">
+					  <h6 style="text-align:center;" id="modalGroupTitleCol2"></h6>
+					  <div class="list-group list-group-flush forcefullwidth" id="added-friends"></div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<!-- CreateGroup Modal end -->
+	
+	<!-- UrlGroupModal Modal start -->
+	<div class="modal fade" id="modalUrlGroup" tabindex="-1" role="dialog" aria-labelledby="modalUrlGroupLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="modalUrlGroupTitle"></h5>
+			<button type="button" class="close" data-dismiss='modal' aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			<p id="modalUrlGroupDescription"></p>
+			<p class="modalOverflowFix" id="modalUrl"></p>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<!-- UrlGroupModal Modal end -->
+	
+	<!-- UrlJoinModal Modal start -->
+	<div class="modal fade" id="modalJoinGroup" tabindex="-1" role="dialog" aria-labelledby="modalJoinGroupLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="modalJoinGroupTitle"></h5>
+			<button type="button" class="close" data-dismiss='modal' aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			<p id="modalJoinGroupDescription"></p>
+			<div class="row"/>
+				<input type="text" class="form-control" id="toJoin" placeholder="URL" aria-describedby="basic-addon2">
+			</div><div class="row"/>
+				<button class="btn btn-primary btn-lg btn-block noactive" type="button" id="modalButtonJoin" style="font-size:1.2em; margin: 0.5em 0.5em;"></button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<!-- UrlJoinModal Modal end -->
 	
 	<script src="lib/solid-auth-client.bundle.js"></script>
     <script src="index.js"></script>

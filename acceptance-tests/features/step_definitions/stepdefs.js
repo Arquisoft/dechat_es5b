@@ -3,29 +3,27 @@ const { Given, When, Then } = require('cucumber');
 const chatManager1 = require("../../../src/scripts/chatManager.js");
 
 // SEND MESSAGE
-Given('I\'m {string}, and I\'m using the chat app with my friend {string}', function(me, friendName) {
-    chatManager1.INFO.user = me; // ME
-    chatManager1.INFO.receiver = friendName; // MY FRIEND
-});
-
-Given('I\'m {string}, and I\'m using the chat app', function(me) {
-    chatManager1.INFO.user = me; // ME
-    chatManager1.INFO.receiver = null; // MY FRIEND
+Given('I\'m using the chat app', function() {
+    chatManager1.INFO.user = "jandrolaviana"; // ME
+    chatManager1.INFO.receiver = "pruebaes5b"; // MY FRIEND
 });
 
 When('I send a message {string} to my {string} friend', function(message, friendName) {
+    chatManager1.INFO.receiver = friendName;
+    chatManager1.getReceiver = function() { return chatManager1.INFO.receiver; }
     chatManager1.sendMessage = function(message) { return message; }
-    assert.equal(chatManager1.getReceiver(), friendName);
     this.reply = chatManager1.sendMessage(message);
 });
 
 Then('My friend {string} gets the message {string}', function(friendName, message) {
+    assert.equal(chatManager1.getReceiver(), friendName);
     assert.equal(this.reply, message);
 });
 
 // RECEIVE MESSAGE
 When('I\'m chatting with {string}', function(friendName) {
-    assert.equal(chatManager1.getReceiver(), friendName);
+    chatManager1.INFO.receiver = friendName;
+    chatManager1.getReceiver = function() { return chatManager1.INFO.receiver; }
 });
 
 Then('I recieve a message {string} from my friend {string}', function(message, friendName) {
@@ -44,8 +42,8 @@ function containsMessageAndFriend(cm, message, friendName) {
 
 // CHECK RIGHT FRIEND
 When('I want to start chatting with my friend {string}', function(friendName) {
+    chatManager1.INFO.receiver = friendName;
     chatManager1.getReceiver = function() { return chatManager1.INFO.receiver; }
-    assert.equal(chatManager1.getReceiver(), friendName);
 });
 
 Then('{string} is the right person to send the message', function(friendName) {
@@ -69,8 +67,9 @@ function containsFriend(friendName, friends) {
     return false;
 }
 
-// NO FRIEND CHOOSED
+// NOT CHOOSING FRIEND
 When('I send a message {string} to nobody', function(message) {
+    chatManager1.INFO.receiver = null; // MY FRIEND -> NOBODY
     chatManager1.sendMessage = function(message) {
         if (chatManager1.INFO.receiver != null) return message;
         else return null;

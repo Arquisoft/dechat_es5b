@@ -222,6 +222,7 @@ $('#sendButton').click(
 					updateMessages(await chatM.receiveGroupMessages());
 				else
 					updateMessages(await chatM.receiveMessages());
+				scrollDown();
 			}
 		}
 	}
@@ -244,7 +245,7 @@ $('#filtro-nombre').on(
 async function getFriends() {
 	friends = store.each($rdf.sym(chatM.INFO.user), FOAF('knows'));
 	$('#friends').empty();
-
+	
 	var sortedFriends = [];
 
 	await Promise.all(friends.map(async f => {
@@ -302,7 +303,6 @@ window.setInterval(async function () {
 	await checkNotifications();
 }, 5000);
 
-
 async function showFriends(sortedFriends) {
 	sortedFriends.forEach(
 		async (friend) => {
@@ -327,13 +327,13 @@ async function showFriends(sortedFriends) {
 						$(this).addClass("active");
 						//Show messages
 						updateMessages(await chatM.receiveMessages());
+						scrollDown();
 						await checkNotifications();
 					}
 				));
 			addFriendToList(friend.name, '#friends-to-add');
 		});
 }
-
 
 async function loadProfile() {
 	if (chatM.ToLog)
@@ -376,16 +376,19 @@ async function loadProfile() {
 						$("#friends button").addClass("noactive");
 						$(this).removeClass("noactive");
 						$(this).addClass("active");
-
 						//Show messages
 						updateMessages(await chatM.receiveGroupMessages());
+						scrollDown();
 					}
 				));
 		});
 	});
 }
 
-
+function scrollDown() {
+	var element = document.getElementById("scroll");
+	element.scrollTop = element.scrollHeight;
+}
 
 window.setInterval(async function () {
 	if (current.isGroup)
@@ -393,8 +396,6 @@ window.setInterval(async function () {
 	else
 		updateMessages(await chatM.receiveMessages());
 }, 2000);
-
-
 
 function updateMessages(toShow) {
 	if (chatM.ToLog)
@@ -406,7 +407,6 @@ function updateMessages(toShow) {
 	});
 	$('#messages').append(messages);
 }
-
 
 function addFriendToList(friendName, list) {
 	$(list).append(

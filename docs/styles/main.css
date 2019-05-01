@@ -40,6 +40,11 @@ dt {
     left: auto !important;
 }
 
+/* Solves bootstrap overflow bug on modal dialog */
+.modalOverflowFix{
+	word-wrap: break-word;
+}
+
 .centered{
 	font-weight: bold;
 	text-align: center;
@@ -69,14 +74,24 @@ dt {
   background-color: pink;
 }
 
-/* Friends list two-people-chat.html */
-.sidebar {
-	height: 100%;
-	max-width: 300px;
+.split {
+	top: 54px;
+	bottom: 0;
+	overflow-y: scroll;
 	position: fixed;
-	z-index: 1;
+}
+
+/* Control the left side */
+.left {
+	width: 20%;
 	left: 0;
 	background-color: #8975dd;
+}
+
+/* Control the right side */
+.right {
+	width: 80%;
+	right: 0;
 }
 
 /* Main part of chat */
@@ -100,6 +115,33 @@ dt {
 	overflow: visible;
 	border-left:1em solid transparent;
 	border-right:1em solid transparent;
+	
+}
+
+.scroll {
+	overflow-y: scroll;  
+}
+
+.noti{
+	background-color: rgb(22, 197, 75) !important;
+}
+
+.ico{
+	width:inherit;
+	height:inherit;
+	background:black;
+	color:white;
+	text-decoration:none;
+	text-align: end;
+}
+.ico:before{
+	content: '';
+	background:url('../images/notis.png');
+	background-size:cover;
+			position:absolute;
+	width:25px;
+	height:25px;
+	float: right;
 	
 }
 
@@ -140,7 +182,7 @@ dt:after {
 }
 
 #friends {
-	width: 170px
+	width: 25%;
 }
 
 #divConversation {
@@ -162,4 +204,13 @@ dt:after {
 	font-weight: bold;
 	margin-bottom: 0em;
 	padding-bottom: 0em;
+}
+
+div[name="modal-friends-list"] {
+	margin-top: 0.75em;
+	padding: 0.3em;
+	border-width: 0.1em;
+	border-style: solid;
+	border-color: #9C84FF;
+	border-radius: 0.2em;
 }

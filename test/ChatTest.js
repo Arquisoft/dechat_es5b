@@ -42,9 +42,6 @@ describe('Log In and Session', function() {
     it('Login using null credentials', async function() {
         assert.equal(await podUtils.login(null), false);
     });
-    it('Invalid, nonexistent session', async function() {
-        assert.equal(await podUtils.getSession(), null);
-    });
 });
 
 describe('Test POD Utilities', function() {
@@ -204,6 +201,7 @@ describe('Test Chat Manager', function() {
     });
     it('logout', async function() {
         this.timeout(timeout);
+        assert.equal(await podUtils.deleteFolder("https://pruebaes5b.solid.community/public/SolidChat/cristinamartin/", true), true);
         assert.equal(await podUtils.logout(), true);
     });
     it('sendMessage and createGroup when there is no SolidChat folder', async function() {

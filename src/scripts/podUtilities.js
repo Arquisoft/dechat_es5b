@@ -4,8 +4,13 @@ const auth = require('solid-auth-client');
 async function login(credentials) {
     var result;
     if (credentials == null) {
-        console.log('Invalid credentials');
-        return false;
+        result = await fileClient.popupLogin().then(webId => {
+            console.log(`Logged in as ${webId}.`);
+            return true;
+        }, err => {
+            console.log(err);
+            return false;
+        });
     } else {
         result = await fileClient.login(credentials).then((session) => {
             console.log(`Logged in as ` + session.webId);
@@ -19,11 +24,11 @@ async function login(credentials) {
 }
 
 async function loginNoPopup(idProvider) {
-    await auth.login(idProvider);
+    await solid.auth.login(idProvider);
 }
 
 async function getSession() {
-    return await auth.currentSession();
+    return await solid.auth.currentSession();
 }
 
 async function logout() {

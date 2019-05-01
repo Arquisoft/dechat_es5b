@@ -69,7 +69,7 @@ dt {
 	color: white !important;
 	background-color: #9c84ff !important;
 }
-*/
+
 .nav-link:hover { 
   background-color: pink;
 }
@@ -77,8 +77,8 @@ dt {
 .split {
 	top: 54px;
 	bottom: 0;
-	position: fixed;
 	overflow-y: scroll;
+	position: fixed;
 }
 
 /* Control the left side */
@@ -116,6 +116,10 @@ dt {
 	border-left:1em solid transparent;
 	border-right:1em solid transparent;
 	
+}
+
+.scroll {
+	overflow-y: scroll;  
 }
 
 .noti{
