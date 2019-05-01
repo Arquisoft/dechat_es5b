@@ -201,6 +201,7 @@ describe('Test Chat Manager', function() {
     });
     it('logout', async function() {
         this.timeout(timeout);
+        assert.equal(await podUtils.deleteFolder("https://pruebaes5b.solid.community/public/SolidChat/cristinamartin/", true), true);
         assert.equal(await podUtils.logout(), true);
     });
     it('sendMessage and createGroup when there is no SolidChat folder', async function() {
