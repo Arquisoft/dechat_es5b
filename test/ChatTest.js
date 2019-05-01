@@ -2,7 +2,6 @@ require('chai');
 var assert = require('assert');
 var chatM = require('../src/scripts/chatManager.js');
 var podUtils = require('../src/scripts/podUtilities.js');
-var notiMa = require('../src/scripts/NotificationManager.js');
 
 const timeout = 10000;
 
@@ -239,45 +238,6 @@ describe('Test Chat Manager', function() {
         assert.equal(messages.length, 0);
 
         chatM.INFO.userURI = credentials.base + "/";
-        assert.equal(await podUtils.logout(), true);
-    });
-});
-
-describe('Notification Manager', function() {
-    it('Login Success', async function() {
-        this.timeout(timeout);
-        credentials.password = "CE.ji.JU-55";
-        assert.equal(await podUtils.login(credentials), true);
-    });
-    it('createNotificationsTtl', async function() {
-        this.timeout(timeout);
-        assert.equal(await podUtils.readFile(credentials.base + "/inbox/SolidChatNot.ttl", true), null);
-        assert.notEqual(await notiMa.readAllNotification(credentials.base + "/"), null);
-    });
-    it('writeNotification', async function() {
-        this.timeout(timeout);
-        assert.equal(await notiMa.writeNotification(credentials.base + "/", receiver.username), true);
-    });
-    it('readAllNotifications', async function() {
-        this.timeout(timeout);
-        assert.notEqual(await notiMa.readAllNotification(credentials.base + "/"), null);
-    });
-    it('readContentFolder', async function() {
-        this.timeout(timeout);
-        var folder = await podUtils.readFolder(notiMaUrl, true);
-        assert.notEqual(folder.files.length, 0);
-    });
-    it('deleteNotification', async function() {
-        this.timeout(timeout);
-        assert.equal(await notiMa.deleteNotification(credentials.base + "/", receiver.username), true);
-    });
-    it('deleteFile', async function() {
-        this.timeout(timeout);
-        assert.equal(await podUtils.deleteFile(credentials.base + "/inbox/SolidChatNot.ttl", true), true);
-        assert.equal(await podUtils.readFile(credentials.base + "/inbox/SolidChatNot.ttl", true), null);
-    });
-    it('logout', async function() {
-        this.timeout(timeout);
         assert.equal(await podUtils.logout(), true);
     });
 });
