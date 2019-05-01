@@ -77,23 +77,21 @@ async function setUpFolder(dontHave) {
 }
 
 //SEND Message function login
-async function sendMessage(text, isGroup, test) {
+async function sendMessage(text, isGroup) {
     var ret = false;
-    console.log(isGroup);
 
     //Define folders name
     var solidChat = INFO.userURI + "public/SolidChat/";
     var folder;
-    if (isGroup)
+    if (isGroup) {
         folder = solidChat + "Groups/" + GROUP.name.replace(/ /g, "-") + "/";
-    else
+    } else
         folder = solidChat + INFO.receiverName.replace(/ /g, "-") + "/";
     var filename = folder + "chatld.jsonld";
-
     //WritingMessage
     try {
         var err3 = await podUtils.readFile(filename);
-        if (!err3 || test) {
+        if (!err3) {
             throw ("error");
         }
 
@@ -116,27 +114,25 @@ async function sendMessage(text, isGroup, test) {
         //IF folder doesnt exist: create new user folder
         try {
             var err2 = await podUtils.readFolder(folder, ToLog);
-            if (!err2 || test) {
+            if (!err2) {
                 throw ("error");
             }
         } catch (error) {
             //Check Folder SolidChat
             try {
                 var err = await podUtils.readFolder(solidChat, ToLog);
-                if (!err || test) {
+                if (!err) {
                     throw ("error");
                 }
             } catch (error) {
                 //New Solid-Chat folder
                 await podUtils.createFolder(solidChat, ToLog);
             }
-
             //New Folder:
             await podUtils.createFolder(folder, ToLog);
         }
 
         //chat is the full chat component in jsonld
-
         var chat;
         if (isGroup) {
             chat = {
@@ -144,14 +140,12 @@ async function sendMessage(text, isGroup, test) {
                 "@type": "Conversation",
                 "people": GROUP.friends.length,
                 "isGroup": true,
-                "messages": [
-                    {
-                        "@Type": "message",
-                        "sender": INFO.userURI,
-                        "dateSent": new Date().getTime(),
-                        "text": text
-                    }
-                ]
+                "messages": [{
+                    "@Type": "message",
+                    "sender": INFO.userURI,
+                    "dateSent": new Date().getTime(),
+                    "text": text
+                }]
             };
         } else {
             chat = {
@@ -159,21 +153,16 @@ async function sendMessage(text, isGroup, test) {
                 "@type": "Conversation",
                 "people": 1,
                 "isGroup": false,
-                "messages": [
-                    {
-                        "@Type": "message",
-                        "sender": INFO.userURI,
-                        "dateSent": new Date().getTime(),
-                        "text": text
-                    }
-                ]
+                "messages": [{
+                    "@Type": "message",
+                    "sender": INFO.userURI,
+                    "dateSent": new Date().getTime(),
+                    "text": text
+                }]
             };
         }
-        await podUtils.writeMessage(folder + "cache.txt", "");
-
-
+        //await podUtils.writeMessage(folder + "cache.txt", "");
         jsonString = JSON.stringify(chat);
-
         ret = await podUtils.writeMsgJsonld(folder + "chatld", jsonString, ToLog);
     }
     return ret;
@@ -200,9 +189,6 @@ async function checkNewMessages(receiverFolder, receiver) {
 }
 
 async function receiveMessages() {
-    if (ToLog)
-        console.log("ReceivingMessages")
-
     var dict = [];
 
     //Define folders name
@@ -262,7 +248,7 @@ async function receiveMessages() {
             dict.push(new message("<div class=\"containerChat\"><p id=\"noMarginMessge\">" + element.text + "</p><p id=\"username\">" + INFO.receiverName + " " + strDate + "</p></div>", date));
         });
     }
-    dict.sort(function (a, b) {
+    dict.sort(function(a, b) {
         return a.date > b.date ? 1 : a.date < b.date ? -1 : 0;
     });
 
@@ -290,17 +276,10 @@ async function createGroupFolder(basicUri, folderName) {
     var folder = groups + folderName;
     var metadataUrl = folder + '/metadata.jsonld';
 
-    if (ToLog)
-        console.log("Creating folder: " + folderName);
-
     //IF folder doesnt exist: create new folder
-    if (ToLog)
-        console.log("Check folder: " + folderName + " folder");
     try {
         var err2 = await podUtils.readFolder(folder, ToLog);
         if (!err2) {
-            if (ToLog)
-                console.log("Folder doesnt exist");
             throw ("error")
         }
 
@@ -332,31 +311,23 @@ async function createGroupFolder(basicUri, folderName) {
             if (!err3)
                 throw ("error");
         } catch (error) {
-
             //Check Folder SolidChat
-            if (ToLog)
-                console.log("Check SolidChat Exist")
             try {
                 var err = await podUtils.readFolder(solidChat, ToLog);
                 if (!err) {
-                    if (ToLog)
-                        console.log("Solid-chat folder doesnt exist");
                     throw ("error")
                 }
             } catch (error) {
                 //New Solid-Chat folder
                 created = await podUtils.createFolder(solidChat, ToLog);
-                if (!created) return false;
-                if (ToLog)
-                    console.log("Solid-chat folder created");
+                if (!created) {
+                    return false;
+                }
             }
 
             created = await podUtils.createFolder(groups, ToLog);
             if (!created) return false;
-            if (ToLog)
-                console.log("Groups folder created");
         }
-        console.log('-----------------------------' + folder);
         //New Folder:
         created = await podUtils.createFolder(folder, ToLog);
 
@@ -442,8 +413,6 @@ async function receiveGroupMessages() {
         userMessages = await podUtils.readFile(file, ToLog);
 
         if (!userMessages) {
-            if (ToLog)
-                console.log("User chat file doesnt exist");
             userMessages = "[]";
         }
 
@@ -470,7 +439,7 @@ async function receiveGroupMessages() {
             notiMan.deleteNotification(INFO.userURI, friend.uri);
     }
 
-    dict.sort(function (a, b) {
+    dict.sort(function(a, b) {
         return a.date > b.date ? 1 : a.date < b.date ? -1 : 0;
     });
 
